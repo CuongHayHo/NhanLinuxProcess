@@ -62,10 +62,19 @@ test-producer_consumer: modules-lib
 test-shell: modules-lib
 	gcc -Wall -Wextra -g -Iinclude -pthread tests/shell_test.c modules/shell/shell_mgr.o app/logger.c -o tests/shell_test
 
+test-script_runner: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/script_runner_test.c modules/shell/shell_mgr.o app/logger.c -o tests/script_runner_test
+
+test-environment: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/environment_test.c modules/shell/shell_mgr.o app/logger.c -o tests/environment_test
+
+test-automation: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/automation_test.c modules/shell/shell_mgr.o app/logger.c -o tests/automation_test
+
 clean:
 	$(MAKE) -C modules clean
 	$(MAKE) -C app clean
 	$(MAKE) -C kernel/system_monitor clean
-	rm -f tests/logger_test tests/file_test tests/process_test tests/system_info_test tests/network_test tests/package_test tests/time_test tests/scheduler_test tests/socket_test tests/kernel_test tests/ipc_test tests/semaphore_test tests/producer_consumer_test tests/shell_test
+	rm -f tests/logger_test tests/file_test tests/process_test tests/system_info_test tests/network_test tests/package_test tests/time_test tests/scheduler_test tests/socket_test tests/kernel_test tests/ipc_test tests/semaphore_test tests/producer_consumer_test tests/shell_test tests/script_runner_test tests/environment_test tests/automation_test
 
-.PHONY: all modules-lib app-bin ipc-demos kernel-module test-logger test-file test-process test-system_info test-network test-package test-time test-scheduler test-socket test-kernel test-ipc test-semaphore test-producer_consumer test-shell clean
+.PHONY: all modules-lib app-bin ipc-demos kernel-module test-logger test-file test-process test-system_info test-network test-package test-time test-scheduler test-socket test-kernel test-ipc test-semaphore test-producer_consumer test-shell test-script_runner test-environment test-automation clean

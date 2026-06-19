@@ -1739,3 +1739,192 @@
 2026-06-19 20:10:18 [INFO] [SHELL] Child process created (PID: 48)
 2026-06-19 20:10:18 [INFO] [SHELL] Command executed
 2026-06-19 20:10:18 [INFO] [SHELL] Exit status: 127
+2026-06-19 23:07:20 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-19 23:07:20 [INFO] [SHELL] Child process created (PID: 30)
+2026-06-19 23:07:20 [INFO] [SHELL] Script executed
+2026-06-19 23:07:20 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:07:20 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-19 23:07:20 [INFO] [SHELL] Child process created (PID: 34)
+2026-06-19 23:07:20 [INFO] [SHELL] Script executed
+2026-06-19 23:07:20 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:07:20 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-19 23:07:20 [INFO] [SHELL] Child process created (PID: 40)
+2026-06-19 23:07:20 [INFO] [SHELL] Script executed
+2026-06-19 23:07:20 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:07:20 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-19 23:07:20 [INFO] [SHELL] Child process created (PID: 44)
+2026-06-19 23:07:20 [INFO] [SHELL] Script executed
+2026-06-19 23:07:20 [INFO] [SHELL] Exit status: 127
+2026-06-19 23:07:20 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-19 23:08:02 [INFO] [SYSTEM] Application started
+2026-06-19 23:08:02 [WARN] [FILE] Permission denied
+2026-06-19 23:08:02 [ERROR] [NETWORK] Connection timeout
+2026-06-19 23:08:02 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file1.txt
+2026-06-19 23:08:02 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file2.txt
+2026-06-19 23:08:02 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 23:08:02 [INFO] [FILE] Copied file from 'tests/test_dir/file1.txt' to 'tests/test_dir/file1_copy.txt'
+2026-06-19 23:08:02 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-19 23:08:02 [INFO] [FILE] Moved file from 'tests/test_dir/file2.txt' to 'tests/test_dir/file2_moved.txt' (via rename)
+2026-06-19 23:08:02 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file2_moved.txt
+2026-06-19 23:08:02 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 23:08:02 [INFO] [FILE] Deleted file: tests/test_dir/file1.txt
+2026-06-19 23:08:02 [INFO] [FILE] Deleted file: tests/test_dir/file1_copy.txt
+2026-06-19 23:08:02 [INFO] [FILE] Deleted file: tests/test_dir/file2_moved.txt
+2026-06-19 23:08:02 [INFO] [SYSTEM_INFO] System information requested
+2026-06-19 23:08:02 [INFO] [NETWORK] Interface enumeration started
+2026-06-19 23:08:02 [INFO] [NETWORK] Interfaces discovered
+2026-06-19 23:08:02 [INFO] [NETWORK] Routing inspection started
+2026-06-19 23:08:02 [INFO] [NETWORK] Route entries parsed
+2026-06-19 23:08:02 [INFO] [NETWORK] Default gateway detected
+2026-06-19 23:08:02 [INFO] [NETWORK] Route entries parsed
+2026-06-19 23:08:02 [INFO] [NETWORK] Hostname queried
+2026-06-19 23:08:02 [INFO] [NETWORK] FQDN resolved
+2026-06-19 23:08:02 [INFO] [TIME] Time inspection started
+2026-06-19 23:08:02 [INFO] [TIME] Current timestamp retrieved: 1781885282
+2026-06-19 23:08:02 [INFO] [TIME] Timezone detected: +07 (Offset: 25200 seconds)
+2026-06-19 23:08:02 [INFO] [SCHEDULER] Task listed (Count: 0)
+2026-06-19 23:08:02 [INFO] [SCHEDULER] Task created: ID=1, Name=Task A
+2026-06-19 23:08:02 [INFO] [SCHEDULER] Task created: ID=2, Name=Task B
+2026-06-19 23:08:02 [INFO] [SCHEDULER] Task listed (Count: 2)
+2026-06-19 23:08:02 [INFO] [SCHEDULER] Task removed: ID=1
+2026-06-19 23:08:02 [INFO] [SCHEDULER] Task listed (Count: 1)
+2026-06-19 23:08:02 [ERROR] [SCHEDULER] Task deletion failed: ID 999 not found
+2026-06-19 23:08:02 [INFO] [SCHEDULER] Task removed: ID=2
+2026-06-19 23:08:02 [INFO] [SCHEDULER] Task listed (Count: 0)
+2026-06-19 23:08:02 [INFO] [IPC] Shared memory created
+2026-06-19 23:08:02 [INFO] [IPC] Mapped
+2026-06-19 23:08:02 [INFO] [IPC] Written
+2026-06-19 23:08:02 [INFO] [IPC] Mapped
+2026-06-19 23:08:02 [INFO] [IPC] Read
+2026-06-19 23:08:02 [INFO] [IPC] Destroyed
+2026-06-19 23:08:02 [INFO] [IPC] Semaphore created
+2026-06-19 23:08:02 [INFO] [IPC] Wait
+2026-06-19 23:08:02 [INFO] [IPC] Wait
+2026-06-19 23:08:02 [INFO] [IPC] Post
+2026-06-19 23:08:02 [INFO] [IPC] Post
+2026-06-19 23:08:02 [INFO] [IPC] Destroyed
+2026-06-19 23:08:02 [INFO] [IPC] Producer started
+2026-06-19 23:08:02 [INFO] [IPC] Shared memory written
+2026-06-19 23:08:02 [INFO] [IPC] Semaphore post
+2026-06-19 23:08:02 [INFO] [IPC] Consumer started
+2026-06-19 23:08:02 [INFO] [IPC] Semaphore wait
+2026-06-19 23:08:02 [INFO] [IPC] Shared memory read
+2026-06-19 23:08:02 [INFO] [IPC] Cleanup
+2026-06-19 23:08:02 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-19 23:08:02 [INFO] [SHELL] Child process created (PID: 46)
+2026-06-19 23:08:02 [INFO] [SHELL] Command executed
+2026-06-19 23:08:02 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:08:02 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-19 23:08:02 [INFO] [SHELL] Child process created (PID: 47)
+2026-06-19 23:08:02 [INFO] [SHELL] Command executed
+2026-06-19 23:08:02 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:08:02 [INFO] [SHELL] Command entered: 'ls'
+2026-06-19 23:08:02 [INFO] [SHELL] Child process created (PID: 48)
+2026-06-19 23:08:02 [INFO] [SHELL] Command executed
+2026-06-19 23:08:02 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:08:02 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-19 23:08:02 [INFO] [SHELL] Child process created (PID: 49)
+2026-06-19 23:08:02 [INFO] [SHELL] Command executed
+2026-06-19 23:08:02 [INFO] [SHELL] Exit status: 127
+2026-06-19 23:08:02 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-19 23:08:02 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-19 23:08:02 [INFO] [SHELL] Child process created (PID: 50)
+2026-06-19 23:08:02 [INFO] [SHELL] Script executed
+2026-06-19 23:08:02 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:08:02 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-19 23:08:02 [INFO] [SHELL] Child process created (PID: 54)
+2026-06-19 23:08:02 [INFO] [SHELL] Script executed
+2026-06-19 23:08:02 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:08:02 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-19 23:08:02 [INFO] [SHELL] Child process created (PID: 60)
+2026-06-19 23:08:02 [INFO] [SHELL] Script executed
+2026-06-19 23:08:02 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:08:02 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-19 23:08:02 [INFO] [SHELL] Child process created (PID: 64)
+2026-06-19 23:08:02 [INFO] [SHELL] Script executed
+2026-06-19 23:08:02 [INFO] [SHELL] Exit status: 127
+2026-06-19 23:08:02 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-19 23:11:13 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-19 23:11:13 [INFO] [SHELL] Child process created (PID: 33)
+2026-06-19 23:11:13 [INFO] [SHELL] Command executed
+2026-06-19 23:11:13 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:11:13 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-19 23:11:13 [INFO] [SHELL] Child process created (PID: 34)
+2026-06-19 23:11:13 [INFO] [SHELL] Command executed
+2026-06-19 23:11:13 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:11:13 [INFO] [SHELL] Command entered: 'ls'
+2026-06-19 23:11:13 [INFO] [SHELL] Child process created (PID: 35)
+2026-06-19 23:11:13 [INFO] [SHELL] Command executed
+2026-06-19 23:11:13 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:11:13 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-19 23:11:13 [INFO] [SHELL] Child process created (PID: 36)
+2026-06-19 23:11:13 [INFO] [SHELL] Command executed
+2026-06-19 23:11:13 [INFO] [SHELL] Exit status: 127
+2026-06-19 23:11:13 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-19 23:11:13 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-19 23:11:13 [INFO] [SHELL] Child process created (PID: 37)
+2026-06-19 23:11:13 [INFO] [SHELL] Script executed
+2026-06-19 23:11:13 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:11:13 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-19 23:11:13 [INFO] [SHELL] Child process created (PID: 41)
+2026-06-19 23:11:13 [INFO] [SHELL] Script executed
+2026-06-19 23:11:13 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:11:13 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-19 23:11:13 [INFO] [SHELL] Child process created (PID: 47)
+2026-06-19 23:11:13 [INFO] [SHELL] Script executed
+2026-06-19 23:11:13 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:11:13 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-19 23:11:13 [INFO] [SHELL] Child process created (PID: 51)
+2026-06-19 23:11:13 [INFO] [SHELL] Script executed
+2026-06-19 23:11:13 [INFO] [SHELL] Exit status: 127
+2026-06-19 23:11:13 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-19 23:14:09 [INFO] [SHELL] Cron expression parsed
+2026-06-19 23:14:09 [INFO] [SHELL] Cron expression parsed
+2026-06-19 23:14:09 [ERROR] [SHELL] Errors: invalid cron expression parsed '0 8 *'
+2026-06-19 23:14:09 [INFO] [SHELL] Command entered: 'crontab -l'
+2026-06-19 23:14:09 [INFO] [SHELL] Child process created (PID: 49)
+2026-06-19 23:14:09 [INFO] [SHELL] Command executed
+2026-06-19 23:14:09 [INFO] [SHELL] Exit status: 1
+2026-06-19 23:14:09 [ERROR] [SHELL] Errors: execution failed with exit code 1
+2026-06-19 23:14:57 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-19 23:14:57 [INFO] [SHELL] Child process created (PID: 33)
+2026-06-19 23:14:57 [INFO] [SHELL] Command executed
+2026-06-19 23:14:57 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:14:57 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-19 23:14:57 [INFO] [SHELL] Child process created (PID: 34)
+2026-06-19 23:14:57 [INFO] [SHELL] Command executed
+2026-06-19 23:14:57 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:14:57 [INFO] [SHELL] Command entered: 'ls'
+2026-06-19 23:14:57 [INFO] [SHELL] Child process created (PID: 35)
+2026-06-19 23:14:57 [INFO] [SHELL] Command executed
+2026-06-19 23:14:57 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:14:57 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-19 23:14:57 [INFO] [SHELL] Child process created (PID: 36)
+2026-06-19 23:14:57 [INFO] [SHELL] Command executed
+2026-06-19 23:14:57 [INFO] [SHELL] Exit status: 127
+2026-06-19 23:14:57 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-19 23:14:57 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-19 23:14:57 [INFO] [SHELL] Child process created (PID: 38)
+2026-06-19 23:14:57 [INFO] [SHELL] Script executed
+2026-06-19 23:14:57 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:14:57 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-19 23:14:57 [INFO] [SHELL] Child process created (PID: 42)
+2026-06-19 23:14:57 [INFO] [SHELL] Script executed
+2026-06-19 23:14:57 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:14:57 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-19 23:14:57 [INFO] [SHELL] Child process created (PID: 48)
+2026-06-19 23:14:57 [INFO] [SHELL] Script executed
+2026-06-19 23:14:57 [INFO] [SHELL] Exit status: 0
+2026-06-19 23:14:57 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-19 23:14:57 [INFO] [SHELL] Child process created (PID: 52)
+2026-06-19 23:14:57 [INFO] [SHELL] Script executed
+2026-06-19 23:14:57 [INFO] [SHELL] Exit status: 127
+2026-06-19 23:14:57 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-19 23:14:57 [INFO] [SHELL] Cron expression parsed
+2026-06-19 23:14:57 [INFO] [SHELL] Cron expression parsed
+2026-06-19 23:14:57 [ERROR] [SHELL] Errors: invalid cron expression parsed '0 8 *'
+2026-06-19 23:14:57 [INFO] [SHELL] Command entered: 'crontab -l'
+2026-06-19 23:14:57 [INFO] [SHELL] Child process created (PID: 54)
+2026-06-19 23:14:57 [INFO] [SHELL] Command executed
+2026-06-19 23:14:57 [INFO] [SHELL] Exit status: 1
+2026-06-19 23:14:57 [ERROR] [SHELL] Errors: execution failed with exit code 1

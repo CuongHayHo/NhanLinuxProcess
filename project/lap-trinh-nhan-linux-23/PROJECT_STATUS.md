@@ -1,8 +1,8 @@
 # Project Status
 
 ## 1. Release Configuration
-*   **Current Version**: `v0.7.0-shell`
-*   **Sprint Objective**: Shell Sprint 1 (Safe Command Launcher via POSIX APIs)
+*   **Current Version**: `v0.7.0-shell-complete`
+*   **Sprint Objective**: Shell Sprint 4 (Automation Manager)
 *   **System Mode**: Learning Mode (Read-Only)
 
 ---
@@ -21,7 +21,7 @@
 | **Socket Manager** | Complete | Frozen | TCP client/server network echo implementations. |
 | **Kernel Module** | Complete | Frozen | Integrated user space /proc/sysmgr reader with submenu display options. |
 | **IPC Manager** | Complete | Frozen | Integrated POSIX Shared Memory and Semaphore Producer-Consumer demo with TUI. |
-| **Shell Manager** | Complete | Frozen | Safe POSIX program execution via fork() + execvp() + waitpid(). |
+| **Shell Manager** | Complete | Frozen | Safe POSIX program/script execution, environment management, and crontab explanations via fork() + execvp() + waitpid(). |
 
 ---
 

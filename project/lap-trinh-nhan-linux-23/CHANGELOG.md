@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file.
 
+## Shell Sprint 4
+
+### Added
+- Implemented the Automation Manager submenu inside [modules/shell/shell_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/shell/shell_mgr.c) enabling task automation checks.
+- Enabled Option 4 "Automation Manager" in the main Shell Manager menu, making all TUI submenu choices fully functional.
+- Configured Option 1 "View Current Crontab" to run `crontab -l` using the existing fork + execvp + waitpid process execution framework, safely listing configured tasks.
+- Implemented cron translation parser (`translate_cron()`) inside Option 2 "Explain Cron Expression" to breakdown time fields and display human-readable summaries (e.g. for `0 8 * * 1-5` and `*/5 * * * *`).
+- Configured Option 3 "Sample Scheduled Tasks" to show read-only, educational cron job samples without performing system modifications.
+- Integrated logging events for automation tasks, tracing cron runs (`Crontab viewed`), parses (`Cron expression parsed`), example selections (`Example selected`), and exit errors (`Errors`).
+- Created unit test suite [tests/automation_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/automation_test.c) and added compilation target `test-automation` in [Makefile](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/Makefile).
+- Updated Section 10 inside developer documentation [docs/shell_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/shell_manager.md) detailing Cron fields, scheduling samples, and sandbox safety.
+
+## Shell Sprint 3
+
+### Added
+- Implemented the Environment Manager submenu inside [modules/shell/shell_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/shell/shell_mgr.c).
+- Enabled Option 3 "Environment Manager" in the Shell Manager submenu.
+- Configured local environment variable modifications using standard POSIX APIs `getenv()`, `setenv()`, and `unsetenv()`.
+- Implemented robust error boundaries and logging for environment operations, tracing inspections (`Variable queried`), set events (`Variable set`), deletions (`Variable removed`), and system errors (`Errors`).
+- Created unit verification test [tests/environment_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/environment_test.c) asserting variable lookups, temporary overrides, and deletions.
+- Configured Make rules (`test-environment`) inside the root [Makefile](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/Makefile).
+- Updated Section 9 inside developer documentation [docs/shell_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/shell_manager.md) detailing inheritance, isolation, and security.
+
+## Shell Sprint 2
+
+### Added
+- Implemented the Script Runner subsystem inside [modules/shell/shell_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/shell/shell_mgr.c) enabling safe script executions.
+- Enabled Option 2 "Run Script" in the Shell Manager interactive submenu and added a selection menu for running predefined administrative scripts.
+- Created the educational script library in `scripts/` containing:
+  * [backup.sh](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/scripts/backup.sh) (Dry-run simulated configuration backup)
+  * [disk_usage.sh](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/scripts/disk_usage.sh) (Mounted root filesystem check and top-5 logs size scanner)
+  * [show_date.sh](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/scripts/show_date.sh) (System timestamp and timezone lookup)
+- Configured direct execution of scripts by invoking `/bin/bash` with the script path through `execvp()`, completely reusing the existing low-level process lifecycle framework.
+- Standardized logging events specifically for script runs, covering selections (`Script selected`), PID allocations (`Child process created`), executions (`Script executed`), exit states (`Exit status`), and command-not-found codes (`Errors` / `127`).
+- Created diagnostic verification script [tests/script_runner_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/script_runner_test.c) and registered the compilation targets.
+- Appended Section 8 to developer documentation [docs/shell_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/shell_manager.md) detailing architecture, scripts lifecycles, and flowcharts.
+
 ## Shell Sprint 1
 
 ### Added

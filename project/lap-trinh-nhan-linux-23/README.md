@@ -77,7 +77,7 @@ Chạy bộ kiểm thử tự động của Time Manager:
 ### Giao diện Menu chính (Main Menu TUI)
 ```text
 ========================================
-      Linux System Manager (v0.7.0-shell)
+      Linux System Manager (v0.7.0-shell-complete)
 ========================================
 1. File Manager
 2. Process Manager
