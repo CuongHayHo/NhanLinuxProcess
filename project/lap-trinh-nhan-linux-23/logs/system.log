@@ -392,3 +392,267 @@
 2026-06-19 14:39:56 [INFO] [PROCESS] Parent exited
 2026-06-19 14:40:00 [INFO] [PROCESS] Child adopted
 2026-06-19 14:40:02 [INFO] [PROCESS] Demo finished
+2026-06-19 14:45:05 [INFO] [SYSTEM] Application started
+2026-06-19 14:45:10 [INFO] [SYSTEM] Entering File Manager
+2026-06-19 14:45:10 [INFO] [FILE] File manager interactive loop started.
+2026-06-19 14:45:10 [INFO] [SYSTEM] Leaving File Manager
+2026-06-19 14:45:20 [INFO] [SYSTEM] Application shutting down
+2026-06-19 14:45:32 [INFO] [SYSTEM] Application started
+2026-06-19 14:45:36 [INFO] [SYSTEM] Entering File Manager
+2026-06-19 14:45:36 [INFO] [FILE] File manager interactive loop started.
+2026-06-19 14:45:36 [INFO] [SYSTEM] Leaving File Manager
+2026-06-19 14:45:43 [INFO] [SYSTEM] Entering Process Manager
+2026-06-19 14:45:43 [INFO] [PROCESS] Process manager interactive loop started.
+2026-06-19 14:45:58 [INFO] [PROCESS] Process manager interactive loop ended.
+2026-06-19 14:45:58 [INFO] [SYSTEM] Leaving Process Manager
+2026-06-19 14:46:04 [INFO] [SYSTEM] Application shutting down
+2026-06-19 14:46:10 [INFO] [SYSTEM] Application started
+2026-06-19 14:46:13 [INFO] [SYSTEM] Entering Process Manager
+2026-06-19 14:46:13 [INFO] [PROCESS] Process manager interactive loop started.
+2026-06-19 14:46:17 [INFO] [PROCESS] Process list requested
+2026-06-19 14:46:17 [INFO] [PROCESS] Number of processes found: 441
+2026-06-19 14:46:29 [INFO] [PROCESS] fork() requested
+2026-06-19 14:46:29 [INFO] [PROCESS] Parent created child
+2026-06-19 14:46:29 [INFO] [PROCESS] Child started
+2026-06-19 14:46:31 [INFO] [PROCESS] Child exited
+2026-06-19 14:46:31 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:46:37 [INFO] [PROCESS] Process manager interactive loop ended.
+2026-06-19 14:46:37 [INFO] [SYSTEM] Leaving Process Manager
+2026-06-19 14:48:17 [INFO] [SYSTEM] Application started
+2026-06-19 14:48:22 [INFO] [SYSTEM] Entering Process Manager
+2026-06-19 14:48:22 [INFO] [PROCESS] Process manager interactive loop started.
+2026-06-19 14:48:28 [INFO] [PROCESS] Process manager interactive loop ended.
+2026-06-19 14:48:28 [INFO] [SYSTEM] Leaving Process Manager
+2026-06-19 14:48:30 [INFO] [SYSTEM] Application shutting down
+2026-06-19 14:49:37 [INFO] [PROCESS] Process list requested
+2026-06-19 14:49:37 [INFO] [PROCESS] Number of processes found: 436
+2026-06-19 14:49:37 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:49:37 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:49:37 [INFO] [PROCESS] Search request: '66624'
+2026-06-19 14:49:37 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:49:38 [INFO] [PROCESS] Priority changed: PID 66625 nice from 0 to 5
+2026-06-19 14:49:38 [ERROR] [PROCESS] Permission denied for PID 66625
+2026-06-19 14:49:38 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 66625
+2026-06-19 14:49:39 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 66625
+2026-06-19 14:49:40 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 66625
+2026-06-19 14:49:40 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:49:40 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:49:40 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:49:40 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:49:40 [INFO] [PROCESS] fork() requested
+2026-06-19 14:49:40 [INFO] [PROCESS] Parent created child
+2026-06-19 14:49:40 [INFO] [PROCESS] Child started
+2026-06-19 14:49:42 [INFO] [PROCESS] Child exited
+2026-06-19 14:49:42 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:49:42 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:49:42 [INFO] [PROCESS] parent waiting
+2026-06-19 14:49:42 [INFO] [PROCESS] child executing external program
+2026-06-19 14:49:42 [INFO] [PROCESS] child exited
+2026-06-19 14:49:42 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:49:42 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:49:45 [INFO] [PROCESS] Child exited
+2026-06-19 14:49:45 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:49:45 [INFO] [PROCESS] Zombie demo started
+2026-06-19 14:49:45 [INFO] [PROCESS] Child exited
+2026-06-19 14:49:48 [INFO] [PROCESS] Zombie detected
+2026-06-19 14:49:48 [INFO] [PROCESS] waitpid called
+2026-06-19 14:49:48 [INFO] [PROCESS] Zombie removed
+2026-06-19 14:49:48 [INFO] [PROCESS] Demo finished
+2026-06-19 14:49:48 [INFO] [PROCESS] Orphan demo started
+2026-06-19 14:49:48 [INFO] [PROCESS] Parent exited
+2026-06-19 14:49:52 [INFO] [PROCESS] Child adopted
+2026-06-19 14:49:54 [INFO] [PROCESS] Demo finished
+2026-06-19 14:49:54 [INFO] [PROCESS] Daemon demo started
+2026-06-19 14:49:54 [INFO] [PROCESS] Session created
+2026-06-19 14:49:59 [INFO] [PROCESS] Demo finished
+2026-06-19 14:50:59 [INFO] [PROCESS] Process list requested
+2026-06-19 14:50:59 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 14:50:59 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:50:59 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:50:59 [INFO] [PROCESS] Search request: '26'
+2026-06-19 14:50:59 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:51:00 [INFO] [PROCESS] Priority changed: PID 27 nice from 0 to 5
+2026-06-19 14:51:00 [ERROR] [PROCESS] Permission denied for PID 27
+2026-06-19 14:51:00 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 27
+2026-06-19 14:51:01 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 27
+2026-06-19 14:51:02 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 27
+2026-06-19 14:51:02 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:51:02 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:51:02 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:51:02 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:51:02 [INFO] [PROCESS] fork() requested
+2026-06-19 14:51:02 [INFO] [PROCESS] Parent created child
+2026-06-19 14:51:02 [INFO] [PROCESS] Child started
+2026-06-19 14:51:04 [INFO] [PROCESS] Child exited
+2026-06-19 14:51:04 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:51:04 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:51:04 [INFO] [PROCESS] parent waiting
+2026-06-19 14:51:04 [INFO] [PROCESS] child executing external program
+2026-06-19 14:51:04 [INFO] [PROCESS] child exited
+2026-06-19 14:51:04 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:51:04 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:51:07 [INFO] [PROCESS] Child exited
+2026-06-19 14:51:07 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:51:07 [INFO] [PROCESS] Zombie demo started
+2026-06-19 14:51:07 [INFO] [PROCESS] Child exited
+2026-06-19 14:51:10 [INFO] [PROCESS] Zombie detected
+2026-06-19 14:51:10 [INFO] [PROCESS] waitpid called
+2026-06-19 14:51:10 [INFO] [PROCESS] Zombie removed
+2026-06-19 14:51:10 [INFO] [PROCESS] Demo finished
+2026-06-19 14:51:10 [INFO] [PROCESS] Orphan demo started
+2026-06-19 14:51:10 [INFO] [PROCESS] Parent exited
+2026-06-19 14:51:14 [INFO] [PROCESS] Child adopted
+2026-06-19 14:51:16 [INFO] [PROCESS] Demo finished
+2026-06-19 14:51:16 [INFO] [PROCESS] Daemon demo started
+2026-06-19 14:51:16 [INFO] [PROCESS] Session created
+2026-06-19 14:51:21 [INFO] [PROCESS] Demo finished
+2026-06-19 14:52:10 [INFO] [PROCESS] Process list requested
+2026-06-19 14:52:10 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 14:52:10 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:52:10 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:52:10 [INFO] [PROCESS] Search request: '29'
+2026-06-19 14:52:10 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:52:11 [INFO] [PROCESS] Priority changed: PID 30 nice from 0 to 5
+2026-06-19 14:52:11 [ERROR] [PROCESS] Permission denied for PID 30
+2026-06-19 14:52:11 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 30
+2026-06-19 14:52:12 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 30
+2026-06-19 14:52:13 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 30
+2026-06-19 14:52:13 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:52:13 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:52:13 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:52:13 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:52:13 [INFO] [PROCESS] fork() requested
+2026-06-19 14:52:13 [INFO] [PROCESS] Parent created child
+2026-06-19 14:52:13 [INFO] [PROCESS] Child started
+2026-06-19 14:52:15 [INFO] [PROCESS] Child exited
+2026-06-19 14:52:15 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:52:15 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:52:15 [INFO] [PROCESS] child executing external program
+2026-06-19 14:52:15 [INFO] [PROCESS] parent waiting
+2026-06-19 14:52:15 [INFO] [PROCESS] child exited
+2026-06-19 14:52:15 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:52:15 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:52:18 [INFO] [PROCESS] Child exited
+2026-06-19 14:52:18 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:52:18 [INFO] [PROCESS] Zombie demo started
+2026-06-19 14:52:18 [INFO] [PROCESS] Child exited
+2026-06-19 14:52:21 [INFO] [PROCESS] Zombie detected
+2026-06-19 14:52:21 [INFO] [PROCESS] waitpid called
+2026-06-19 14:52:21 [INFO] [PROCESS] Zombie removed
+2026-06-19 14:52:21 [INFO] [PROCESS] Demo finished
+2026-06-19 14:52:21 [INFO] [PROCESS] Orphan demo started
+2026-06-19 14:52:21 [INFO] [PROCESS] Parent exited
+2026-06-19 14:52:25 [INFO] [PROCESS] Child adopted
+2026-06-19 14:52:27 [INFO] [PROCESS] Demo finished
+2026-06-19 14:52:27 [INFO] [PROCESS] Daemon demo started
+2026-06-19 14:52:27 [INFO] [PROCESS] Session created
+2026-06-19 14:52:27 [INFO] [PROCESS] Daemon initialized
+2026-06-19 14:52:27 [INFO] [PROCESS] Log written
+2026-06-19 14:52:29 [INFO] [PROCESS] Log written
+2026-06-19 14:52:31 [INFO] [PROCESS] SIGTERM received
+2026-06-19 14:52:31 [INFO] [PROCESS] Daemon exited
+2026-06-19 14:52:33 [INFO] [PROCESS] Demo finished
+2026-06-19 14:59:16 [INFO] [PROCESS] Process list requested
+2026-06-19 14:59:16 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 14:59:16 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:59:16 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:59:16 [INFO] [PROCESS] Search request: '27'
+2026-06-19 14:59:16 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:59:17 [INFO] [PROCESS] Priority changed: PID 28 nice from 0 to 5
+2026-06-19 14:59:17 [ERROR] [PROCESS] Permission denied for PID 28
+2026-06-19 14:59:17 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 28
+2026-06-19 14:59:18 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 28
+2026-06-19 14:59:19 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 28
+2026-06-19 14:59:19 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:59:19 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:59:19 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:59:19 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:59:19 [INFO] [PROCESS] fork() requested
+2026-06-19 14:59:19 [INFO] [PROCESS] Parent created child
+2026-06-19 14:59:19 [INFO] [PROCESS] Child started
+2026-06-19 14:59:21 [INFO] [PROCESS] Child exited
+2026-06-19 14:59:21 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:59:21 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:59:21 [INFO] [PROCESS] parent waiting
+2026-06-19 14:59:21 [INFO] [PROCESS] child executing external program
+2026-06-19 14:59:21 [INFO] [PROCESS] child exited
+2026-06-19 14:59:21 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:59:21 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:59:24 [INFO] [PROCESS] Child exited
+2026-06-19 14:59:24 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:59:24 [INFO] [PROCESS] Zombie demo started
+2026-06-19 14:59:24 [INFO] [PROCESS] Child exited
+2026-06-19 14:59:27 [INFO] [PROCESS] Zombie detected
+2026-06-19 14:59:27 [INFO] [PROCESS] waitpid called
+2026-06-19 14:59:27 [INFO] [PROCESS] Zombie removed
+2026-06-19 14:59:27 [INFO] [PROCESS] Demo finished
+2026-06-19 14:59:27 [INFO] [PROCESS] Orphan demo started
+2026-06-19 14:59:27 [INFO] [PROCESS] Parent exited
+2026-06-19 14:59:31 [INFO] [PROCESS] Child adopted
+2026-06-19 14:59:33 [INFO] [PROCESS] Demo finished
+2026-06-19 14:59:33 [INFO] [PROCESS] Daemon demo started
+2026-06-19 14:59:33 [INFO] [PROCESS] Session created
+2026-06-19 14:59:33 [INFO] [PROCESS] Daemon initialized
+2026-06-19 14:59:33 [INFO] [PROCESS] Log written
+2026-06-19 14:59:35 [INFO] [PROCESS] Log written
+2026-06-19 14:59:37 [INFO] [PROCESS] SIGTERM received
+2026-06-19 14:59:37 [INFO] [PROCESS] Daemon exited
+2026-06-19 14:59:39 [INFO] [PROCESS] Demo finished
+2026-06-19 15:00:28 [INFO] [SYSTEM] Application started
+2026-06-19 15:00:33 [INFO] [SYSTEM] Entering Process Manager
+2026-06-19 15:00:33 [INFO] [PROCESS] Process manager interactive loop started.
+2026-06-19 15:00:41 [INFO] [PROCESS] Orphan demo started
+2026-06-19 15:00:41 [INFO] [PROCESS] Parent exited
+2026-06-19 15:00:45 [INFO] [PROCESS] Child adopted
+2026-06-19 15:00:47 [INFO] [PROCESS] Demo finished
+2026-06-19 15:03:23 [INFO] [SYSTEM] Application started
+2026-06-19 15:03:23 [INFO] [SYSTEM] Entering File Manager
+2026-06-19 15:03:23 [INFO] [FILE] File manager interactive loop started.
+2026-06-19 15:03:23 [INFO] [SYSTEM] Leaving File Manager
+2026-06-19 15:03:23 [INFO] [SYSTEM] Entering Process Manager
+2026-06-19 15:03:23 [INFO] [PROCESS] Process manager interactive loop started.
+2026-06-19 15:03:23 [INFO] [PROCESS] fork() requested
+2026-06-19 15:03:23 [INFO] [PROCESS] Parent created child
+2026-06-19 15:03:23 [INFO] [PROCESS] Child started
+2026-06-19 15:03:25 [INFO] [PROCESS] Child exited
+2026-06-19 15:03:25 [INFO] [PROCESS] Parent resumed
+2026-06-19 15:03:25 [INFO] [PROCESS] exec demonstration started
+2026-06-19 15:03:25 [INFO] [PROCESS] parent waiting
+2026-06-19 15:03:25 [INFO] [PROCESS] child executing external program
+2026-06-19 15:03:25 [INFO] [PROCESS] child exited
+2026-06-19 15:03:25 [INFO] [PROCESS] Parent waiting
+2026-06-19 15:03:25 [INFO] [PROCESS] Child sleeping
+2026-06-19 15:03:28 [INFO] [PROCESS] Child exited
+2026-06-19 15:03:28 [INFO] [PROCESS] Parent resumed
+2026-06-19 15:03:28 [INFO] [PROCESS] Zombie demo started
+2026-06-19 15:03:28 [INFO] [PROCESS] Child exited
+2026-06-19 15:03:31 [INFO] [PROCESS] Zombie detected
+2026-06-19 15:03:31 [INFO] [PROCESS] waitpid called
+2026-06-19 15:03:31 [INFO] [PROCESS] Zombie removed
+2026-06-19 15:03:31 [INFO] [PROCESS] Demo finished
+2026-06-19 15:03:31 [INFO] [PROCESS] Orphan demo started
+2026-06-19 15:03:31 [INFO] [PROCESS] Parent exited
+2026-06-19 15:03:35 [INFO] [PROCESS] Child adopted
+2026-06-19 15:03:37 [INFO] [PROCESS] Demo finished
+2026-06-19 15:03:37 [INFO] [PROCESS] Daemon demo started
+2026-06-19 15:03:37 [INFO] [PROCESS] Session created
+2026-06-19 15:03:37 [INFO] [PROCESS] Daemon initialized
+2026-06-19 15:03:37 [INFO] [PROCESS] Log written
+2026-06-19 15:03:39 [INFO] [PROCESS] Log written
+2026-06-19 15:03:41 [INFO] [PROCESS] SIGTERM received
+2026-06-19 15:03:41 [INFO] [PROCESS] Daemon exited
+2026-06-19 15:03:43 [INFO] [PROCESS] Demo finished
+2026-06-19 15:03:43 [INFO] [PROCESS] Process manager interactive loop ended.
+2026-06-19 15:03:43 [INFO] [SYSTEM] Leaving Process Manager
+2026-06-19 15:03:43 [INFO] [SYSTEM] Entering System Information
+2026-06-19 15:03:43 [INFO] [SYSTEM_INFO] System information requested
+2026-06-19 15:03:43 [INFO] [SYSTEM] Leaving System Information
+2026-06-19 15:03:43 [INFO] [SYSTEM] Application shutting down
+2026-06-19 15:04:50 [INFO] [PROCESS] Process manager interactive loop ended.
+2026-06-19 15:04:50 [INFO] [SYSTEM] Leaving Process Manager
+2026-06-19 15:04:52 [INFO] [SYSTEM] Application shutting down
+2026-06-19 15:04:54 [INFO] [SYSTEM] Application started
+2026-06-19 15:04:59 [INFO] [SYSTEM] Entering System Information
+2026-06-19 15:04:59 [INFO] [SYSTEM_INFO] System information requested
+2026-06-19 15:04:59 [INFO] [SYSTEM] Leaving System Information
+2026-06-19 15:05:05 [INFO] [SYSTEM] Application shutting down

@@ -76,7 +76,7 @@ void process_mgr_run(void) {
         printf("7. Wait Demo\n");
         printf("8. Zombie Demo\n");
         printf("9. Orphan Demo\n");
-        printf("10. Daemon Demo (TODO)\n");
+        printf("10. Daemon Demo\n");
         printf("11. Return\n");
         printf("========================================\n");
         printf("Select option: ");
@@ -166,7 +166,7 @@ void process_mgr_run(void) {
                 process_menu_pause();
                 break;
             case 10:
-                printf("\nDaemon Demo: Not implemented yet.\n");
+                daemon_demo_run();
                 process_menu_pause();
                 break;
         }
@@ -630,11 +630,4 @@ static void get_proc_cmdline(pid_t pid, char* cmd_out, size_t max_len) {
     cmd_out[max_len - 1] = '\0';
 }
 
-/* Include demo implementations directly to compile as a single translation unit
-   matching parent Makefile's expectation of process_mgr.o */
-#include "demo/fork_demo.c"
-#include "demo/exec_demo.c"
-#include "demo/wait_demo.c"
-#include "demo/zombie_demo.c"
-#include "demo/orphan_demo.c"
-#include "demo/daemon_demo.c"
+

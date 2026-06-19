@@ -19,7 +19,15 @@ test-file: modules-lib
 	gcc -Wall -Wextra -g -Iinclude -pthread tests/file_test.c modules/file/file_mgr.o app/logger.c -o tests/file_test
 
 test-process: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/process_test.c modules/process/process_mgr.o app/logger.c -o tests/process_test
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/process_test.c \
+		modules/process/process_mgr.o \
+		modules/process/demo/fork_demo.o \
+		modules/process/demo/exec_demo.o \
+		modules/process/demo/wait_demo.o \
+		modules/process/demo/zombie_demo.o \
+		modules/process/demo/orphan_demo.o \
+		modules/process/demo/daemon_demo.o \
+		app/logger.c -o tests/process_test
 
 clean:
 	$(MAKE) -C modules clean

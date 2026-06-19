@@ -83,7 +83,7 @@ The Process Manager module collects and displays active Linux process diagnostic
 * **Wait Demo (`wait_demo_run`)**: Illustrates parent blocking synchronization until the child finishes sleeping and returns its exit code.
 * **Zombie Demo (`zombie_demo_run`)**: Child exits immediately while the parent sleeps. The state shifts to `Z` in `/proc/<pid>/status`, and waitpid is subsequently invoked to reap it.
 * **Orphan Demo (`orphan_demo_run`)**: Parent exits immediately, child sleeps, and system sub-reaper (PID 1 or user-session systemd manager) adopts the child.
-* **Daemon Demo (`daemon_demo_run`)**: System daemon background worker generation demonstration (Stub).
+* **Daemon Demo (`daemon_demo_run`)**: Educational demonstration showing traditional daemonization stages (double-forking, new session initialization, standard file descriptor closure, and signal-driven cleanup).
 
 ---
 
@@ -117,4 +117,61 @@ Adoption detected
 
 ## 8. Known Limitations
 * **Nice raising limitations**: Raising nice priority (negative values) requires superuser privileges (`sudo`). Standard runs will throw `Permission denied`.
-* **Daemon Demo state**: The Daemon demonstration is currently compiled as a non-functional stub and will print a TODO.
+* **Container environment adoption**: In containerized environments, the termination of daemon processes might show them in a zombie state ('Z') because the container's PID 1 entry point does not always perform aggressive zombie reaping of adopted grandchild processes.
+
+---
+
+## 9. Daemon Demonstration & Theory
+
+### ASCII Execution Flow
+
+```text
+  Parent
+    |
+  fork()
+    |
+  Parent exits
+    |
+  Child (First Child)
+    |
+  setsid() (New session leader, detached from terminal)
+    |
+  fork()
+    |
+  Parent exits (First Child exits)
+    |
+  Daemon (Second Child)
+    |
+  umask(0) & chdir("/")
+    |
+  Close standard FDs (stdin/stdout/stderr -> /dev/null)
+    |
+  Loop (Heartbeat log writes)
+    |
+  SIGTERM received
+    |
+  Exit cleanly
+```
+
+### Explanations of Daemon Creation Sequence
+
+1. **Why Double Fork is Used**:
+   * The first `fork()` separates the process from the shell/terminal controller, making it an orphan child adopted by init.
+   * `setsid()` creates a new session and process group, making this child the session leader. A session leader, however, can still open a controlling terminal (e.g., if it opens a tty device).
+   * The second `fork()` creates a grandchild process. Since it is not a session leader, it is physically impossible for this second child (the actual daemon) to ever re-acquire a controlling terminal.
+
+2. **Purpose of `setsid()`**:
+   * Detaches the process from its current controlling terminal, session, and process group. It places the process in a new session and process group where it is the leader, freeing it from terminal signals like SIGHUP.
+
+3. **Purpose of `umask(0)`**:
+   * Resets the file mode creation mask to `0`, ensuring that any files created by the daemon have the exact permissions requested by the `open()` or `creat()` system calls (without being restricted by inheritance from the parent process's environment mask).
+
+4. **Purpose of `chdir("/")`**:
+   * Changes the working directory to the system root. This ensures that the daemon doesn't hold a reference to the directory it started in, preventing the system from unmounting the file system containing that directory if needed.
+
+5. **Why stdin, stdout, and stderr are closed**:
+   * To fully detach the daemon from the terminal. If not closed, the daemon would keep these descriptors open, which might block the parent terminal or SSH session from exiting cleanly. They are closed and redirected to `/dev/null` to prevent any unintended output or input errors from halting the daemon.
+
+6. **Difference between a Background Process and a Daemon**:
+   * A **Background Process** runs in the background but still belongs to the session of the controlling terminal. If the terminal closes (e.g., shell exits), it receives a `SIGHUP` and terminates (unless explicitly run with `nohup`).
+   * A **Daemon** is fully detached from any controlling terminal session, runs in its own session, is adopted by init (PID 1), and continues running continuously in the background independent of user login sessions.

@@ -12,6 +12,7 @@
 #include "logger.h"
 #include "file_mgr.h"
 #include "process_mgr.h"
+#include "system_info.h"
 
 int main(void) {
     int choice;
@@ -43,7 +44,12 @@ int main(void) {
             process_mgr_run();
             log_info("SYSTEM", "Leaving Process Manager");
             menu_pause();
-        } else if (choice >= 3 && choice <= 10) {
+        } else if (choice == 8) {
+            log_info("SYSTEM", "Entering System Information");
+            system_info_run();
+            log_info("SYSTEM", "Leaving System Information");
+            menu_pause();
+        } else if ((choice >= 3 && choice <= 7) || choice == 9 || choice == 10) {
             printf("\n---\n");
             printf("%sTODO%s\n", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
             printf("This module is not implemented yet.\n");

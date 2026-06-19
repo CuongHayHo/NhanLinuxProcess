@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## Core Integration Sprint (Version v0.5)
+
+### Added
+- Integrated all feature-complete modules (File Manager, Process Manager, System Information) into the main application.
+- Connected Option 8 in the main application menu to dispatch control to `system_info_run()`.
+- Connected Option 10 in the Process Manager TUI menu to execute the `daemon_demo_run()` worker.
+
+### Changed
+- Refactored `app/main.c` choice validation and loop dispatch.
+- Removed remaining `TODO` stub printout for Daemon Demo in `modules/process/process_mgr.c`.
+- Updated central system documentation ([README.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/README.md), [docs/architecture.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/architecture.md)) to reflect Version v0.5 and the module integration structure.
+
+## Build System Refactor Sprint
+
+### Added
+- Independent compilation support for all Process Manager lifecycle demonstrations (`fork_demo.c`, `exec_demo.c`, `wait_demo.c`, `zombie_demo.c`, `orphan_demo.c`, `daemon_demo.c`) into standard `.o` object files.
+- Created [docs/architecture.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/architecture.md) explaining the multi-object build strategy, complete with comparison build graphs.
+
+### Changed
+- Refactored [modules/process/process_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/process/process_mgr.c) to remove all direct `.c` file inclusions (`#include "demo/*.c"`).
+- Updated [modules/Makefile](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/Makefile) and Root [Makefile](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/Makefile) to compile and link separate object files correctly.
+
+## Process Sprint 4F (Daemon Process Demonstration)
+
+### Added
+- Implemented Linux Daemon Process Demonstration in [modules/process/demo/daemon_demo.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/process/demo/daemon_demo.c).
+- Implemented directory-swapping wrappers `daemon_log_info` and `daemon_log_error` in [modules/process/demo/daemon_demo.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/process/demo/daemon_demo.c) to temporarily switch working directory back to `WORKSPACE_PATH` during log writes, resolving relative path resolution failure to `logs/system.log` after executing `chdir("/")`.
+- Documented daemon concepts (double fork, setsid, umask, chdir, standard fd closure, difference between background and daemon processes) and added ASCII sequence diagram in [docs/process_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/process_manager.md).
+
+### Changed
+- Replaced non-functional Daemon Demo Stub with full functional interactive/automated demonstration implementation.
+- Refined grandparent process status check in [modules/process/demo/daemon_demo.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/process/demo/daemon_demo.c) to correctly verify clean termination (state `'Z'`) of the daemon under sandbox container environments where adopted processes might not be aggressively reaped by PID 1.
+
 ## Process Completion Sprint
 
 ### Added

@@ -1,6 +1,12 @@
-# NhanLinuxProcess
+# NhanLinuxProcess (Version v0.5)
 
 NhanLinuxProcess là một dự án C về lập trình hệ thống Linux, gồm ứng dụng dòng lệnh, các module userspace, ví dụ IPC, script shell và một kernel module đơn giản.
+
+## Trạng thái tích hợp (Integrated Modules)
+*   **Logger**: Hệ thống ghi log đồng bộ dùng system call POSIX (`open`, `write`, `close`).
+*   **File Manager (Stub)**: Thao tác file mức hệ thống.
+*   **Process Manager**: Quản lý tiến trình (liệt kê, tìm kiếm, tín hiệu, độ ưu tiên) và các demo vòng đời (Fork, Exec, Wait, Zombie, Orphan, Daemon).
+*   **System Information**: Hiển thị thông số cấu hình hệ thống (Hostname, OS, Kernel, Architecture).
 
 ## Cấu trúc chính
 

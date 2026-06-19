@@ -119,7 +119,7 @@ int main(void) {
     void orphan_demo_run(void);
     orphan_demo_run();
 
-    /* 11. Test Daemon Demonstration (Stub) */
+    /* 11. Test Daemon Demonstration (Sprint 4F) */
     printf("\n--- Test 11: Running Daemon Process Demonstration ---\n");
     void daemon_demo_run(void);
     daemon_demo_run();

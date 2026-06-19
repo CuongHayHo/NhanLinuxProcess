@@ -5,6 +5,12 @@ ARFLAGS = rcs
 
 OBJS = file/file_mgr.o \
        process/process_mgr.o \
+       process/demo/fork_demo.o \
+       process/demo/exec_demo.o \
+       process/demo/wait_demo.o \
+       process/demo/zombie_demo.o \
+       process/demo/orphan_demo.o \
+       process/demo/daemon_demo.o \
        signal/signal_mgr.o \
        socket/socket_server.o \
        socket/socket_client.o \
