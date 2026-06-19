@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "menu.h"
+#include "config.h"
 
 void menu_clear_screen(void) {
     /* Send ANSI escape sequences to clear screen and home cursor */
@@ -19,7 +20,7 @@ void menu_clear_screen(void) {
 
 void menu_display_main(void) {
     printf("%s========================================\n", ANSI_COLOR_CYAN);
-    printf("           Linux System Manager\n");
+    printf("      Linux System Manager (v%s)\n", APP_VERSION);
     printf("========================================%s\n", ANSI_COLOR_RESET);
     printf("1. File Manager\n");
     printf("2. Process Manager\n");
@@ -31,7 +32,8 @@ void menu_display_main(void) {
     printf("8. System Information\n");
     printf("9. Log Viewer\n");
     printf("10. Kernel Module\n");
-    printf("11. Exit\n");
+    printf("11. Time Manager\n");
+    printf("0. Exit\n");
     printf("%s----------------------------------------%s\n", ANSI_COLOR_CYAN, ANSI_COLOR_RESET);
     printf("Select option: ");
     fflush(stdout);

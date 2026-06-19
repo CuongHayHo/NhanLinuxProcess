@@ -11,7 +11,7 @@
 
 /* Application Identification */
 #define APP_NAME            "Linux System Manager"
-#define APP_VERSION         "1.0.0"
+#define APP_VERSION         "0.7.0-rc1"
 
 /* Default Paths */
 #define CONFIG_FILE_PATH    "config/sysmgr.conf"

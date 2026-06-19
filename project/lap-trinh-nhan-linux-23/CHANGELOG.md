@@ -2,6 +2,118 @@
 
 All notable changes to this project will be documented in this file.
 
+## Socket Sprint 1
+
+### Added
+- Implemented single-connection TCP Echo Server in [modules/socket/socket_server.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/socket/socket_server.c) using standard POSIX APIs.
+- Implemented TCP Client loop in [modules/socket/socket_client.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/socket/socket_client.c) to send strings and receive echoed packets.
+- Implemented TUI submenu layout for Socket Manager in [modules/socket/socket_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/socket/socket_mgr.c).
+- Integrated Main Menu Option 5 in [app/main.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/app/main.c) to route control to [socket_mgr_run()](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/socket/socket_mgr.c).
+- Created automated check [tests/socket_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/socket_test.c) asserting handshake connectivity and echo correctness.
+- Generated developer guide [docs/socket_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/socket_manager.md) explaining socket lifecycles, states, and sequence flows.
+
+## Release Candidate Sprint (v0.7.0-rc1)
+
+### Changed
+- Standardized and synchronized `APP_VERSION` across [include/config.h](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/include/config.h), [README.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/README.md), and [PROJECT_STATUS.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/PROJECT_STATUS.md) to `v0.7.0-rc1`.
+- Performed verification of all sub-menus (File, Process, Network, Package, Time, Scheduler) to confirm Option 0 Return behavior.
+- Executed full test suites for all 8 subsystems (`logger`, `file`, `process`, `network`, `package`, `time`, `scheduler`) and verified successful zero-error, zero-warning status.
+
+## Scheduler Sprint 1
+
+### Added
+- Implemented Scheduler in-memory task database in [modules/scheduler/scheduler.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/scheduler/scheduler.c) containing Task ID, Name, Command, Scheduled Time, Status, and Creation Time.
+- Implemented `scheduler_task_create()`, `scheduler_task_list()`, and `scheduler_task_delete()` APIs in [modules/scheduler/scheduler.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/scheduler/scheduler.c).
+- Connected interactive submenu loop in `scheduler_run()` with choices to create, list, delete tasks, and exit back to main menu.
+- Routed Main Menu Option 7 in [app/main.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/app/main.c) to execute `scheduler_run()`.
+- Created automated checks inside [tests/scheduler_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/scheduler_test.c) covering creation, deletion, list verification, and invalid boundaries.
+- Created [docs/scheduler.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/scheduler.md) documenting task lifecycles, data structures, and future execution mechanisms.
+- Configured log diagnostic alerts (`Task created`, `Task removed`, `Task listed`, `Errors`) for the scheduler transactions.
+
+## UI Standardization Sprint
+
+### Changed
+- Standardized all application menus so that `0` is consistently used for Exit (Main Menu) and Return (all submenus).
+- Updated Main Menu selection validation and loop routing in [app/main.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/app/main.c) and display in [app/menu.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/app/menu.c).
+- Updated Process Manager submenu options, validation, and loop routes in [modules/process/process_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/process/process_mgr.c).
+- Updated Network Manager submenu options, validation, and loop routes in [modules/network/network_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/network/network_mgr.c).
+- Updated Package Manager submenu options, validation, and loop routes in [modules/package/package_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/package/package_mgr.c).
+- Updated Time Manager submenu options, validation, and loop routes in [modules/time/time_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/time/time_mgr.c).
+- Updated documentation flowcharts in [docs/time_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/time_manager.md) to reflect Option 0 return logic.
+
+## Time Manager Sprint 1
+
+### Added
+- Implemented the Time Manager module in [modules/time/time_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/time/time_mgr.c) using direct Linux clock/system APIs (`time()`, `localtime_r()`, `gmtime_r()`, `strftime()`, `tzset()`, `sysinfo()`).
+- Added an interactive submenu loop in `time_mgr_run()` with choices to display system time or return to the main menu.
+- Integrated the Time Manager module (Option 11) into the main application menu loop (`app/main.c` and `app/menu.c`).
+- Created unit tests in [tests/time_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/time_test.c) to verify local time formatting, UTC formatting, Unix epoch, timezones, and system uptime.
+- Created [docs/time_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/time_manager.md) documenting system clock APIs, timezone handling, epoch calculations, and execution flows.
+- Configured log diagnostic alerts (`Time inspection started`, `Current timestamp retrieved`, `Timezone detected`, `Errors`, `Leaving Time Manager`) for the time operations.
+
+## Package Manager Sprint 3
+
+### Added
+- Implemented `package_mgr_info()` in [modules/package/package_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/package/package_mgr.c) to inspect detailed package metadata (Name, Version, Release, Architecture, Vendor/Maintainer, License, Install Date, Summary, and Description).
+- Added static safety helper `is_safe_package_name()` to validate inputs before executing commands, preventing shell injection vulnerabilities.
+- Connected Submenu Option 5 to prompt for package names and display normalized metadata.
+- Configured log diagnostic alerts (`Package selected`, `Metadata query started`, `Success`, `Errors`) inside `package_mgr_info()`.
+- Expanded unit tests in [tests/package_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/package_test.c) to verify info lookups for existing packages, missing packages, and unsafe inputs.
+- Updated [docs/package_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/package_manager.md) to document Sprint 3 metadata fields, read-only query strategy, validation protocols, and execution flows.
+
+## Package Manager Sprint 2
+
+### Added
+- Implemented `package_mgr_search()` in [modules/package/package_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/package/package_mgr.c) using `strcasestr()` for case-insensitive partial substring matches.
+- Connected Submenu Option 2 to prompt for keywords and execute `package_mgr_search()`.
+- Expanded [tests/package_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/package_test.c) to verify search results for existing, missing, case-insensitive, and partial package matches.
+- Updated [docs/package_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/package_manager.md) to detail search algorithms, case-insensitive rules, performance overheads, and future native library migration routes.
+
+## Package Manager Sprint 1
+
+### Added
+- Implemented Package manager system detection (`dpkg` and `rpm`) using `access()`.
+- Implemented read-only package enumeration and counting in [modules/package/package_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/package/package_mgr.c) using `popen()` / `pclose()` and standard parsing.
+- Created interactive Package Manager submenu with 6 choices, linking Option 1 (List Installed Packages) and return paths, and stubbing out future items.
+- Created [tests/package_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/package_test.c) to verify package manager detection, listing generation, and total package count.
+- Created [docs/package_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/package_manager.md) documenting supported package databases and query architectures.
+
+### Changed
+- Connected Option 6 (Package Manager) in the Main Menu (`app/main.c`) to launch the Package Manager submenu.
+- Updated root [Makefile](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/Makefile) to build and clean `test-package`.
+
+## Network Manager Sprint 3
+
+### Added
+- Implemented Host Information diagnostics in [modules/network/network_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/network/network_mgr.c) using `gethostname()`, `getaddrinfo()` (AI_CANONNAME FQDN resolution), and `uname()`.
+- Connected Submenu Option 1 to execute `network_show_host_info()`.
+- Updated [tests/network_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/network_test.c) to execute host configuration diagnostic test.
+- Updated [docs/network_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/network_manager.md) to document Hostname, FQDN, Kernel Node Name, and Domain Name resolving.
+
+## Network Manager Sprint 2
+
+### Added
+- Implemented Routing Information parser and Default Gateway detector in [modules/network/network_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/network/network_mgr.c) by parsing `/proc/net/route`.
+- Updated Network Manager submenu loop structure with 6 option entries, stubbing future features with "Coming in a future sprint." and connecting Interface and Routing details.
+- Updated [tests/network_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/network_test.c) to execute both interface diagnostics and routing information tests.
+- Updated [docs/network_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/network_manager.md) to explain `/proc/net/route` formats, gateway detection algorithms, and routing examples.
+
+### Changed
+- Refined routing parser flags format to decode standard flags (U, G, H).
+
+## Network Manager Sprint 1
+
+### Added
+- Implemented network interface discovery and diagnostic panel in [modules/network/network_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/network/network_mgr.c).
+- Added an interactive submenu loop in `network_mgr_run()` with choices to list interfaces or return to the main menu.
+- Created [tests/network_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/network_test.c) to verify interface enumeration, status, MTU, MAC addresses, IPv4, and IPv6 info configuration.
+- Created [docs/network_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/network_manager.md) documenting design, Linux API listings, flowcharts, and error handling.
+
+### Changed
+- Connected Option 4 in the Main Menu (`app/main.c`) to launch the Network Manager submenu.
+- Cleaned up legacy unused network functions from [include/network_mgr.h](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/include/network_mgr.h) and [modules/network/network_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/network/network_mgr.c).
+- Updated root [Makefile](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/Makefile) to build and clean `test-network`.
+
 ## Core Integration Sprint (Version v0.5)
 
 ### Added

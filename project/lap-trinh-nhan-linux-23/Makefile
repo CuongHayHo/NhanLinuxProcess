@@ -29,10 +29,28 @@ test-process: modules-lib
 		modules/process/demo/daemon_demo.o \
 		app/logger.c -o tests/process_test
 
+test-system_info: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/system_info_test.c modules/systeminfo/system_info.o app/logger.c -o tests/system_info_test
+
+test-network: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/network_test.c modules/network/network_mgr.o app/logger.c -o tests/network_test
+
+test-package: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/package_test.c modules/package/package_mgr.o app/logger.c -o tests/package_test
+
+test-time: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/time_test.c modules/time/time_mgr.o app/logger.c -o tests/time_test
+
+test-scheduler: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/scheduler_test.c modules/scheduler/scheduler.o app/logger.c -o tests/scheduler_test
+
+test-socket: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/socket_test.c modules/socket/socket_server.o app/logger.c -o tests/socket_test
+
 clean:
 	$(MAKE) -C modules clean
 	$(MAKE) -C app clean
 	$(MAKE) -C kernel/system_monitor clean
-	rm -f tests/logger_test tests/file_test tests/process_test
+	rm -f tests/logger_test tests/file_test tests/process_test tests/system_info_test tests/network_test tests/package_test tests/time_test tests/scheduler_test tests/socket_test
 
-.PHONY: all modules-lib app-bin ipc-demos kernel-module test-logger test-file test-process clean
+.PHONY: all modules-lib app-bin ipc-demos kernel-module test-logger test-file test-process test-system_info test-network test-package test-time test-scheduler test-socket clean

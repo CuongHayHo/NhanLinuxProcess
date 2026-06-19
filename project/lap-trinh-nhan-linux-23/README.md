@@ -1,64 +1,109 @@
-# NhanLinuxProcess (Version v0.5)
+# NhanLinuxProcess (Linux System Manager)
 
-NhanLinuxProcess là một dự án C về lập trình hệ thống Linux, gồm ứng dụng dòng lệnh, các module userspace, ví dụ IPC, script shell và một kernel module đơn giản.
+NhanLinuxProcess là một ứng dụng quản lý hệ thống Linux viết bằng ngôn ngữ C, giới thiệu các API lập trình hệ thống Linux và POSIX chuẩn. Dự án bao gồm các module quản trị hệ thống ở tầng userspace, cơ chế liên lạc liên tiến trình (IPC), shell script, và một kernel module đơn giản.
 
-## Trạng thái tích hợp (Integrated Modules)
+---
+
+## 1. Khái niệm Chế độ Học tập (Learning Mode)
+Dự án chạy hoàn toàn trong **Learning Mode** (Chế độ Chỉ đọc). Mục tiêu là cung cấp một môi trường an toàn tuyệt đối để tìm hiểu cách thức hệ thống Linux hoạt động:
+*   Mọi tác vụ truy vấn dữ liệu (liệt kê tiến trình, tra cứu gói cài đặt, cấu hình thời gian) đều sử dụng các luồng đọc trực tiếp từ kernel hoặc cơ sở dữ liệu hệ thống.
+*   Các thao tác ghi hoặc thay đổi trạng thái (cài đặt/gỡ bỏ phần mềm, cấu hình clock/NTP, đổi múi giờ) bị chặn và hiển thị ở chế độ Xem trước (Preview).
+
+---
+
+## 2. Kiến trúc Dự án (Project Architecture)
+
+```
+                       +---------------------------+
+                       |       TUI Main Menu       |
+                       |       (app/main.c)        |
+                       +---------------------------+
+                                     |
+    +--------------+--------------+--+--+--------------+--------------+
+    |              |              |     |              |              |
+    v              v              v     v              v              v
+[FileMgr]      [ProcMgr]      [NetMgr] [PkgMgr]    [TimeMgr]      [SysInfo]
+(O_RDONLY)     (/proc)     (getifaddrs)  (rpm/dpkg)   (sysinfo)     (uname)
+```
+
+Kiến trúc bao gồm:
+*   **Chương trình Core (`app/`)**: Quản lý vòng lặp Menu TUI và định tuyến lựa chọn.
+*   **Hệ thống Modules (`modules/`)**: Các chức năng tác vụ độc lập được đóng gói vào thư viện tĩnh `libmodules.a`.
+*   **Ví dụ Độc lập (`examples/`)**: Các demo nhỏ gọn để kiểm tra và học tập các system call gốc của Linux.
+
+---
+
+## 3. Tổng quan các Module (Module Overview)
 *   **Logger**: Hệ thống ghi log đồng bộ dùng system call POSIX (`open`, `write`, `close`).
 *   **File Manager (Stub)**: Thao tác file mức hệ thống.
 *   **Process Manager**: Quản lý tiến trình (liệt kê, tìm kiếm, tín hiệu, độ ưu tiên) và các demo vòng đời (Fork, Exec, Wait, Zombie, Orphan, Daemon).
-*   **System Information**: Hiển thị thông số cấu hình hệ thống (Hostname, OS, Kernel, Architecture).
+*   **Network Manager**: Hiển thị card mạng (`getifaddrs`), bảng định tuyến `/proc/net/route` và tên máy tính.
+*   **Package Manager**: Tự động nhận diện `rpm` / `dpkg` và truy vấn siêu dữ liệu (metadata) của các gói cài đặt.
+*   **Time Manager**: Truy vấn ngày, giờ địa phương, UTC, Unix epoch, múi giờ và thời gian chạy hệ thống (`sysinfo`).
 
-## Cấu trúc chính
+---
 
-- `app/`: chương trình chính (`main.c`, `menu.c`, `logger.c`)
-- `modules/`: thư viện và các module chức năng như file, process, signal, socket, network, scheduler, package, systeminfo, logviewer
-- `c/`: các chương trình C độc lập để demo file, process, network, socket
-- `kernel/system_monitor/`: kernel module `system_monitor`
-- `shell/`: các script hỗ trợ thao tác hệ thống
-- `config/`: file cấu hình
-- `tests/`: test C cho logger và file
-- `logs/`: log runtime của ứng dụng
+## 4. Hướng dẫn Build (Build Instructions)
 
-## Build
-
-Chạy từ thư mục `project/lap-trinh-nhan-linux-23`:
-
+Build toàn bộ dự án:
 ```bash
-make
+make clean && make
 ```
 
-Các target bổ sung:
-
+Build các module kiểm thử riêng lẻ:
 ```bash
-make ipc-demos
-make kernel-module
-make test-logger
-make test-file
+make test-package  # Build test package manager
+make test-time     # Build test time manager
 ```
 
-## Kết quả build
+---
 
-- `make` tạo binary `sysmgr`
-- `make ipc-demos` tạo các binary IPC trong `modules/ipc/bin/`
-- `make kernel-module` tạo file `.ko` trong `kernel/system_monitor/`
-- `make test-logger` và `make test-file` tạo binary test trong `tests/`
+## 5. Hướng dẫn Chạy Test (Test Instructions)
 
-## Chạy
-
+Chạy bộ kiểm thử tự động của Package Manager:
 ```bash
-./sysmgr
+./tests/package_test
 ```
 
-Ví dụ với kernel module:
-
+Chạy bộ kiểm thử tự động của Time Manager:
 ```bash
-sudo insmod kernel/system_monitor/system_monitor.ko log_level=2 target_process="sysmgr"
-dmesg | tail -n 20
-sudo rmmod system_monitor
+./tests/time_test
 ```
 
-## Dọn dẹp
+---
 
-```bash
-make clean
+## 6. Ảnh chụp màn hình (Screenshots)
+
+### Giao diện Menu chính (Main Menu TUI)
+```text
+========================================
+      Linux System Manager (v0.7.0-rc1)
+========================================
+1. File Manager
+2. Process Manager
+3. Signal Manager
+4. Network Manager
+5. Socket Chat
+6. Package Manager
+7. Scheduler
+8. System Information
+9. Log Viewer
+10. Kernel Module
+11. Time Manager
+0. Exit
+----------------------------------------
+Select option: 
+```
+
+### Giao diện Time Manager
+```text
+========================================
+              Time Manager
+========================================
+1. Show Current Time
+2. Time Zone (Future)
+3. Set Time (Preview)
+4. NTP Status (Future)
+0. Return
+========================================
 ```

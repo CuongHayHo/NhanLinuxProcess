@@ -14,9 +14,11 @@ OBJS = file/file_mgr.o \
        signal/signal_mgr.o \
        socket/socket_server.o \
        socket/socket_client.o \
+       socket/socket_mgr.o \
        network/network_mgr.o \
        scheduler/scheduler.o \
        package/package_mgr.o \
+       time/time_mgr.o \
        systeminfo/system_info.o \
        logviewer/log_viewer.o \
        core/string_util.o \

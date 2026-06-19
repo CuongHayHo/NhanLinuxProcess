@@ -3,36 +3,39 @@
  * All rights reserved.
  *
  * File: include/network_mgr.h
- * Purpose: Network interface diagnostics.
+ * Purpose: Network interface diagnostics public API.
  */
 
 #ifndef NETWORK_MGR_H
 #define NETWORK_MGR_H
 
-#include <netinet/in.h>
-#include "common.h"
-
-typedef struct {
-    char name[32];
-    char ipv4[INET_ADDRSTRLEN];
-    char mac[18];
-    unsigned long rx_bytes;
-    unsigned long tx_bytes;
-    int is_up;
-} interface_details_t;
-
+/**
+ * Runs the interactive Network Manager sub-menu.
+ */
 void network_mgr_run(void);
-int network_mgr_get_interfaces(void);
-int network_mgr_get_routing_table(void);
-int network_mgr_get_dns_servers(char dns_out[][64], int max_dns);
 
+/**
+ * Lists all network interfaces and displays their details.
+ * Returns 0 on success, -1 on failure.
+ */
 int network_list_interfaces(void);
-int network_show_hostname(void);
-int network_show_ip(void);
-int network_show_mac(void);
-int network_show_gateway(void);
-int network_show_dns(void);
+
+/**
+ * Parses and displays routing table entries and default gateway.
+ * Returns 0 on success, -1 on failure.
+ */
 int network_show_routes(void);
-int network_show_statistics(void);
+
+/**
+ * Helper parser to parse routing table content from a buffer.
+ * Exposed for testing purposes.
+ */
+int parse_routing_table(const char* buf);
+
+/**
+ * Displays the host network identity parameters (Hostname, FQDN, Domain, Node Name).
+ * Returns 0 on success, -1 on failure.
+ */
+int network_show_host_info(void);
 
 #endif /* NETWORK_MGR_H */

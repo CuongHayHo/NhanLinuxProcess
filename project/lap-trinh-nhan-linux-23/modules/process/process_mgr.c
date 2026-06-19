@@ -77,20 +77,20 @@ void process_mgr_run(void) {
         printf("8. Zombie Demo\n");
         printf("9. Orphan Demo\n");
         printf("10. Daemon Demo\n");
-        printf("11. Return\n");
+        printf("0. Return\n");
         printf("========================================\n");
         printf("Select option: ");
         fflush(stdout);
 
         choice = read_process_choice();
 
-        if (choice < 1 || choice > 11) {
-            printf("\nInvalid input. Please choose a number between 1 and 11.\n");
+        if (choice < 0 || choice > 10) {
+            printf("\nInvalid input. Please choose a number between 0 and 10.\n");
             process_menu_pause();
             continue;
         }
 
-        if (choice == 11) {
+        if (choice == 0) {
             log_info("PROCESS", "Process manager interactive loop ended.");
             break;
         }
