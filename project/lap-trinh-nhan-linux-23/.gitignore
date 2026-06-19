@@ -1,19 +1,32 @@
-./c/module/.Module.symvers.cmd
-./c/module/.modules.order.cmd
-./c/module/.sort.ko.cmd
-./c/module/.sort.mod.cmd
-./c/module/.sort.mod.o.cmd
-./c/module/.sort.o.cmd
-./c/module/Module.symvers
-./c/module/modules.order
-./c/module/sort.ko
-./c/module/sort.mod
-./c/module/sort.mod.c
-./c/module/sort.mod.o
-./c/module/sort.o
+# Build outputs
+sysmgr
+tests/logger_test
+tests/file_test
 
-c/socket/client
-c/socket/server
+# Object and archive files
+*.o
+*.a
+
+# Kernel module outputs
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.cmd
+Module.symvers
+modules.order
+
+# Generated demo binaries
 c/file
 c/network
 c/process
+c/socket/client
+c/socket/server
+modules/ipc/bin/
+
+# Logs
+logs/*.log
+
+# IDE / OS noise
+.DS_Store
+*.swp
