@@ -1,0 +1,25 @@
+[2026-06-19 13:20:00] [INFO] [SYSTEM] System log initialized.
+2026-06-19 13:26:59 [INFO] [SYSTEM] Application started
+2026-06-19 13:26:59 [WARN] [FILE] Permission denied
+2026-06-19 13:26:59 [ERROR] [NETWORK] Connection timeout
+2026-06-19 13:33:52 [INFO] [SYSTEM] Application started
+2026-06-19 13:33:52 [INFO] [SYSTEM] Application shutting down
+2026-06-19 13:35:40 [INFO] [FILE] Created file: tests/test.txt
+2026-06-19 13:35:40 [INFO] [FILE] Wrote 20 bytes to file: tests/test.txt
+2026-06-19 13:35:40 [INFO] [FILE] Read 20 bytes from file: tests/test.txt
+2026-06-19 13:37:34 [INFO] [FILE] Created file: tests/test_b.txt
+2026-06-19 13:37:34 [INFO] [FILE] Wrote 35 bytes to file: tests/test_b.txt
+2026-06-19 13:37:34 [INFO] [FILE] Renamed file from 'tests/test_b.txt' to 'tests/test_b_renamed.txt'
+2026-06-19 13:37:34 [INFO] [FILE] Queried metadata for file: tests/test_b_renamed.txt
+2026-06-19 13:37:34 [INFO] [FILE] Deleted file: tests/test_b_renamed.txt
+2026-06-19 13:38:40 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file1.txt
+2026-06-19 13:38:40 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file2.txt
+2026-06-19 13:38:40 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 13:38:40 [INFO] [FILE] Copied file from 'tests/test_dir/file1.txt' to 'tests/test_dir/file1_copy.txt'
+2026-06-19 13:38:40 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-19 13:38:40 [INFO] [FILE] Moved file from 'tests/test_dir/file2.txt' to 'tests/test_dir/file2_moved.txt' (via rename)
+2026-06-19 13:38:40 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file2_moved.txt
+2026-06-19 13:38:40 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 13:38:40 [INFO] [FILE] Deleted file: tests/test_dir/file1.txt
+2026-06-19 13:38:40 [INFO] [FILE] Deleted file: tests/test_dir/file1_copy.txt
+2026-06-19 13:38:40 [INFO] [FILE] Deleted file: tests/test_dir/file2_moved.txt

@@ -1,0 +1,2 @@
+EXTRA_CFLAGS = -Wall
+obj-m += system_monitor.o
