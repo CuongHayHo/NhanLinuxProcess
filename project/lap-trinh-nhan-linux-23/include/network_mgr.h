@@ -26,4 +26,13 @@ int network_mgr_get_interfaces(void);
 int network_mgr_get_routing_table(void);
 int network_mgr_get_dns_servers(char dns_out[][64], int max_dns);
 
+int network_list_interfaces(void);
+int network_show_hostname(void);
+int network_show_ip(void);
+int network_show_mac(void);
+int network_show_gateway(void);
+int network_show_dns(void);
+int network_show_routes(void);
+int network_show_statistics(void);
+
 #endif /* NETWORK_MGR_H */

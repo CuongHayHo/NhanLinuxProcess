@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include "menu.h"
 #include "logger.h"
+#include "file_mgr.h"
+#include "process_mgr.h"
 
 int main(void) {
     int choice;
@@ -31,7 +33,17 @@ int main(void) {
         }
 
         /* Dispatch Loop */
-        if (choice >= 1 && choice <= 10) {
+        if (choice == 1) {
+            log_info("SYSTEM", "Entering File Manager");
+            file_mgr_run();
+            log_info("SYSTEM", "Leaving File Manager");
+            menu_pause();
+        } else if (choice == 2) {
+            log_info("SYSTEM", "Entering Process Manager");
+            process_mgr_run();
+            log_info("SYSTEM", "Leaving Process Manager");
+            menu_pause();
+        } else if (choice >= 3 && choice <= 10) {
             printf("\n---\n");
             printf("%sTODO%s\n", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
             printf("This module is not implemented yet.\n");

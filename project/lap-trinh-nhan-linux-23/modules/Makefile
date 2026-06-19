@@ -12,7 +12,9 @@ OBJS = file/file_mgr.o \
        scheduler/scheduler.o \
        package/package_mgr.o \
        systeminfo/system_info.o \
-       logviewer/log_viewer.o
+       logviewer/log_viewer.o \
+       core/string_util.o \
+       core/time_util.o
 
 libmodules.a: $(OBJS)
 	$(AR) $(ARFLAGS) libmodules.a $(OBJS)

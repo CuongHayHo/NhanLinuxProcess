@@ -23,3 +23,372 @@
 2026-06-19 13:38:40 [INFO] [FILE] Deleted file: tests/test_dir/file1.txt
 2026-06-19 13:38:40 [INFO] [FILE] Deleted file: tests/test_dir/file1_copy.txt
 2026-06-19 13:38:40 [INFO] [FILE] Deleted file: tests/test_dir/file2_moved.txt
+2026-06-19 13:55:34 [INFO] [PROCESS] Process list requested
+2026-06-19 13:55:34 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 13:56:47 [INFO] [PROCESS] Process list requested
+2026-06-19 13:56:47 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 13:56:47 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 13:56:47 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 13:56:47 [INFO] [PROCESS] Search request: 'agy'
+2026-06-19 13:56:47 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 13:56:47 [INFO] [PROCESS] Search request: '31'
+2026-06-19 13:56:47 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 13:56:47 [INFO] [PROCESS] Search request: '1'
+2026-06-19 13:56:47 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 13:56:47 [INFO] [PROCESS] Search request: 'non_exist_12345'
+2026-06-19 13:56:47 [WARN] [PROCESS] Search failure: Name query 'non_exist_12345' matched 0 processes
+2026-06-19 13:58:30 [INFO] [PROCESS] Process list requested
+2026-06-19 13:58:30 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 13:58:30 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 13:58:30 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 13:58:30 [INFO] [PROCESS] Search request: 'agy'
+2026-06-19 13:58:30 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 13:58:30 [INFO] [PROCESS] Search request: '32'
+2026-06-19 13:58:30 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 13:58:30 [INFO] [PROCESS] Search request: '1'
+2026-06-19 13:58:30 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 13:58:30 [INFO] [PROCESS] Search request: 'non_exist_12345'
+2026-06-19 13:58:30 [WARN] [PROCESS] Search failure: Name query 'non_exist_12345' matched 0 processes
+2026-06-19 13:58:55 [INFO] [PROCESS] Process list requested
+2026-06-19 13:58:55 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 13:58:55 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 13:58:55 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 13:58:55 [INFO] [PROCESS] Search request: '32'
+2026-06-19 13:58:55 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 13:58:56 [INFO] [PROCESS] Priority changed: PID 98 nice from 0 to 5
+2026-06-19 13:58:56 [ERROR] [PROCESS] Priority change failed for PID 98 (errno 13)
+2026-06-19 13:58:56 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 98
+2026-06-19 13:58:57 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 98
+2026-06-19 13:58:58 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 98
+2026-06-19 13:58:58 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 13:58:58 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 13:58:58 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 13:58:58 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 13:59:04 [INFO] [PROCESS] Process list requested
+2026-06-19 13:59:04 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 13:59:04 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 13:59:04 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 13:59:04 [INFO] [PROCESS] Search request: '30'
+2026-06-19 13:59:04 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 13:59:05 [INFO] [PROCESS] Priority changed: PID 96 nice from 0 to 5
+2026-06-19 13:59:05 [ERROR] [PROCESS] Permission denied for PID 96
+2026-06-19 13:59:05 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 96
+2026-06-19 13:59:06 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 96
+2026-06-19 13:59:07 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 96
+2026-06-19 13:59:07 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 13:59:07 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 13:59:07 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 13:59:07 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:00:25 [INFO] [SYSTEM] Application started
+2026-06-19 14:00:25 [INFO] [SYSTEM] Entering File Manager
+2026-06-19 14:00:25 [INFO] [FILE] File manager interactive loop started.
+2026-06-19 14:00:25 [INFO] [SYSTEM] Leaving File Manager
+2026-06-19 14:00:25 [INFO] [SYSTEM] Entering Process Manager
+2026-06-19 14:00:25 [INFO] [PROCESS] Process manager interactive loop started.
+2026-06-19 14:00:25 [INFO] [SYSTEM] Leaving Process Manager
+2026-06-19 14:00:25 [INFO] [SYSTEM] Application shutting down
+2026-06-19 14:03:21 [INFO] [PROCESS] Process list requested
+2026-06-19 14:03:21 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 14:03:21 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:03:21 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:03:21 [INFO] [PROCESS] Search request: '32'
+2026-06-19 14:03:21 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:03:22 [INFO] [PROCESS] Priority changed: PID 42 nice from 0 to 5
+2026-06-19 14:03:22 [ERROR] [PROCESS] Permission denied for PID 42
+2026-06-19 14:03:22 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 42
+2026-06-19 14:03:23 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 42
+2026-06-19 14:03:24 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 42
+2026-06-19 14:03:24 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:03:24 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:03:24 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:03:24 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:03:26 [INFO] [SYSTEM] Application started
+2026-06-19 14:03:26 [INFO] [SYSTEM] Entering Process Manager
+2026-06-19 14:03:26 [INFO] [PROCESS] Process manager interactive loop started.
+2026-06-19 14:03:26 [INFO] [PROCESS] Process manager interactive loop ended.
+2026-06-19 14:03:26 [INFO] [SYSTEM] Leaving Process Manager
+2026-06-19 14:06:14 [INFO] [PROCESS] Process list requested
+2026-06-19 14:06:14 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 14:06:14 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:06:14 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:06:14 [INFO] [PROCESS] Search request: '29'
+2026-06-19 14:06:14 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:06:15 [INFO] [PROCESS] Priority changed: PID 95 nice from 0 to 5
+2026-06-19 14:06:15 [ERROR] [PROCESS] Permission denied for PID 95
+2026-06-19 14:06:15 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 95
+2026-06-19 14:06:16 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 95
+2026-06-19 14:06:17 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 95
+2026-06-19 14:06:17 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:06:17 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:06:17 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:06:17 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:06:17 [INFO] [PROCESS] fork() requested
+2026-06-19 14:06:17 [INFO] [PROCESS] Parent created child
+2026-06-19 14:06:17 [INFO] [PROCESS] Child started
+2026-06-19 14:06:19 [INFO] [PROCESS] Child exited
+2026-06-19 14:06:19 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:08:23 [INFO] [PROCESS] Process list requested
+2026-06-19 14:08:23 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 14:08:23 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:08:23 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:08:23 [INFO] [PROCESS] Search request: '27'
+2026-06-19 14:08:23 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:08:24 [INFO] [PROCESS] Priority changed: PID 93 nice from 0 to 5
+2026-06-19 14:08:24 [ERROR] [PROCESS] Permission denied for PID 93
+2026-06-19 14:08:24 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 93
+2026-06-19 14:08:25 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 93
+2026-06-19 14:08:26 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 93
+2026-06-19 14:08:26 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:08:26 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:08:26 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:08:26 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:08:26 [INFO] [PROCESS] fork() requested
+2026-06-19 14:08:26 [INFO] [PROCESS] Parent created child
+2026-06-19 14:08:26 [INFO] [PROCESS] Child started
+2026-06-19 14:08:28 [INFO] [PROCESS] Child exited
+2026-06-19 14:08:28 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:08:28 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:08:28 [INFO] [PROCESS] parent waiting
+2026-06-19 14:08:28 [INFO] [PROCESS] child executing external program
+2026-06-19 14:08:28 [INFO] [PROCESS] child exited
+2026-06-19 14:09:44 [INFO] [PROCESS] Process list requested
+2026-06-19 14:09:44 [INFO] [PROCESS] Number of processes found: 2
+2026-06-19 14:09:44 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:09:44 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:09:44 [INFO] [PROCESS] Search request: '29'
+2026-06-19 14:09:44 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:09:45 [INFO] [PROCESS] Priority changed: PID 95 nice from 0 to 5
+2026-06-19 14:09:45 [ERROR] [PROCESS] Permission denied for PID 95
+2026-06-19 14:09:45 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 95
+2026-06-19 14:09:46 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 95
+2026-06-19 14:09:47 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 95
+2026-06-19 14:09:47 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:09:47 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:09:47 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:09:47 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:09:47 [INFO] [PROCESS] fork() requested
+2026-06-19 14:09:47 [INFO] [PROCESS] Parent created child
+2026-06-19 14:09:47 [INFO] [PROCESS] Child started
+2026-06-19 14:09:49 [INFO] [PROCESS] Child exited
+2026-06-19 14:09:49 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:09:49 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:09:49 [INFO] [PROCESS] parent waiting
+2026-06-19 14:09:49 [INFO] [PROCESS] child executing external program
+2026-06-19 14:09:49 [INFO] [PROCESS] child exited
+2026-06-19 14:09:49 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:09:49 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:09:52 [INFO] [PROCESS] Child exited
+2026-06-19 14:09:52 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:12:33 [INFO] [SYSTEM_INFO] System information requested
+2026-06-19 14:15:35 [INFO] [SYSTEM_INFO] System information requested
+2026-06-19 14:16:56 [INFO] [SYSTEM_INFO] System information requested
+2026-06-19 14:19:13 [INFO] [NETWORK] Network information requested
+2026-06-19 14:19:13 [INFO] [NETWORK] Interface discovered: lo
+2026-06-19 14:21:38 [INFO] [NETWORK] Gateway queried
+2026-06-19 14:21:38 [INFO] [NETWORK] DNS queried
+2026-06-19 14:21:38 [INFO] [NETWORK] Route table parsed
+2026-06-19 14:21:38 [INFO] [NETWORK] Network statistics requested
+2026-06-19 14:21:38 [INFO] [NETWORK] Network information requested
+2026-06-19 14:21:38 [INFO] [NETWORK] Gateway queried
+2026-06-19 14:21:38 [INFO] [NETWORK] DNS queried
+2026-06-19 14:21:38 [INFO] [NETWORK] Interface discovered: lo
+2026-06-19 14:21:38 [INFO] [NETWORK] Interface discovered: enp47s0
+2026-06-19 14:21:38 [INFO] [NETWORK] Interface discovered: wlo1
+2026-06-19 14:21:38 [INFO] [NETWORK] Route table parsed
+2026-06-19 14:21:38 [INFO] [NETWORK] Network statistics requested
+2026-06-19 14:21:45 [INFO] [SYSTEM] Application started
+2026-06-19 14:21:45 [INFO] [SYSTEM] Application shutting down
+2026-06-19 14:22:09 [INFO] [NETWORK] Gateway queried
+2026-06-19 14:22:09 [INFO] [NETWORK] DNS queried
+2026-06-19 14:22:09 [INFO] [NETWORK] Route table parsed
+2026-06-19 14:22:09 [INFO] [NETWORK] Network statistics requested
+2026-06-19 14:22:09 [INFO] [NETWORK] Network information requested
+2026-06-19 14:22:09 [INFO] [NETWORK] Gateway queried
+2026-06-19 14:22:09 [INFO] [NETWORK] DNS queried
+2026-06-19 14:22:09 [INFO] [NETWORK] Interface discovered: lo
+2026-06-19 14:22:09 [INFO] [NETWORK] Interface discovered: enp47s0
+2026-06-19 14:22:09 [INFO] [NETWORK] Interface discovered: wlo1
+2026-06-19 14:22:09 [INFO] [NETWORK] Route table parsed
+2026-06-19 14:22:09 [INFO] [NETWORK] Network statistics requested
+2026-06-19 14:34:12 [INFO] [PROCESS] Process list requested
+2026-06-19 14:34:12 [INFO] [PROCESS] Number of processes found: 434
+2026-06-19 14:34:12 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:34:12 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:34:12 [INFO] [PROCESS] Search request: '60372'
+2026-06-19 14:34:12 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:34:13 [INFO] [PROCESS] Priority changed: PID 60373 nice from 0 to 5
+2026-06-19 14:34:13 [ERROR] [PROCESS] Permission denied for PID 60373
+2026-06-19 14:34:13 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 60373
+2026-06-19 14:34:14 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 60373
+2026-06-19 14:34:15 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 60373
+2026-06-19 14:34:15 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:34:15 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:34:15 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:34:15 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:34:15 [INFO] [PROCESS] fork() requested
+2026-06-19 14:34:15 [INFO] [PROCESS] Parent created child
+2026-06-19 14:34:15 [INFO] [PROCESS] Child started
+2026-06-19 14:34:17 [INFO] [PROCESS] Child exited
+2026-06-19 14:34:17 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:34:17 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:34:17 [INFO] [PROCESS] parent waiting
+2026-06-19 14:34:17 [INFO] [PROCESS] child executing external program
+2026-06-19 14:34:17 [INFO] [PROCESS] child exited
+2026-06-19 14:34:17 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:34:17 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:34:20 [INFO] [PROCESS] Child exited
+2026-06-19 14:34:20 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:34:20 [INFO] [PROCESS] Zombie demo started
+2026-06-19 14:34:20 [INFO] [PROCESS] Child exited
+2026-06-19 14:34:23 [INFO] [PROCESS] Zombie detected
+2026-06-19 14:34:23 [INFO] [PROCESS] waitpid called
+2026-06-19 14:34:23 [INFO] [PROCESS] Zombie removed
+2026-06-19 14:34:23 [INFO] [PROCESS] Demo finished
+2026-06-19 14:34:38 [INFO] [PROCESS] Process list requested
+2026-06-19 14:34:38 [INFO] [PROCESS] Number of processes found: 434
+2026-06-19 14:34:38 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:34:38 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:34:38 [INFO] [PROCESS] Search request: '60470'
+2026-06-19 14:34:38 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:34:39 [INFO] [PROCESS] Priority changed: PID 60471 nice from 0 to 5
+2026-06-19 14:34:39 [ERROR] [PROCESS] Permission denied for PID 60471
+2026-06-19 14:34:39 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 60471
+2026-06-19 14:34:40 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 60471
+2026-06-19 14:34:41 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 60471
+2026-06-19 14:34:41 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:34:41 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:34:41 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:34:41 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:34:41 [INFO] [PROCESS] fork() requested
+2026-06-19 14:34:41 [INFO] [PROCESS] Parent created child
+2026-06-19 14:34:41 [INFO] [PROCESS] Child started
+2026-06-19 14:34:43 [INFO] [PROCESS] Child exited
+2026-06-19 14:34:43 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:34:43 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:34:43 [INFO] [PROCESS] parent waiting
+2026-06-19 14:34:43 [INFO] [PROCESS] child executing external program
+2026-06-19 14:34:43 [INFO] [PROCESS] child exited
+2026-06-19 14:34:43 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:34:43 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:34:46 [INFO] [PROCESS] Child exited
+2026-06-19 14:34:46 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:34:46 [INFO] [PROCESS] Zombie demo started
+2026-06-19 14:34:46 [INFO] [PROCESS] Child exited
+2026-06-19 14:34:49 [INFO] [PROCESS] Zombie detected
+2026-06-19 14:34:49 [INFO] [PROCESS] waitpid called
+2026-06-19 14:34:49 [INFO] [PROCESS] Zombie removed
+2026-06-19 14:34:49 [INFO] [PROCESS] Demo finished
+2026-06-19 14:35:55 [INFO] [PROCESS] Process list requested
+2026-06-19 14:35:55 [INFO] [PROCESS] Number of processes found: 434
+2026-06-19 14:35:55 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:35:55 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:35:55 [INFO] [PROCESS] Search request: '60683'
+2026-06-19 14:35:55 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:35:56 [INFO] [PROCESS] Priority changed: PID 60684 nice from 0 to 5
+2026-06-19 14:35:56 [ERROR] [PROCESS] Permission denied for PID 60684
+2026-06-19 14:35:56 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 60684
+2026-06-19 14:35:57 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 60684
+2026-06-19 14:35:58 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 60684
+2026-06-19 14:35:58 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:35:58 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:35:58 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:35:58 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:35:58 [INFO] [PROCESS] fork() requested
+2026-06-19 14:35:58 [INFO] [PROCESS] Parent created child
+2026-06-19 14:35:58 [INFO] [PROCESS] Child started
+2026-06-19 14:36:00 [INFO] [PROCESS] Child exited
+2026-06-19 14:36:00 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:36:00 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:36:00 [INFO] [PROCESS] parent waiting
+2026-06-19 14:36:00 [INFO] [PROCESS] child executing external program
+2026-06-19 14:36:00 [INFO] [PROCESS] child exited
+2026-06-19 14:36:00 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:36:00 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:36:03 [INFO] [PROCESS] Child exited
+2026-06-19 14:36:03 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:36:03 [INFO] [PROCESS] Zombie demo started
+2026-06-19 14:36:03 [INFO] [PROCESS] Child exited
+2026-06-19 14:36:06 [INFO] [PROCESS] Zombie detected
+2026-06-19 14:36:06 [INFO] [PROCESS] waitpid called
+2026-06-19 14:36:06 [INFO] [PROCESS] Zombie removed
+2026-06-19 14:36:06 [INFO] [PROCESS] Demo finished
+2026-06-19 14:36:06 [INFO] [PROCESS] Orphan demo started
+2026-06-19 14:36:06 [INFO] [PROCESS] Parent exited
+2026-06-19 14:36:10 [INFO] [PROCESS] Child adopted
+2026-06-19 14:36:12 [INFO] [PROCESS] Demo finished
+2026-06-19 14:37:10 [INFO] [PROCESS] Process list requested
+2026-06-19 14:37:10 [INFO] [PROCESS] Number of processes found: 434
+2026-06-19 14:37:10 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:37:10 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:37:10 [INFO] [PROCESS] Search request: '60844'
+2026-06-19 14:37:10 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:37:11 [INFO] [PROCESS] Priority changed: PID 60845 nice from 0 to 5
+2026-06-19 14:37:11 [ERROR] [PROCESS] Permission denied for PID 60845
+2026-06-19 14:37:11 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 60845
+2026-06-19 14:37:12 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 60845
+2026-06-19 14:37:13 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 60845
+2026-06-19 14:37:13 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:37:13 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:37:13 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:37:13 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:37:13 [INFO] [PROCESS] fork() requested
+2026-06-19 14:37:13 [INFO] [PROCESS] Parent created child
+2026-06-19 14:37:13 [INFO] [PROCESS] Child started
+2026-06-19 14:37:15 [INFO] [PROCESS] Child exited
+2026-06-19 14:37:15 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:37:15 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:37:15 [INFO] [PROCESS] parent waiting
+2026-06-19 14:37:15 [INFO] [PROCESS] child executing external program
+2026-06-19 14:37:15 [INFO] [PROCESS] child exited
+2026-06-19 14:37:15 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:37:15 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:37:18 [INFO] [PROCESS] Child exited
+2026-06-19 14:37:18 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:37:18 [INFO] [PROCESS] Zombie demo started
+2026-06-19 14:37:18 [INFO] [PROCESS] Child exited
+2026-06-19 14:37:21 [INFO] [PROCESS] Zombie detected
+2026-06-19 14:37:21 [INFO] [PROCESS] waitpid called
+2026-06-19 14:37:21 [INFO] [PROCESS] Zombie removed
+2026-06-19 14:37:21 [INFO] [PROCESS] Demo finished
+2026-06-19 14:37:21 [INFO] [PROCESS] Orphan demo started
+2026-06-19 14:37:21 [INFO] [PROCESS] Parent exited
+2026-06-19 14:37:25 [INFO] [PROCESS] Child adopted
+2026-06-19 14:37:27 [INFO] [PROCESS] Demo finished
+2026-06-19 14:39:45 [INFO] [PROCESS] Process list requested
+2026-06-19 14:39:45 [INFO] [PROCESS] Number of processes found: 423
+2026-06-19 14:39:45 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-19 14:39:45 [INFO] [PROCESS] Matched processes: 1 (Name search)
+2026-06-19 14:39:45 [INFO] [PROCESS] Search request: '61315'
+2026-06-19 14:39:45 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-19 14:39:46 [INFO] [PROCESS] Priority changed: PID 61316 nice from 0 to 5
+2026-06-19 14:39:46 [ERROR] [PROCESS] Permission denied for PID 61316
+2026-06-19 14:39:46 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 61316
+2026-06-19 14:39:47 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 61316
+2026-06-19 14:39:48 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 61316
+2026-06-19 14:39:48 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:39:48 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:39:48 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-19 14:39:48 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-19 14:39:48 [INFO] [PROCESS] fork() requested
+2026-06-19 14:39:48 [INFO] [PROCESS] Parent created child
+2026-06-19 14:39:48 [INFO] [PROCESS] Child started
+2026-06-19 14:39:50 [INFO] [PROCESS] Child exited
+2026-06-19 14:39:50 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:39:50 [INFO] [PROCESS] exec demonstration started
+2026-06-19 14:39:50 [INFO] [PROCESS] parent waiting
+2026-06-19 14:39:50 [INFO] [PROCESS] child executing external program
+2026-06-19 14:39:50 [INFO] [PROCESS] child exited
+2026-06-19 14:39:50 [INFO] [PROCESS] Parent waiting
+2026-06-19 14:39:50 [INFO] [PROCESS] Child sleeping
+2026-06-19 14:39:53 [INFO] [PROCESS] Child exited
+2026-06-19 14:39:53 [INFO] [PROCESS] Parent resumed
+2026-06-19 14:39:53 [INFO] [PROCESS] Zombie demo started
+2026-06-19 14:39:53 [INFO] [PROCESS] Child exited
+2026-06-19 14:39:56 [INFO] [PROCESS] Zombie detected
+2026-06-19 14:39:56 [INFO] [PROCESS] waitpid called
+2026-06-19 14:39:56 [INFO] [PROCESS] Zombie removed
+2026-06-19 14:39:56 [INFO] [PROCESS] Demo finished
+2026-06-19 14:39:56 [INFO] [PROCESS] Orphan demo started
+2026-06-19 14:39:56 [INFO] [PROCESS] Parent exited
+2026-06-19 14:40:00 [INFO] [PROCESS] Child adopted
+2026-06-19 14:40:02 [INFO] [PROCESS] Demo finished

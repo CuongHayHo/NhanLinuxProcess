@@ -22,8 +22,9 @@ typedef struct {
 
 void process_mgr_run(void);
 int process_mgr_list(void);
+int process_mgr_search(const char* query);
 int process_mgr_send_signal(pid_t pid, int sig);
-int process_mgr_adjust_nice(pid_t pid, int increment);
+int process_mgr_set_priority(pid_t pid, int nice_val);
 void process_mgr_demo_zombie(void);
 void process_mgr_demo_orphan(void);
 

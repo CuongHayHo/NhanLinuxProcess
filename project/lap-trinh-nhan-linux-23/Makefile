@@ -18,10 +18,13 @@ test-logger: modules-lib
 test-file: modules-lib
 	gcc -Wall -Wextra -g -Iinclude -pthread tests/file_test.c modules/file/file_mgr.o app/logger.c -o tests/file_test
 
+test-process: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/process_test.c modules/process/process_mgr.o app/logger.c -o tests/process_test
+
 clean:
 	$(MAKE) -C modules clean
 	$(MAKE) -C app clean
 	$(MAKE) -C kernel/system_monitor clean
-	rm -f tests/logger_test tests/file_test
+	rm -f tests/logger_test tests/file_test tests/process_test
 
-.PHONY: all modules-lib app-bin ipc-demos kernel-module test-logger test-file clean
+.PHONY: all modules-lib app-bin ipc-demos kernel-module test-logger test-file test-process clean
