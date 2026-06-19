@@ -1,1 +1,0 @@
-echo KMA >> /home/nnee/lap-trinh-nhan-linux/de-23/test/test.text

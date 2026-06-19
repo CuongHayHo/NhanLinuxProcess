@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 createCronJob() {
   clear
   echo "--- Lập lịch tác vụ - Tạo tác vụ ---"

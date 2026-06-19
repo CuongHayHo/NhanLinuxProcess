@@ -92,7 +92,11 @@ The following diagram illustrates how the core application dispatches menu reque
 graph TD
     Main["app/main.c"] -->|Option 1: File Manager| FileMgr["modules/file/file_mgr.c"]
     Main -->|Option 2: Process Manager| ProcMgr["modules/process/process_mgr.c"]
-    Main -->|Option 8: System Information| SysInfo["modules/systeminfo/system_info.c"]
+    Main -->|Option 3: Network Manager| NetMgr["modules/network/network_mgr.c"]
+    Main -->|Option 4: Socket Manager| SockMgr["modules/socket/socket_mgr.c"]
+    Main -->|Option 5: Package Manager| PkgMgr["modules/package/package_mgr.c"]
+    Main -->|Option 6: Shell Manager| ShellMgr["modules/shell/shell_mgr.c"]
+    Main -->|Option 7: Kernel Module| KernelMgr["modules/kernel/kernel_mgr.c"]
     
     ProcMgr -->|Option 5: Fork Demo| ForkDemo["modules/process/demo/fork_demo.c"]
     ProcMgr -->|Option 6: Exec Demo| ExecDemo["modules/process/demo/exec_demo.c"]
@@ -100,14 +104,16 @@ graph TD
     ProcMgr -->|Option 8: Zombie Demo| ZombieDemo["modules/process/demo/zombie_demo.c"]
     ProcMgr -->|Option 9: Orphan Demo| OrphanDemo["modules/process/demo/orphan_demo.c"]
     ProcMgr -->|Option 10: Daemon Demo| DaemonDemo["modules/process/demo/daemon_demo.c"]
+```
 
 ---
 
-## 5. Project Release Status (Version v0.5)
+## 5. Project Release Status (Version v0.8.0)
 
-The project has achieved standard integration completeness for Version v0.5.
-*   **Logger**: Centrally records application-wide states, including navigation entries, process signals, error alerts, and clean shutdown states.
-*   **File Manager**: Basic stub loops integrated.
-*   **Process Manager**: Features 100% operational TUI linkages, with Option 10 successfully linked to the full daemon worker demonstration pipeline.
-*   **System Information**: Linked into main application selection (Option 8) providing kernel specifications and hostname diagnostics.
+The project has achieved clean scope integration.
+*   **Logger**: Centrally records application-wide states using low-level POSIX I/O.
+*   **File Manager**: Integrated system file loop operations.
+*   **Process Manager**: Features 100% operational TUI linkages, with native signal initialization and signal restoration.
+*   **Shell Manager**: Safe program/script execution, environment management, cron task explanations, task scheduler database, and time configuration displays.
+*   **Kernel Module**: Integrated `/proc/sysmgr` user space integration interface.
 ```

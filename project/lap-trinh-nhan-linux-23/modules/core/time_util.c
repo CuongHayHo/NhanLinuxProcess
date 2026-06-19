@@ -11,7 +11,7 @@
 err_code_t time_get_current_str(char* buffer, size_t buf_size) {
     (void)buffer;
     (void)buf_size;
-    /* TODO: Implement system time retrieval and formatting */
+    /* Stub: Implement system time retrieval and formatting */
     return ERR_SUCCESS;
 }
 
@@ -21,7 +21,7 @@ err_code_t time_calc_duration(uint64_t start_ms, uint64_t end_ms, uint64_t* out_
     if (out_duration) {
         *out_duration = 0;
     }
-    /* TODO: Implement millisecond duration arithmetic */
+    /* Stub: Implement millisecond duration arithmetic */
     return ERR_SUCCESS;
 }
 
@@ -29,6 +29,6 @@ err_code_t time_get_timestamp_ms(uint64_t* out_ms) {
     if (out_ms) {
         *out_ms = 0;
     }
-    /* TODO: Implement clock_gettime clock source wrapper */
+    /* Stub: Implement clock_gettime clock source wrapper */
     return ERR_SUCCESS;
 }

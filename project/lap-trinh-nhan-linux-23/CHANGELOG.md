@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## Phase 2: Scope Refactoring (Scope Cleanup)
+
+### Removed
+- Permanently removed the obsolete modules: **Signal Manager**, **Scheduler**, **Time Manager**, **System Information**, and **Log Viewer**.
+- Deleted all obsolete source directories: `modules/signal/`, `modules/scheduler/`, `modules/time/`, `modules/systeminfo/`, and `modules/logviewer/`.
+- Deleted deprecated headers: `include/signal_mgr.h`, `include/scheduler.h`, `include/time_mgr.h`, `include/system_info.h`, and `include/log_viewer.h`.
+- Deleted obsolete test files and targets: `tests/scheduler_test.c`, `tests/time_test.c`, `tests/system_info_test.c`.
+- Deleted obsolete documentation files: `docs/scheduler.md`, `docs/time_manager.md`, `docs/system_info.md`.
+- Removed all deprecated visual menu items and legacy routes in `app/main.c` and `app/menu.c`.
+
+### Added / Refactored
+- Ported Scheduler database structures and task management directly inside `modules/shell/shell_mgr.c`, keeping them private to the Shell Automation feature.
+- Ported Time Manager current time and timezone calculation logic directly inside `modules/shell/shell_mgr.c` as a native helper for the Shell Time Configuration feature.
+- Integrated Signal Settings options natively inside `modules/process/process_mgr.c`.
+- Updated enums in `include/common.h` and target dependencies in `Makefile`.
+
 ## Shell Sprint 4
 
 ### Added
@@ -48,36 +64,6 @@ All notable changes to this project will be documented in this file.
 - Added system logging checkpoints covering command inputs (`Command entered`), child fork execution (`Child process created`), successful executions (`Command executed`), exit codes (`Exit status`), and error boundaries (`Errors`).
 - Implemented developer reference documentation [docs/shell_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/shell_manager.md) and expanded process API reference in [docs/linux_api_reference.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/linux_api_reference.md).
 - Created a test harness in [tests/shell_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/shell_test.c) and added compilation/cleanup workflows in root [Makefile](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/Makefile).
-
-## IPC Sprint 3
-
-### Added
-- Implemented the POSIX Producer-Consumer integrated demonstration in [modules/ipc/ipc_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/ipc/ipc_mgr.c) and [include/ipc_mgr.h](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/include/ipc_mgr.h).
-- Enabled Option 3 "Producer Consumer Demo" inside the interactive IPC Manager TUI submenu.
-- Connected integrated producer/consumer logging, covering `Producer started`, `Consumer started`, `Semaphore wait`, `Semaphore post`, `Shared memory written`, `Shared memory read`, and `Cleanup`.
-- Created unit tests in [tests/producer_consumer_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/producer_consumer_test.c) and configured `test-producer_consumer` build targets.
-- Appended Section 6 and Section 7 to [docs/ipc.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/ipc.md) detailing race condition prevention, memory coordination sequences, and a comparative matrix of Pipes vs Shared Memory vs Sockets.
-
-## IPC Sprint 2
-
-### Added
-- Implemented POSIX Named Semaphore demonstration in [modules/ipc/ipc_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/ipc/ipc_mgr.c) and [include/ipc_mgr.h](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/include/ipc_mgr.h).
-- Enabled Option 2 "Semaphore Demo" inside the interactive IPC Manager submenu.
-- Updated standalone program [modules/ipc/sem_demo.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/ipc/sem_demo.c) to implement named semaphore synchronization APIs (`sem_open`, `sem_wait`, `sem_post`, `sem_close`, `sem_unlink`).
-- Implemented logger notifications for named semaphores (`Semaphore created`, `Wait`, `Post`, `Destroyed`).
-- Created unit tests in [tests/semaphore_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/semaphore_test.c) and configured `test-semaphore` build target.
-- Updated developer reference guide [docs/ipc.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/ipc.md) to document POSIX named semaphore structures, critical section locks, race condition mechanisms, and execution workflows.
-
-## IPC Sprint 1
-
-### Added
-- Implemented POSIX Shared Memory IPC manager in [modules/ipc/ipc_mgr.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/ipc/ipc_mgr.c) and [include/ipc_mgr.h](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/include/ipc_mgr.h).
-- Added Option 12 "IPC Manager" to Main Menu loop in [app/main.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/app/main.c) and [app/menu.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/app/menu.c).
-- Rewrote standalone test program [modules/ipc/shm_demo.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/modules/ipc/shm_demo.c) to demonstrate POSIX shared memory APIs (`shm_open`, `ftruncate`, `mmap`, `munmap`, `close`, `shm_unlink`).
-- Implemented diagnostic logger triggers for creation (`Shared memory created`), mapping (`Mapped`), write/read transactions (`Written`, `Read`), and clean unlinking (`Destroyed`).
-- Created unit verification checks inside [tests/ipc_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/ipc_test.c) and configured the `test-ipc` target in root Makefile.
-- Generated developer guide [docs/ipc.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/ipc.md) comparing shared memory against pipe architectures.
-
 ## Kernel Sprint 3
 
 ### Added
@@ -328,7 +314,7 @@ All notable changes to this project will be documented in this file.
 ## Sprint Network-2
 
 ### Added
-- Standard developer documentation in [docs/network.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/network.md).
+- Standard developer documentation in [docs/network_manager.md](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/docs/network_manager.md).
 - Diagnostic test coverage in [tests/network_test.c](file:///home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23/tests/network_test.c).
 - Internal static helper `read_entire_file()` to handle arbitrary size file reading using `open()`, `read()`, and `close()`.
 

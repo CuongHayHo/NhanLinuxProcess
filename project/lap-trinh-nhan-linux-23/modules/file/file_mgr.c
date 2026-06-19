@@ -25,7 +25,6 @@ void file_mgr_run(void) {
     log_info("FILE", "File manager interactive loop started.");
     
     /* Stub code simply returns */
-    // TODO: Implement interactive shell menu mapping to syscall functions
 }
 
 int file_mgr_create(const char* path) {

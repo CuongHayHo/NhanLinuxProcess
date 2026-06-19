@@ -22,8 +22,6 @@ c/network
 c/process
 c/socket/client
 c/socket/server
-modules/ipc/bin/
-
 # Logs
 logs/*.log
 

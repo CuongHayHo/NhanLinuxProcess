@@ -20,9 +20,4 @@ void shell_mgr_run(void);
  */
 int shell_mgr_execute(const char* command);
 
-/**
- * Translates a cron expression to human-readable fields and summary.
- */
-void translate_cron(const char* cron_str);
-
 #endif /* SHELL_MGR_H */

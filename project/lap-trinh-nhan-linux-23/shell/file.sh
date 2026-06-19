@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 handleNano() {
   status=$?
   if [ $status -eq 0  ] || [ $status -eq 1 ]; then

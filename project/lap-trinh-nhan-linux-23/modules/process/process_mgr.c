@@ -77,6 +77,8 @@ void process_mgr_run(void) {
         printf("8. Zombie Demo\n");
         printf("9. Orphan Demo\n");
         printf("10. Daemon Demo\n");
+        printf("11. Initialize Signals\n");
+        printf("12. Restore Default Signals\n");
         printf("0. Return\n");
         printf("========================================\n");
         printf("Select option: ");
@@ -84,8 +86,8 @@ void process_mgr_run(void) {
 
         choice = read_process_choice();
 
-        if (choice < 0 || choice > 10) {
-            printf("\nInvalid input. Please choose a number between 0 and 10.\n");
+        if (choice < 0 || choice > 12) {
+            printf("\nInvalid input. Please choose a number between 0 and 12.\n");
             process_menu_pause();
             continue;
         }
@@ -167,6 +169,14 @@ void process_mgr_run(void) {
                 break;
             case 10:
                 daemon_demo_run();
+                process_menu_pause();
+                break;
+            case 11:
+                signal_mgr_init();
+                process_menu_pause();
+                break;
+            case 12:
+                signal_mgr_restore_defaults();
                 process_menu_pause();
                 break;
         }
@@ -484,17 +494,7 @@ int process_mgr_set_priority(pid_t pid, int nice_val) {
     return 0;
 }
 
-void process_mgr_demo_zombie(void) {
-    log_info("PROCESS", "process_mgr_demo_zombie called (stub).");
-    /* TODO: Create zombie process using fork() and quick exit child (Sprint 4) */
-    printf("Zombie Process Demo: Stub. (TODO)\n");
-}
 
-void process_mgr_demo_orphan(void) {
-    log_info("PROCESS", "process_mgr_demo_orphan called (stub).");
-    /* TODO: Create orphan process by exiting parent immediately (Sprint 4) */
-    printf("Orphan Process Demo: Stub. (TODO)\n");
-}
 
 /* ==========================================================
  * Static helper implementations
@@ -628,6 +628,16 @@ static void get_proc_cmdline(pid_t pid, char* cmd_out, size_t max_len) {
 
     strncpy(cmd_out, buf, max_len - 1);
     cmd_out[max_len - 1] = '\0';
+}
+
+void signal_mgr_init(void) {
+    log_info("SIGNAL", "signal_mgr_init called.");
+    /* Setup signal structures and register with sigaction() */
+}
+
+void signal_mgr_restore_defaults(void) {
+    log_info("SIGNAL", "signal_mgr_restore_defaults called.");
+    /* Set all registered signal actions to SIG_DFL */
 }
 
 

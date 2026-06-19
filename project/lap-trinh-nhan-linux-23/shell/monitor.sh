@@ -7,7 +7,7 @@
 
 log_metrics() {
     echo "Logging active metrics... (Stub)"
-    # TODO: Fetch CPU usage, RAM utilization, and disk spaces, then append to logs/system.log
+    # Stub: Fetch CPU usage, RAM utilization, and disk spaces, then append to logs/system.log
 }
 
 main() {

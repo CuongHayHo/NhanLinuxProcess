@@ -253,3 +253,53 @@ Cron expressions consist of 5 space-separated fields that determine when a comma
 ### Security Notes
 1. **Read-Only Enforcement**: Option 1 only performs `crontab -l` (list). Option 3 displays hardcoded strings. The system never executes `crontab -e` or modifies `/etc/cron*` files, preventing unauthorized job registrations.
 2. **Cron Parser Protection**: Cron strings are parsed via standard tokenizers with strict field count validation. Expressions with fewer than 5 tokens are rejected gracefully, preventing memory access issues or logic faults.
+
+---
+
+## 11. Time Configuration (Manual and Automatic Synchronization)
+
+### Overview
+In Sprint 2 and Sprint 3 (Time Configuration), the module was expanded to support four primary sub-features:
+1. **Manual Time Configuration** - supports **Learning Mode** (dry-run simulation printing equivalent command/API) and **Real Mode** (system clock modification using `clock_settime` POSIX API).
+2. **Internet Time Synchronization** - synchronizes the system clock immediately via network NTP servers with chronyc/ntpdate fallback.
+3. **Enable Automatic Time Synchronization** - configures the system to sync automatically in the background using systemd's `timedatectl`.
+
+### Real System Time Configuration
+To set the system time programmatically without relying on insecure shell command execution wrappers like `system("date -s ...")`, the module utilizes:
+* **`clock_settime(clockid_t clk_id, const struct timespec *tp)`**: Used with `CLOCK_REALTIME` to set the system-wide real-time clock.
+  * **Input Parsing**: The user input date/time string (in format `YYYY-MM-DD HH:MM:SS`) is validated using custom parsing to reject malformed or impossible dates (e.g., leap years and month/day boundaries).
+  * **Conversion**: The validated string is converted to a standard `struct tm` structure, which is translated to epoch seconds `time_t` via `mktime()`.
+  * **System API Call**: The epoch seconds are assigned to a `struct timespec` and passed directly to the `clock_settime()` system call.
+
+### Kernel Capabilities & Privilege Checks (`CAP_SYS_TIME`)
+Modifying the system calendar clock is a highly privileged operation in Linux:
+* **Privilege Level**: If the application runs under a standard non-root user account without special capabilities, `clock_settime()` fails immediately, setting `errno` to `EPERM`.
+* **Capabilities**: The calling thread must possess the `CAP_SYS_TIME` capability to modify the clock.
+* **Error Diagnostics**: The module inspects the `errno` code returned by the system:
+  * `EPERM` -> Displays: `"Root privileges or CAP_SYS_TIME are required."` and logs `"Permission denied"`.
+  * `EINVAL` -> Displays: `"Invalid date/time."` and logs `"Validation failed"`.
+
+### Immediate Internet Time Synchronization (Option 4)
+This feature allows administrators to synchronize the clock with time servers immediately. It implements a robust, order-based fallback strategy using low-level POSIX execution:
+1. **First Option (`chronyc makestep`)**: Checks if `chronyc` exists in the system `PATH` (using `access(..., X_OK)` via the `command_exists` utility). If available, it executes `chronyc makestep` to immediately step the system clock.
+2. **Second Option (`ntpdate pool.ntp.org`)**: If `chronyc` is unavailable, it checks if `ntpdate` exists in the system `PATH`. If available, it runs `ntpdate pool.ntp.org`.
+3. **Unsupported Fallback**: If neither tool is found, it prints `"Immediate Internet synchronization is unavailable on this system."` and logs the sync failure.
+4. **Verification**: After execution, the module retrieves the current time, timezone, and logs which utility succeeded.
+
+#### Requesting Synchronization vs. Verified Synchronization
+In system administration, executing a synchronization command (such as `chronyc makestep` or `ntpdate`) only represents a **request** for synchronization. The execution of the command may return success (exit status `0`), but the system clock is not guaranteed to be synchronized immediately or successfully because:
+* **Network Latency and Transient Packet Loss**: The NTP UDP packages might be blocked by firewalls or lost during transient outages.
+* **Server Unreachability**: The target NTP servers might be overloaded or unresponsive, causing the client tool to timeout.
+* **Daemon Lag**: The background synchronization daemon (`chronyd` or `systemd-timesyncd`) may take a few seconds to update its state, reference ID, and step the clock.
+
+To address this, the application enforces **Verified Synchronization**:
+1. After sending the synchronization command, the application pauses for approximately 2 seconds to allow the NTP daemon to negotiate and apply changes.
+2. It then performs an independent verification check by executing `chronyc tracking` (parsing the Reference ID to ensure it is not `0.0.0.0` or `Not synchronised`) or `timedatectl status` (parsing to verify `System clock synchronized: yes`).
+3. Success is reported *only* if the verification check explicitly confirms synchronization. Otherwise, a detailed diagnostics panel is displayed with possible failure causes.
+
+### Enable Automatic Time Synchronization (Option 5)
+Configures the system's background NTP client:
+* **Timedatectl Check**: It first detects the systemd-based `timedatectl` executable. If unavailable, it prints `"Automatic synchronization is not supported."` and exits option 5.
+* **NTP Configuration**: If available, it executes `timedatectl set-ntp true` using the standard fork/exec execution pipeline.
+* **Clean Status Report**: Instead of dumping raw output from `timedatectl status`, the module redirects the child process's stdout/stderr to a temporary file (`tmp/cmd_output.txt`) using `dup2()`. It then reads the file and parses only specific fields (`NTP service`, `System clock synchronized`, `RTC mode`, `Time Zone`) to display a clean, formatted report to the administrator.
+

@@ -3,7 +3,7 @@
 This document details the shared project foundation implemented for the Linux System Manager.
 
 ## 1. Architecture Overview
-The Linux System Manager architecture consists of independent feature modules (e.g. File, Process, Network, Scheduler) interacting through unified header boundaries. The Core Foundation provides a shared, reliable layer of helpers and configurations used by all modules:
+The Linux System Manager architecture consists of independent feature modules interacting through unified header boundaries. The Core Foundation provides a shared, reliable layer of helpers and configurations used by all modules:
 
 ```
 +--------------------------------------------------------+
@@ -12,7 +12,7 @@ The Linux System Manager architecture consists of independent feature modules (e
                            ||
 +--------------------------------------------------------+
 |                    Feature Modules                     |
-|  (File, Process, Signal, Network, Socket, Scheduler)   |
+|  (File, Process, Network, Socket, Package, Shell)      |
 +--------------------------------------------------------+
                            ||
 +--------------------------------------------------------+

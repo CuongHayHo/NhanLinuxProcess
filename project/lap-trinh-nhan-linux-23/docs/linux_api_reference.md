@@ -54,6 +54,32 @@ This reference documents the system calls and POSIX APIs utilized throughout the
     ```
 *   **Related Man Page**: `close(2)`
 
+### `access`
+*   **Purpose**: Check accessibility of a file (e.g. existence and executable permission).
+*   **Prototype**:
+    ```c
+    int access(const char *pathname, int mode);
+    ```
+*   **Typical Usage**:
+    ```c
+    if (access("/usr/bin/chronyc", X_OK) == 0) {
+        // File exists and is executable
+    }
+    ```
+*   **Related Man Page**: `access(2)`
+
+### `readlink`
+*   **Purpose**: Read the target of a symbolic link.
+*   **Prototype**:
+    ```c
+    ssize_t readlink(const char *restrict pathname, char *restrict buf, size_t bufsiz);
+    ```
+*   **Typical Usage**:
+    ```c
+    ssize_t len = readlink("/etc/localtime", tz_link, sizeof(tz_link) - 1);
+    ```
+*   **Related Man Page**: `readlink(2)`
+
 ---
 
 ## 2. Process APIs
@@ -124,6 +150,19 @@ This reference documents the system calls and POSIX APIs utilized throughout the
     ```
 *   **Related Man Page**: `kill(2)`
 
+### `dup2`
+*   **Purpose**: Duplicate an open file descriptor onto another specified descriptor (such as standard output/error).
+*   **Prototype**:
+    ```c
+    int dup2(int oldfd, int newfd);
+    ```
+*   **Typical Usage**:
+    ```c
+    dup2(temp_fd, STDOUT_FILENO);
+    dup2(temp_fd, STDERR_FILENO);
+    ```
+*   **Related Man Page**: `dup2(2)`
+
 ---
 
 ## 3. Network APIs
@@ -182,6 +221,22 @@ This reference documents the system calls and POSIX APIs utilized throughout the
     clock_gettime(CLOCK_REALTIME, &ts);
     ```
 *   **Related Man Page**: `clock_gettime(2)`
+
+### `clock_settime`
+*   **Purpose**: Set system-wide clock time.
+*   **Prototype**:
+    ```c
+    int clock_settime(clockid_t clk_id, const struct timespec *tp);
+    ```
+*   **Typical Usage**:
+    ```c
+    struct timespec ts;
+    ts.tv_sec = new_epoch_seconds;
+    ts.tv_nsec = 0;
+    clock_settime(CLOCK_REALTIME, &ts);
+    ```
+*   **Permissions required**: `CAP_SYS_TIME` capability or superuser (root) privileges (otherwise fails with `EPERM`).
+*   **Related Man Page**: `clock_settime(2)`
 
 ### `localtime_r`
 *   **Purpose**: Thread-safe conversion of calendar time (`time_t`) to broken-down local representation.

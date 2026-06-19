@@ -6,9 +6,6 @@ modules-lib:
 app-bin: modules-lib
 	$(MAKE) -C app
 
-ipc-demos:
-	$(MAKE) -C modules build-ipc
-
 kernel-module:
 	$(MAKE) -C kernel/system_monitor
 
@@ -29,52 +26,28 @@ test-process: modules-lib
 		modules/process/demo/daemon_demo.o \
 		app/logger.c -o tests/process_test
 
-test-system_info: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/system_info_test.c modules/systeminfo/system_info.o app/logger.c -o tests/system_info_test
-
 test-network: modules-lib
 	gcc -Wall -Wextra -g -Iinclude -pthread tests/network_test.c modules/network/network_mgr.o app/logger.c -o tests/network_test
 
 test-package: modules-lib
 	gcc -Wall -Wextra -g -Iinclude -pthread tests/package_test.c modules/package/package_mgr.o app/logger.c -o tests/package_test
 
-test-time: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/time_test.c modules/time/time_mgr.o app/logger.c -o tests/time_test
-
-test-scheduler: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/scheduler_test.c modules/scheduler/scheduler.o app/logger.c -o tests/scheduler_test
-
 test-socket: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/socket_test.c modules/socket/socket_server.o modules/socket/socket_multi_server.o app/logger.c -o tests/socket_test
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/socket_test.c modules/socket/socket_server.o modules/socket/socket_client.o modules/socket/socket_multi_server.o app/logger.c -o tests/socket_test
 
 test-kernel: modules-lib
 	gcc -Wall -Wextra -g -Iinclude -pthread tests/kernel_test.c modules/kernel/kernel_mgr.o app/logger.c -o tests/kernel_test
 
-test-ipc: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/ipc_test.c modules/ipc/ipc_mgr.o app/logger.c -o tests/ipc_test
-
-test-semaphore: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/semaphore_test.c modules/ipc/ipc_mgr.o app/logger.c -o tests/semaphore_test
-
-test-producer_consumer: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/producer_consumer_test.c modules/ipc/ipc_mgr.o app/logger.c -o tests/producer_consumer_test
-
 test-shell: modules-lib
 	gcc -Wall -Wextra -g -Iinclude -pthread tests/shell_test.c modules/shell/shell_mgr.o app/logger.c -o tests/shell_test
-
-test-script_runner: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/script_runner_test.c modules/shell/shell_mgr.o app/logger.c -o tests/script_runner_test
-
-test-environment: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/environment_test.c modules/shell/shell_mgr.o app/logger.c -o tests/environment_test
-
-test-automation: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/automation_test.c modules/shell/shell_mgr.o app/logger.c -o tests/automation_test
 
 clean:
 	$(MAKE) -C modules clean
 	$(MAKE) -C app clean
 	$(MAKE) -C kernel/system_monitor clean
-	rm -f tests/logger_test tests/file_test tests/process_test tests/system_info_test tests/network_test tests/package_test tests/time_test tests/scheduler_test tests/socket_test tests/kernel_test tests/ipc_test tests/semaphore_test tests/producer_consumer_test tests/shell_test tests/script_runner_test tests/environment_test tests/automation_test
+	rm -f tests/logger_test tests/file_test tests/process_test tests/network_test tests/package_test tests/socket_test tests/kernel_test tests/shell_test
 
-.PHONY: all modules-lib app-bin ipc-demos kernel-module test-logger test-file test-process test-system_info test-network test-package test-time test-scheduler test-socket test-kernel test-ipc test-semaphore test-producer_consumer test-shell test-script_runner test-environment test-automation clean
+.PHONY: all modules-lib app-bin kernel-module test-logger test-file test-process test-network test-package test-socket test-kernel test-shell clean
+
+
+

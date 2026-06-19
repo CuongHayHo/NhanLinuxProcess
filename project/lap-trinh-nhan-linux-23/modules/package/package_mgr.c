@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include <errno.h>
 #include <ctype.h>
 #include "package_mgr.h"
@@ -45,35 +47,6 @@ static void trim(char* str) {
     }
 }
 
-/* Static submenu helpers */
-static int read_package_choice(void) {
-    char input_buf[128];
-    char* endptr;
-    long val;
-
-    if (fgets(input_buf, sizeof(input_buf), stdin) == NULL) {
-        return -1;
-    }
-
-    input_buf[strcspn(input_buf, "\n")] = '\0';
-    if (strlen(input_buf) == 0) {
-        return -1;
-    }
-
-    val = strtol(input_buf, &endptr, 10);
-    if (*endptr != '\0') {
-        return -1;
-    }
-    return (int)val;
-}
-
-static void package_menu_pause(void) {
-    int c;
-    printf("\nPress ENTER to continue...");
-    fflush(stdout);
-    while ((c = getchar()) != '\n' && c != EOF);
-}
-
 const char* package_mgr_detect(void) {
     if (access("/usr/bin/dpkg-query", X_OK) == 0) {
         return "dpkg";
@@ -85,69 +58,28 @@ const char* package_mgr_detect(void) {
 }
 
 void package_mgr_run(void) {
-    int choice;
-    log_info("PACKAGE", "Entering Package Manager");
+    log_info("PACKAGE", "Entering Package Manager (Shell script execution)");
 
-    while (1) {
-        printf("\n========================================\n");
-        printf("            Package Manager\n");
-        printf("========================================\n");
-        printf("1. List Installed Packages\n");
-        printf("2. Search Package\n");
-        printf("3. Install Package (Preview)\n");
-        printf("4. Remove Package (Preview)\n");
-        printf("5. Package Information\n");
-        printf("0. Return\n");
-        printf("========================================\n");
-        printf("Select option: ");
-        fflush(stdout);
+    pid_t pid = fork();
+    if (pid < 0) {
+        log_error("PACKAGE", "Failed to fork for shell program script execution");
+        perror("fork failed");
+        return;
+    }
 
-        choice = read_package_choice();
-
-        if (choice < 0) {
-            continue;
-        }
-
-        if (choice > 5) {
-            printf("\nInvalid input. Please choose a number between 0 and 5.\n");
-            package_menu_pause();
-            continue;
-        }
-
-        if (choice == 0) {
-            log_info("PACKAGE", "Leaving Package Manager");
-            break;
-        }
-
-        if (choice >= 3 && choice <= 4) {
-            printf("\nComing in a future sprint.\n");
-            package_menu_pause();
-            continue;
-        }
-
-        if (choice == 1) {
-            package_mgr_list_installed();
-            package_menu_pause();
-        } else if (choice == 2) {
-            char query[128];
-            printf("Enter package name to search: ");
-            fflush(stdout);
-            if (fgets(query, sizeof(query), stdin) != NULL) {
-                query[strcspn(query, "\n")] = '\0';
-                package_mgr_search(query);
-            }
-            package_menu_pause();
-        } else if (choice == 5) {
-            char pkg_name[128];
-            printf("Enter package name: ");
-            fflush(stdout);
-            if (fgets(pkg_name, sizeof(pkg_name), stdin) != NULL) {
-                pkg_name[strcspn(pkg_name, "\n")] = '\0';
-                package_mgr_info(pkg_name);
-            }
-            package_menu_pause();
+    if (pid == 0) {
+        char* argv[] = {"/bin/bash", "shell/program.sh", NULL};
+        execvp(argv[0], argv);
+        perror("execvp failed");
+        exit(127);
+    } else {
+        int status;
+        if (waitpid(pid, &status, 0) < 0) {
+            log_error("PACKAGE", "waitpid failed (errno %d)", errno);
         }
     }
+
+    log_info("PACKAGE", "Leaving Package Manager");
 }
 
 int package_mgr_list_installed(void) {
@@ -165,7 +97,7 @@ int package_mgr_list_installed(void) {
     if (strcmp(pm, "dpkg") == 0) {
         strcpy(cmd, "/usr/bin/dpkg-query -W -f='${Package} ${Version}\\n'");
     } else {
-        strcpy(cmd, "/usr/bin/rpm -qa --qf '%{NAME} %{VERSION}\\n'");
+        strcpy(cmd, "/usr/bin/rpm -qa --nosignature --nodigest --qf '%{NAME} %{VERSION}\\n'");
     }
 
     FILE* fp = popen(cmd, "r");
@@ -223,7 +155,7 @@ int package_mgr_search(const char* query) {
     if (strcmp(pm, "dpkg") == 0) {
         strcpy(cmd, "/usr/bin/dpkg-query -W -f='${Package} ${Version}\\n'");
     } else {
-        strcpy(cmd, "/usr/bin/rpm -qa --qf '%{NAME} %{VERSION}\\n'");
+        strcpy(cmd, "/usr/bin/rpm -qa --nosignature --nodigest --qf '%{NAME} %{VERSION}\\n'");
     }
 
     FILE* fp = popen(cmd, "r");
@@ -285,7 +217,7 @@ int package_mgr_info(const char* pkg_name) {
     if (strcmp(pm, "dpkg") == 0) {
         snprintf(cmd, sizeof(cmd), "/usr/bin/dpkg-query -s '%s' 2>/dev/null", pkg_name);
     } else {
-        snprintf(cmd, sizeof(cmd), "/usr/bin/rpm -q --qf \"Name: %%{NAME}\\nVersion: %%{VERSION}\\nRelease: %%{RELEASE}\\nArchitecture: %%{ARCH}\\nVendor: %%{VENDOR}\\nLicense: %%{LICENSE}\\nInstall Date: %%{INSTALLTIME:date}\\nSummary: %%{SUMMARY}\\nDescription: %%{DESCRIPTION}\\n\" '%s' 2>/dev/null", pkg_name);
+        snprintf(cmd, sizeof(cmd), "/usr/bin/rpm -q --nosignature --nodigest --qf \"Name: %%{NAME}\\nVersion: %%{VERSION}\\nRelease: %%{RELEASE}\\nArchitecture: %%{ARCH}\\nVendor: %%{VENDOR}\\nLicense: %%{LICENSE}\\nInstall Date: %%{INSTALLTIME:date}\\nSummary: %%{SUMMARY}\\nDescription: %%{DESCRIPTION}\\n\" '%s' 2>/dev/null", pkg_name);
     }
 
     FILE* fp = popen(cmd, "r");

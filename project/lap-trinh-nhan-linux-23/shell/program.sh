@@ -1,4 +1,4 @@
-
+#!/bin/bash
 installProgram() {
   clear
   echo "--- Quản lý chương trình - Cài đặt chương trình ---"

@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  * File: modules/socket/socket_client.c
- * Purpose: TCP echo client.
+ * Purpose: TCP echo/chat client.
  */
 
 #define _GNU_SOURCE
@@ -15,6 +15,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <sys/select.h>
 #include <errno.h>
 #include "socket_mgr.h"
 #include "logger.h"
@@ -30,7 +31,7 @@ void socket_mgr_client_start(const char* server_ip, int port, const char* userna
     log_info("SOCKET", "Client connect requested to %s:%d", server_ip, port);
 
     if ((sock_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        log_error("SOCKET", "Errors: socket creation failed (errno %d)", errno);
+        log_error("SOCKET", "Socket error: socket creation failed (errno %d)", errno);
         perror("socket");
         return;
     }
@@ -39,67 +40,106 @@ void socket_mgr_client_start(const char* server_ip, int port, const char* userna
     serv_addr.sin_port = htons(port);
 
     if (inet_pton(AF_INET, server_ip, &serv_addr.sin_addr) <= 0) {
-        log_error("SOCKET", "Errors: invalid address / address not supported (errno %d)", errno);
+        log_error("SOCKET", "Socket error: invalid address / address not supported (errno %d)", errno);
         perror("inet_pton");
         close(sock_fd);
         return;
     }
 
     if (connect(sock_fd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0) {
-        log_error("SOCKET", "Errors: connection failed (errno %d)", errno);
+        log_error("SOCKET", "Socket error: connection failed (errno %d)", errno);
         perror("connect");
         close(sock_fd);
         return;
     }
 
-    log_info("SOCKET", "Client connected: connected to server %s:%d", server_ip, port);
-    printf("Connected to server %s:%d\n", server_ip, port);
-    printf("Type messages below. Type 'exit' to quit.\n");
+    log_info("SOCKET", "Connection established");
+
+    printf("========================================\n");
+    printf("TCP Chat Client\n");
+    printf("========================================\n");
     fflush(stdout);
 
+    int max_fd = (STDIN_FILENO > sock_fd) ? STDIN_FILENO : sock_fd;
+    fd_set read_fds;
+
     while (1) {
-        printf("client> ");
-        fflush(stdout);
+        FD_ZERO(&read_fds);
+        FD_SET(STDIN_FILENO, &read_fds);
+        FD_SET(sock_fd, &read_fds);
 
-        if (fgets(input, sizeof(input), stdin) == NULL) {
+        int activity = select(max_fd + 1, &read_fds, NULL, NULL, NULL);
+        if (activity < 0) {
+            if (errno == EINTR) continue;
+            log_error("SOCKET", "Socket error: select failed (errno %d)", errno);
+            printf("Select error.\n%s\n", strerror(errno));
+            fflush(stdout);
             break;
         }
 
-        input[strcspn(input, "\n")] = '\0';
+        // Check server socket
+        if (FD_ISSET(sock_fd, &read_fds)) {
+            memset(buffer, 0, sizeof(buffer));
+            ssize_t valread = recv(sock_fd, buffer, sizeof(buffer) - 1, 0);
+            if (valread == 0) {
+                log_info("SOCKET", "Disconnect");
+                break;
+            } else if (valread < 0) {
+                log_error("SOCKET", "Socket error: recv failed (errno %d)", errno);
+                printf("Socket receive error.\n%s\n", strerror(errno));
+                fflush(stdout);
+                break;
+            }
 
-        if (strcmp(input, "exit") == 0) {
-            log_info("SOCKET", "Disconnected: user exited");
-            break;
+            buffer[valread] = '\0';
+            buffer[strcspn(buffer, "\r\n")] = '\0';
+
+            log_info("SOCKET", "Bytes received: %zd bytes", valread);
+            log_info("SOCKET", "Server message: %s", buffer);
+
+            if (strcmp(buffer, "exit") == 0) {
+                break;
+            }
+
+            printf("Server\n%s\n", buffer);
+            fflush(stdout);
         }
 
-        if (strlen(input) == 0) {
-            continue;
-        }
+        // Check stdin
+        if (FD_ISSET(STDIN_FILENO, &read_fds)) {
+            memset(input, 0, sizeof(input));
+            if (fgets(input, sizeof(input), stdin) == NULL) {
+                break;
+            }
 
-        ssize_t valsent = send(sock_fd, input, strlen(input), 0);
-        if (valsent < 0) {
-            log_error("SOCKET", "Errors: send failed (errno %d)", errno);
-            perror("send");
-            break;
-        }
-        log_info("SOCKET", "Bytes sent: %zd bytes", valsent);
+            input[strcspn(input, "\n")] = '\0';
 
-        memset(buffer, 0, sizeof(buffer));
-        ssize_t valread = recv(sock_fd, buffer, sizeof(buffer) - 1, 0);
-        if (valread == 0) {
-            log_info("SOCKET", "Disconnected: Server closed connection");
-            printf("Server disconnected.\n");
-            break;
-        } else if (valread < 0) {
-            log_error("SOCKET", "Errors: recv failed (errno %d)", errno);
-            perror("recv");
-            break;
-        }
-        log_info("SOCKET", "Bytes received: %zd bytes", valread);
+            if (strlen(input) == 0) {
+                continue;
+            }
 
-        printf("server echoed: %s\n", buffer);
+            ssize_t valsent = send(sock_fd, input, strlen(input), 0);
+            if (valsent < 0) {
+                log_error("SOCKET", "Socket error: send failed (errno %d)", errno);
+                perror("send");
+                break;
+            }
+
+            log_info("SOCKET", "Bytes sent: %zd bytes", valsent);
+            log_info("SOCKET", "Client message: %s", input);
+
+            printf("You\n%s\n", input);
+            fflush(stdout);
+
+            if (strcmp(input, "exit") == 0) {
+                break;
+            }
+        }
     }
 
+    printf("---\nDisconnected.\n");
+    fflush(stdout);
     close(sock_fd);
     log_info("SOCKET", "Client connection closed cleanly");
 }
+

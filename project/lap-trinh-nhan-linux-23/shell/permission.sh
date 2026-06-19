@@ -8,7 +8,7 @@
 audit_directory() {
     local dir="$1"
     echo "Auditing directory '$dir' for world-writable files... (Stub)"
-    # TODO: Use find to locate files with chmod 777 or 666 and list them
+    # Stub: Use find to locate files with chmod 777 or 666 and list them
 }
 
 main() {

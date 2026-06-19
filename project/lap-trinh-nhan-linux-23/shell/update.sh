@@ -14,7 +14,7 @@ check_root() {
 
 run_update() {
     echo "Running system packages update... (Stub)"
-    # TODO: Implement apt update, apt upgrade, and apt autoremove cleanups
+    # Stub: Implement apt update, apt upgrade, and apt autoremove cleanups
 }
 
 main() {

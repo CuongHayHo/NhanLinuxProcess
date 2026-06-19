@@ -37,12 +37,12 @@ The Process Manager module collects and displays active Linux process diagnostic
     [Option 1 - 4]      [Option 5 - 9]       [Option 10]
            |                   |                  |
            v                   v                  v
-   Feature Managers     Demo Executions     Daemon Demo Stub
-   - List Processes     - fork_demo_run     - Prints TODO
-   - Search Process     - exec_demo_run     - Logs finish
-   - Send Signal        - wait_demo_run
-   - Set Priority       - zombie_demo_run
-                        - orphan_demo_run
+    Feature Managers     Demo Executions     Daemon Demo
+    - List Processes     - fork_demo_run     - Detaches background session
+    - Search Process     - exec_demo_run     - Writes periodic log heartbeats
+    - Send Signal        - wait_demo_run     - Gracefully terminates via SIGTERM
+    - Set Priority       - zombie_demo_run
+                         - orphan_demo_run
 ```
 
 ---
