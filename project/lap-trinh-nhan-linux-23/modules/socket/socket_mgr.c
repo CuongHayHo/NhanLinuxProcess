@@ -53,7 +53,7 @@ void socket_mgr_run(void) {
         printf("========================================\n");
         printf("1. Run TCP Server\n");
         printf("2. Run TCP Client\n");
-        printf("3. Multi Client (Future)\n");
+        printf("3. Multi Client Echo\n");
         printf("4. Chat (Future)\n");
         printf("0. Return\n");
         printf("========================================\n");
@@ -77,7 +77,7 @@ void socket_mgr_run(void) {
             break;
         }
 
-        if (choice == 3 || choice == 4) {
+        if (choice == 4) {
             printf("\nComing in a future sprint.\n");
             socket_menu_pause();
             continue;
@@ -124,6 +124,19 @@ void socket_mgr_run(void) {
             }
 
             socket_mgr_client_start(server_ip, port, "user");
+            socket_menu_pause();
+        } else if (choice == 3) {
+            char port_buf[128];
+            int port = DEFAULT_PORT;
+            printf("Enter port to bind [%d]: ", DEFAULT_PORT);
+            fflush(stdout);
+            if (fgets(port_buf, sizeof(port_buf), stdin) != NULL) {
+                port_buf[strcspn(port_buf, "\n")] = '\0';
+                if (strlen(port_buf) > 0) {
+                    port = atoi(port_buf);
+                }
+            }
+            socket_mgr_multi_server_start(port);
             socket_menu_pause();
         }
     }

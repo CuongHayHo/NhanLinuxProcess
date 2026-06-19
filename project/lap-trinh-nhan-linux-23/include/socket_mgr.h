@@ -13,6 +13,7 @@
 
 void socket_mgr_run(void);
 void socket_mgr_server_start(int port);
+void socket_mgr_multi_server_start(int port);
 void socket_mgr_client_start(const char* server_ip, int port, const char* username);
 
 #endif /* SOCKET_MGR_H */

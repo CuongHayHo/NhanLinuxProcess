@@ -15,10 +15,14 @@ OBJS = file/file_mgr.o \
        socket/socket_server.o \
        socket/socket_client.o \
        socket/socket_mgr.o \
+       socket/socket_multi_server.o \
        network/network_mgr.o \
        scheduler/scheduler.o \
        package/package_mgr.o \
        time/time_mgr.o \
+       kernel/kernel_mgr.o \
+       ipc/ipc_mgr.o \
+       shell/shell_mgr.o \
        systeminfo/system_info.o \
        logviewer/log_viewer.o \
        core/string_util.o \

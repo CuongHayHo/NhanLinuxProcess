@@ -45,12 +45,27 @@ test-scheduler: modules-lib
 	gcc -Wall -Wextra -g -Iinclude -pthread tests/scheduler_test.c modules/scheduler/scheduler.o app/logger.c -o tests/scheduler_test
 
 test-socket: modules-lib
-	gcc -Wall -Wextra -g -Iinclude -pthread tests/socket_test.c modules/socket/socket_server.o app/logger.c -o tests/socket_test
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/socket_test.c modules/socket/socket_server.o modules/socket/socket_multi_server.o app/logger.c -o tests/socket_test
+
+test-kernel: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/kernel_test.c modules/kernel/kernel_mgr.o app/logger.c -o tests/kernel_test
+
+test-ipc: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/ipc_test.c modules/ipc/ipc_mgr.o app/logger.c -o tests/ipc_test
+
+test-semaphore: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/semaphore_test.c modules/ipc/ipc_mgr.o app/logger.c -o tests/semaphore_test
+
+test-producer_consumer: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/producer_consumer_test.c modules/ipc/ipc_mgr.o app/logger.c -o tests/producer_consumer_test
+
+test-shell: modules-lib
+	gcc -Wall -Wextra -g -Iinclude -pthread tests/shell_test.c modules/shell/shell_mgr.o app/logger.c -o tests/shell_test
 
 clean:
 	$(MAKE) -C modules clean
 	$(MAKE) -C app clean
 	$(MAKE) -C kernel/system_monitor clean
-	rm -f tests/logger_test tests/file_test tests/process_test tests/system_info_test tests/network_test tests/package_test tests/time_test tests/scheduler_test tests/socket_test
+	rm -f tests/logger_test tests/file_test tests/process_test tests/system_info_test tests/network_test tests/package_test tests/time_test tests/scheduler_test tests/socket_test tests/kernel_test tests/ipc_test tests/semaphore_test tests/producer_consumer_test tests/shell_test
 
-.PHONY: all modules-lib app-bin ipc-demos kernel-module test-logger test-file test-process test-system_info test-network test-package test-time test-scheduler test-socket clean
+.PHONY: all modules-lib app-bin ipc-demos kernel-module test-logger test-file test-process test-system_info test-network test-package test-time test-scheduler test-socket test-kernel test-ipc test-semaphore test-producer_consumer test-shell clean

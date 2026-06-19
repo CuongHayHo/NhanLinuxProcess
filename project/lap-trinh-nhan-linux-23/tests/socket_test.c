@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  * File: tests/socket_test.c
- * Purpose: Automated unit/integration tests for Socket Manager (TCP Echo).
+ * Purpose: Automated unit/integration tests for Socket Manager (TCP Echo - Single and Multi-client).
  */
 
 #include <stdio.h>
@@ -17,15 +17,21 @@
 #include <sys/wait.h>
 #include <assert.h>
 #include <errno.h>
+#include <signal.h>
 #include "socket_mgr.h"
 
 #define TEST_PORT 9099
 #define TEST_MSG  "Hello POSIX Socket Echo!"
 
-void run_test_client(void) {
+void run_test_client(int id) {
     int sock_fd = 0;
     struct sockaddr_in serv_addr;
     char buffer[512] = {0};
+    char msg1[128];
+    char msg2[128];
+
+    snprintf(msg1, sizeof(msg1), "Client %d Message 1", id);
+    snprintf(msg2, sizeof(msg2), "Client %d Message 2", id);
 
     // Client setup
     if ((sock_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -49,18 +55,14 @@ void run_test_client(void) {
         exit(1);
     }
 
-    printf("[TEST CLIENT] Connected to server.\n");
+    printf("[CLIENT %d] Connected to server.\n", id);
 
-    // Send message
-    ssize_t sent = send(sock_fd, TEST_MSG, strlen(TEST_MSG), 0);
-    if (sent < 0) {
+    // Exchange 1
+    if (send(sock_fd, msg1, strlen(msg1), 0) < 0) {
         perror("client send failed");
         close(sock_fd);
         exit(1);
     }
-    printf("[TEST CLIENT] Sent %zd bytes: '%s'\n", sent, TEST_MSG);
-
-    // Receive echo
     ssize_t read_bytes = recv(sock_fd, buffer, sizeof(buffer) - 1, 0);
     if (read_bytes < 0) {
         perror("client recv failed");
@@ -68,50 +70,96 @@ void run_test_client(void) {
         exit(1);
     }
     buffer[read_bytes] = '\0';
-    printf("[TEST CLIENT] Received %zd bytes: '%s'\n", read_bytes, buffer);
+    printf("[CLIENT %d] Echo 1: '%s'\n", id, buffer);
+    assert(strcmp(buffer, msg1) == 0);
 
-    // Assert echo matches
-    assert(strcmp(buffer, TEST_MSG) == 0);
-    printf("[TEST CLIENT] Echo verification passed!\n");
+    // Short sleep to simulate some interval and verify concurrency
+    usleep(100000); // 100ms
+
+    // Exchange 2
+    if (send(sock_fd, msg2, strlen(msg2), 0) < 0) {
+        perror("client send failed");
+        close(sock_fd);
+        exit(1);
+    }
+    read_bytes = recv(sock_fd, buffer, sizeof(buffer) - 1, 0);
+    if (read_bytes < 0) {
+        perror("client recv failed");
+        close(sock_fd);
+        exit(1);
+    }
+    buffer[read_bytes] = '\0';
+    printf("[CLIENT %d] Echo 2: '%s'\n", id, buffer);
+    assert(strcmp(buffer, msg2) == 0);
 
     close(sock_fd);
-    printf("[TEST CLIENT] Disconnected cleanly.\n");
+    printf("[CLIENT %d] Completed successfully and disconnected.\n", id);
     exit(0);
 }
 
 int main(void) {
-    printf("Starting Socket Manager - Sprint 1 (TCP Echo) test program...\n\n");
+    printf("Starting Socket Manager - Sprint 2 (Multi-client TCP Echo) test program...\n\n");
 
-    pid_t pid = fork();
-    if (pid < 0) {
-        perror("fork failed");
+    // 1. Spawn Multi-client server
+    pid_t server_pid = fork();
+    if (server_pid < 0) {
+        perror("fork server failed");
         return 1;
     }
 
-    if (pid == 0) {
-        // Child process: Client
-        // Sleep a short duration to ensure server is listening
-        sleep(1);
-        run_test_client();
-    } else {
-        // Parent process: Server
-        printf("[TEST SERVER] Starting server on port %d...\n", TEST_PORT);
-        socket_mgr_server_start(TEST_PORT);
+    if (server_pid == 0) {
+        // Child: Multi-client server
+        socket_mgr_multi_server_start(TEST_PORT);
+        exit(0); // If server_start returns
+    }
 
-        // Wait for child to exit
-        int status;
-        waitpid(pid, &status, 0);
+    // Give server time to bind and listen
+    sleep(1);
 
-        if (WIFEXITED(status)) {
-            int exit_code = WEXITSTATUS(status);
-            printf("\n[TEST SERVER] Client child exited with status: %d\n", exit_code);
-            assert(exit_code == 0);
-        } else {
-            printf("\n[TEST SERVER] Client child exited abnormally!\n");
+    // 2. Spawn 3 concurrent clients
+    pid_t client_pids[3];
+    for (int i = 0; i < 3; i++) {
+        pid_t pid = fork();
+        if (pid < 0) {
+            perror("fork client failed");
+            // Kill server and exit
+            kill(server_pid, SIGTERM);
             return 1;
+        }
+        if (pid == 0) {
+            // Child: Client session
+            run_test_client(i + 1);
+        } else {
+            client_pids[i] = pid;
         }
     }
 
-    printf("\nSocket Manager Module tests completed successfully.\n");
+    // 3. Wait for all clients to finish
+    int client_failures = 0;
+    for (int i = 0; i < 3; i++) {
+        int status;
+        waitpid(client_pids[i], &status, 0);
+        if (WIFEXITED(status)) {
+            int code = WEXITSTATUS(status);
+            if (code != 0) {
+                printf("[TEST PARENT] Client child %d failed with code %d\n", i + 1, code);
+                client_failures++;
+            }
+        } else {
+            printf("[TEST PARENT] Client child %d exited abnormally\n", i + 1);
+            client_failures++;
+        }
+    }
+
+    // 4. Terminate server and reap it
+    printf("\n[TEST PARENT] Terminating multi-client server...\n");
+    kill(server_pid, SIGTERM);
+    
+    int server_status;
+    waitpid(server_pid, &server_status, 0);
+    printf("[TEST PARENT] Server reaped successfully.\n");
+
+    assert(client_failures == 0);
+    printf("\nSocket Manager Module multi-client tests completed successfully.\n");
     return 0;
 }

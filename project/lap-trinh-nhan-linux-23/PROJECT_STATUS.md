@@ -1,8 +1,8 @@
 # Project Status
 
 ## 1. Release Configuration
-*   **Current Version**: `v0.7.0-socket`
-*   **Sprint Objective**: Socket Sprint 1 (TCP Echo Server/Client)
+*   **Current Version**: `v0.7.0-shell`
+*   **Sprint Objective**: Shell Sprint 1 (Safe Command Launcher via POSIX APIs)
 *   **System Mode**: Learning Mode (Read-Only)
 
 ---
@@ -19,13 +19,16 @@
 | **Time Manager** | Complete | Frozen | Local system date/time queries, UTC timezone calculations, system uptime tracker. |
 | **Scheduler** | Complete | Frozen | In-memory task creation, listing, and deletion under Learning Mode. |
 | **Socket Manager** | Complete | Frozen | TCP client/server network echo implementations. |
+| **Kernel Module** | Complete | Frozen | Integrated user space /proc/sysmgr reader with submenu display options. |
+| **IPC Manager** | Complete | Frozen | Integrated POSIX Shared Memory and Semaphore Producer-Consumer demo with TUI. |
+| **Shell Manager** | Complete | Frozen | Safe POSIX program execution via fork() + execvp() + waitpid(). |
 
 ---
 
 ## 3. Visual Menu Specifications
-Every module has been standardized to use a uniform layout with `0` for exiting back to parent frames:
+Every module has been standardized to use a uniform layout with `0` for exiting back to parent frames (or `5` as explicitly specified by the Shell Manager layout):
 *   **Main Menu Exit Option**: `0`
-*   **Submenu Return Option**: `0`
+*   **Submenu Return Option**: `0` (and `5` for Shell Manager)
 *   **Separator Boundary Length**: Exactly 40 characters (`========================================`).
 
 ---

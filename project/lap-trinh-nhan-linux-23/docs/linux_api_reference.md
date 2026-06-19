@@ -86,6 +86,19 @@ This reference documents the system calls and POSIX APIs utilized throughout the
     ```
 *   **Related Man Page**: `execve(2)`
 
+### `execvp`
+*   **Purpose**: Execute a program by filename, searching the `PATH` environment variable.
+*   **Prototype**:
+    ```c
+    int execvp(const char *file, char *const argv[]);
+    ```
+*   **Typical Usage**:
+    ```c
+    char *args[] = {"ls", "-l", NULL};
+    execvp(args[0], args);
+    ```
+*   **Related Man Page**: `exec(3)`
+
 ### `waitpid`
 *   **Purpose**: Wait for state changes in a child process (reap zombie processes).
 *   **Prototype**:

@@ -18,6 +18,9 @@
 #include "time_mgr.h"
 #include "scheduler.h"
 #include "socket_mgr.h"
+#include "kernel_mgr.h"
+#include "ipc_mgr.h"
+#include "shell_mgr.h"
 
 int main(void) {
     int choice;
@@ -31,8 +34,8 @@ int main(void) {
         choice = menu_read_choice();
 
         /* Input Validation: check for non-numeric, empty, or out-of-bounds inputs */
-        if (choice < 0 || choice > 11) {
-            printf("\n%sInvalid input. Please choose a number between 0 and 11.%s\n", 
+        if (choice < 0 || choice > 13) {
+            printf("\n%sInvalid input. Please choose a number between 0 and 13.%s\n", 
                    ANSI_COLOR_RED, ANSI_COLOR_RESET);
             menu_pause();
             continue;
@@ -74,7 +77,7 @@ int main(void) {
             socket_mgr_run();
             log_info("SYSTEM", "Leaving Socket Manager");
             menu_pause();
-        } else if (choice == 3 || choice == 9 || choice == 10) {
+        } else if (choice == 3 || choice == 9) {
             printf("\n---\n");
             printf("%sTODO%s\n", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
             printf("This module is not implemented yet.\n");
@@ -82,10 +85,25 @@ int main(void) {
             
             menu_pause();
             printf("\nReturn to menu.\n");
+        } else if (choice == 10) {
+            log_info("SYSTEM", "Entering Kernel Module Manager");
+            kernel_mgr_run();
+            log_info("SYSTEM", "Leaving Kernel Module Manager");
+            menu_pause();
         } else if (choice == 11) {
             log_info("SYSTEM", "Entering Time Manager");
             time_mgr_run();
             log_info("SYSTEM", "Leaving Time Manager");
+            menu_pause();
+        } else if (choice == 12) {
+            log_info("SYSTEM", "Entering IPC Manager");
+            ipc_mgr_run();
+            log_info("SYSTEM", "Leaving IPC Manager");
+            menu_pause();
+        } else if (choice == 13) {
+            log_info("SYSTEM", "Entering Shell Manager");
+            shell_mgr_run();
+            log_info("SYSTEM", "Leaving Shell Manager");
             menu_pause();
         } else if (choice == 0) {
             /* Clean Exit */

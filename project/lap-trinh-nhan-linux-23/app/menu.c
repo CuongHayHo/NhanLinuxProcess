@@ -33,6 +33,8 @@ void menu_display_main(void) {
     printf("9. Log Viewer\n");
     printf("10. Kernel Module\n");
     printf("11. Time Manager\n");
+    printf("12. IPC Manager\n");
+    printf("13. Shell Manager\n");
     printf("0. Exit\n");
     printf("%s----------------------------------------%s\n", ANSI_COLOR_CYAN, ANSI_COLOR_RESET);
     printf("Select option: ");

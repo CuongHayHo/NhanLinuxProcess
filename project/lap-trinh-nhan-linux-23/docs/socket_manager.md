@@ -111,3 +111,59 @@ sequenceDiagram
     Note over S: Log: "Disconnected"
     Note over S: close() client_fd & server_fd
 ```
+
+---
+
+## 5. Thread Model and Session Architecture
+
+To handle multiple simultaneous client connections, the Socket Manager uses a multi-threaded architecture separated into three distinct responsibility layers: **Server**, **Session**, and **Protocol**.
+
+### Session Architecture Layout
+
+```
+[Server Layer] (socket, bind, listen)
+      |
+      v
+[Accept Loop] (accept blocks for incoming clients)
+      |
+      +---> client_fd 1 ---> pthread_create() ---> [Session Thread 1] ---> session_handle_protocol()
+      |
+      +---> client_fd 2 ---> pthread_create() ---> [Session Thread 2] ---> session_handle_protocol()
+```
+
+1.  **Server Layer**:
+    *   Initializes the listener socket and binds to the specified port using `bind()`.
+    *   Enters a blocking loop calling `accept()`.
+    *   For each accepted client connection, it allocates a new `session_t` memory context and spawns a POSIX thread using `pthread_create()`.
+    *   Immediately invokes `pthread_detach()` on the thread ID. This registers the thread in a detached state, guaranteeing that the thread's memory resources (stack size, control blocks) are immediately recycled by the kernel upon thread termination, eliminating any potential thread resource leaks.
+2.  **Session Layer**:
+    *   Acting as the thread entry function (`session_worker()`), it extracts client connection details (IP, Port) via `inet_ntop()`.
+    *   Logs thread instantiation parameters and manages call wrappers.
+    *   Fires the protocol logic by passing the connection socket descriptor.
+    *   Cleans up descriptors via `close()`, frees allocated context buffers, logs thread exit events, and exits cleanly via `pthread_exit()`.
+3.  **Protocol Layer**:
+    *   Handles data transfer operations on client sockets (`session_handle_protocol()`).
+    *   Executes blocking `recv()` and `send()` loops to echo data back to the client.
+    *   Is completely decoupled from connection accepting, memory allocations, or threading logic.
+
+### Connection Lifecycle State Machine
+
+```
+[accept()] 
+    |
+    v
+[Thread Spawned] ---> Log: "Thread created"
+    |
+    v
+[Echo Loop] <---> recv() / send() (Concurrently active for all clients)
+    |
+    v (recv() returns 0 or error)
+[Clean Disconnect]
+    |
+    v
+[Close Socket Descriptor] ---> Log: "Disconnect"
+    |
+    v
+[Free Context Memory] ---> Log: "Thread exited"
+```
+

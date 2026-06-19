@@ -1407,3 +1407,335 @@
 2026-06-19 19:38:07 [INFO] [SOCKET] Bytes sent: 24 bytes
 2026-06-19 19:38:07 [INFO] [SOCKET] Disconnected: Client closed connection
 2026-06-19 19:38:07 [INFO] [SOCKET] Server stopped cleanly
+2026-06-19 19:42:34 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-19 19:42:34 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-19 19:42:35 [INFO] [SOCKET] Client connected: 127.0.0.1:42014
+2026-06-19 19:42:35 [INFO] [SOCKET] Client connected: 127.0.0.1:42024
+2026-06-19 19:42:35 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:42014
+2026-06-19 19:42:35 [INFO] [SOCKET] Client connected: 127.0.0.1:42018
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:42024
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:42018
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:42:35 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:42:35 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:42:35 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:42:35 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:42014
+2026-06-19 19:42:35 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:42024
+2026-06-19 19:42:35 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:42018
+2026-06-19 19:43:22 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-19 19:43:22 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-19 19:43:23 [INFO] [SOCKET] Client connected: 127.0.0.1:39372
+2026-06-19 19:43:23 [INFO] [SOCKET] Client connected: 127.0.0.1:39388
+2026-06-19 19:43:23 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:39372
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Client connected: 127.0.0.1:39390
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:39388
+2026-06-19 19:43:23 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:39390
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:39372
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:43:23 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:43:23 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:43:23 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:39388
+2026-06-19 19:43:23 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:39390
+2026-06-19 19:47:04 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-19 19:47:04 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-19 19:47:05 [INFO] [SOCKET] Client connected: 127.0.0.1:46408
+2026-06-19 19:47:05 [INFO] [SOCKET] Client connected: 127.0.0.1:46412
+2026-06-19 19:47:05 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:46408
+2026-06-19 19:47:05 [INFO] [SOCKET] Client connected: 127.0.0.1:46420
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:46420
+2026-06-19 19:47:05 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:46412
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:47:05 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:47:05 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:46420
+2026-06-19 19:47:05 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:47:05 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:46412
+2026-06-19 19:47:05 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:46408
+2026-06-19 19:49:58 [INFO] [SYSTEM] Application started
+2026-06-19 19:49:58 [WARN] [FILE] Permission denied
+2026-06-19 19:49:58 [ERROR] [NETWORK] Connection timeout
+2026-06-19 19:49:58 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file1.txt
+2026-06-19 19:49:58 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file2.txt
+2026-06-19 19:49:58 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 19:49:58 [INFO] [FILE] Copied file from 'tests/test_dir/file1.txt' to 'tests/test_dir/file1_copy.txt'
+2026-06-19 19:49:58 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-19 19:49:58 [INFO] [FILE] Moved file from 'tests/test_dir/file2.txt' to 'tests/test_dir/file2_moved.txt' (via rename)
+2026-06-19 19:49:58 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file2_moved.txt
+2026-06-19 19:49:58 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 19:49:58 [INFO] [FILE] Deleted file: tests/test_dir/file1.txt
+2026-06-19 19:49:58 [INFO] [FILE] Deleted file: tests/test_dir/file1_copy.txt
+2026-06-19 19:49:58 [INFO] [FILE] Deleted file: tests/test_dir/file2_moved.txt
+2026-06-19 19:49:58 [INFO] [SYSTEM_INFO] System information requested
+2026-06-19 19:49:58 [INFO] [NETWORK] Interface enumeration started
+2026-06-19 19:49:58 [INFO] [NETWORK] Interfaces discovered
+2026-06-19 19:49:58 [INFO] [NETWORK] Routing inspection started
+2026-06-19 19:49:58 [INFO] [NETWORK] Route entries parsed
+2026-06-19 19:49:58 [INFO] [NETWORK] Default gateway detected
+2026-06-19 19:49:58 [INFO] [NETWORK] Route entries parsed
+2026-06-19 19:49:58 [INFO] [NETWORK] Hostname queried
+2026-06-19 19:49:58 [INFO] [NETWORK] FQDN resolved
+2026-06-19 19:49:58 [INFO] [PACKAGE] Package manager detected: rpm
+2026-06-19 19:49:58 [INFO] [PACKAGE] Package enumeration started
+2026-06-19 19:49:58 [INFO] [PACKAGE] Package count: 2237
+2026-06-19 19:49:58 [INFO] [PACKAGE] Search started
+2026-06-19 19:49:58 [INFO] [PACKAGE] Keyword: kernel
+2026-06-19 19:49:59 [INFO] [PACKAGE] Match count: 19
+2026-06-19 19:49:59 [INFO] [PACKAGE] Search started
+2026-06-19 19:49:59 [INFO] [PACKAGE] Keyword: nonexistent_pkg_xyz
+2026-06-19 19:50:00 [INFO] [PACKAGE] Match count: 0
+2026-06-19 19:50:00 [INFO] [PACKAGE] Search started
+2026-06-19 19:50:00 [INFO] [PACKAGE] Keyword: KERNEL
+2026-06-19 19:50:00 [INFO] [PACKAGE] Match count: 19
+2026-06-19 19:50:00 [INFO] [PACKAGE] Search started
+2026-06-19 19:50:00 [INFO] [PACKAGE] Keyword: kern
+2026-06-19 19:50:01 [INFO] [PACKAGE] Match count: 19
+2026-06-19 19:50:01 [INFO] [PACKAGE] Package selected: rpm
+2026-06-19 19:50:01 [INFO] [PACKAGE] Metadata query started for: rpm
+2026-06-19 19:50:01 [INFO] [PACKAGE] Metadata query successful for package: rpm
+2026-06-19 19:50:01 [INFO] [PACKAGE] Package selected: nonexistent_pkg_xyz
+2026-06-19 19:50:01 [INFO] [PACKAGE] Metadata query started for: nonexistent_pkg_xyz
+2026-06-19 19:50:01 [ERROR] [PACKAGE] Metadata query failed for package: nonexistent_pkg_xyz (package not found or exit status 256)
+2026-06-19 19:50:01 [ERROR] [PACKAGE] Metadata query failed: invalid/unsafe package name '; rm -rf /'
+2026-06-19 19:50:01 [INFO] [TIME] Time inspection started
+2026-06-19 19:50:01 [INFO] [TIME] Current timestamp retrieved: 1781873401
+2026-06-19 19:50:01 [INFO] [TIME] Timezone detected: +07 (Offset: 25200 seconds)
+2026-06-19 19:50:01 [INFO] [SCHEDULER] Task listed (Count: 0)
+2026-06-19 19:50:01 [INFO] [SCHEDULER] Task created: ID=1, Name=Task A
+2026-06-19 19:50:01 [INFO] [SCHEDULER] Task created: ID=2, Name=Task B
+2026-06-19 19:50:01 [INFO] [SCHEDULER] Task listed (Count: 2)
+2026-06-19 19:50:01 [INFO] [SCHEDULER] Task removed: ID=1
+2026-06-19 19:50:01 [INFO] [SCHEDULER] Task listed (Count: 1)
+2026-06-19 19:50:01 [ERROR] [SCHEDULER] Task deletion failed: ID 999 not found
+2026-06-19 19:50:01 [INFO] [SCHEDULER] Task removed: ID=2
+2026-06-19 19:50:01 [INFO] [SCHEDULER] Task listed (Count: 0)
+2026-06-19 19:50:02 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-19 19:50:02 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-19 19:50:03 [INFO] [SOCKET] Client connected: 127.0.0.1:43168
+2026-06-19 19:50:03 [INFO] [SOCKET] Client connected: 127.0.0.1:43152
+2026-06-19 19:50:03 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:43168
+2026-06-19 19:50:03 [INFO] [SOCKET] Client connected: 127.0.0.1:43180
+2026-06-19 19:50:03 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:43152
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:43180
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:50:03 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:50:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-19 19:50:03 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-19 19:50:03 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:43168
+2026-06-19 19:50:03 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:43152
+2026-06-19 19:53:14 [INFO] [KERNEL] Kernel module information requested
+2026-06-19 19:53:14 [ERROR] [KERNEL] Read failure: failed to open /proc/sysmgr (errno 2)
+2026-06-19 19:56:49 [INFO] [IPC] Shared memory created
+2026-06-19 19:56:49 [INFO] [IPC] Mapped
+2026-06-19 19:56:49 [INFO] [IPC] Written
+2026-06-19 19:56:49 [INFO] [IPC] Mapped
+2026-06-19 19:56:49 [INFO] [IPC] Read
+2026-06-19 19:56:49 [INFO] [IPC] Destroyed
+2026-06-19 19:57:19 [INFO] [SYSTEM] Application started
+2026-06-19 19:57:19 [WARN] [FILE] Permission denied
+2026-06-19 19:57:19 [ERROR] [NETWORK] Connection timeout
+2026-06-19 19:57:19 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file1.txt
+2026-06-19 19:57:19 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file2.txt
+2026-06-19 19:57:19 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 19:57:19 [INFO] [FILE] Copied file from 'tests/test_dir/file1.txt' to 'tests/test_dir/file1_copy.txt'
+2026-06-19 19:57:19 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-19 19:57:19 [INFO] [FILE] Moved file from 'tests/test_dir/file2.txt' to 'tests/test_dir/file2_moved.txt' (via rename)
+2026-06-19 19:57:19 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file2_moved.txt
+2026-06-19 19:57:19 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 19:57:19 [INFO] [FILE] Deleted file: tests/test_dir/file1.txt
+2026-06-19 19:57:19 [INFO] [FILE] Deleted file: tests/test_dir/file1_copy.txt
+2026-06-19 19:57:19 [INFO] [FILE] Deleted file: tests/test_dir/file2_moved.txt
+2026-06-19 19:57:19 [INFO] [SYSTEM_INFO] System information requested
+2026-06-19 19:57:19 [INFO] [NETWORK] Interface enumeration started
+2026-06-19 19:57:19 [INFO] [NETWORK] Interfaces discovered
+2026-06-19 19:57:19 [INFO] [NETWORK] Routing inspection started
+2026-06-19 19:57:19 [INFO] [NETWORK] Route entries parsed
+2026-06-19 19:57:19 [INFO] [NETWORK] Default gateway detected
+2026-06-19 19:57:19 [INFO] [NETWORK] Route entries parsed
+2026-06-19 19:57:19 [INFO] [NETWORK] Hostname queried
+2026-06-19 19:57:19 [INFO] [NETWORK] FQDN resolved
+2026-06-19 19:57:19 [INFO] [PACKAGE] Package manager detected: rpm
+2026-06-19 19:57:19 [INFO] [PACKAGE] Package enumeration started
+2026-06-19 19:57:19 [INFO] [PACKAGE] Package count: 2237
+2026-06-19 19:57:19 [INFO] [PACKAGE] Search started
+2026-06-19 19:57:19 [INFO] [PACKAGE] Keyword: kernel
+2026-06-19 19:57:20 [INFO] [PACKAGE] Match count: 19
+2026-06-19 19:57:20 [INFO] [PACKAGE] Search started
+2026-06-19 19:57:20 [INFO] [PACKAGE] Keyword: nonexistent_pkg_xyz
+2026-06-19 19:57:21 [INFO] [PACKAGE] Match count: 0
+2026-06-19 19:57:21 [INFO] [PACKAGE] Search started
+2026-06-19 19:57:21 [INFO] [PACKAGE] Keyword: KERNEL
+2026-06-19 19:57:21 [INFO] [PACKAGE] Match count: 19
+2026-06-19 19:57:21 [INFO] [PACKAGE] Search started
+2026-06-19 19:57:21 [INFO] [PACKAGE] Keyword: kern
+2026-06-19 19:57:22 [INFO] [PACKAGE] Match count: 19
+2026-06-19 19:57:22 [INFO] [PACKAGE] Package selected: rpm
+2026-06-19 19:57:22 [INFO] [PACKAGE] Metadata query started for: rpm
+2026-06-19 19:57:22 [INFO] [PACKAGE] Metadata query successful for package: rpm
+2026-06-19 19:57:22 [INFO] [PACKAGE] Package selected: nonexistent_pkg_xyz
+2026-06-19 19:57:22 [INFO] [PACKAGE] Metadata query started for: nonexistent_pkg_xyz
+2026-06-19 19:57:22 [ERROR] [PACKAGE] Metadata query failed for package: nonexistent_pkg_xyz (package not found or exit status 256)
+2026-06-19 19:57:22 [ERROR] [PACKAGE] Metadata query failed: invalid/unsafe package name '; rm -rf /'
+2026-06-19 19:57:22 [INFO] [TIME] Time inspection started
+2026-06-19 19:57:22 [INFO] [TIME] Current timestamp retrieved: 1781873842
+2026-06-19 19:57:22 [INFO] [TIME] Timezone detected: +07 (Offset: 25200 seconds)
+2026-06-19 19:57:22 [INFO] [SCHEDULER] Task listed (Count: 0)
+2026-06-19 19:57:22 [INFO] [SCHEDULER] Task created: ID=1, Name=Task A
+2026-06-19 19:57:22 [INFO] [SCHEDULER] Task created: ID=2, Name=Task B
+2026-06-19 19:57:22 [INFO] [SCHEDULER] Task listed (Count: 2)
+2026-06-19 19:57:22 [INFO] [SCHEDULER] Task removed: ID=1
+2026-06-19 19:57:22 [INFO] [SCHEDULER] Task listed (Count: 1)
+2026-06-19 19:57:22 [ERROR] [SCHEDULER] Task deletion failed: ID 999 not found
+2026-06-19 19:57:22 [INFO] [SCHEDULER] Task removed: ID=2
+2026-06-19 19:57:22 [INFO] [SCHEDULER] Task listed (Count: 0)
+2026-06-19 19:57:22 [INFO] [KERNEL] Kernel module information requested
+2026-06-19 19:57:22 [ERROR] [KERNEL] Read failure: failed to open /proc/sysmgr (errno 2)
+2026-06-19 19:57:22 [INFO] [IPC] Shared memory created
+2026-06-19 19:57:22 [INFO] [IPC] Mapped
+2026-06-19 19:57:22 [INFO] [IPC] Written
+2026-06-19 19:57:22 [INFO] [IPC] Mapped
+2026-06-19 19:57:22 [INFO] [IPC] Read
+2026-06-19 19:57:22 [INFO] [IPC] Destroyed
+2026-06-19 20:01:21 [INFO] [IPC] Semaphore created
+2026-06-19 20:01:21 [INFO] [IPC] Wait
+2026-06-19 20:01:21 [INFO] [IPC] Wait
+2026-06-19 20:01:22 [INFO] [IPC] Post
+2026-06-19 20:01:22 [INFO] [IPC] Post
+2026-06-19 20:01:22 [INFO] [IPC] Destroyed
+2026-06-19 20:04:52 [INFO] [IPC] Producer started
+2026-06-19 20:04:52 [INFO] [IPC] Shared memory written
+2026-06-19 20:04:52 [INFO] [IPC] Semaphore post
+2026-06-19 20:04:52 [INFO] [IPC] Consumer started
+2026-06-19 20:04:52 [INFO] [IPC] Semaphore wait
+2026-06-19 20:04:52 [INFO] [IPC] Shared memory read
+2026-06-19 20:04:52 [INFO] [IPC] Cleanup
+2026-06-19 20:09:32 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-19 20:09:32 [INFO] [SHELL] Child process created (PID: 31)
+2026-06-19 20:09:32 [INFO] [SHELL] Command executed
+2026-06-19 20:09:32 [INFO] [SHELL] Exit status: 0
+2026-06-19 20:09:32 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-19 20:09:32 [INFO] [SHELL] Child process created (PID: 32)
+2026-06-19 20:09:32 [INFO] [SHELL] Command executed
+2026-06-19 20:09:32 [INFO] [SHELL] Exit status: 0
+2026-06-19 20:09:32 [INFO] [SHELL] Command entered: 'ls'
+2026-06-19 20:09:32 [INFO] [SHELL] Child process created (PID: 33)
+2026-06-19 20:09:32 [INFO] [SHELL] Command executed
+2026-06-19 20:09:32 [INFO] [SHELL] Exit status: 0
+2026-06-19 20:09:32 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-19 20:09:32 [INFO] [SHELL] Child process created (PID: 34)
+2026-06-19 20:09:32 [INFO] [SHELL] Command executed
+2026-06-19 20:09:32 [INFO] [SHELL] Exit status: 127
+2026-06-19 20:10:18 [INFO] [SYSTEM] Application started
+2026-06-19 20:10:18 [WARN] [FILE] Permission denied
+2026-06-19 20:10:18 [ERROR] [NETWORK] Connection timeout
+2026-06-19 20:10:18 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file1.txt
+2026-06-19 20:10:18 [INFO] [FILE] Wrote 17 bytes to file: tests/test_dir/file2.txt
+2026-06-19 20:10:18 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 20:10:18 [INFO] [FILE] Copied file from 'tests/test_dir/file1.txt' to 'tests/test_dir/file1_copy.txt'
+2026-06-19 20:10:18 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-19 20:10:18 [INFO] [FILE] Moved file from 'tests/test_dir/file2.txt' to 'tests/test_dir/file2_moved.txt' (via rename)
+2026-06-19 20:10:18 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file2_moved.txt
+2026-06-19 20:10:18 [INFO] [FILE] Listed directory: tests/test_dir
+2026-06-19 20:10:18 [INFO] [FILE] Deleted file: tests/test_dir/file1.txt
+2026-06-19 20:10:18 [INFO] [FILE] Deleted file: tests/test_dir/file1_copy.txt
+2026-06-19 20:10:18 [INFO] [FILE] Deleted file: tests/test_dir/file2_moved.txt
+2026-06-19 20:10:18 [INFO] [SYSTEM_INFO] System information requested
+2026-06-19 20:10:18 [INFO] [NETWORK] Interface enumeration started
+2026-06-19 20:10:18 [INFO] [NETWORK] Interfaces discovered
+2026-06-19 20:10:18 [INFO] [NETWORK] Routing inspection started
+2026-06-19 20:10:18 [INFO] [NETWORK] Route entries parsed
+2026-06-19 20:10:18 [INFO] [NETWORK] Default gateway detected
+2026-06-19 20:10:18 [INFO] [NETWORK] Route entries parsed
+2026-06-19 20:10:18 [INFO] [NETWORK] Hostname queried
+2026-06-19 20:10:18 [INFO] [NETWORK] FQDN resolved
+2026-06-19 20:10:18 [INFO] [TIME] Time inspection started
+2026-06-19 20:10:18 [INFO] [TIME] Current timestamp retrieved: 1781874618
+2026-06-19 20:10:18 [INFO] [TIME] Timezone detected: +07 (Offset: 25200 seconds)
+2026-06-19 20:10:18 [INFO] [SCHEDULER] Task listed (Count: 0)
+2026-06-19 20:10:18 [INFO] [SCHEDULER] Task created: ID=1, Name=Task A
+2026-06-19 20:10:18 [INFO] [SCHEDULER] Task created: ID=2, Name=Task B
+2026-06-19 20:10:18 [INFO] [SCHEDULER] Task listed (Count: 2)
+2026-06-19 20:10:18 [INFO] [SCHEDULER] Task removed: ID=1
+2026-06-19 20:10:18 [INFO] [SCHEDULER] Task listed (Count: 1)
+2026-06-19 20:10:18 [ERROR] [SCHEDULER] Task deletion failed: ID 999 not found
+2026-06-19 20:10:18 [INFO] [SCHEDULER] Task removed: ID=2
+2026-06-19 20:10:18 [INFO] [SCHEDULER] Task listed (Count: 0)
+2026-06-19 20:10:18 [INFO] [IPC] Shared memory created
+2026-06-19 20:10:18 [INFO] [IPC] Mapped
+2026-06-19 20:10:18 [INFO] [IPC] Written
+2026-06-19 20:10:18 [INFO] [IPC] Mapped
+2026-06-19 20:10:18 [INFO] [IPC] Read
+2026-06-19 20:10:18 [INFO] [IPC] Destroyed
+2026-06-19 20:10:18 [INFO] [IPC] Semaphore created
+2026-06-19 20:10:18 [INFO] [IPC] Wait
+2026-06-19 20:10:18 [INFO] [IPC] Wait
+2026-06-19 20:10:18 [INFO] [IPC] Post
+2026-06-19 20:10:18 [INFO] [IPC] Post
+2026-06-19 20:10:18 [INFO] [IPC] Destroyed
+2026-06-19 20:10:18 [INFO] [IPC] Producer started
+2026-06-19 20:10:18 [INFO] [IPC] Shared memory written
+2026-06-19 20:10:18 [INFO] [IPC] Semaphore post
+2026-06-19 20:10:18 [INFO] [IPC] Consumer started
+2026-06-19 20:10:18 [INFO] [IPC] Semaphore wait
+2026-06-19 20:10:18 [INFO] [IPC] Shared memory read
+2026-06-19 20:10:18 [INFO] [IPC] Cleanup
+2026-06-19 20:10:18 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-19 20:10:18 [INFO] [SHELL] Child process created (PID: 45)
+2026-06-19 20:10:18 [INFO] [SHELL] Command executed
+2026-06-19 20:10:18 [INFO] [SHELL] Exit status: 0
+2026-06-19 20:10:18 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-19 20:10:18 [INFO] [SHELL] Child process created (PID: 46)
+2026-06-19 20:10:18 [INFO] [SHELL] Command executed
+2026-06-19 20:10:18 [INFO] [SHELL] Exit status: 0
+2026-06-19 20:10:18 [INFO] [SHELL] Command entered: 'ls'
+2026-06-19 20:10:18 [INFO] [SHELL] Child process created (PID: 47)
+2026-06-19 20:10:18 [INFO] [SHELL] Command executed
+2026-06-19 20:10:18 [INFO] [SHELL] Exit status: 0
+2026-06-19 20:10:18 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-19 20:10:18 [INFO] [SHELL] Child process created (PID: 48)
+2026-06-19 20:10:18 [INFO] [SHELL] Command executed
+2026-06-19 20:10:18 [INFO] [SHELL] Exit status: 127
