@@ -1,134 +1,104 @@
-# Network Manager
+# Linux Network Interface Manager
 
-This document describes the design, implementation, execution flow, error handling, and Linux system data sources for the **Network Manager** module.
+This document describes the design, implementation, execution flow, error handling, and Linux system data sources for the **Linux Network Interface Manager** (formerly Network Manager) module.
 
 ---
 
 ## 1. Purpose
-The Network Manager module serves as a system administration diagnostic tool, allowing users to:
-1. Enumerate host network identity parameters (Hostname, Short Hostname, FQDN, Domain Name, Kernel Node Name).
-2. Enumerate local network interfaces and query their configuration structures (status, MTU, MAC address, IPv4, and IPv6 assignments).
-3. Inspect the active IPv4 routing table and resolve the default gateway.
-
-These operations are performed using direct POSIX system calls and volatile kernel system files under `/proc`, avoiding any external calls to shell tools (`ip`, `hostname`, `hostnamectl`, `route`, or `ifconfig`).
+The Linux Network Interface Manager module serves as an interactive diagnostic utility tailored for an undergraduate systems programming context. It allows administrators to query interface configuration, verify packet routing, simulate configuration commands, change interface states, execute network probes, and inspect open socket states.
 
 ---
 
-## 2. Linux APIs and Data Sources Used
-
-### Host Network Identity
-*   **`gethostname()`**: Queries the standard network hostname configuration.
-*   **`getaddrinfo()`**: Performs system address translation. Using the `AI_CANONNAME` flag resolves the canonical FQDN (Fully Qualified Domain Name) from configured nameservers or `/etc/hosts`.
-*   **`uname()`**: Queries kernel metrics (through `struct utsname`), yielding the system's `nodename`.
-
-### Interface Discovery
-*   **`getifaddrs()`**: Discovers active network interfaces and returns a linked list of `struct ifaddrs` containing their names, flags, and address structures.
-*   **`freeifaddrs()`**: Safely releases the dynamically allocated list returned by `getifaddrs()`.
-*   **`inet_ntop()`**: Formats binary address structures (both IPv4 `struct sockaddr_in` and IPv6 `struct sockaddr_in6`) into human-readable strings.
-*   **`socket(AF_INET, SOCK_DGRAM, 0)`**: Establishes a temporary socket file descriptor to issue interface queries.
-*   **`ioctl(sock, SIOCGIFMTU, ...)`**: Retrieves the Maximum Transmission Unit (MTU) configuration.
-*   **`ioctl(sock, SIOCGIFHWADDR, ...)`**: Retrieves the interface's hardware/MAC address configuration.
-*   **`close()`**: Closes socket descriptors to prevent file descriptor leaks.
-
-### Routing & Default Gateway
-*   **`/proc/net/route`**: Read via POSIX standard calls (`open`, `read`, `close`). This file exposes the active IPv4 routing table:
-    *   `Destination`, `Gateway`, and `Mask` are represented as 8-character little-endian hexadecimal values.
-    *   `Flags` represent routing rules (e.g., `0x0001` for `RTF_UP`, `0x0002` for `RTF_GATEWAY`).
-
----
-
-## 3. Gateway Detection Algorithm
-A route entry represents the **Default Gateway** if and only if:
-1. The **Destination** field is `00000000` (which corresponds to `0.0.0.0`, representing default traffic routes).
-2. The **Gateway** field is non-zero (indicating that packets are forwarded to a specific gateway router instead of being routed locally).
-3. The entry is active (typically marked with `RTF_UP | RTF_GATEWAY` flags).
-
-The hex strings are parsed and transformed back into standard IPv4 dotted-decimal representations using bit-shifted little-endian memory mapping.
-
----
-
-## 4. Execution Flow
-
-The Network Manager submenu dispatches selections as follows:
-
-```
-+-------------------------------------------------------------+
-|                     network_mgr_run()                       |
-|                     (Interactive Menu)                      |
-+-------------------------------------------------------------+
-                               |
-            +------------------+------------------+------------------+
-            |                                     |                  |
-            v                                     v                  v
-   [Option 1: Host Info]                 [Option 2: Interfaces]     [Option 3: Routing]
-            |                                     |                  |
-            v                                     v                  v
-  network_show_host_info()              network_list_interfaces()  network_show_routes()
-            |                                     |                  |
-            +--> gethostname()                    +--> getifaddrs()  +--> open("/proc/net/route")
-            +--> getaddrinfo() (AI_CANONNAME)     +--> ioctl()       +--> parse_routing_table()
-            +--> uname() (nodename)               +--> inet_ntop()   +--> print output
-```
-
----
-
-## 5. Example Outputs
-
-### Host Network Identity (Option 1)
+## 2. Menu Structure
+The manager presents the following console-driven TUI:
 ```text
-=== Host Network Identity ===
-Hostname:           sandbox.example.com
-Short Hostname:     sandbox
-FQDN:               sandbox.example.com
-Domain Name:        example.com
-Kernel Node Name:   sandbox
-=============================
-```
-
-### Interface Information (Option 2)
-```text
-Discovered Network Interfaces:
---------------------------------------------------
-Interface Name: lo
-Type:           Loopback
-Status:         UP
-MTU:            65536
-MAC Address:    N/A
-IPv4 Address:   127.0.0.1
-IPv6 Address:   ::1
---------------------------------------------------
-Interface Name: eth0
-Type:           Ethernet
-Status:         UP
-MTU:            1500
-MAC Address:    00:16:3e:4a:2c:12
-IPv4 Address:   10.0.2.15
-IPv6 Address:   fe80::216:3eff:fe4a:2c12
---------------------------------------------------
-```
-
-### Routing Information (Option 3)
-```text
-Default Gateway: 10.0.2.2
-
-Interface  Destination      Gateway          Netmask          Flags 
-----------------------------------------------------------------------
-eth0       10.0.2.0         0.0.0.0          255.255.255.0    U     
-eth0       0.0.0.0          10.0.2.2         0.0.0.0          UG    
-----------------------------------------------------------------------
+========================================
+Network Manager
+========================================
+1. List Network Interfaces
+2. Interface Information
+3. Configure Interface (Learning Mode)
+4. Bring Interface UP
+5. Bring Interface DOWN
+6. Show Routing Table
+7. Ping Host
+8. DNS Lookup
+9. Socket Statistics
+0. Return
+========================================
 ```
 
 ---
 
-## 6. Error Handling
-*   **Volatile File Reads**: Reading `/proc/net/route` checks for `ENOENT` (file missing) and `EACCES` (permission denied) errors to notify users cleanly.
-*   **Host Resolution Errors**: If DNS or host translation via `getaddrinfo` fails, the module records a warning/error in the system logs, falls back to hostname values dynamically, and returns successfully without halting execution.
-*   **Socket I/O Robustness**: Temporary sockets for `ioctl` queries are closed immediately after operations to prevent resource exhaustion.
-*   **Memory Allocations**: All structures use stack allocation buffers rather than dynamic heaps, ensuring zero leaks.
+## 3. Features & Data Sources
+
+### 1. List Network Interfaces (Read Only)
+*   **Purpose**: Display a clean list of all available interface identifiers.
+*   **Implementation**: Discovered dynamically using the `getifaddrs()` function to parse active interfaces. Duplicates are removed using unique string matching in userspace.
+*   **Example Output**:
+    ```text
+    lo
+    eth0
+    wlan0
+    ```
+
+### 2. Interface Information (Read Only)
+*   **Purpose**: Inspect details of a selected interface.
+*   **Implementation**:
+    *   State (UP/DOWN) is verified using the device flags returned by `getifaddrs()` (`IFF_UP`).
+    *   IPv4 & IPv6 addresses are fetched by walking the `struct sockaddr` allocations matching the interface name.
+    *   MAC Address and MTU configurations are retrieved using standard Linux `ioctl()` requests (`SIOCGIFHWADDR` and `SIOCGIFMTU`).
+    *   RX and TX packet statistics are parsed by opening `/sys/class/net/<iface>/statistics/rx_packets` and `tx_packets` volatile kernel stats files.
+*   **Output Metrics**:
+    *   Interface Name
+    *   State (UP/DOWN)
+    *   IPv4 (if assigned)
+    *   IPv6 (if assigned)
+    *   MAC Address
+    *   MTU
+    *   RX packets
+    *   TX packets
+
+### 3. Configure Interface (Learning Mode Only)
+*   **Purpose**: Teach students how to assign static IPv4 configurations using the standard iproute2 suite.
+*   **Security Constraint**: NEVER modifies the host system.
+*   **Behavior**: Generates the exact shell command string (e.g. `ip addr add 192.168.1.100/24 dev eth0` and `ip link set eth0 up`) and explains every command parameter step-by-step.
+
+### 4 & 5. Bring Interface UP / DOWN (System Modification / Learning Mode)
+*   **Purpose**: Enable or disable network interfaces.
+*   **Interactive TUI Prompt**: Asks the administrator to choose between:
+    1.  *Learning Mode*: Displays the command string: `ip link set <iface> up` or `ip link set <iface> down`.
+    2.  *Apply for real*: Executes the mutation using a `fork()` + `execvp()` process invocation of `ip`.
+*   **Error Handling**: If the process returns non-zero exit codes (like `1` or `255`), the manager detects permission failures, catches the exception, and informs the user that root privileges (sudo) are required.
+
+### 6. Show Routing Table (Read Only)
+*   **Purpose**: Display active network pathways.
+*   **Implementation**: Spawns `ip route` directly to display table rules. If execution fails, it falls back to parsing `/proc/net/route` dynamically.
+
+### 7. Ping Host (Read Only)
+*   **Purpose**: Verify remote ICMP host reachability.
+*   **Implementation**: Prompts the user for a destination address (IP or domain name) and packet count, then executes `/bin/ping -c <count> <host>` cleanly.
+
+### 8. DNS Lookup (Read Only)
+*   **Purpose**: Resolve hostnames to IP addresses.
+*   **Implementation**: Uses the standard POSIX resolver API `getaddrinfo()` with `AF_UNSPEC` to fetch both `AF_INET` (IPv4) and `AF_INET6` (IPv6) records, walking the linked list of addresses.
+
+### 9. Socket Statistics (Read Only)
+*   **Purpose**: Display current active network sockets.
+*   **Implementation**: Invokes `ss -tulnp` (socket statistics) to output protocol, state, local/remote address, and process identifiers. Displays a tip that root privileges (sudo) are required to query process identifiers (PIDs).
 
 ---
 
-## 7. Future Work (Unimplemented Stubs)
-The following features are stubbed with `"Coming in a future sprint."`:
-*   **Option 4: DNS Information**: Resolving server entries in `/etc/resolv.conf`.
-*   **Option 5: Traffic Statistics**: Monitoring bandwidth in `/proc/net/dev`.
+## 4. Safety & Sandboxing Boundaries
+
+| Feature | Classification | Host Side-Effects | Elevated Privileges Required |
+|---------|----------------|-------------------|------------------------------|
+| List Interfaces | Read Only | None | No |
+| Interface Info | Read Only | None | No |
+| Configure Interface | Learning Mode | None | No |
+| Bring UP/DOWN (Learning) | Learning Mode | None | No |
+| Bring UP/DOWN (Apply) | System Modification | Mutates Interface Link State | Yes (Requires `sudo`) |
+| Show Routing | Read Only | None | No |
+| Ping Host | Read Only | None | No |
+| DNS Lookup | Read Only | None | No |
+| Socket Statistics | Read Only | None | Yes (only for PID mapping) |

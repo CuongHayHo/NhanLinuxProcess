@@ -61,5 +61,20 @@ int kernel_mgr_show_status(void);
  */
 int kernel_mgr_show_log(void);
 
+/**
+ * Displays the network stack overview.
+ */
+void kernel_mgr_show_network_stack(void);
+
+/**
+ * Displays the sk_buff struct overview.
+ */
+void kernel_mgr_show_sk_buff_overview(void);
+
+/**
+ * Displays the NAPI mechanism overview.
+ */
+void kernel_mgr_show_napi_overview(void);
+
 #endif /* KERNEL_MGR_H */
 

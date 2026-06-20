@@ -3480,3 +3480,534 @@
 2026-06-20 11:57:56 [INFO] [SYSTEM] Leaving Package Manager
 2026-06-20 12:00:11 [INFO] [SYSTEM] Entering Process Manager
 2026-06-20 12:00:11 [INFO] [PROCESS] Process manager interactive loop started.
+2026-06-20 12:03:04 [INFO] [PACKAGE] Package selected
+2026-06-20 12:03:04 [INFO] [PACKAGE] Package selected: hello
+2026-06-20 12:03:05 [INFO] [PACKAGE] Search started
+2026-06-20 12:03:05 [INFO] [PACKAGE] Keyword: hello
+2026-06-20 12:03:05 [INFO] [PACKAGE] Match count: 0
+2026-06-20 12:03:05 [INFO] [PACKAGE] Package selected: hello
+2026-06-20 12:03:05 [INFO] [PACKAGE] Metadata query started for: hello
+2026-06-20 12:03:06 [INFO] [PACKAGE] Metadata query successful for package: hello
+2026-06-20 12:25:11 [INFO] [PACKAGE] Package search
+2026-06-20 12:25:11 [INFO] [PACKAGE] Package information
+2026-06-20 12:25:11 [INFO] [PACKAGE] Package information
+2026-06-20 12:25:12 [ERROR] [PACKAGE] Info query failed: shell script returned status 1
+2026-06-20 12:25:34 [INFO] [PACKAGE] Package search
+2026-06-20 12:25:34 [INFO] [PACKAGE] Package information
+2026-06-20 12:25:34 [INFO] [PACKAGE] Package information
+2026-06-20 12:25:35 [ERROR] [PACKAGE] Info query failed: shell script returned status 1
+2026-06-20 12:31:09 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 12:31:09 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 12:31:09 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 12:31:09 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1.txt
+2026-06-20 12:31:09 [INFO] [FILE] File copied: tests/test_dir/file1.txt to tests/test_dir/file1_copy.txt
+2026-06-20 12:31:09 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-20 12:31:09 [INFO] [FILE] File moved: tests/test_dir/file1_copy.txt to tests/test_dir/file1_moved.txt
+2026-06-20 12:31:09 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_moved.txt
+2026-06-20 12:31:09 [INFO] [FILE] File moved: tests/test_dir/file1_moved.txt to tests/test_dir/file1_renamed.txt
+2026-06-20 12:31:09 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_renamed.txt
+2026-06-20 12:31:09 [INFO] [FILE] Directory listed: tests/test_dir
+2026-06-20 12:31:09 [INFO] [FILE] Permission changed: tests/test_dir/file1_renamed.txt to 644
+2026-06-20 12:31:09 [INFO] [FILE] Archive created: tests/test_dir/archive.tar.gz
+2026-06-20 12:31:09 [INFO] [FILE] File removed: tests/test_dir/file1.txt
+2026-06-20 12:31:09 [INFO] [FILE] File removed: tests/test_dir/file1_renamed.txt
+2026-06-20 12:31:09 [INFO] [FILE] File removed: tests/test_dir/archive.tar.gz
+2026-06-20 12:31:09 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 12:31:33 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 12:31:33 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 12:31:33 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 12:31:33 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1.txt
+2026-06-20 12:31:33 [INFO] [FILE] File copied: tests/test_dir/file1.txt to tests/test_dir/file1_copy.txt
+2026-06-20 12:31:33 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-20 12:31:33 [INFO] [FILE] File moved: tests/test_dir/file1_copy.txt to tests/test_dir/file1_moved.txt
+2026-06-20 12:31:33 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_moved.txt
+2026-06-20 12:31:33 [INFO] [FILE] File moved: tests/test_dir/file1_moved.txt to tests/test_dir/file1_renamed.txt
+2026-06-20 12:31:33 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_renamed.txt
+2026-06-20 12:31:33 [INFO] [FILE] Directory listed: tests/test_dir
+2026-06-20 12:31:33 [INFO] [FILE] Permission changed: tests/test_dir/file1_renamed.txt to 644
+2026-06-20 12:31:33 [INFO] [FILE] Archive created: tests/test_dir/archive.tar.gz
+2026-06-20 12:31:33 [INFO] [FILE] File removed: tests/test_dir/file1.txt
+2026-06-20 12:31:33 [INFO] [FILE] File removed: tests/test_dir/file1_renamed.txt
+2026-06-20 12:31:33 [INFO] [FILE] File removed: tests/test_dir/archive.tar.gz
+2026-06-20 12:31:33 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 12:38:15 [INFO] [SYSTEM] Application started
+2026-06-20 12:38:18 [INFO] [SYSTEM] Entering Network Manager
+2026-06-20 12:38:18 [INFO] [NETWORK] Entering Network Manager
+2026-06-20 12:38:20 [INFO] [NETWORK] Hostname queried
+2026-06-20 12:38:20 [INFO] [NETWORK] FQDN resolved
+2026-06-20 12:38:25 [INFO] [NETWORK] Interface enumeration started
+2026-06-20 12:38:25 [INFO] [NETWORK] Interfaces discovered
+2026-06-20 12:38:30 [INFO] [NETWORK] Routing inspection started
+2026-06-20 12:38:30 [INFO] [NETWORK] Default gateway detected
+2026-06-20 12:38:30 [INFO] [NETWORK] Route entries parsed
+2026-06-20 12:38:44 [INFO] [NETWORK] Leaving Network Manager
+2026-06-20 12:38:44 [INFO] [SYSTEM] Leaving Network Manager
+2026-06-20 12:47:46 [INFO] [NETWORK] Interface enumeration started
+2026-06-20 12:47:46 [INFO] [NETWORK] Interfaces discovered
+2026-06-20 12:47:46 [INFO] [NETWORK] Routing inspection started
+2026-06-20 12:47:46 [INFO] [NETWORK] Default gateway detected
+2026-06-20 12:47:46 [INFO] [NETWORK] Route entries parsed
+2026-06-20 12:47:46 [INFO] [NETWORK] Default gateway detected
+2026-06-20 12:47:46 [INFO] [NETWORK] Route entries parsed
+2026-06-20 12:47:46 [INFO] [NETWORK] Hostname queried
+2026-06-20 12:47:46 [INFO] [NETWORK] FQDN resolved
+2026-06-20 12:47:48 [INFO] [KERNEL] Module load requested
+2026-06-20 12:47:48 [INFO] [KERNEL] Module build started
+2026-06-20 12:49:35 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 12:49:35 [INFO] [SOCKET] Server started: listening on port 9099
+2026-06-20 12:49:36 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 12:49:36 [INFO] [SOCKET] Connection established
+2026-06-20 12:49:36 [INFO] [SOCKET] Connection established
+2026-06-20 12:49:37 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 12:49:37 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 12:49:37 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 12:49:37 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 12:49:37 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 12:49:37 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 12:49:37 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 12:49:37 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 12:49:37 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 12:49:37 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 12:49:37 [INFO] [SOCKET] Client message: exit
+2026-06-20 12:49:37 [INFO] [SOCKET] Client message: exit
+2026-06-20 12:49:37 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 12:49:37 [INFO] [SOCKET] Server stopped cleanly
+2026-06-20 12:49:37 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 12:49:37 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 12:49:38 [INFO] [SOCKET] Client connected: 127.0.0.1:53486
+2026-06-20 12:49:38 [INFO] [SOCKET] Client connected: 127.0.0.1:53494
+2026-06-20 12:49:38 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:53486
+2026-06-20 12:49:38 [INFO] [SOCKET] Client connected: 127.0.0.1:53506
+2026-06-20 12:49:38 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:38 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:53494
+2026-06-20 12:49:38 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:38 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:38 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:53506
+2026-06-20 12:49:38 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:38 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:38 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:39 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:39 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:39 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:39 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:39 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:39 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:39 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 12:49:39 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 12:49:39 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 12:49:39 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:53494
+2026-06-20 12:49:39 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:53506
+2026-06-20 12:49:39 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:53486
+2026-06-20 12:49:54 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 12:49:54 [INFO] [SOCKET] Server started: listening on port 9099
+2026-06-20 12:49:55 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 12:49:55 [INFO] [SOCKET] Connection established
+2026-06-20 12:49:55 [INFO] [SOCKET] Connection established
+2026-06-20 12:49:56 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 12:49:56 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 12:49:56 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 12:49:56 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 12:49:56 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 12:49:56 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 12:49:56 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 12:49:56 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 12:49:56 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 12:49:56 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 12:49:56 [INFO] [SOCKET] Client message: exit
+2026-06-20 12:49:56 [INFO] [SOCKET] Client message: exit
+2026-06-20 12:49:56 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 12:49:56 [INFO] [SOCKET] Server stopped cleanly
+2026-06-20 12:49:56 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 12:49:56 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 12:49:57 [INFO] [SOCKET] Client connected: 127.0.0.1:57548
+2026-06-20 12:49:57 [INFO] [SOCKET] Client connected: 127.0.0.1:57538
+2026-06-20 12:49:57 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:57548
+2026-06-20 12:49:57 [INFO] [SOCKET] Client connected: 127.0.0.1:57550
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:57538
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:57550
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:49:57 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 12:49:57 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 12:49:57 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 12:49:57 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:57538
+2026-06-20 12:49:57 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:57550
+2026-06-20 12:49:57 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:57548
+2026-06-20 12:50:32 [INFO] [NETWORK] Interface enumeration started (compatibility mode)
+2026-06-20 12:50:32 [INFO] [NETWORK] Interfaces discovered
+2026-06-20 12:50:32 [INFO] [NETWORK] Routing inspection started (proc-based)
+2026-06-20 12:50:32 [INFO] [NETWORK] Default gateway detected
+2026-06-20 12:50:32 [INFO] [NETWORK] Route entries parsed
+2026-06-20 12:50:32 [INFO] [NETWORK] Default gateway detected
+2026-06-20 12:50:32 [INFO] [NETWORK] Route entries parsed
+2026-06-20 12:50:32 [INFO] [NETWORK] Hostname queried
+2026-06-20 12:50:32 [INFO] [NETWORK] FQDN resolved
+2026-06-20 12:50:36 [INFO] [SYSTEM] Application started
+2026-06-20 12:50:36 [WARN] [FILE] Permission denied
+2026-06-20 12:50:36 [ERROR] [NETWORK] Connection timeout
+2026-06-20 12:50:36 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 12:50:36 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 12:50:36 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 12:50:36 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1.txt
+2026-06-20 12:50:36 [INFO] [FILE] File copied: tests/test_dir/file1.txt to tests/test_dir/file1_copy.txt
+2026-06-20 12:50:36 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-20 12:50:36 [INFO] [FILE] File moved: tests/test_dir/file1_copy.txt to tests/test_dir/file1_moved.txt
+2026-06-20 12:50:36 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_moved.txt
+2026-06-20 12:50:36 [INFO] [FILE] File moved: tests/test_dir/file1_moved.txt to tests/test_dir/file1_renamed.txt
+2026-06-20 12:50:36 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_renamed.txt
+2026-06-20 12:50:36 [INFO] [FILE] Directory listed: tests/test_dir
+2026-06-20 12:50:36 [INFO] [FILE] Permission changed: tests/test_dir/file1_renamed.txt to 644
+2026-06-20 12:50:36 [INFO] [FILE] Archive created: tests/test_dir/archive.tar.gz
+2026-06-20 12:50:36 [INFO] [FILE] File removed: tests/test_dir/file1.txt
+2026-06-20 12:50:36 [INFO] [FILE] File removed: tests/test_dir/file1_renamed.txt
+2026-06-20 12:50:36 [INFO] [FILE] File removed: tests/test_dir/archive.tar.gz
+2026-06-20 12:50:36 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 12:50:36 [INFO] [PROCESS] Process list requested
+2026-06-20 12:50:36 [INFO] [PROCESS] Number of processes found: 414
+2026-06-20 12:50:36 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-20 12:50:36 [INFO] [PROCESS] Matched processes: 2 (Name search)
+2026-06-20 12:50:36 [INFO] [PROCESS] Search request: '19485'
+2026-06-20 12:50:36 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-20 12:50:37 [INFO] [PROCESS] Priority changed: PID 19486 nice from 0 to 5
+2026-06-20 12:50:37 [ERROR] [PROCESS] Permission denied for PID 19486
+2026-06-20 12:50:37 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 19486
+2026-06-20 12:50:38 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 19486
+2026-06-20 12:50:39 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 19486
+2026-06-20 12:50:39 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-20 12:50:39 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-20 12:50:39 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-20 12:50:39 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-20 12:50:39 [INFO] [PROCESS] fork() requested
+2026-06-20 12:50:39 [INFO] [PROCESS] Parent created child
+2026-06-20 12:50:39 [INFO] [PROCESS] Child started
+2026-06-20 12:50:41 [INFO] [PROCESS] Child exited
+2026-06-20 12:50:41 [INFO] [PROCESS] Parent resumed
+2026-06-20 12:50:41 [INFO] [PROCESS] exec demonstration started
+2026-06-20 12:50:41 [INFO] [PROCESS] parent waiting
+2026-06-20 12:50:41 [INFO] [PROCESS] child executing external program
+2026-06-20 12:50:41 [INFO] [PROCESS] child exited
+2026-06-20 12:50:41 [INFO] [PROCESS] Parent waiting
+2026-06-20 12:50:41 [INFO] [PROCESS] Child sleeping
+2026-06-20 12:50:44 [INFO] [PROCESS] Child exited
+2026-06-20 12:50:44 [INFO] [PROCESS] Parent resumed
+2026-06-20 12:50:44 [INFO] [PROCESS] Zombie demo started
+2026-06-20 12:50:44 [INFO] [PROCESS] Child exited
+2026-06-20 12:50:47 [INFO] [PROCESS] Zombie detected
+2026-06-20 12:50:47 [INFO] [PROCESS] waitpid called
+2026-06-20 12:50:47 [INFO] [PROCESS] Zombie removed
+2026-06-20 12:50:47 [INFO] [PROCESS] Demo finished
+2026-06-20 12:50:47 [INFO] [PROCESS] Orphan demo started
+2026-06-20 12:50:47 [INFO] [PROCESS] Parent exited
+2026-06-20 12:50:51 [INFO] [PROCESS] Child adopted
+2026-06-20 12:50:53 [INFO] [PROCESS] Demo finished
+2026-06-20 12:50:53 [INFO] [PROCESS] Daemon demo started
+2026-06-20 12:50:53 [INFO] [PROCESS] Session created
+2026-06-20 12:50:53 [INFO] [PROCESS] Daemon initialized
+2026-06-20 12:50:53 [INFO] [PROCESS] Log written
+2026-06-20 12:50:55 [INFO] [PROCESS] Log written
+2026-06-20 12:50:57 [INFO] [PROCESS] SIGTERM received
+2026-06-20 12:50:57 [INFO] [PROCESS] Daemon exited
+2026-06-20 12:50:59 [INFO] [PROCESS] Demo finished
+2026-06-20 12:50:59 [INFO] [PACKAGE] Package search
+2026-06-20 12:50:59 [INFO] [PACKAGE] Package information
+2026-06-20 12:50:59 [INFO] [PACKAGE] Package information
+2026-06-20 12:51:00 [ERROR] [PACKAGE] Info query failed: shell script returned status 1
+2026-06-20 12:51:00 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 12:51:00 [INFO] [SOCKET] Server started: listening on port 9099
+2026-06-20 12:51:01 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 12:51:01 [INFO] [SOCKET] Connection established
+2026-06-20 12:51:01 [INFO] [SOCKET] Connection established
+2026-06-20 12:51:02 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 12:51:02 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 12:51:02 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 12:51:02 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 12:51:02 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 12:51:02 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 12:51:02 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 12:51:02 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 12:51:02 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 12:51:02 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 12:51:02 [INFO] [SOCKET] Client message: exit
+2026-06-20 12:51:02 [INFO] [SOCKET] Client message: exit
+2026-06-20 12:51:02 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 12:51:02 [INFO] [SOCKET] Server stopped cleanly
+2026-06-20 12:51:02 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 12:51:02 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 12:51:03 [INFO] [SOCKET] Client connected: 127.0.0.1:48266
+2026-06-20 12:51:03 [INFO] [SOCKET] Client connected: 127.0.0.1:48258
+2026-06-20 12:51:03 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:48266
+2026-06-20 12:51:03 [INFO] [SOCKET] Client connected: 127.0.0.1:48274
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:48258
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:48274
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 12:51:03 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 12:51:03 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 12:51:03 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 12:51:03 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:48266
+2026-06-20 12:51:03 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:48258
+2026-06-20 12:51:03 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:48274
+2026-06-20 12:51:03 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-20 12:51:03 [INFO] [SHELL] Child process created (PID: 19548)
+2026-06-20 12:51:03 [INFO] [SHELL] Command executed
+2026-06-20 12:51:03 [INFO] [SHELL] Exit status: 0
+2026-06-20 12:51:03 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-20 12:51:03 [INFO] [SHELL] Child process created (PID: 19549)
+2026-06-20 12:51:03 [INFO] [SHELL] Command executed
+2026-06-20 12:51:03 [INFO] [SHELL] Exit status: 0
+2026-06-20 12:51:03 [INFO] [SHELL] Command entered: 'ls'
+2026-06-20 12:51:03 [INFO] [SHELL] Child process created (PID: 19550)
+2026-06-20 12:51:03 [INFO] [SHELL] Command executed
+2026-06-20 12:51:03 [INFO] [SHELL] Exit status: 0
+2026-06-20 12:51:03 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-20 12:51:03 [INFO] [SHELL] Child process created (PID: 19551)
+2026-06-20 12:51:03 [INFO] [SHELL] Command executed
+2026-06-20 12:51:03 [INFO] [SHELL] Exit status: 127
+2026-06-20 12:51:03 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 12:51:03 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-20 12:51:03 [INFO] [SHELL] Child process created (PID: 19552)
+2026-06-20 12:51:03 [INFO] [SHELL] Script executed
+2026-06-20 12:51:03 [INFO] [SHELL] Exit status: 0
+2026-06-20 12:51:03 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-20 12:51:03 [INFO] [SHELL] Child process created (PID: 19556)
+2026-06-20 12:51:03 [INFO] [SHELL] Script executed
+2026-06-20 12:51:03 [INFO] [SHELL] Exit status: 0
+2026-06-20 12:51:03 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-20 12:51:03 [INFO] [SHELL] Child process created (PID: 19562)
+2026-06-20 12:51:03 [INFO] [SHELL] Script executed
+2026-06-20 12:51:03 [INFO] [SHELL] Exit status: 0
+2026-06-20 12:51:03 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-20 12:51:03 [INFO] [SHELL] Child process created (PID: 19566)
+2026-06-20 12:51:03 [INFO] [SHELL] Script executed
+2026-06-20 12:51:03 [INFO] [SHELL] Exit status: 127
+2026-06-20 12:51:03 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 12:52:06 [INFO] [SYSTEM] Application started
+2026-06-20 12:52:09 [INFO] [SYSTEM] Entering Socket Manager
+2026-06-20 12:52:09 [INFO] [SOCKET] Socket Manager submenu invoked.
+2026-06-20 12:52:14 [INFO] [SOCKET] Socket Manager submenu closed.
+2026-06-20 12:52:14 [INFO] [SYSTEM] Leaving Socket Manager
+2026-06-20 12:52:18 [INFO] [SYSTEM] Entering Network Manager
+2026-06-20 12:52:18 [INFO] [NETWORK] Entering Network Manager
+2026-06-20 12:52:21 [INFO] [NETWORK] Hostname queried
+2026-06-20 12:52:21 [INFO] [NETWORK] FQDN resolved
+2026-06-20 12:52:25 [INFO] [NETWORK] Interface enumeration started
+2026-06-20 12:52:25 [INFO] [NETWORK] Interfaces discovered
+2026-06-20 12:52:30 [INFO] [NETWORK] Routing inspection started
+2026-06-20 12:52:30 [INFO] [NETWORK] Default gateway detected
+2026-06-20 12:52:30 [INFO] [NETWORK] Route entries parsed
+2026-06-20 12:52:35 [INFO] [NETWORK] Leaving Network Manager
+2026-06-20 12:52:35 [INFO] [SYSTEM] Leaving Network Manager
+2026-06-20 12:54:17 [INFO] [SYSTEM] Application started
+2026-06-20 12:54:17 [INFO] [SYSTEM] Entering Network Manager
+2026-06-20 12:54:17 [INFO] [NETWORK] Entering Network Manager
+2026-06-20 12:54:17 [INFO] [NETWORK] Listing interface names only
+2026-06-20 12:54:17 [INFO] [NETWORK] Leaving Network Manager
+2026-06-20 12:54:17 [INFO] [SYSTEM] Leaving Network Manager
+2026-06-20 12:54:37 [INFO] [SYSTEM] Application started
+2026-06-20 12:54:40 [INFO] [SYSTEM] Entering Network Manager
+2026-06-20 12:54:40 [INFO] [NETWORK] Entering Network Manager
+2026-06-20 12:54:42 [INFO] [NETWORK] Listing interface names only
+2026-06-20 12:54:48 [INFO] [NETWORK] Listing interface names only
+2026-06-20 12:54:59 [INFO] [NETWORK] Interface details queried for enp47s0
+2026-06-20 12:55:14 [INFO] [NETWORK] Interface up link state command shown (learning mode)
+2026-06-20 12:55:31 [INFO] [NETWORK] Pinging host 8.8.8.8 (packets: 4)
+2026-06-20 12:55:40 [INFO] [NETWORK] Routing table requested
+2026-06-20 12:56:02 [INFO] [NETWORK] DNS lookup for google.com
+2026-06-20 12:56:14 [INFO] [NETWORK] Socket statistics requested
+2026-06-20 12:58:27 [INFO] [SYSTEM] Application started
+2026-06-20 12:58:33 [INFO] [SYSTEM] Application shutting down
+2026-06-20 13:28:34 [INFO] [SYSTEM] Application started
+2026-06-20 13:28:34 [WARN] [FILE] Permission denied
+2026-06-20 13:28:34 [ERROR] [NETWORK] Connection timeout
+2026-06-20 13:28:34 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 13:28:34 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 13:28:34 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 13:28:34 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1.txt
+2026-06-20 13:28:34 [INFO] [FILE] File copied: tests/test_dir/file1.txt to tests/test_dir/file1_copy.txt
+2026-06-20 13:28:34 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-20 13:28:34 [INFO] [FILE] File moved: tests/test_dir/file1_copy.txt to tests/test_dir/file1_moved.txt
+2026-06-20 13:28:34 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_moved.txt
+2026-06-20 13:28:34 [INFO] [FILE] File moved: tests/test_dir/file1_moved.txt to tests/test_dir/file1_renamed.txt
+2026-06-20 13:28:34 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_renamed.txt
+2026-06-20 13:28:34 [INFO] [FILE] Directory listed: tests/test_dir
+2026-06-20 13:28:34 [INFO] [FILE] Permission changed: tests/test_dir/file1_renamed.txt to 644
+2026-06-20 13:28:34 [INFO] [FILE] Archive created: tests/test_dir/archive.tar.gz
+2026-06-20 13:28:34 [INFO] [FILE] File removed: tests/test_dir/file1.txt
+2026-06-20 13:28:34 [INFO] [FILE] File removed: tests/test_dir/file1_renamed.txt
+2026-06-20 13:28:34 [INFO] [FILE] File removed: tests/test_dir/archive.tar.gz
+2026-06-20 13:28:34 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 13:28:34 [INFO] [PROCESS] Process list requested
+2026-06-20 13:28:34 [INFO] [PROCESS] Number of processes found: 412
+2026-06-20 13:28:34 [INFO] [PROCESS] Search request: 'process_test'
+2026-06-20 13:28:34 [INFO] [PROCESS] Matched processes: 2 (Name search)
+2026-06-20 13:28:34 [INFO] [PROCESS] Search request: '24903'
+2026-06-20 13:28:34 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-20 13:28:35 [INFO] [PROCESS] Priority changed: PID 24904 nice from 0 to 5
+2026-06-20 13:28:35 [ERROR] [PROCESS] Permission denied for PID 24904
+2026-06-20 13:28:35 [INFO] [PROCESS] Signal sent: SIGSTOP (19) to PID 24904
+2026-06-20 13:28:36 [INFO] [PROCESS] Signal sent: SIGCONT (18) to PID 24904
+2026-06-20 13:28:37 [INFO] [PROCESS] Signal sent: SIGTERM (15) to PID 24904
+2026-06-20 13:28:37 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-20 13:28:37 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-20 13:28:37 [ERROR] [PROCESS] Invalid PID: -999
+2026-06-20 13:28:37 [ERROR] [PROCESS] Invalid PID: 999999 (not found)
+2026-06-20 13:28:37 [INFO] [PROCESS] fork() requested
+2026-06-20 13:28:37 [INFO] [PROCESS] Parent created child
+2026-06-20 13:28:37 [INFO] [PROCESS] Child started
+2026-06-20 13:28:39 [INFO] [PROCESS] Child exited
+2026-06-20 13:28:39 [INFO] [PROCESS] Parent resumed
+2026-06-20 13:28:39 [INFO] [PROCESS] exec demonstration started
+2026-06-20 13:28:39 [INFO] [PROCESS] parent waiting
+2026-06-20 13:28:39 [INFO] [PROCESS] child executing external program
+2026-06-20 13:28:39 [INFO] [PROCESS] child exited
+2026-06-20 13:28:39 [INFO] [PROCESS] Parent waiting
+2026-06-20 13:28:39 [INFO] [PROCESS] Child sleeping
+2026-06-20 13:28:42 [INFO] [PROCESS] Child exited
+2026-06-20 13:28:42 [INFO] [PROCESS] Parent resumed
+2026-06-20 13:28:42 [INFO] [PROCESS] Zombie demo started
+2026-06-20 13:28:42 [INFO] [PROCESS] Child exited
+2026-06-20 13:28:45 [INFO] [PROCESS] Zombie detected
+2026-06-20 13:28:45 [INFO] [PROCESS] waitpid called
+2026-06-20 13:28:45 [INFO] [PROCESS] Zombie removed
+2026-06-20 13:28:45 [INFO] [PROCESS] Demo finished
+2026-06-20 13:28:45 [INFO] [PROCESS] Orphan demo started
+2026-06-20 13:28:45 [INFO] [PROCESS] Parent exited
+2026-06-20 13:28:49 [INFO] [PROCESS] Child adopted
+2026-06-20 13:28:51 [INFO] [PROCESS] Demo finished
+2026-06-20 13:28:51 [INFO] [PROCESS] Daemon demo started
+2026-06-20 13:28:51 [INFO] [PROCESS] Session created
+2026-06-20 13:28:51 [INFO] [PROCESS] Daemon initialized
+2026-06-20 13:28:51 [INFO] [PROCESS] Log written
+2026-06-20 13:28:53 [INFO] [PROCESS] Log written
+2026-06-20 13:28:55 [INFO] [PROCESS] SIGTERM received
+2026-06-20 13:28:55 [INFO] [PROCESS] Daemon exited
+2026-06-20 13:28:57 [INFO] [PROCESS] Demo finished
+2026-06-20 13:28:57 [INFO] [NETWORK] Interface enumeration started (compatibility mode)
+2026-06-20 13:28:57 [INFO] [NETWORK] Interfaces discovered
+2026-06-20 13:28:57 [INFO] [NETWORK] Routing inspection started (proc-based)
+2026-06-20 13:28:57 [INFO] [NETWORK] Default gateway detected
+2026-06-20 13:28:57 [INFO] [NETWORK] Route entries parsed
+2026-06-20 13:28:57 [INFO] [NETWORK] Default gateway detected
+2026-06-20 13:28:57 [INFO] [NETWORK] Route entries parsed
+2026-06-20 13:28:57 [INFO] [NETWORK] Hostname queried
+2026-06-20 13:28:57 [INFO] [NETWORK] FQDN resolved
+2026-06-20 13:28:57 [INFO] [PACKAGE] Package search
+2026-06-20 13:28:57 [INFO] [PACKAGE] Package information
+2026-06-20 13:28:57 [INFO] [PACKAGE] Package information
+2026-06-20 13:28:58 [ERROR] [PACKAGE] Info query failed: shell script returned status 1
+2026-06-20 13:28:58 [INFO] [KERNEL] Module load requested
+2026-06-20 13:28:58 [INFO] [KERNEL] Module build started
+2026-06-20 13:30:28 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:30:47 [INFO] [REPL] Command received: 'help' (args count: 0) under context 'main'
+2026-06-20 13:35:44 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:37:03 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:38:00 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:39:22 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:41:37 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:41:55 [INFO] [REPL] Command received: 'process' (args count: 0) under context 'main'
+2026-06-20 13:42:07 [INFO] [REPL] Command received: '..' (args count: 0) under context 'process'
+2026-06-20 13:42:28 [INFO] [REPL] Command received: 'network' (args count: 0) under context 'main'
+2026-06-20 13:42:50 [INFO] [REPL] Command received: 'info' (args count: 0) under context 'network'
+2026-06-20 13:42:50 [INFO] [NETWORK] Listing interface names only
+2026-06-20 13:43:13 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:46:48 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:47:15 [INFO] [REPL] Command received: 'process' (args count: 0) under context 'main'
+2026-06-20 13:47:24 [INFO] [REPL] Command received: 'list' (args count: 0) under context 'process'
+2026-06-20 13:47:24 [INFO] [PROCESS] Process list requested
+2026-06-20 13:47:24 [INFO] [PROCESS] Number of processes found: 412
+2026-06-20 13:47:28 [INFO] [REPL] Command received: '..' (args count: 0) under context 'process'
+2026-06-20 13:50:05 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:50:24 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:51:02 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:51:40 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:52:42 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:53:11 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:53:33 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:54:29 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:55:49 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:56:46 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:57:21 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 13:58:20 [INFO] [REPL] Command received: 'file' (args count: 0) under context 'main'
+2026-06-20 13:59:34 [INFO] [REPL] Command received: '..' (args count: 0) under context 'file'
+2026-06-20 13:59:48 [INFO] [REPL] Command received: 'file' (args count: 0) under context 'main'
+2026-06-20 14:08:43 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 14:09:27 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 14:10:29 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 14:12:08 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:00:35 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:00:35 [INFO] [SOCKET] Server started: listening on port 9099
+2026-06-20 17:00:36 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:00:36 [INFO] [SOCKET] Connection established
+2026-06-20 17:00:36 [INFO] [SOCKET] Connection established
+2026-06-20 17:00:37 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:00:37 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:00:37 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:00:37 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:00:37 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:00:37 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:00:37 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:00:37 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:00:37 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:00:37 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:00:37 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:00:37 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:00:37 [INFO] [SOCKET] Server stopped cleanly
+2026-06-20 17:00:37 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:00:37 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 17:00:37 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 17:00:38 [INFO] [SOCKET] Client connected: 127.0.0.1:42014
+2026-06-20 17:00:38 [INFO] [SOCKET] Client connected: 127.0.0.1:42012
+2026-06-20 17:00:38 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:42014
+2026-06-20 17:00:38 [INFO] [SOCKET] Client connected: 127.0.0.1:42040
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:42012
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:42040
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:00:38 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:00:38 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:42014
+2026-06-20 17:00:38 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:00:38 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:42040
+2026-06-20 17:00:38 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:42012
+2026-06-20 17:00:45 [INFO] [SYSTEM] Application started in classic mode
+2026-06-20 17:00:46 [INFO] [SYSTEM] Application shutting down
+2026-06-20 17:00:50 [INFO] [SYSTEM] Direct command invocation: 'help'
+2026-06-20 17:00:50 [INFO] [REPL] Command received: 'help' (args count: 0) under context 'main'
+2026-06-20 17:08:51 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:08:51 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:08:51 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:08:52 [INFO] [SOCKET] Connection established
+2026-06-20 17:08:52 [INFO] [SOCKET] Socket process started
+2026-06-20 17:08:52 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:08:52 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:08:52 [INFO] [SOCKET] Terminal closed

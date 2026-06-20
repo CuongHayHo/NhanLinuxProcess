@@ -38,4 +38,29 @@ int package_mgr_search(const char* query);
  */
 int package_mgr_info(const char* pkg_name);
 
+/**
+ * Check if a package is installed.
+ * Returns 1 if installed, 0 if not installed or error.
+ */
+int is_package_installed(const char* pkg_name);
+
+/**
+ * Install a package on the host system.
+ * Returns 0 on success, -1 on failure.
+ */
+int package_mgr_install(const char* pkg_name);
+
+/**
+ * Remove/Uninstall a package from the host system.
+ * Returns 0 on success, -1 on failure.
+ */
+int package_mgr_remove(const char* pkg_name);
+
+/**
+ * Runs the safe demonstration process.
+ * Returns 0 on success, -1 on failure.
+ */
+int package_mgr_demo(void);
+
 #endif /* PACKAGE_MGR_H */
+

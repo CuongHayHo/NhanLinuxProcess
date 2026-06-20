@@ -1,126 +1,90 @@
-# Package Manager
+# Package Manager (Shell Programming Compliance)
 
-This document describes the design, implementation, execution flow, error handling, and Linux system data sources for the **Package Manager** module.
+This document describes the design, implementation, and execution flow of the **Package Manager** module, refactored to strictly comply with the assignment requirement: 
 
----
-
-## 1. Purpose
-The Package Manager module demonstrates Linux software package query capabilities. The module is configured in **Learning Mode**, meaning it operates in a strict read-only fashion: it is capable of listing, counting, and searching installed software packages, but prevents any operations that would install, remove, or modify package metadata on the host system.
+> "Lập trình shell để cài đặt/gỡ bỏ các chương trình tự động."
 
 ---
 
-## 2. Supported Package Managers and Databases
-The module auto-detects the system's package configuration:
-1.  **Fedora / RedHat / CentOS (`rpm`)**:
-    *   **Tool**: `/usr/bin/rpm`
-    *   **Database Directory**: `/var/lib/rpm/` (containing database files like `rpmdb.sqlite` or `Packages`).
-2.  **Debian / Ubuntu (`dpkg`)**:
-    *   **Tool**: `/usr/bin/dpkg-query`
-    *   **Database File**: `/var/lib/dpkg/status` (flat text configuration file).
+## 1. Compliance Architecture Overview
 
----
-
-## 3. Linux APIs and Commands Used
-*   **`access(path, X_OK)`**: Verifies system executable access on binary query paths (`/usr/bin/dpkg-query` and `/usr/bin/rpm`) without spawning processes.
-*   **`popen(command, "r")`**: Spawns a read-only process pipeline to parse package definitions.
-    *   *dpkg query*: `/usr/bin/dpkg-query -W -f='${Package} ${Version}\n'`
-    *   *rpm query*: `/usr/bin/rpm -qa --qf '%{NAME} %{VERSION}\n'`
-*   **`fgets()`**: Sequentially reads query outputs line-by-line.
-*   **`strcasestr(haystack, needle)`**: Performs a case-insensitive substring match of the query string against the package name.
-*   **`pclose()`**: Terminates the subprocess pipeline and reaps resources.
-
----
-
-## 4. Search Algorithm & Matching Rules
-The search utility is designed to help administrators quickly filter large package listings:
-1.  **Case-Insensitivity**: All searches are case-insensitive. A query for `KERNEL` will match package names containing `kernel`, `Kernel`, or `KERNEL`. This is implemented using the standard GNU C library `strcasestr()` function.
-2.  **Partial Matching**: Matches are partial. A search query for `ssl` will successfully match `openssl`, `libssl`, or `openssl-devel`.
-3.  **Efficiency**: The search traverses the streamed package definitions line-by-line as they are produced by the package query utility, matching text in real-time, preventing large memory overheads.
-
----
-
-## 5. Performance Considerations & Future Migration
-*   **Current Pipeline Overhead**: Launching subprocesses using `popen` introduces shell startup and context switching overhead. While acceptable for educational stubs, querying thousands of packages can take up to a few hundred milliseconds.
-*   **Future Migration to Native Libraries**: To achieve sub-millisecond query performance and eliminate shell dependencies, the module could migrate to native C bindings:
-    *   *rpm system*: Integrate directly with `librpm` APIs (e.g., `rpmdbOpen`, `rpmdbInitIterator`, `rpmdbNextIterator`).
-    *   *dpkg system*: Parse the `/var/lib/dpkg/status` database file directly using memory-mapped files (`mmap`) and fast regex parsing.
-
----
-
-## 6. Execution Flow
-
-The Package Manager submenu dispatches selections as follows:
+The Package Manager is split into a simple C-based interactive front-end and a robust shell script backend. There is no business logic or package management code in the compiled C binary.
 
 ```
-+-------------------------------------------------------------------------------+
-|                               package_mgr_run()                               |
-|                               (Interactive Menu)                              |
-+-------------------------------------------------------------------------------+
-                                 |
-         +-----------------------+-----------------------+
-         |                       |                       |
-         v                       v                       v
- [Option 1: List]        [Option 2: Search]      [Option 5: Information]
-         |                       |                       |
-         v                       v                       v
-package_mgr_list()      package_mgr_search()     package_mgr_info()
-         |                       |                       |
-         |                       |                       +-> Validate input
-         |                       +-> Prompt keyword      +-> Detect PM
-         +-> popen() read-only   +-> strcasestr() match  +-> popen() query
-         +-> sscanf() line       +-> print matches       +-> parse key-value
-         +-> print details       +-> display count       +-> print metadata
++---------------------------------------+
+|          package_mgr.c (C)            |
+|  - Renders Menu                       |
+|  - Reads User Input                   |
+|  - Spawns subprocess (fork-exec)      |
+|  - Monitors status & handles errors   |
++---------------------------------------+
+                    |
+                    v (fork + execvp)
++---------------------------------------+
+|         shell/program.sh (Bash)       |
+|  - Auto-detects Package Manager       |
+|  - Implements Package Search          |
+|  - Implements Package Information     |
+|  - Performs Safe Installation         |
+|  - Performs Safe Removal              |
+|  - Runs Automated Safe Demonstration   |
++---------------------------------------+
 ```
 
 ---
 
-## 7. Example Outputs
-
-### Package Search (Option 2)
+## 2. Interactive Menu Structure (C Front-End)
+The C front-end displays a uniform terminal menu interface:
 ```text
-Enter package name to search: kernel
-
-Search Results for 'kernel':
-Package Name                             Version                       
-------------------------------------------------------------------------
-kernel-headers                           7.0.6                         
-kernel-core                              7.0.12                        
-kernel                                   7.0.12                        
-------------------------------------------------------------------------
-Total Matches Found: 3
+========================================
+Package Manager
+===============
+1. Search Package
+2. Package Information
+3. Install Package
+4. Remove Package
+5. Safe Demonstration
+6. Return
+========================================
 ```
 
----
-
-## 8. Error Handling
-*   **Empty Queries**: Empty or null strings passed to the search API are rejected immediately, printing an error and returning `-1`.
-*   **Subprocess Failures**: If the `popen` pipe fails to open, the module handles the error gracefully, registers an error log, and cleans up open resources.
+*   **Menu & Launcher**: `package_mgr_run()` processes user input, gathers the target package name if needed, and launches the shell script wrapper `shell/program.sh` using `fork()`, `execvp()`, and `waitpid()`.
+*   **Error Checking**: Inspects the exit code of `shell/program.sh` to ensure execution succeeded, reporting and logging errors on non-zero exit codes.
 
 ---
 
-## 9. Future Work
-The following features are placeholder menu entries displaying `"Coming in a future sprint."`:
-*   **Option 3: Install Package (Preview)**
-*   **Option 4: Remove Package (Preview)**
+## 3. Shell Implementation (`shell/program.sh`)
+The shell script performs all business logic and package transactions:
+1.  **Auto-detection**: Dynamically identifies the host package manager (`dnf`/`rpm` on Fedora/RHEL, `apt`/`dpkg` on Debian/Ubuntu). No vendor-specific code is hardcoded.
+2.  **Search**: Runs local queries (`rpm -qa` / `dpkg-query -W`) to search for installed package substrings.
+3.  **Information**: Queries local database specifications (`rpm -q` / `dpkg -s`) if installed, with a clean fallback to remote repository queries (`dnf info` / `apt-cache show`) if not installed.
+4.  **Install & Remove**: Dispatches transaction scripts under `sudo` to automate software modifications.
+5.  **Safe Demonstration**: Conducts a non-destructive lifecycle simulation utilizing only small, non-critical CLI utilities (`hello`, `sl`, `cowsay`, etc.) to verify search, metadata, installation, local status verification, uninstallation, and cleanup.
 
 ---
 
-## 10. Package Information (Sprint 3)
+## 4. Safety Constraints
+The shell script blocks any transaction involving critical operating system packages:
+*   `kernel` / `glibc` / `bash` / `systemd` / `gcc`
+*   `dnf` / `rpm` / `python`
+*   Desktop environments, firmware, hardware drivers, or multimedia stacks
 
-### Metadata Fields
-The following fields are extracted and displayed in a normalized format:
-*   **Name**: Package name.
-*   **Version**: Version of the package.
-*   **Release**: Release version (RPM only; maps to `N/A` on DPKG).
-*   **Architecture**: Target system architecture (e.g. `x86_64`, `amd64`).
-*   **Vendor / Maintainer**: Package vendor (RPM) or maintainer (DPKG).
-*   **License**: Package license (RPM only; maps to `N/A` on DPKG).
-*   **Install Date**: Package installation timestamp (RPM only; maps to `N/A` on DPKG).
-*   **Summary**: Brief description of the package.
-*   **Description**: Detailed description of the package.
+---
 
-### Read-only Query Strategy
-*   **RPM Metadata**: Runs `/usr/bin/rpm -q --qf "..." <pkg_name> 2>/dev/null` using `popen()` in read-only mode to extract formatted key-value metadata fields.
-*   **DPKG Metadata**: Runs `/usr/bin/dpkg-query -s <pkg_name> 2>/dev/null` and parses the output block line-by-line. Multi-line description continuation lines (starting with spaces) are captured and appended.
-*   **Input Validation**: The package name is strictly validated using `is_safe_package_name()` to ensure it only contains characters `[a-zA-Z0-9.\-_+]`. This prevents command injection vulnerabilities when passing the argument to `popen`.
+## 5. Non-Destructive Testing
+All regression tests (`tests/package_test.c`) verify script existence, search queries, metadata retrieval, and error paths, but **never install or uninstall packages automatically**. The full installation/removal pipeline is only executed interactively under Menu Option 5 (Safe Demonstration), ensuring system integrity during automated test suites.
 
+---
+
+## 6. Logs & Audits
+The Package Manager outputs unified trace logs in `logs/system.log`:
+*   `Package search`
+*   `Package information`
+*   `Package install requested`
+*   `Package removal requested`
+*   `Safe demonstration started`
+*   `Package installed`
+*   `Package verified`
+*   `Package removed`
+*   `Verification completed`
+*   `Cleanup completed`

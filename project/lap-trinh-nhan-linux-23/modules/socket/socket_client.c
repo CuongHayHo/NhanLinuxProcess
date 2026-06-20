@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  * File: modules/socket/socket_client.c
- * Purpose: TCP echo/chat client.
+ * Purpose: TCP client with threaded receiver.
  */
 
 #define _GNU_SOURCE
@@ -15,15 +15,59 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <sys/select.h>
+#include <pthread.h>
 #include <errno.h>
 #include "socket_mgr.h"
 #include "logger.h"
 
+static int client_socket_fd = -1;
+
+static void* receiver_thread(void* arg) {
+    int sock_fd = *(int*)arg;
+    free(arg);
+    char buffer[512];
+
+    while (1) {
+        memset(buffer, 0, sizeof(buffer));
+        ssize_t valread = recv(sock_fd, buffer, sizeof(buffer) - 1, 0);
+        if (valread == 0) {
+            log_info("SOCKET", "Disconnect");
+            printf("\n---\nDisconnected.\n");
+            fflush(stdout);
+            break;
+        } else if (valread < 0) {
+            log_error("SOCKET", "Socket error: recv failed (errno %d)", errno);
+            printf("\nSocket receive error.\n%s\n", strerror(errno));
+            fflush(stdout);
+            break;
+        }
+
+        buffer[valread] = '\0';
+        buffer[strcspn(buffer, "\r\n")] = '\0';
+
+        log_info("SOCKET", "Bytes received: %zd bytes", valread);
+        log_info("SOCKET", "Server message: %s", buffer);
+
+        if (strcmp(buffer, "exit") == 0) {
+            printf("\nServer sent exit command.\n");
+            fflush(stdout);
+            break;
+        }
+
+        printf("Server\n%s\n", buffer);
+        fflush(stdout);
+    }
+
+    log_info("SOCKET", "Terminal closed");
+    shutdown(sock_fd, SHUT_RDWR);
+    close(sock_fd);
+    exit(0);
+    return NULL;
+}
+
 void socket_mgr_client_start(const char* server_ip, int port, const char* username) {
     int sock_fd = 0;
     struct sockaddr_in serv_addr;
-    char buffer[512];
     char input[512];
 
     (void)username;
@@ -35,6 +79,7 @@ void socket_mgr_client_start(const char* server_ip, int port, const char* userna
         perror("socket");
         return;
     }
+    client_socket_fd = sock_fd;
 
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(port);
@@ -53,93 +98,58 @@ void socket_mgr_client_start(const char* server_ip, int port, const char* userna
         return;
     }
 
+    log_info("SOCKET", "TCP Client launched");
     log_info("SOCKET", "Connection established");
+    log_info("SOCKET", "Socket process started");
 
     printf("========================================\n");
     printf("TCP Chat Client\n");
     printf("========================================\n");
     fflush(stdout);
 
-    int max_fd = (STDIN_FILENO > sock_fd) ? STDIN_FILENO : sock_fd;
-    fd_set read_fds;
+    pthread_t recv_tid;
+    int* p_sock_fd = malloc(sizeof(int));
+    *p_sock_fd = sock_fd;
+    if (pthread_create(&recv_tid, NULL, receiver_thread, p_sock_fd) != 0) {
+        log_error("SOCKET", "Errors: pthread_create failed (errno %d)", errno);
+        perror("pthread_create failed");
+        free(p_sock_fd);
+        close(sock_fd);
+        return;
+    }
+    pthread_detach(recv_tid);
 
     while (1) {
-        FD_ZERO(&read_fds);
-        FD_SET(STDIN_FILENO, &read_fds);
-        FD_SET(sock_fd, &read_fds);
-
-        int activity = select(max_fd + 1, &read_fds, NULL, NULL, NULL);
-        if (activity < 0) {
-            if (errno == EINTR) continue;
-            log_error("SOCKET", "Socket error: select failed (errno %d)", errno);
-            printf("Select error.\n%s\n", strerror(errno));
-            fflush(stdout);
+        memset(input, 0, sizeof(input));
+        if (fgets(input, sizeof(input), stdin) == NULL) {
             break;
         }
 
-        // Check server socket
-        if (FD_ISSET(sock_fd, &read_fds)) {
-            memset(buffer, 0, sizeof(buffer));
-            ssize_t valread = recv(sock_fd, buffer, sizeof(buffer) - 1, 0);
-            if (valread == 0) {
-                log_info("SOCKET", "Disconnect");
-                break;
-            } else if (valread < 0) {
-                log_error("SOCKET", "Socket error: recv failed (errno %d)", errno);
-                printf("Socket receive error.\n%s\n", strerror(errno));
-                fflush(stdout);
-                break;
-            }
-
-            buffer[valread] = '\0';
-            buffer[strcspn(buffer, "\r\n")] = '\0';
-
-            log_info("SOCKET", "Bytes received: %zd bytes", valread);
-            log_info("SOCKET", "Server message: %s", buffer);
-
-            if (strcmp(buffer, "exit") == 0) {
-                break;
-            }
-
-            printf("Server\n%s\n", buffer);
-            fflush(stdout);
+        input[strcspn(input, "\n")] = '\0';
+        if (strlen(input) == 0) {
+            continue;
         }
 
-        // Check stdin
-        if (FD_ISSET(STDIN_FILENO, &read_fds)) {
-            memset(input, 0, sizeof(input));
-            if (fgets(input, sizeof(input), stdin) == NULL) {
-                break;
-            }
+        ssize_t valsent = send(sock_fd, input, strlen(input), 0);
+        if (valsent < 0) {
+            log_error("SOCKET", "Socket error: send failed (errno %d)", errno);
+            perror("send");
+            break;
+        }
 
-            input[strcspn(input, "\n")] = '\0';
+        log_info("SOCKET", "Bytes sent: %zd bytes", valsent);
+        log_info("SOCKET", "Client message: %s", input);
 
-            if (strlen(input) == 0) {
-                continue;
-            }
+        printf("You\n%s\n", input);
+        fflush(stdout);
 
-            ssize_t valsent = send(sock_fd, input, strlen(input), 0);
-            if (valsent < 0) {
-                log_error("SOCKET", "Socket error: send failed (errno %d)", errno);
-                perror("send");
-                break;
-            }
-
-            log_info("SOCKET", "Bytes sent: %zd bytes", valsent);
-            log_info("SOCKET", "Client message: %s", input);
-
-            printf("You\n%s\n", input);
-            fflush(stdout);
-
-            if (strcmp(input, "exit") == 0) {
-                break;
-            }
+        if (strcmp(input, "exit") == 0) {
+            break;
         }
     }
 
-    printf("---\nDisconnected.\n");
-    fflush(stdout);
+    log_info("SOCKET", "Terminal closed");
+    shutdown(sock_fd, SHUT_RDWR);
     close(sock_fd);
     log_info("SOCKET", "Client connection closed cleanly");
 }
-

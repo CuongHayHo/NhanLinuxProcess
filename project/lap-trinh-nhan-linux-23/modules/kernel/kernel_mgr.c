@@ -408,20 +408,127 @@ int kernel_mgr_show_log(void) {
     return 0;
 }
 
+void kernel_mgr_show_network_stack(void) {
+    printf("\n======================================================================\n");
+    printf("                  Linux Network Stack Packet Flow\n");
+    printf("======================================================================\n");
+    printf("   Application\n");
+    printf("        ↓\n");
+    printf("     Socket       (BSD Socket Interface, sock_create(), sys_socket())\n");
+    printf("        ↓\n");
+    printf("    TCP/UDP       (Transport Layer, tcp_v4_rcv(), tcp_sendmsg())\n");
+    printf("        ↓\n");
+    printf("  Network Stack   (Network/IP Layer, ip_rcv(), ip_output())\n");
+    printf("        ↓\n");
+    printf("     sk_buff      (Socket Buffer - packet metadata & structure)\n");
+    printf("        ↓\n");
+    printf("     Driver       (Net Device Driver, dev_queue_xmit(), ndo_start_xmit())\n");
+    printf("        ↓\n");
+    printf("      NIC         (Network Interface Card - Physical Layer / Hardware)\n");
+    printf("\n------------------------- Stage Explanations -------------------------\n");
+    printf("1. Application: Generates payload (e.g. HTTP, user data) and calls API functions\n");
+    printf("   such as send(), write() or sendto() on a socket descriptor.\n");
+    printf("2. Socket: Resolves user-space requests to kernel-space socket operations.\n");
+    printf("   Initializes socket struct, checks socket type (STREAM/DGRAM) and bounds.\n");
+    printf("3. TCP/UDP: Implements transport-layer protocol control blocks. Manages TCP states\n");
+    printf("   (SYN, ACK, seq numbers, window sizes) or UDP connectionless datagram headers.\n");
+    printf("4. Network Stack: Adds IP layer routing, fragmentation, TTL, and checksums.\n");
+    printf("   Determines routing destination interfaces (ip_route_output_key()).\n");
+    printf("5. sk_buff: Main C struct containing network packet data, packet length, offsets,\n");
+    printf("   and pointer headers across all network stack boundaries.\n");
+    printf("6. Driver: Receives packet headers and registers packet queue. Invokes hardware\n");
+    printf("   transmit calls (ndo_start_xmit) to transfer data to the interface card.\n");
+    printf("7. NIC: Translates digital frames into physical signals (optical/copper/wireless)\n");
+    printf("   and transmits them onto the physical wire/air interface.\n");
+    printf("======================================================================\n");
+}
+
+void kernel_mgr_show_sk_buff_overview(void) {
+    printf("\n======================================================================\n");
+    printf("                    Linux kernel sk_buff struct Overview\n");
+    printf("======================================================================\n");
+    printf("Reference: include/linux/skbuff.h\n\n");
+    printf("What is sk_buff?\n");
+    printf("  The 'sk_buff' (socket buffer) is the most fundamental data structure in the\n");
+    printf("  Linux networking subsystem. It represents an active packet currently in flight,\n");
+    printf("  moving from user-space to a network device, or received by a network device\n");
+    printf("  traveling up to user-space.\n\n");
+    printf("Why Linux uses it:\n");
+    printf("  1. Avoids Data Copying: Layer headers (transport, network, link) are parsed\n");
+    printf("     and shifted without copying the payload. Only pointers inside sk_buff change.\n");
+    printf("  2. Flexibility: Standardizes packet representations across different network cards,\n");
+    printf("     protocols (IPv4, IPv6, AppleTalk, etc.), and routing logic.\n\n");
+    printf("Crucial Fields in struct sk_buff:\n");
+    printf("  - next / prev: Pointers to chain buffers in lists (e.g. device output queues).\n");
+    printf("  - dev: Points to the net_device struct currently managing the packet.\n");
+    printf("  - len: Length of total packet data contained in this buffer.\n");
+    printf("  - data_len: Length of data stored in paged fragments (not contiguous).\n");
+    printf("  - mac_header, network_header, transport_header: Offsets to protocol headers.\n");
+    printf("  - head, data, tail, end: Boundary pointers referencing the allocated data block:\n");
+    printf("      * head: Points to the start of allocated RAM space.\n");
+    printf("      * data: Points to the start of current layer packet data.\n");
+    printf("      * tail: Points to the end of current layer packet data.\n");
+    printf("      * end: Points to the maximum memory boundary.\n");
+    printf("  - cb[48]: Control buffer space reserved for internal layer-specific storage.\n\n");
+    printf("Lifecycle of sk_buff:\n");
+    printf("  1. Allocation: dev_alloc_skb() (on packet RX) or alloc_skb() (on TX).\n");
+    printf("  2. Header Operations: \n");
+    printf("     - skb_reserve(): Allocates headroom for link/network headers.\n");
+    printf("     - skb_put(): Expands data region downwards (tail advances).\n");
+    printf("     - skb_push(): prepends data/headers to the beginning (data moves left).\n");
+    printf("     - skb_push(): prepends data/headers to the beginning (data moves left).\n");
+    printf("     - skb_pull(): removes data from the beginning (data moves right).\n");
+    printf("  3. Freeing: kfree_skb() (reclaimed) or dev_kfree_skb() (after hardware TX).\n");
+    printf("======================================================================\n");
+}
+
+void kernel_mgr_show_napi_overview(void) {
+    printf("\n======================================================================\n");
+    printf("                 NAPI (New API) Interrupt Mitigation Overview\n");
+    printf("======================================================================\n");
+    printf("What is NAPI?\n");
+    printf("  NAPI is an extension to the device driver interface in the Linux kernel designed\n");
+    printf("  to handle high packet rates efficiently by combining polling and interrupt-driven\n");
+    printf("  mechanisms.\n\n");
+    printf("The Problem: Interrupt Storms\n");
+    printf("  In high-throughput networks (e.g. 10Gbps+), if the network interface card (NIC)\n");
+    printf("  triggers an interrupt for every single incoming packet, the CPU becomes completely\n");
+    printf("  saturated responding to interrupts (softirqs), leaving no time to actually run\n");
+    printf("  applications. This is called 'Receive Livelock'.\n\n");
+    printf("NAPI Hybrid Mechanism:\n");
+    printf("  1. First Packet (Interrupt Mode):\n");
+    printf("     The NIC receives a packet and triggers a hardware interrupt.\n");
+    printf("  2. Disable Interrupts:\n");
+    printf("     The driver registers its interface to the kernel's polling list (napi_schedule())\n");
+    printf("     and disables receive interrupts on the NIC.\n");
+    printf("  3. Polling Mode:\n");
+    printf("     The kernel softirq system polls the driver's poll() function (e.g., netif_rx())\n");
+    printf("     to process a budget number of packets (e.g., 64 at a time) directly from ring buffers.\n");
+    printf("  4. Re-enable Interrupts:\n");
+    printf("     Once the NIC receive queue is empty, the driver removes itself from the polling list\n");
+    printf("     and re-enables receive interrupts on the NIC.\n\n");
+    printf("NAPI Benefits:\n");
+    printf("  - Prevents Receive Livelock: Under high loads, driver automatically runs in polling mode.\n");
+    printf("  - High efficiency: Drastically reduces the number of CPU interrupts under load.\n");
+    printf("  - Flow control: Packet queue drops happen early on the NIC interface rather than memory.\n");
+    printf("======================================================================\n");
+}
+
 void kernel_mgr_run(void) {
     int choice;
     log_info("KERNEL", "Entering Kernel Module Manager");
 
     while (1) {
         printf("\n========================================\n");
-        printf("Kernel Module Manager\n");
-        printf("=====================\n");
+        printf("Kernel Module\n");
+        printf("========================================\n");
         printf("1. Show Module Information\n");
-        printf("2. Load Kernel Module\n");
-        printf("3. Unload Kernel Module\n");
-        printf("4. Show Module Status\n");
-        printf("5. Show Kernel Log (Last 20 Lines)\n");
-        printf("6. Return\n");
+        printf("2. Load Module\n");
+        printf("3. Unload Module\n");
+        printf("4. Show Network Stack Overview\n");
+        printf("5. Show sk_buff Overview\n");
+        printf("6. Show NAPI Overview\n");
+        printf("0. Return\n");
         printf("========================================\n");
         printf("Select option: ");
         fflush(stdout);
@@ -432,13 +539,13 @@ void kernel_mgr_run(void) {
             continue;
         }
 
-        if (choice < 1 || choice > 6) {
-            printf("\nInvalid input. Please choose a number between 1 and 6.\n");
+        if (choice > 6) {
+            printf("\nInvalid input. Please choose a number between 0 and 6.\n");
             kernel_menu_pause();
             continue;
         }
 
-        if (choice == 6) {
+        if (choice == 0) {
             log_info("KERNEL", "Leaving Kernel Module Manager");
             break;
         }
@@ -453,10 +560,13 @@ void kernel_mgr_run(void) {
             kernel_mgr_unload_module();
             kernel_menu_pause();
         } else if (choice == 4) {
-            kernel_mgr_show_status();
+            kernel_mgr_show_network_stack();
             kernel_menu_pause();
         } else if (choice == 5) {
-            kernel_mgr_show_log();
+            kernel_mgr_show_sk_buff_overview();
+            kernel_menu_pause();
+        } else if (choice == 6) {
+            kernel_mgr_show_napi_overview();
             kernel_menu_pause();
         }
     }
@@ -507,4 +617,5 @@ int kernel_mgr_show_info(void) {
         return -1;
     }
 }
+
 

@@ -72,6 +72,7 @@ static void* session_worker(void* arg) {
     session_handle_protocol(client_fd);
 
     // Clean up connection
+    shutdown(client_fd, SHUT_RDWR);
     close(client_fd);
     free(session);
 
@@ -170,5 +171,6 @@ void socket_mgr_multi_server_start(int port) {
         pthread_detach(thread_id);
     }
 
+    shutdown(server_fd, SHUT_RDWR);
     close(server_fd);
 }

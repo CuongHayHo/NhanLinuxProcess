@@ -20,4 +20,9 @@ void shell_mgr_run(void);
  */
 int shell_mgr_execute(const char* command);
 
+/**
+ * Runs the interactive environment variable manager submenu.
+ */
+void shell_mgr_env_run(void);
+
 #endif /* SHELL_MGR_H */

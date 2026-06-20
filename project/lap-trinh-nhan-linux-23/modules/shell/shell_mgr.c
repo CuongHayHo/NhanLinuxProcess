@@ -55,7 +55,7 @@ static void shell_menu_pause(void) {
 
 
 
-static void shell_mgr_env_run(void) {
+void shell_mgr_env_run(void) {
     int choice;
     char name_buf[128];
     char val_buf[256];

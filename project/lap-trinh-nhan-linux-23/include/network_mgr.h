@@ -38,4 +38,14 @@ int parse_routing_table(const char* buf);
  */
 int network_show_host_info(void);
 
+/* REPL command palette entry points */
+int network_list_interfaces_clean(void);
+int network_interface_info(void);
+void network_configure_interface_learning(void);
+void network_bring_interface_state(const char* state);
+int network_show_routes_ip(void);
+void network_ping_host(void);
+int network_dns_lookup(void);
+int network_socket_statistics(void);
+
 #endif /* NETWORK_MGR_H */

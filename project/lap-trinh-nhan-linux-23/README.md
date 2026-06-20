@@ -34,14 +34,14 @@ Kiến trúc bao gồm:
 
 ## 3. Tổng quan các Module (Module Overview)
 Dự án được cấu trúc chặt chẽ quanh 7 module cốt lõi theo đúng yêu cầu bài tập lớn:
-1.  **File Manager**: Quản lý và duyệt thư mục hệ thống.
+1.  **File Manager**: Được thiết kế đúng theo yêu cầu "Lập trình shell để quản lý file". Toàn bộ logic quản lý file (tạo, đọc, ghi, xóa, sao chép, di chuyển, phân quyền, lưu trữ, tìm kiếm) được thực hiện trong kịch bản shell `shell/file.sh`. Ứng dụng C chỉ đóng vai trò là launcher TUI để hiển thị menu và gọi shell script bằng fork-exec.
 2.  **Process Manager**: Quản lý tiến trình (liệt kê, tìm kiếm, tín hiệu, nice value) và demo vòng đời (Fork, Exec, Wait, Zombie, Orphan, Daemon).
-3.  **Network Manager**: Hiển thị card mạng (`getifaddrs`), bảng định tuyến `/proc/net/route` và tên máy tính.
-4.  **Socket Manager**: Quản lý kết nối TCP/IP đa luồng (Multi-client TCP Server).
-5.  **Package Manager**: Tự động nhận diện `rpm` / `dpkg` và truy vấn siêu dữ liệu của các gói cài đặt.
+3.  **Network Manager**: Quản lý card mạng Linux (`getifaddrs()`, chi tiết trạng thái, IPv4/IPv6/MAC/MTU, và gói tin RX/TX, cấu hình mô phỏng Learning Mode, bật/tắt UP/DOWN, hiển thị bảng định tuyến `ip route`, ping kiểm thử, phân giải tên miền `getaddrinfo()`, và hiển thị thống kê socket `ss`).
+4.  **Socket Manager**: Quản lý kết nối TCP/IP đa luồng (Multi-client TCP Server) có cơ chế ngắt kết nối an toàn với đầy đủ `shutdown()` và `close()`.
+5.  **Package Manager**: Được thiết kế đúng theo yêu cầu bài tập lớn "Lập trình shell để cài đặt/gỡ bỏ các chương trình tự động". Toàn bộ logic quản lý gói (tìm kiếm, thông tin, cài đặt, gỡ bỏ, demo vòng đời) được thực hiện trong kịch bản shell `shell/program.sh`. Ứng dụng C chỉ đóng vai trò là launcher TUI để hiển thị menu và gọi shell script bằng fork-exec.
 6.  **Shell Manager**: Thực thi lệnh, chạy script `/bin/bash`, quản lý biến môi trường, tự động hóa tác vụ (Automation/Cron) và cấu hình thời gian (Time Configuration: cấu hình thủ công qua clock_settime/CAP_SYS_TIME, đồng bộ thời gian qua Internet sử dụng chronyc/ntpdate, và cấu hình đồng bộ tự động NTP sử dụng timedatectl).
     *   **Cơ chế Đồng bộ Xác thực (Verified Synchronization)**: Khác biệt hoàn toàn so với việc chỉ gửi **yêu cầu (request)** đồng bộ thời gian (chỉ kiểm tra lệnh chạy thành công), ứng dụng sẽ đợi 2 giây và thực hiện kiểm tra độc lập qua trạng thái của `chronyc tracking` hoặc `timedatectl status` để đảm bảo đồng hồ hệ thống thực sự đã được đồng bộ chính xác trước khi báo thành công.
-7.  **Kernel Module**: Giao tiếp và đọc thông tin từ kernel space qua `/proc/sysmgr`.
+7.  **Kernel Module**: Giao tiếp kernel space qua `/proc/sysmgr` và tích hợp các tài liệu sơ đồ mạng (luồng gói tin Network Stack, cấu trúc bộ đệm `sk_buff`, và cơ chế điều phối NAPI).
 
 ---
 
@@ -99,17 +99,18 @@ Chạy bộ kiểm thử đồng bộ thời gian Internet:
 Select option: 
 ```
 
-### Giao diện Menu Quản lý Kernel Module (Kernel Module Manager Submenu)
+### Giao diện Menu Quản lý Kernel Module (Kernel Module Submenu)
 ```text
 ========================================
-Kernel Module Manager
-=====================
+Kernel Module
+========================================
 1. Show Module Information
-2. Load Kernel Module
-3. Unload Kernel Module
-4. Show Module Status
-5. Show Kernel Log (Last 20 Lines)
-6. Return
+2. Load Module
+3. Unload Module
+4. Show Network Stack Overview
+5. Show sk_buff Overview
+6. Show NAPI Overview
+0. Return
 ========================================
 Select option: 
 ```

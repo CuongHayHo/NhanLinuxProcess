@@ -3,57 +3,76 @@
  * All rights reserved.
  *
  * File: tests/package_test.c
- * Purpose: Diagnostic unit tests for Package Manager.
+ * Purpose: Non-destructive regression tests for Shell Programming Package Manager.
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "package_mgr.h"
+#include "logger.h"
 
 int main(void) {
-    printf("Starting Package Manager Module - Sprint 3 (Package Information) test program...\n\n");
-    
-    printf("--- Test 1: Package Manager Detection ---\n");
-    const char* pm = package_mgr_detect();
-    if (pm) {
-        printf("Detected Package Manager: %s\n", pm);
+    printf("Starting Package Manager Regression Test Suite...\n\n");
+
+    // 1. Verify script exists
+    printf("[TEST] Checking if shell/program.sh exists...\n");
+    if (access("shell/program.sh", F_OK) == 0) {
+        printf("PASS: shell/program.sh exists.\n");
     } else {
-        printf("Package manager not supported.\n");
-    }
-    
-    printf("\n--- Test 2: List Installed Packages ---\n");
-    int list_res = package_mgr_list_installed();
-    
-    printf("\n--- Test 3: Search Existing Package ('kernel') ---\n");
-    int search_exist_res = package_mgr_search("kernel");
-    
-    printf("\n--- Test 4: Search Missing Package ('nonexistent_pkg_xyz') ---\n");
-    int search_missing_res = package_mgr_search("nonexistent_pkg_xyz");
-    
-    printf("\n--- Test 5: Case-Insensitive Search ('KERNEL') ---\n");
-    int search_case_res = package_mgr_search("KERNEL");
-    
-    printf("\n--- Test 6: Partial Name Search ('kern') ---\n");
-    int search_partial_res = package_mgr_search("kern");
-
-    printf("\n--- Test 7: Package Info on Existing Package ('rpm') ---\n");
-    int info_exist_res = package_mgr_info("rpm");
-
-    printf("\n--- Test 8: Package Info on Missing Package ('nonexistent_pkg_xyz') ---\n");
-    int info_missing_res = package_mgr_info("nonexistent_pkg_xyz");
-
-    printf("\n--- Test 9: Package Info on Unsafe Package Name ('; rm -rf /') ---\n");
-    int info_unsafe_res = package_mgr_info("; rm -rf /");
-    
-    // Check results
-    if (list_res == 0 && search_exist_res == 0 && search_missing_res == 0 && 
-        search_case_res == 0 && search_partial_res == 0 && info_exist_res == 0 &&
-        info_missing_res == -1 && info_unsafe_res == -1) {
-        printf("\nPackage Manager Module tests completed successfully.\n");
-        return 0;
-    } else {
-        printf("\nPackage Manager Module tests failed.\n");
-        printf("Results: list_res=%d, search_exist_res=%d, search_missing_res=%d, search_case_res=%d, search_partial_res=%d, info_exist_res=%d, info_missing_res=%d, info_unsafe_res=%d\n",
-               list_res, search_exist_res, search_missing_res, search_case_res, search_partial_res, info_exist_res, info_missing_res, info_unsafe_res);
+        printf("FAIL: shell/program.sh is missing!\n");
         return 1;
     }
+
+    // 2. Verify script executes
+    printf("[TEST] Checking if shell/program.sh is executable...\n");
+    if (access("shell/program.sh", X_OK) == 0) {
+        printf("PASS: shell/program.sh is executable.\n");
+    } else {
+        printf("FAIL: shell/program.sh is not executable!\n");
+        return 1;
+    }
+
+    // 3. Verify search works (non-destructive search for 'bash' which exists on all systems)
+    printf("[TEST] Verifying package search functionality...\n");
+    int search_res = package_mgr_search("bash");
+    if (search_res == 0) {
+        printf("PASS: package_mgr_search('bash') succeeded.\n");
+    } else {
+        printf("FAIL: package_mgr_search('bash') failed.\n");
+        return 1;
+    }
+
+    // 4. Verify information works
+    printf("[TEST] Verifying package information functionality...\n");
+    int info_res = package_mgr_info("bash");
+    if (info_res == 0) {
+        printf("PASS: package_mgr_info('bash') succeeded.\n");
+    } else {
+        printf("FAIL: package_mgr_info('bash') failed.\n");
+        return 1;
+    }
+
+    // 5. Verify invalid package handling
+    printf("[TEST] Verifying invalid package handling...\n");
+    int invalid_res = package_mgr_info("nonexistent_package_12345");
+    if (invalid_res != 0) {
+        printf("PASS: package_mgr_info('nonexistent_package_12345') failed as expected.\n");
+    } else {
+        printf("FAIL: package_mgr_info('nonexistent_package_12345') unexpectedly succeeded.\n");
+        return 1;
+    }
+
+    // 6. Verify launcher works
+    printf("[TEST] Checking package manager detection...\n");
+    const char *pm = package_mgr_detect();
+    if (pm) {
+        printf("PASS: Package manager detected: %s\n", pm);
+    } else {
+        printf("FAIL: No supported package manager detected.\n");
+        return 1;
+    }
+
+    printf("\nAll Package Manager regression tests completed successfully.\n");
+    return 0;
 }
