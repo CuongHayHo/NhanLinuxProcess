@@ -14,4 +14,10 @@
  */
 void autocomplete_init(void);
 
+/**
+ * Sets whether autocomplete should be active (only for main command REPL prompts).
+ * 1 = active (command prompt), 0 = inactive (parameter prompt).
+ */
+void autocomplete_set_command_mode(int mode);
+
 #endif /* AUTOCOMPLETE_H */

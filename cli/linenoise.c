@@ -131,6 +131,7 @@ extern const char* repl_get_current_context(void);
 #define PASTE_MAX_BYTES LINENOISE_MAX_LINE
 static char *unsupported_term[] = {"dumb","cons25","emacs",NULL};
 static linenoiseCompletionCallback *completionCallback = NULL;
+static int suggestions_active = 1;
 static linenoiseHintsCallback *hintsCallback = NULL;
 static linenoiseFreeHintsCallback *freeHintsCallback = NULL;
 static char *linenoiseReadLine(FILE *fp, int *err);
@@ -549,6 +550,10 @@ void linenoiseMaskModeEnable(void) {
 /* Disable mask mode. */
 void linenoiseMaskModeDisable(void) {
     maskmode = 0;
+}
+
+void linenoiseSetSuggestionsActive(int active) {
+    suggestions_active = active;
 }
 
 /* Set if to use or not the multi line mode. */
@@ -1315,7 +1320,7 @@ static void appendSuggestions(struct abuf *ab, const char *input_buf, int *print
         active_query = original_query;
     }
     
-    if (active_query == NULL || active_query[0] != '/') {
+    if (!suggestions_active || active_query == NULL || active_query[0] != '/') {
         /* If we previously printed suggestions, we must clear them! */
         if (last_printed_suggestions > 0) {
             for (int i = 0; i < last_printed_suggestions; i++) {

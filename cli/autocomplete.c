@@ -16,6 +16,13 @@
 /* Extern declaration of REPL context query function */
 extern const char* repl_get_current_context(void);
 
+static int in_command_prompt = 1;
+
+void autocomplete_set_command_mode(int mode) {
+    in_command_prompt = mode;
+    linenoiseSetSuggestionsActive(mode);
+}
+
 /* Helper to check if string starts with prefix */
 static int starts_with(const char* str, const char* prefix) {
     return strncmp(str, prefix, strlen(prefix)) == 0;
@@ -23,6 +30,10 @@ static int starts_with(const char* str, const char* prefix) {
 
 /* Autocomplete callback */
 static void completion_callback(const char *buf, linenoiseCompletions *lc) {
+    if (!in_command_prompt) {
+        return;
+    }
+
     const char* ctx = repl_get_current_context();
     size_t len = strlen(buf);
 

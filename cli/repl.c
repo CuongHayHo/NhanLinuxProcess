@@ -108,7 +108,7 @@ void print_prompt_explanation(const char* prompt_msg) {
     } else if (strstr(prompt_msg, "Enter start directory")) {
         printf("\n\033[0;36m[Action Info] Specifies the directory where the filename search should begin.\033[0m\n");
     } else if (strstr(prompt_msg, "Enter search pattern")) {
-        printf("\n\033[0;36m[Action Info] Pattern matching query (wildcards allowed, e.g. *.txt).\033[0m\n");
+        printf("\n\033[0;36m[Action Info] Pattern matching query. You MUST use wildcard '*' to match suffixes, e.g. '*.txt' (NOT '.txt').\033[0m\n");
     } else if (strstr(prompt_msg, "Enter archive output path")) {
         printf("\n\033[0;36m[Action Info] Specifies the filename for the compressed tarball to create.\033[0m\n");
     } else if (strstr(prompt_msg, "Enter source directory to archive")) {
@@ -174,9 +174,12 @@ static int get_arg_or_prompt(char* dest, size_t dest_len, int arg_idx, int argc,
         dest[dest_len - 1] = '\0';
         return 0;
     }
+
     print_prompt_explanation(prompt_msg);
     if (is_interactive) {
+        autocomplete_set_command_mode(0);
         char* input = linenoise(prompt_msg);
+        autocomplete_set_command_mode(1);
         if (input == NULL) {
             dest[0] = '\0';
             return -1;
