@@ -20,6 +20,9 @@ int ui_select_menu(const char* title, const char* options[], int options_count) 
     (void)title; (void)options; (void)options_count;
     return -1;
 }
+void print_prompt_explanation(const char* prompt_msg) {
+    (void)prompt_msg;
+}
 char* linenoise(const char* prompt) {
     (void)prompt;
     return NULL;

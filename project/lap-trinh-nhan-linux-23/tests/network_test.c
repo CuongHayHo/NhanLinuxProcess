@@ -9,6 +9,16 @@
 #include <stdio.h>
 #include "network_mgr.h"
 
+/* Dummy definitions for CLI and TUI subsystems to satisfy links in network_mgr.o */
+int is_interactive = 0;
+int ui_select_menu(const char* title, const char* options[], int options_count) {
+    (void)title; (void)options; (void)options_count;
+    return -1;
+}
+void print_prompt_explanation(const char* prompt_msg) {
+    (void)prompt_msg;
+}
+
 int main(void) {
     printf("Starting Network Manager Module - Sprint 3 (Host Information) test program...\n\n");
     

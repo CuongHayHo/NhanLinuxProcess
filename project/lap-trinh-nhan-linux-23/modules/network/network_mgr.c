@@ -27,6 +27,7 @@
 #include "network_mgr.h"
 #include "logger.h"
 #include "ui.h"
+#include "repl.h"
 
 /* Static helper to convert hex string IP to standard dotted-decimal string */
 static void hex_to_ip(const char* hex, char* ip_out) {
@@ -173,6 +174,8 @@ int network_interface_info(void) {
     /* Display clean list first for convenience */
     network_list_interfaces_clean();
 
+    extern int is_interactive;
+    if (is_interactive) print_prompt_explanation("Enter interface name");
     printf("Enter interface name: ");
     fflush(stdout);
     if (fgets(iface, sizeof(iface), stdin) == NULL) return -1;
@@ -286,12 +289,15 @@ void network_configure_interface_learning(void) {
     char iface[64];
     char ip_cidr[64];
 
+    extern int is_interactive;
+    if (is_interactive) print_prompt_explanation("Enter interface name");
     printf("Enter interface name (e.g. eth0): ");
     fflush(stdout);
     if (fgets(iface, sizeof(iface), stdin) == NULL) return;
     iface[strcspn(iface, "\n")] = '\0';
     if (strlen(iface) == 0) return;
 
+    if (is_interactive) print_prompt_explanation("Enter IP address and subnet in CIDR");
     printf("Enter IP address and subnet in CIDR notation (e.g. 192.168.1.100/24): ");
     fflush(stdout);
     if (fgets(ip_cidr, sizeof(ip_cidr), stdin) == NULL) return;
@@ -346,6 +352,8 @@ void network_bring_interface_state(const char* state) {
     char iface[64];
     char mode_buf[128];
 
+    extern int is_interactive;
+    if (is_interactive) print_prompt_explanation("Enter interface name");
     printf("Enter interface name: ");
     fflush(stdout);
     if (fgets(iface, sizeof(iface), stdin) == NULL) return;
@@ -406,12 +414,15 @@ void network_ping_host(void) {
     char count_str[32];
     int count = 4;
 
+    extern int is_interactive;
+    if (is_interactive) print_prompt_explanation("Enter host or IP to ping");
     printf("Enter host or IP to ping (e.g. 8.8.8.8): ");
     fflush(stdout);
     if (fgets(host, sizeof(host), stdin) == NULL) return;
     host[strcspn(host, "\n")] = '\0';
     if (strlen(host) == 0) return;
 
+    if (is_interactive) print_prompt_explanation("Enter number of packets to send");
     printf("Enter number of packets to send [%d]: ", count);
     fflush(stdout);
     if (fgets(count_str, sizeof(count_str), stdin) != NULL) {
@@ -444,6 +455,8 @@ void network_ping_host(void) {
 /* 8. DNS Lookup */
 int network_dns_lookup(void) {
     char hostname[256];
+    extern int is_interactive;
+    if (is_interactive) print_prompt_explanation("Enter hostname to resolve");
     printf("Enter hostname to resolve (e.g. google.com): ");
     fflush(stdout);
     if (fgets(hostname, sizeof(hostname), stdin) == NULL) return -1;
@@ -525,41 +538,63 @@ int network_socket_statistics(void) {
 /* Menu Loop */
 void network_mgr_run(void) {
     int choice;
+    extern int is_interactive;
     log_info("NETWORK", "Entering Network Manager");
 
     while (1) {
-        printf("\n========================================\n");
-        printf("Network Manager\n");
-        printf("========================================\n");
-        printf("1. List Network Interfaces\n");
-        printf("2. Interface Information\n");
-        printf("3. Configure Interface (Learning Mode)\n");
-        printf("4. Bring Interface UP\n");
-        printf("5. Bring Interface DOWN\n");
-        printf("6. Show Routing Table\n");
-        printf("7. Ping Host\n");
-        printf("8. DNS Lookup\n");
-        printf("9. Socket Statistics\n");
-        printf("0. Return\n");
-        printf("========================================\n");
-        printf("Select option: ");
-        fflush(stdout);
+        if (is_interactive) {
+            const char* network_options[] = {
+                "List Network Interfaces (Liệt kê card mạng)",
+                "Interface Information (Thông tin card mạng)",
+                "Configure Interface - Learning Mode (Cấu hình card mạng)",
+                "Bring Interface UP (Kích hoạt card mạng)",
+                "Bring Interface DOWN (Tắt card mạng)",
+                "Show Routing Table (Xem bảng định tuyến)",
+                "Ping Host (Kiểm tra kết nối Ping)",
+                "DNS Lookup (Tra cứu DNS)",
+                "Socket Statistics (Thống kê Socket)",
+                "Return (Trở về)"
+            };
+            int sel = ui_select_menu("Network Manager", network_options, 10);
+            if (sel == 9 || sel == -1) {
+                log_info("NETWORK", "Leaving Network Manager");
+                break;
+            }
+            choice = sel + 1;
+        } else {
+            printf("\n========================================\n");
+            printf("Network Manager\n");
+            printf("========================================\n");
+            printf("1. List Network Interfaces\n");
+            printf("2. Interface Information\n");
+            printf("3. Configure Interface (Learning Mode)\n");
+            printf("4. Bring Interface UP\n");
+            printf("5. Bring Interface DOWN\n");
+            printf("6. Show Routing Table\n");
+            printf("7. Ping Host\n");
+            printf("8. DNS Lookup\n");
+            printf("9. Socket Statistics\n");
+            printf("0. Return\n");
+            printf("========================================\n");
+            printf("Select option: ");
+            fflush(stdout);
 
-        choice = read_network_choice();
+            choice = read_network_choice();
 
-        if (choice < 0) {
-            continue;
-        }
+            if (choice < 0) {
+                continue;
+            }
 
-        if (choice > 9) {
-            printf("\nInvalid input. Please choose a number between 0 and 9.\n");
-            network_menu_pause();
-            continue;
-        }
+            if (choice > 9) {
+                printf("\nInvalid input. Please choose a number between 0 and 9.\n");
+                network_menu_pause();
+                continue;
+            }
 
-        if (choice == 0) {
-            log_info("NETWORK", "Leaving Network Manager");
-            break;
+            if (choice == 0) {
+                log_info("NETWORK", "Leaving Network Manager");
+                break;
+            }
         }
 
         if (choice == 1) {

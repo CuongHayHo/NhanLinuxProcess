@@ -17,6 +17,8 @@
 #include "package_mgr.h"
 #include "logger.h"
 #include "menu.h"
+#include "ui.h"
+#include "repl.h"
 
 static int run_script(char *const argv[], int *exit_code) {
     pid_t pid = fork();
@@ -162,35 +164,53 @@ int is_package_installed(const char* pkg_name) {
 void package_mgr_run(void) {
     int choice;
     char pkg_name[128];
+    extern int is_interactive;
 
     log_info("PACKAGE", "Entering Package Manager (Shell script execution)");
 
     while (1) {
-        printf("\n========================================\n");
-        printf("Package Manager\n");
-        printf("===============\n");
-        printf("1. Search Package\n");
-        printf("2. Package Information\n");
-        printf("3. Install Package\n");
-        printf("4. Remove Package\n");
-        printf("5. Safe Demonstration\n");
-        printf("6. Return\n");
-        printf("========================================\n");
-        printf("Select option: ");
-        fflush(stdout);
+        if (is_interactive) {
+            const char* package_options[] = {
+                "Search Package (Tìm kiếm gói)",
+                "Package Information (Thông tin gói)",
+                "Install Package (Cài đặt gói)",
+                "Remove Package (Gỡ bỏ gói)",
+                "Safe Demonstration (Chạy Demo an toàn)",
+                "Return (Trở về)"
+            };
+            int sel = ui_select_menu("Package Manager", package_options, 6);
+            if (sel == 5 || sel == -1) {
+                break;
+            }
+            choice = sel + 1;
+        } else {
+            printf("\n========================================\n");
+            printf("Package Manager\n");
+            printf("===============\n");
+            printf("1. Search Package\n");
+            printf("2. Package Information\n");
+            printf("3. Install Package\n");
+            printf("4. Remove Package\n");
+            printf("5. Safe Demonstration\n");
+            printf("6. Return\n");
+            printf("========================================\n");
+            printf("Select option: ");
+            fflush(stdout);
 
-        choice = read_package_choice();
-        if (choice < 1 || choice > 6) {
-            printf("\nInvalid choice. Please enter a number between 1 and 6.\n");
-            package_menu_pause();
-            continue;
-        }
+            choice = read_package_choice();
+            if (choice < 1 || choice > 6) {
+                printf("\nInvalid choice. Please enter a number between 1 and 6.\n");
+                package_menu_pause();
+                continue;
+            }
 
-        if (choice == 6) {
-            break;
+            if (choice == 6) {
+                break;
+            }
         }
 
         if (choice == 1) {
+            if (is_interactive) print_prompt_explanation("Enter package query to search");
             printf("Enter package name to search: ");
             fflush(stdout);
             if (fgets(pkg_name, sizeof(pkg_name), stdin) != NULL) {
@@ -201,6 +221,7 @@ void package_mgr_run(void) {
             }
             package_menu_pause();
         } else if (choice == 2) {
+            if (is_interactive) print_prompt_explanation("Enter package name");
             printf("Enter package name for information: ");
             fflush(stdout);
             if (fgets(pkg_name, sizeof(pkg_name), stdin) != NULL) {
@@ -211,6 +232,7 @@ void package_mgr_run(void) {
             }
             package_menu_pause();
         } else if (choice == 3) {
+            if (is_interactive) print_prompt_explanation("Enter package to install");
             printf("Enter package name to install: ");
             fflush(stdout);
             if (fgets(pkg_name, sizeof(pkg_name), stdin) != NULL) {
@@ -221,6 +243,7 @@ void package_mgr_run(void) {
             }
             package_menu_pause();
         } else if (choice == 4) {
+            if (is_interactive) print_prompt_explanation("Enter package to remove");
             printf("Enter package name to remove: ");
             fflush(stdout);
             if (fgets(pkg_name, sizeof(pkg_name), stdin) != NULL) {

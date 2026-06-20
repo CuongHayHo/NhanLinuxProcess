@@ -80,6 +80,93 @@ static int execute_system_command(char* const argv[]) {
     }
 }
 
+void print_prompt_explanation(const char* prompt_msg) {
+    if (strstr(prompt_msg, "Enter file path to create")) {
+        printf("\n\033[0;36m[Action Info] This will create a new blank file at the specified workspace path.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter file path to read")) {
+        printf("\n\033[0;36m[Action Info] This will output the text content of the specified file to the terminal.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter file path to write to")) {
+        printf("\n\033[0;36m[Action Info] This will write or overwrite new text content into the specified file.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter content to write")) {
+        printf("\n\033[0;36m[Action Info] Enter the text data to be written into the file and press ENTER.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter file path to delete")) {
+        printf("\n\033[0;36m[Action Info] This will permanently delete the specified file or directory.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter source path")) {
+        printf("\n\033[0;36m[Action Info] Enter the source file or directory path.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter destination path")) {
+        printf("\n\033[0;36m[Action Info] Enter the destination target path to copy or move to.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter old path")) {
+        printf("\n\033[0;36m[Action Info] Enter the path of the existing file/directory to rename.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter new path")) {
+        printf("\n\033[0;36m[Action Info] Enter the new name or target path.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter file path to query info")) {
+        printf("\n\033[0;36m[Action Info] This will display metadata (size, permissions, timestamps) of the file.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter directory path to create")) {
+        printf("\n\033[0;36m[Action Info] This will create a new directory (folder) at the specified path.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter permission mode")) {
+        printf("\n\033[0;36m[Action Info] Change file permissions using octal mode (e.g. 755 for rwxr-xr-x).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter start directory")) {
+        printf("\n\033[0;36m[Action Info] Specifies the directory where the filename search should begin.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter search pattern")) {
+        printf("\n\033[0;36m[Action Info] Pattern matching query (wildcards allowed, e.g. *.txt).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter archive output path")) {
+        printf("\n\033[0;36m[Action Info] Specifies the filename for the compressed tarball to create.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter source directory to archive")) {
+        printf("\n\033[0;36m[Action Info] The directory whose files and folders will be zipped/archived.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter process name or PID to search")) {
+        printf("\n\033[0;36m[Action Info] Query running processes using a process name or unique Process ID.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter PID to kill")) {
+        printf("\n\033[0;36m[Action Info] Forcefully terminate the process with the given PID using SIGKILL (9).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter PID")) {
+        printf("\n\033[0;36m[Action Info] Specifies the target Process ID (PID) to send a signal or nice change.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter signal number")) {
+        printf("\n\033[0;36m[Action Info] POSIX signal number (e.g. 15 for SIGTERM, 9 for SIGKILL).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter nice value")) {
+        printf("\n\033[0;36m[Action Info] CPU scheduling priority adjustment offset (-20 is highest, 19 is lowest).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter port to bind")) {
+        printf("\n\033[0;36m[Action Info] Port number to bind the TCP chat server (default: 8080).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter server IP") || strstr(prompt_msg, "Enter Server IP")) {
+        printf("\n\033[0;36m[Action Info] Target IP address of the TCP server (default: 127.0.0.1).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter server port") || strstr(prompt_msg, "Enter Server Port")) {
+        printf("\n\033[0;36m[Action Info] Port number where the remote TCP server is listening (default: 8080).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter host IP")) {
+        printf("\n\033[0;36m[Action Info] The hosted terminal chat server IP address (default: 127.0.0.1).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter port")) {
+        printf("\n\033[0;36m[Action Info] Port number to connect to or listen on (default: 8080).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter package query to search")) {
+        printf("\n\033[0;36m[Action Info] Query system repositories (apt/dnf) for package descriptions.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter package name")) {
+        printf("\n\033[0;36m[Action Info] Name of the package to query or inspect metadata for.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter package to install")) {
+        printf("\n\033[0;36m[Action Info] Download and install a package (requires root/sudo).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter package to remove")) {
+        printf("\n\033[0;36m[Action Info] Uninstall and clean up a package from the system (requires root/sudo).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter command to execute")) {
+        printf("\n\033[0;36m[Action Info] Run an arbitrary command directly in /bin/sh child process.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter file path to script")) {
+        printf("\n\033[0;36m[Action Info] Target shell script to be executed.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter cron expression")) {
+        printf("\n\033[0;36m[Action Info] Standard crontab formatting (e.g. '* * * * *' to run every minute).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter YYYY-MM-DD HH:MM:SS")) {
+        printf("\n\033[0;36m[Action Info] Set custom system clock time (requires root/sudo).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter interface name")) {
+        printf("\n\033[0;36m[Action Info] Specifies the network interface card (e.g. eth0, wlan0, lo) to query or modify.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter IP address and subnet in CIDR")) {
+        printf("\n\033[0;36m[Action Info] Configures the static IP address and its subnet mask bits (e.g. 192.168.1.100/24).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter host or IP to ping")) {
+        printf("\n\033[0;36m[Action Info] The address of the host you want to test connectivity to (e.g. google.com or 8.8.8.8).\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter number of packets to send")) {
+        printf("\n\033[0;36m[Action Info] Number of ICMP Echo Requests to send.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter hostname to resolve")) {
+        printf("\n\033[0;36m[Action Info] Lookup domain DNS mappings or perform reverse resolution on an IP address.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter directory path to list")) {
+        printf("\n\033[0;36m[Action Info] List the contents (files and folders) of the specified directory path.\033[0m\n");
+    } else if (strstr(prompt_msg, "Enter file path")) {
+        printf("\n\033[0;36m[Action Info] This is the target file or directory path whose attributes/permissions will be modified.\033[0m\n");
+    }
+    fflush(stdout);
+}
+
 /* Helper to prompt for missing arguments if not supplied inline */
 static int get_arg_or_prompt(char* dest, size_t dest_len, int arg_idx, int argc, char** argv, const char* prompt_msg) {
     if (arg_idx < argc) {
@@ -87,6 +174,7 @@ static int get_arg_or_prompt(char* dest, size_t dest_len, int arg_idx, int argc,
         dest[dest_len - 1] = '\0';
         return 0;
     }
+    print_prompt_explanation(prompt_msg);
     if (is_interactive) {
         char* input = linenoise(prompt_msg);
         if (input == NULL) {

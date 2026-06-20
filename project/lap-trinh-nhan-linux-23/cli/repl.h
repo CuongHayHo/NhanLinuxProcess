@@ -26,4 +26,10 @@ void repl_run(void);
  */
 void repl_execute_command(const char* cmd_line);
 
+/**
+ * Prints color-coded explanatory information tags ([Action Info] <description>) 
+ * before prompting the user for missing arguments.
+ */
+void print_prompt_explanation(const char* prompt_msg);
+
 #endif /* REPL_H */

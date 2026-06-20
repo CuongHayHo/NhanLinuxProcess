@@ -5349,3 +5349,138 @@
 2026-06-20 18:16:36 [INFO] [SHELL] Script executed
 2026-06-20 18:16:36 [INFO] [SHELL] Exit status: 127
 2026-06-20 18:16:36 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:17:42 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 18:17:54 [INFO] [REPL] Command received: 'package' (args count: 0) under context 'main'
+2026-06-20 18:18:01 [INFO] [REPL] Command received: 'search' (args count: 0) under context 'package'
+2026-06-20 18:18:08 [INFO] [REPL] Command received: 'info' (args count: 0) under context 'package'
+2026-06-20 18:18:13 [INFO] [REPL] Command received: 'remove' (args count: 0) under context 'package'
+2026-06-20 18:18:55 [INFO] [REPL] Command received: 'time' (args count: 0) under context 'main'
+2026-06-20 18:19:24 [INFO] [REPL] Command received: 'kernel' (args count: 0) under context 'main'
+2026-06-20 18:19:30 [INFO] [REPL] Command received: 'info' (args count: 0) under context 'kernel'
+2026-06-20 18:19:30 [INFO] [KERNEL] Kernel module information requested
+2026-06-20 18:19:30 [ERROR] [KERNEL] Read failure: failed to open /proc/sysmgr (errno 2)
+2026-06-20 18:19:41 [INFO] [REPL] Command received: 'file' (args count: 0) under context 'main'
+2026-06-20 18:19:46 [INFO] [REPL] Command received: 'list' (args count: 0) under context 'file'
+2026-06-20 18:19:46 [INFO] [FILE] Directory listed: .
+2026-06-20 18:20:15 [INFO] [REPL] Command received: 'archive' (args count: 0) under context 'file'
+2026-06-20 18:20:23 [INFO] [REPL] Command received: 'back' (args count: 0) under context 'file'
+2026-06-20 18:20:28 [INFO] [REPL] Command received: 'network' (args count: 0) under context 'main'
+2026-06-20 18:20:32 [INFO] [REPL] Command received: 'ping' (args count: 0) under context 'network'
+2026-06-20 18:20:42 [INFO] [REPL] Command received: 'dns' (args count: 0) under context 'network'
+2026-06-20 18:21:18 [INFO] [REPL] Command received: 'help' (args count: 0) under context 'main'
+2026-06-20 18:22:17 [INFO] [REPL] Command received: 'file' (args count: 0) under context 'main'
+2026-06-20 18:22:24 [INFO] [REPL] Command received: 'create' (args count: 0) under context 'file'
+2026-06-20 18:25:06 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 18:25:06 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:25:07 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 18:25:07 [INFO] [SOCKET] TCP Client launched
+2026-06-20 18:25:07 [INFO] [SOCKET] Connection established
+2026-06-20 18:25:07 [INFO] [SOCKET] Socket process started
+2026-06-20 18:25:07 [INFO] [SOCKET] Connection established
+2026-06-20 18:25:07 [INFO] [SOCKET] Socket process started
+2026-06-20 18:25:08 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 18:25:08 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:25:08 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 18:25:08 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:25:08 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 18:25:08 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:25:08 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 18:25:08 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:25:08 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:25:08 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:25:08 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 18:25:08 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:25:08 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:25:08 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:25:08 [INFO] [SOCKET] Disconnect
+2026-06-20 18:25:08 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:25:08 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 18:25:08 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 18:25:09 [INFO] [SOCKET] Client connected: 127.0.0.1:59862
+2026-06-20 18:25:09 [INFO] [SOCKET] Client connected: 127.0.0.1:59864
+2026-06-20 18:25:09 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:59862
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Client connected: 127.0.0.1:59880
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:59864
+2026-06-20 18:25:09 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:59880
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:25:09 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:25:09 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:25:09 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:25:09 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:59864
+2026-06-20 18:25:09 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:59880
+2026-06-20 18:25:09 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:59862
+2026-06-20 18:25:09 [INFO] [SOCKET] Terminal launched
+2026-06-20 18:25:09 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 18:25:09 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 18:25:09 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:25:10 [INFO] [SOCKET] Connection established
+2026-06-20 18:25:10 [INFO] [SOCKET] Socket process started
+2026-06-20 18:25:10 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:25:10 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:25:10 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:25:10 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-20 18:25:10 [INFO] [SHELL] Child process created (PID: 33188)
+2026-06-20 18:25:10 [INFO] [SHELL] Command executed
+2026-06-20 18:25:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:25:10 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-20 18:25:10 [INFO] [SHELL] Child process created (PID: 33189)
+2026-06-20 18:25:10 [INFO] [SHELL] Command executed
+2026-06-20 18:25:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:25:10 [INFO] [SHELL] Command entered: 'ls'
+2026-06-20 18:25:10 [INFO] [SHELL] Child process created (PID: 33190)
+2026-06-20 18:25:10 [INFO] [SHELL] Command executed
+2026-06-20 18:25:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:25:10 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-20 18:25:10 [INFO] [SHELL] Child process created (PID: 33191)
+2026-06-20 18:25:10 [INFO] [SHELL] Command executed
+2026-06-20 18:25:10 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:25:10 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:25:10 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-20 18:25:10 [INFO] [SHELL] Child process created (PID: 33192)
+2026-06-20 18:25:10 [INFO] [SHELL] Script executed
+2026-06-20 18:25:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:25:10 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-20 18:25:10 [INFO] [SHELL] Child process created (PID: 33196)
+2026-06-20 18:25:10 [INFO] [SHELL] Script executed
+2026-06-20 18:25:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:25:10 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-20 18:25:10 [INFO] [SHELL] Child process created (PID: 33202)
+2026-06-20 18:25:10 [INFO] [SHELL] Script executed
+2026-06-20 18:25:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:25:10 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-20 18:25:10 [INFO] [SHELL] Child process created (PID: 33206)
+2026-06-20 18:25:10 [INFO] [SHELL] Script executed
+2026-06-20 18:25:10 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:25:10 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:31:00 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 18:31:00 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 18:31:00 [INFO] [FILE] File created: tests/test_dir/file1.txt
+2026-06-20 18:31:00 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1.txt
+2026-06-20 18:31:00 [INFO] [FILE] File copied: tests/test_dir/file1.txt to tests/test_dir/file1_copy.txt
+2026-06-20 18:31:00 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_copy.txt
+2026-06-20 18:31:00 [INFO] [FILE] File moved: tests/test_dir/file1_copy.txt to tests/test_dir/file1_moved.txt
+2026-06-20 18:31:00 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_moved.txt
+2026-06-20 18:31:00 [INFO] [FILE] File moved: tests/test_dir/file1_moved.txt to tests/test_dir/file1_renamed.txt
+2026-06-20 18:31:00 [INFO] [FILE] Read 17 bytes from file: tests/test_dir/file1_renamed.txt
+2026-06-20 18:31:00 [INFO] [FILE] Directory listed: tests/test_dir
+2026-06-20 18:31:00 [INFO] [FILE] Permission changed: tests/test_dir/file1_renamed.txt to 644
+2026-06-20 18:31:00 [INFO] [FILE] Archive created: tests/test_dir/archive.tar.gz
+2026-06-20 18:31:00 [INFO] [FILE] File removed: tests/test_dir/file1.txt
+2026-06-20 18:31:00 [INFO] [FILE] File removed: tests/test_dir/file1_renamed.txt
+2026-06-20 18:31:00 [INFO] [FILE] File removed: tests/test_dir/archive.tar.gz
+2026-06-20 18:31:00 [INFO] [FILE] File removed: tests/test_dir
+2026-06-20 18:31:04 [INFO] [PACKAGE] Package search
+2026-06-20 18:31:04 [INFO] [PACKAGE] Package information
+2026-06-20 18:31:04 [INFO] [PACKAGE] Package information
+2026-06-20 18:31:06 [ERROR] [PACKAGE] Info query failed: shell script returned status 1

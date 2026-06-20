@@ -18,6 +18,7 @@
 #include "kernel_mgr.h"
 #include "shell_mgr.h"
 #include "repl.h"
+#include "ui.h"
 
 #include <string.h>
 
@@ -36,16 +37,35 @@ int main(int argc, char* argv[]) {
         log_info("SYSTEM", "Application started in classic mode");
 
         while (1) {
-            menu_clear_screen();
-            menu_display_main();
-            choice = menu_read_choice();
+            if (is_interactive) {
+                const char* main_options[] = {
+                    "File Manager (Quản lý file)",
+                    "Process Manager (Quản lý tiến trình)",
+                    "Network Manager (Quản lý mạng)",
+                    "Socket Manager (Quản lý Socket)",
+                    "Package Manager (Quản lý gói phần mềm)",
+                    "Shell Manager (Quản lý Shell)",
+                    "Kernel Module (Quản lý Kernel)",
+                    "Exit (Thoát)"
+                };
+                int sel = ui_select_menu("Linux System Manager", main_options, 8);
+                if (sel == 7 || sel == -1) {
+                    choice = 0;
+                } else {
+                    choice = sel + 1;
+                }
+            } else {
+                menu_clear_screen();
+                menu_display_main();
+                choice = menu_read_choice();
 
-            /* Input Validation: check for non-numeric, empty, or out-of-bounds inputs */
-            if (choice < 0 || choice > 7) {
-                printf("\n%sInvalid input. Please choose a number between 0 and 7.%s\n", 
-                       ANSI_COLOR_RED, ANSI_COLOR_RESET);
-                menu_pause();
-                continue;
+                /* Input Validation: check for non-numeric, empty, or out-of-bounds inputs */
+                if (choice < 0 || choice > 7) {
+                    printf("\n%sInvalid input. Please choose a number between 0 and 7.%s\n", 
+                           ANSI_COLOR_RED, ANSI_COLOR_RESET);
+                    menu_pause();
+                    continue;
+                }
             }
 
             /* Dispatch Loop */

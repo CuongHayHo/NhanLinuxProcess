@@ -16,6 +16,8 @@
 #include "config.h"
 #include <unistd.h>
 #include "terminal_launcher.h"
+#include "ui.h"
+#include "repl.h"
 
 static int read_socket_choice(void) {
     char input_buf[128];
@@ -47,36 +49,53 @@ static void socket_menu_pause(void) {
 
 void socket_mgr_run(void) {
     int choice;
+    extern int is_interactive;
     log_info("SOCKET", "Socket Manager submenu invoked.");
 
     while (1) {
-        printf("\n========================================\n");
-        printf("             Socket Manager\n");
-        printf("========================================\n");
-        printf("1. Run TCP Server\n");
-        printf("2. Run TCP Client\n");
-        printf("3. Multi Client Echo\n");
-        printf("4. Socket Chat\n");
-        printf("0. Return\n");
-        printf("========================================\n");
-        printf("Select option: ");
-        fflush(stdout);
+        if (is_interactive) {
+            const char* socket_options[] = {
+                "Run TCP Server (Chạy TCP Server)",
+                "Run TCP Client (Chạy TCP Client)",
+                "Multi Client Echo (Echo nhiều Client)",
+                "Socket Chat (Phòng chat Socket)",
+                "Return (Trở về)"
+            };
+            int sel = ui_select_menu("Socket Manager", socket_options, 5);
+            if (sel == 4 || sel == -1) {
+                log_info("SOCKET", "Socket Manager submenu closed.");
+                break;
+            }
+            choice = sel + 1;
+        } else {
+            printf("\n========================================\n");
+            printf("             Socket Manager\n");
+            printf("========================================\n");
+            printf("1. Run TCP Server\n");
+            printf("2. Run TCP Client\n");
+            printf("3. Multi Client Echo\n");
+            printf("4. Socket Chat\n");
+            printf("0. Return\n");
+            printf("========================================\n");
+            printf("Select option: ");
+            fflush(stdout);
 
-        choice = read_socket_choice();
+            choice = read_socket_choice();
 
-        if (choice < 0) {
-            continue;
-        }
+            if (choice < 0) {
+                continue;
+            }
 
-        if (choice > 4) {
-            printf("\nInvalid input. Please choose a number between 0 and 4.\n");
-            socket_menu_pause();
-            continue;
-        }
+            if (choice > 4) {
+                printf("\nInvalid input. Please choose a number between 0 and 4.\n");
+                socket_menu_pause();
+                continue;
+            }
 
-        if (choice == 0) {
-            log_info("SOCKET", "Socket Manager submenu closed.");
-            break;
+            if (choice == 0) {
+                log_info("SOCKET", "Socket Manager submenu closed.");
+                break;
+            }
         }
 
         const char* sysmgr_cmd = (access("./sysmgr", F_OK) == 0) ? "./sysmgr" : "sysmgr";
@@ -84,6 +103,7 @@ void socket_mgr_run(void) {
         if (choice == 1) {
             char port_buf[128];
             int port = DEFAULT_PORT;
+            if (is_interactive) print_prompt_explanation("Enter port to bind");
             printf("Enter port to bind [%d]: ", DEFAULT_PORT);
             fflush(stdout);
             if (fgets(port_buf, sizeof(port_buf), stdin) != NULL) {
@@ -105,6 +125,7 @@ void socket_mgr_run(void) {
 
             strcpy(server_ip, DEFAULT_IP);
 
+            if (is_interactive) print_prompt_explanation("Enter Server IP");
             printf("Enter Server IP [%s]: ", DEFAULT_IP);
             fflush(stdout);
             if (fgets(ip_buf, sizeof(ip_buf), stdin) != NULL) {
@@ -115,6 +136,7 @@ void socket_mgr_run(void) {
                 }
             }
 
+            if (is_interactive) print_prompt_explanation("Enter Server Port");
             printf("Enter Server Port [%d]: ", DEFAULT_PORT);
             fflush(stdout);
             if (fgets(port_buf, sizeof(port_buf), stdin) != NULL) {
@@ -132,6 +154,7 @@ void socket_mgr_run(void) {
         } else if (choice == 3) {
             char port_buf[128];
             int port = DEFAULT_PORT;
+            if (is_interactive) print_prompt_explanation("Enter port to bind");
             printf("Enter port to bind [%d]: ", DEFAULT_PORT);
             fflush(stdout);
             if (fgets(port_buf, sizeof(port_buf), stdin) != NULL) {
@@ -148,32 +171,47 @@ void socket_mgr_run(void) {
         } else if (choice == 4) {
             int chat_choice;
             while (1) {
-                printf("\n========================================\n");
-                printf("              Socket Chat\n");
-                printf("========================================\n");
-                printf("1. Host Chat\n");
-                printf("2. Join Chat\n");
-                printf("3. Open Host + Client Demo\n");
-                printf("0. Return\n");
-                printf("========================================\n");
-                printf("Select option: ");
-                fflush(stdout);
+                if (is_interactive) {
+                    const char* chat_options[] = {
+                        "Host Chat (Tạo phòng chat)",
+                        "Join Chat (Tham gia phòng chat)",
+                        "Open Host + Client Demo (Mở Demo Host + Client)",
+                        "Return (Trở về)"
+                    };
+                    int sel = ui_select_menu("Socket Chat Options", chat_options, 4);
+                    if (sel == 3 || sel == -1) {
+                        break;
+                    }
+                    chat_choice = sel + 1;
+                } else {
+                    printf("\n========================================\n");
+                    printf("              Socket Chat\n");
+                    printf("========================================\n");
+                    printf("1. Host Chat\n");
+                    printf("2. Join Chat\n");
+                    printf("3. Open Host + Client Demo\n");
+                    printf("0. Return\n");
+                    printf("========================================\n");
+                    printf("Select option: ");
+                    fflush(stdout);
 
-                chat_choice = read_socket_choice();
-                if (chat_choice < 0) {
-                    continue;
-                }
-                if (chat_choice > 3) {
-                    printf("\nInvalid input. Please choose a number between 0 and 3.\n");
-                    continue;
-                }
-                if (chat_choice == 0) {
-                    break;
+                    chat_choice = read_socket_choice();
+                    if (chat_choice < 0) {
+                        continue;
+                    }
+                    if (chat_choice > 3) {
+                        printf("\nInvalid input. Please choose a number between 0 and 3.\n");
+                        continue;
+                    }
+                    if (chat_choice == 0) {
+                        break;
+                    }
                 }
 
                 if (chat_choice == 1) {
                     char port_buf[128];
                     int port = DEFAULT_PORT;
+                    if (is_interactive) print_prompt_explanation("Enter port to bind");
                     printf("Enter port to bind [%d]: ", DEFAULT_PORT);
                     fflush(stdout);
                     if (fgets(port_buf, sizeof(port_buf), stdin) != NULL) {
@@ -196,6 +234,7 @@ void socket_mgr_run(void) {
 
                     strcpy(server_ip, DEFAULT_IP);
 
+                    if (is_interactive) print_prompt_explanation("Enter Server IP");
                     printf("Enter Server IP [%s]: ", DEFAULT_IP);
                     fflush(stdout);
                     if (fgets(ip_buf, sizeof(ip_buf), stdin) != NULL) {
@@ -206,6 +245,7 @@ void socket_mgr_run(void) {
                         }
                     }
 
+                    if (is_interactive) print_prompt_explanation("Enter Server Port");
                     printf("Enter Server Port [%d]: ", DEFAULT_PORT);
                     fflush(stdout);
                     if (fgets(port_buf, sizeof(port_buf), stdin) != NULL) {

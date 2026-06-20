@@ -13,6 +13,16 @@
 #include <sys/types.h>
 #include "file_mgr.h"
 
+/* Dummy definitions for CLI and TUI subsystems to satisfy links in file_mgr.o */
+int is_interactive = 0;
+int ui_select_menu(const char* title, const char* options[], int options_count) {
+    (void)title; (void)options; (void)options_count;
+    return -1;
+}
+void print_prompt_explanation(const char* prompt_msg) {
+    (void)prompt_msg;
+}
+
 int main(void) {
     const char* dir_path = "tests/test_dir";
     const char* file1 = "tests/test_dir/file1.txt";

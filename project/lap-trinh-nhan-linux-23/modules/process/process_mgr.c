@@ -23,6 +23,8 @@
 #include "process_mgr.h"
 #include "logger.h"
 #include "process_mgr_internal.h"
+#include "ui.h"
+#include "repl.h"
 #include "demo/process_demo.h"
 
 /* Static helper prototypes */
@@ -60,41 +62,66 @@ static void process_menu_pause(void) {
 
 void process_mgr_run(void) {
     int choice;
+    extern int is_interactive;
     log_info("PROCESS", "Process manager interactive loop started.");
 
     while (1) {
-        printf("\n========================================\n");
-        printf("           Process Manager\n");
-        printf("========================================\n");
-        printf("1. List Processes\n");
-        printf("2. Search Process\n");
-        printf("3. Send Signal\n");
-        printf("4. Change Priority\n");
-        printf("----------------------------------------\n");
-        printf("5. Fork Demo\n");
-        printf("6. Exec Demo\n");
-        printf("7. Wait Demo\n");
-        printf("8. Zombie Demo\n");
-        printf("9. Orphan Demo\n");
-        printf("10. Daemon Demo\n");
-        printf("11. Initialize Signals\n");
-        printf("12. Restore Default Signals\n");
-        printf("0. Return\n");
-        printf("========================================\n");
-        printf("Select option: ");
-        fflush(stdout);
+        if (is_interactive) {
+            const char* process_options[] = {
+                "List Processes (Xem danh sách tiến trình)",
+                "Search Process (Tìm kiếm tiến trình)",
+                "Send Signal (Gửi tín hiệu/Kill)",
+                "Change Priority (Đổi độ ưu tiên Nice)",
+                "Fork Demo (Demo tạo tiến trình fork)",
+                "Exec Demo (Demo thực thi exec)",
+                "Wait Demo (Demo chờ wait)",
+                "Zombie Demo (Demo tiến trình Zombie)",
+                "Orphan Demo (Demo tiến trình mồ côi)",
+                "Daemon Demo (Demo tiến trình chạy ngầm)",
+                "Initialize Signals (Khởi tạo tín hiệu)",
+                "Restore Default Signals (Khôi phục tín hiệu mặc định)",
+                "Return (Trở về)"
+            };
+            int sel = ui_select_menu("Process Manager", process_options, 13);
+            if (sel == 12 || sel == -1) {
+                log_info("PROCESS", "Process manager interactive loop ended.");
+                break;
+            }
+            choice = sel + 1;
+        } else {
+            printf("\n========================================\n");
+            printf("           Process Manager\n");
+            printf("========================================\n");
+            printf("1. List Processes\n");
+            printf("2. Search Process\n");
+            printf("3. Send Signal\n");
+            printf("4. Change Priority\n");
+            printf("----------------------------------------\n");
+            printf("5. Fork Demo\n");
+            printf("6. Exec Demo\n");
+            printf("7. Wait Demo\n");
+            printf("8. Zombie Demo\n");
+            printf("9. Orphan Demo\n");
+            printf("10. Daemon Demo\n");
+            printf("11. Initialize Signals\n");
+            printf("12. Restore Default Signals\n");
+            printf("0. Return\n");
+            printf("========================================\n");
+            printf("Select option: ");
+            fflush(stdout);
 
-        choice = read_process_choice();
+            choice = read_process_choice();
 
-        if (choice < 0 || choice > 12) {
-            printf("\nInvalid input. Please choose a number between 0 and 12.\n");
-            process_menu_pause();
-            continue;
-        }
+            if (choice < 0 || choice > 12) {
+                printf("\nInvalid input. Please choose a number between 0 and 12.\n");
+                process_menu_pause();
+                continue;
+            }
 
-        if (choice == 0) {
-            log_info("PROCESS", "Process manager interactive loop ended.");
-            break;
+            if (choice == 0) {
+                log_info("PROCESS", "Process manager interactive loop ended.");
+                break;
+            }
         }
 
         switch (choice) {
@@ -104,6 +131,7 @@ void process_mgr_run(void) {
                 break;
             case 2: {
                 char query[128];
+                if (is_interactive) print_prompt_explanation("Enter process name or PID to search");
                 printf("Enter PID or Process Name to search: ");
                 fflush(stdout);
                 if (fgets(query, sizeof(query), stdin) != NULL) {
@@ -116,11 +144,13 @@ void process_mgr_run(void) {
             case 3: {
                 int pid_in = 0, sig_in = 0;
                 char buf[128];
+                if (is_interactive) print_prompt_explanation("Enter PID");
                 printf("Enter target PID: ");
                 fflush(stdout);
                 if (fgets(buf, sizeof(buf), stdin) != NULL) {
                     pid_in = atoi(buf);
                 }
+                if (is_interactive) print_prompt_explanation("Enter signal number");
                 printf("Enter signal number (e.g. 15 for SIGTERM, 9 for SIGKILL, 19 for SIGSTOP, 18 for SIGCONT): ");
                 fflush(stdout);
                 if (fgets(buf, sizeof(buf), stdin) != NULL) {
@@ -133,11 +163,13 @@ void process_mgr_run(void) {
             case 4: {
                 int pid_in = 0, nice_in = 0;
                 char buf[128];
+                if (is_interactive) print_prompt_explanation("Enter PID");
                 printf("Enter target PID: ");
                 fflush(stdout);
                 if (fgets(buf, sizeof(buf), stdin) != NULL) {
                     pid_in = atoi(buf);
                 }
+                if (is_interactive) print_prompt_explanation("Enter nice value");
                 printf("Enter new nice value (-20 to 19): ");
                 fflush(stdout);
                 if (fgets(buf, sizeof(buf), stdin) != NULL) {

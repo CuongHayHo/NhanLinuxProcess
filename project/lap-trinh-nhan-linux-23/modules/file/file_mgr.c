@@ -17,6 +17,8 @@
 #include "file_mgr.h"
 #include "logger.h"
 #include "menu.h"
+#include "ui.h"
+#include "repl.h"
 
 static int run_file_script(char *const argv[], int *exit_code) {
     pid_t pid = fork();
@@ -309,43 +311,69 @@ void file_mgr_run(void) {
     char path2[256];
     char mode[64];
     char data[1024];
+    extern int is_interactive;
 
     log_info("FILE", "File manager interactive loop started.");
 
     while (1) {
-        printf("\n========================================\n");
-        printf("File Manager\n");
-        printf("============\n");
-        printf("1. Create File\n");
-        printf("2. Read File\n");
-        printf("3. Write File\n");
-        printf("4. Delete File\n");
-        printf("5. Rename File\n");
-        printf("6. Copy File\n");
-        printf("7. Move File\n");
-        printf("8. File Information\n");
-        printf("9. Directory Listing\n");
-        printf("10. Create Directory\n");
-        printf("11. Change Permission\n");
-        printf("12. Search Files\n");
-        printf("13. Archive\n");
-        printf("14. Return\n");
-        printf("========================================\n");
-        printf("Select option: ");
-        fflush(stdout);
+        if (is_interactive) {
+            const char* file_options[] = {
+                "Create File (Tạo file)",
+                "Read File (Đọc file)",
+                "Write File (Ghi đè file)",
+                "Delete File (Xóa file)",
+                "Rename File (Đổi tên file)",
+                "Copy File (Sao chép file)",
+                "Move File (Di chuyển file)",
+                "File Information (Thông tin file)",
+                "Directory Listing (Xem thư mục)",
+                "Create Directory (Tạo thư mục)",
+                "Change Permission (Đổi quyền truy cập)",
+                "Search Files (Tìm kiếm file)",
+                "Archive (Nén/lưu trữ)",
+                "Return (Trở về)"
+            };
+            int sel = ui_select_menu("File Manager", file_options, 14);
+            if (sel == 13 || sel == -1) {
+                break;
+            }
+            choice = sel + 1;
+        } else {
+            printf("\n========================================\n");
+            printf("File Manager\n");
+            printf("============\n");
+            printf("1. Create File\n");
+            printf("2. Read File\n");
+            printf("3. Write File\n");
+            printf("4. Delete File\n");
+            printf("5. Rename File\n");
+            printf("6. Copy File\n");
+            printf("7. Move File\n");
+            printf("8. File Information\n");
+            printf("9. Directory Listing\n");
+            printf("10. Create Directory\n");
+            printf("11. Change Permission\n");
+            printf("12. Search Files\n");
+            printf("13. Archive\n");
+            printf("14. Return\n");
+            printf("========================================\n");
+            printf("Select option: ");
+            fflush(stdout);
 
-        choice = read_file_choice();
-        if (choice < 1 || choice > 14) {
-            printf("\nInvalid choice. Please enter a number between 1 and 14.\n");
-            file_menu_pause();
-            continue;
-        }
+            choice = read_file_choice();
+            if (choice < 1 || choice > 14) {
+                printf("\nInvalid choice. Please enter a number between 1 and 14.\n");
+                file_menu_pause();
+                continue;
+            }
 
-        if (choice == 14) {
-            break;
+            if (choice == 14) {
+                break;
+            }
         }
 
         if (choice == 1) {
+            if (is_interactive) print_prompt_explanation("Enter file path to create: ");
             printf("Enter file path to create: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
@@ -354,6 +382,7 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 2) {
+            if (is_interactive) print_prompt_explanation("Enter file path to read: ");
             printf("Enter file path to read: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
@@ -366,10 +395,12 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 3) {
+            if (is_interactive) print_prompt_explanation("Enter file path to write to: ");
             printf("Enter file path to write to: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
                 path[strcspn(path, "\n")] = '\0';
+                if (is_interactive) print_prompt_explanation("Enter content to write: ");
                 printf("Enter content to write: ");
                 fflush(stdout);
                 if (fgets(data, sizeof(data), stdin) != NULL) {
@@ -379,6 +410,7 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 4) {
+            if (is_interactive) print_prompt_explanation("Enter file path to delete: ");
             printf("Enter file path to delete: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
@@ -387,10 +419,12 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 5) {
+            if (is_interactive) print_prompt_explanation("Enter old path: ");
             printf("Enter old path: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
                 path[strcspn(path, "\n")] = '\0';
+                if (is_interactive) print_prompt_explanation("Enter new path: ");
                 printf("Enter new path: ");
                 fflush(stdout);
                 if (fgets(path2, sizeof(path2), stdin) != NULL) {
@@ -400,10 +434,12 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 6) {
+            if (is_interactive) print_prompt_explanation("Enter source path: ");
             printf("Enter source path: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
                 path[strcspn(path, "\n")] = '\0';
+                if (is_interactive) print_prompt_explanation("Enter destination path: ");
                 printf("Enter destination path: ");
                 fflush(stdout);
                 if (fgets(path2, sizeof(path2), stdin) != NULL) {
@@ -413,10 +449,12 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 7) {
+            if (is_interactive) print_prompt_explanation("Enter source path: ");
             printf("Enter source path: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
                 path[strcspn(path, "\n")] = '\0';
+                if (is_interactive) print_prompt_explanation("Enter destination path: ");
                 printf("Enter destination path: ");
                 fflush(stdout);
                 if (fgets(path2, sizeof(path2), stdin) != NULL) {
@@ -426,6 +464,7 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 8) {
+            if (is_interactive) print_prompt_explanation("Enter file path to query info: ");
             printf("Enter file path to query info: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
@@ -435,6 +474,7 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 9) {
+            if (is_interactive) print_prompt_explanation("Enter directory path to list: ");
             printf("Enter directory path to list: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
@@ -443,6 +483,7 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 10) {
+            if (is_interactive) print_prompt_explanation("Enter directory path to create: ");
             printf("Enter directory path to create: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
@@ -451,10 +492,12 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 11) {
+            if (is_interactive) print_prompt_explanation("Enter file path: ");
             printf("Enter file path: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
                 path[strcspn(path, "\n")] = '\0';
+                if (is_interactive) print_prompt_explanation("Enter permission mode (e.g. 755, 644, +x): ");
                 printf("Enter permission mode (e.g. 755, 644, +x): ");
                 fflush(stdout);
                 if (fgets(mode, sizeof(mode), stdin) != NULL) {
@@ -464,10 +507,12 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 12) {
+            if (is_interactive) print_prompt_explanation("Enter start directory: ");
             printf("Enter start directory: ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
                 path[strcspn(path, "\n")] = '\0';
+                if (is_interactive) print_prompt_explanation("Enter search pattern (e.g. *.txt): ");
                 printf("Enter search pattern (e.g. *.txt): ");
                 fflush(stdout);
                 if (fgets(path2, sizeof(path2), stdin) != NULL) {
@@ -477,10 +522,12 @@ void file_mgr_run(void) {
             }
             file_menu_pause();
         } else if (choice == 13) {
+            if (is_interactive) print_prompt_explanation("Enter archive output path (e.g. out.tar.gz): ");
             printf("Enter archive output path (e.g. out.tar.gz): ");
             fflush(stdout);
             if (fgets(path, sizeof(path), stdin) != NULL) {
                 path[strcspn(path, "\n")] = '\0';
+                if (is_interactive) print_prompt_explanation("Enter source directory to archive: ");
                 printf("Enter target directory to archive: ");
                 fflush(stdout);
                 if (fgets(path2, sizeof(path2), stdin) != NULL) {
