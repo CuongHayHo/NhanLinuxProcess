@@ -47,70 +47,55 @@ Dự án được cấu trúc chặt chẽ quanh 7 module cốt lõi theo đúng
 
 ## 4. Hướng dẫn Build (Build Instructions)
 
-Build toàn bộ dự án:
+Build toàn bộ dự án và các chương trình phụ trợ (sysmgr, socket binaries):
 ```bash
 make clean && make
 ```
 
 Build các module kiểm thử riêng lẻ:
 ```bash
-make test-package    # Build test package manager
-make test-shell      # Build test shell manager
-make test-time_sync  # Build test time synchronization
+make test-file       # Build kiểm thử File Manager
+make test-process    # Build kiểm thử Process Manager
+make test-network    # Build kiểm thử Network Manager
+make test-package    # Build kiểm thử Package Manager
+make test-socket     # Build kiểm thử Socket Manager
+make test-kernel     # Build kiểm thử Kernel Manager
+make test-shell      # Build kiểm thử Shell Manager
+make test-logger     # Build kiểm thử POSIX Logger
 ```
 
 ---
 
 ## 5. Hướng dẫn Chạy Test (Test Instructions)
 
-Chạy bộ kiểm thử tự động của Package Manager:
+Chạy các bộ kiểm thử tự động tương ứng:
 ```bash
+./tests/file_test
+./tests/process_test
+./tests/network_test
 ./tests/package_test
-```
-
-Chạy bộ kiểm thử tự động của Shell Manager:
-```bash
+./tests/socket_test
+./tests/kernel_test
 ./tests/shell_test
-```
-
-Chạy bộ kiểm thử đồng bộ thời gian Internet:
-```bash
-./tests/time_sync_test
+./tests/logger_test
 ```
 
 ---
 
-## 6. Ảnh chụp màn hình (Screenshots)
+## 6. Giao diện Người dùng (User Interface Modes)
 
-### Giao diện Menu chính (Main Menu TUI)
-```text
-========================================
-      Linux System Manager (v0.8.0)
-========================================
-1. File Manager
-2. Process Manager
-3. Network Manager
-4. Socket Manager
-5. Package Manager
-6. Shell Manager
-7. Kernel Module
-0. Exit
-----------------------------------------
-Select option: 
-```
+Dự án hỗ trợ 3 chế độ giao diện khác nhau nhằm đem lại trải nghiệm quản trị Linux hiện đại và tối ưu:
 
-### Giao diện Menu Quản lý Kernel Module (Kernel Module Submenu)
-```text
-========================================
-Kernel Module
-========================================
-1. Show Module Information
-2. Load Module
-3. Unload Module
-4. Show Network Stack Overview
-5. Show sk_buff Overview
-6. Show NAPI Overview
-0. Return
-========================================
-Select option: 
-```
+### A. Chế độ TUI Interactive Menu (Arrow-key Selection)
+Khi ứng dụng khởi chạy ở chế độ cổ điển (`./sysmgr --classic`), toàn bộ Menu chính, các Submenu của từng Module, và các câu hỏi xác nhận (ví dụ: xác nhận tải kernel module) đều tự động nhận diện và sử dụng phím mũi tên `UP`/`DOWN` để di chuyển và `ENTER` để chọn mục thay vì gõ số thủ công.
+
+*Nhãn giải thích hành động:* Khi người dùng chọn một tác vụ yêu cầu tham số bổ sung, hệ thống sẽ tự động hiển thị mô tả trực quan và ý nghĩa của hành động bằng màu xanh Cyan (`[Action Info] <mô tả>`) ngay trước lời nhắc nhập dữ liệu.
+
+### B. Chế độ CLI REPL hiện đại (Mặc định)
+Khi chạy lệnh `./sysmgr` không có tham số, chương trình sẽ khởi chạy chế độ Command Line REPL chuyên nghiệp:
+*   **Gợi ý lệnh (Auto-suggestions & Autocomplete):** Gõ `/` để mở bảng gợi ý phím nóng và lệnh. Bấm phím `TAB` hoặc phím mũi tên sang phải để tự động hoàn thành lệnh. Bảng gợi ý hỗ trợ hiển thị tối đa lên đến 16 gợi ý đồng thời.
+*   **Termios raw mode:** Điều hướng và sửa lỗi văn bản trực tiếp bằng phím mũi tên và phím `BACKSPACE`.
+*   **Lịch sử lệnh (History command):** Sử dụng mũi tên lên/xuống để duyệt lại lịch sử lệnh đã gõ.
+
+### C. Chế độ non-interactive CLI (Tương thích Scripting)
+Khi chạy dạng `./sysmgr [Module] [Command] [Args]`, ứng dụng sẽ tự động vô hiệu hóa chế độ tương tác (`is_interactive = 0`), chạy lệnh trực tiếp và in kết quả ra thiết bị đầu ra chuẩn (stdout) để phục vụ cho viết script tự động hóa hoặc tích hợp giao diện GUI bên thứ ba.
