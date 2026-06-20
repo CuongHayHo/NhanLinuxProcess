@@ -11,6 +11,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <limits.h>
+#include <sys/stat.h>
 #include "menu.h"
 #include "logger.h"
 #include "file_mgr.h"
@@ -38,6 +39,9 @@ int main(int argc, char* argv[]) {
             }
         }
     }
+
+    /* Ensure the log directory exists; logger uses open() which won't create it */
+    mkdir("logs", 0755);
 
     int classic_mode = 0;
     for (int i = 1; i < argc; i++) {

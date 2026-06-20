@@ -28,7 +28,7 @@
 #define COMPACT_BUF_SIZE    256
 
 /* Default Ports and IPs */
-#define DEFAULT_PORT        9099
+#define DEFAULT_PORT        8080
 #define DEFAULT_IP          "127.0.0.1"
 
 /* Log Locations */
