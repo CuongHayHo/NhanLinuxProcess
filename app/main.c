@@ -8,6 +8,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <limits.h>
 #include "menu.h"
 #include "logger.h"
 #include "file_mgr.h"
@@ -20,9 +23,22 @@
 #include "repl.h"
 #include "ui.h"
 
-#include <string.h>
-
 int main(int argc, char* argv[]) {
+    /* Ensure working directory is set to the repository root for relative path resolution */
+    if (argv[0]) {
+        char exe_path[PATH_MAX];
+        if (realpath(argv[0], exe_path)) {
+            char *dir = strrchr(exe_path, '/');
+            if (dir) {
+                *dir = '\0';
+                if (chdir(exe_path) != 0) {
+                    /* If chdir fails, log it but continue anyway */
+                    fprintf(stderr, "Warning: Failed to change to %s\n", exe_path);
+                }
+            }
+        }
+    }
+
     int classic_mode = 0;
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "--classic") == 0) {

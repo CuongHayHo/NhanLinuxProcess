@@ -16,11 +16,31 @@
 #include <time.h>
 #include <errno.h>
 #include <stdarg.h>
+#include <limits.h>
 #include <sys/wait.h>
 #include "process_demo.h"
 #include "logger.h"
 
-#define WORKSPACE_PATH "/home/cuonghayho/Documents/ThamKhaoPRJLapTrinhNhan/PRJ/project/lap-trinh-nhan-linux-23"
+static char workspace_path[PATH_MAX] = ".";
+
+static void init_workspace_path(void) {
+    if (getcwd(workspace_path, sizeof(workspace_path)) == NULL) {
+        strncpy(workspace_path, ".", sizeof(workspace_path) - 1);
+        workspace_path[sizeof(workspace_path) - 1] = '\0';
+    }
+}
+
+static const char* daemon_pid_file_path(void) {
+    static char pid_path[PATH_MAX + 64];
+    snprintf(pid_path, sizeof(pid_path), "%s/logs/daemon.pid", workspace_path);
+    return pid_path;
+}
+
+static const char* daemon_log_file_path(void) {
+    static char log_path[PATH_MAX + 64];
+    snprintf(log_path, sizeof(log_path), "%s/logs/daemon_demo.log", workspace_path);
+    return log_path;
+}
 
 static void daemon_log_info(const char* module, const char* format, ...) {
     char message[1024];
@@ -29,7 +49,7 @@ static void daemon_log_info(const char* module, const char* format, ...) {
     vsnprintf(message, sizeof(message), format, args);
     va_end(args);
 
-    if (chdir(WORKSPACE_PATH) == 0) {
+    if (chdir(workspace_path) == 0) {
         log_info(module, "%s", message);
         if (chdir("/") < 0) {
             /* ignore */
@@ -44,15 +64,13 @@ static void daemon_log_error(const char* module, const char* format, ...) {
     vsnprintf(message, sizeof(message), format, args);
     va_end(args);
 
-    if (chdir(WORKSPACE_PATH) == 0) {
+    if (chdir(workspace_path) == 0) {
         log_error(module, "%s", message);
         if (chdir("/") < 0) {
             /* ignore */
         }
     }
 }
-#define PID_FILE_PATH  WORKSPACE_PATH "/logs/daemon.pid"
-#define LOG_FILE_PATH  WORKSPACE_PATH "/logs/daemon_demo.log"
 
 static volatile sig_atomic_t keep_running = 1;
 
@@ -86,6 +104,7 @@ static char get_process_state(pid_t pid) {
 }
 
 void daemon_demo_run(void) {
+    init_workspace_path();
     log_info("PROCESS", "Daemon demo started");
 
     printf("\n=== Daemon Process Demonstration ===\n");
@@ -138,7 +157,7 @@ void daemon_demo_run(void) {
         }
         if (daemon_pid > 0) {
             /* Write Daemon PID and Session ID to PID file for grandparent to query */
-            int pid_fd = open(PID_FILE_PATH, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+            int pid_fd = open(daemon_pid_file_path(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
             if (pid_fd >= 0) {
                 char pid_buf[128];
                 snprintf(pid_buf, sizeof(pid_buf), "%d %d", daemon_pid, (int)sid);
@@ -172,7 +191,7 @@ void daemon_demo_run(void) {
         daemon_log_info("PROCESS", "Daemon initialized");
 
         /* Step 10: Open a log file */
-        int log_fd = open(LOG_FILE_PATH, O_WRONLY | O_CREAT | O_APPEND, 0644);
+        int log_fd = open(daemon_log_file_path(), O_WRONLY | O_CREAT | O_APPEND, 0644);
         if (log_fd < 0) {
             daemon_log_error("PROCESS", "Daemon failed to open log file (errno %d)", errno);
             exit(1);
@@ -231,7 +250,7 @@ void daemon_demo_run(void) {
     /* Allow daemon a brief moment to write the PID file */
     sleep(1);
     
-    int pid_fd = open(PID_FILE_PATH, O_RDONLY);
+    int pid_fd = open(daemon_pid_file_path(), O_RDONLY);
     if (pid_fd >= 0) {
         char pid_buf[128];
         ssize_t n = read(pid_fd, pid_buf, sizeof(pid_buf) - 1);
@@ -251,7 +270,7 @@ void daemon_demo_run(void) {
     printf("Daemon PID:        %d\n", d_pid);
     printf("Session ID:        %d\n", d_sid);
     printf("Working Directory: /\n");
-    printf("Log File Path:     %s\n", LOG_FILE_PATH);
+    printf("Log File Path:     %s\n", daemon_log_file_path());
     printf("Current Status:    Running (check logs)\n\n");
 
     printf("[Grandparent] Waiting 3 seconds for daemon to write heartbeats...\n");
@@ -259,7 +278,7 @@ void daemon_demo_run(void) {
 
     /* Display log output from the daemon log */
     printf("\n--- Daemon Log Output ---\n");
-    int log_fd = open(LOG_FILE_PATH, O_RDONLY);
+    int log_fd = open(daemon_log_file_path(), O_RDONLY);
     if (log_fd >= 0) {
         char log_buf[2048];
         ssize_t n = read(log_fd, log_buf, sizeof(log_buf) - 1);
@@ -285,7 +304,7 @@ void daemon_demo_run(void) {
     sleep(2);
 
     printf("\n--- Daemon Log Output (Final Check) ---\n");
-    log_fd = open(LOG_FILE_PATH, O_RDONLY);
+    log_fd = open(daemon_log_file_path(), O_RDONLY);
     if (log_fd >= 0) {
         char log_buf[2048];
         ssize_t n = read(log_fd, log_buf, sizeof(log_buf) - 1);
@@ -319,7 +338,7 @@ void daemon_demo_run(void) {
     }
 
     /* Cleanup temporary files */
-    unlink(PID_FILE_PATH);
+    unlink(daemon_pid_file_path());
 
     log_info("PROCESS", "Demo finished");
     printf("====================================\n");
