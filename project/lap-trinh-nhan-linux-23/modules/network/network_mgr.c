@@ -26,6 +26,7 @@
 #include <net/if_arp.h>
 #include "network_mgr.h"
 #include "logger.h"
+#include "ui.h"
 
 /* Static helper to convert hex string IP to standard dotted-decimal string */
 static void hex_to_ip(const char* hex, char* ip_out) {
@@ -351,14 +352,26 @@ void network_bring_interface_state(const char* state) {
     iface[strcspn(iface, "\n")] = '\0';
     if (strlen(iface) == 0) return;
 
-    printf("\nChoose action mode:\n");
-    printf("1. Learning Mode\n");
-    printf("2. Apply for real\n");
-    printf("Select option: ");
-    fflush(stdout);
-
-    if (fgets(mode_buf, sizeof(mode_buf), stdin) == NULL) return;
-    int choice = atoi(mode_buf);
+    extern int is_interactive;
+    int choice = 0;
+    if (is_interactive) {
+        const char* mode_options[] = {
+            "Learning Mode (Chỉ hiển thị lệnh cấu hình)",
+            "Apply for real (Áp dụng thật lên hệ thống)"
+        };
+        int sel = ui_select_menu("Choose action mode", mode_options, 2);
+        if (sel == 0) choice = 1;
+        else if (sel == 1) choice = 2;
+        else return;
+    } else {
+        printf("\nChoose action mode:\n");
+        printf("1. Learning Mode\n");
+        printf("2. Apply for real\n");
+        printf("Select option: ");
+        fflush(stdout);
+        if (fgets(mode_buf, sizeof(mode_buf), stdin) == NULL) return;
+        choice = atoi(mode_buf);
+    }
 
     if (choice == 1) {
         log_info("NETWORK", "Interface %s link state command shown (learning mode)", state);

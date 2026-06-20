@@ -13,6 +13,8 @@
 #include "parser.h"
 #include "palette.h"
 
+int is_interactive = 0;
+
 /* Mock Repl Context Stack to verify transition rules without running prompt blocking loop */
 #define TEST_MAX_DEPTH 8
 static char test_context_stack[TEST_MAX_DEPTH][64] = { "main" };

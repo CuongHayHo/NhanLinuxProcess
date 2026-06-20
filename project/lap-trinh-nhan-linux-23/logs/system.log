@@ -4011,3 +4011,1341 @@
 2026-06-20 17:08:52 [INFO] [SOCKET] Bytes received: 4 bytes
 2026-06-20 17:08:52 [INFO] [SOCKET] Client message: exit
 2026-06-20 17:08:52 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:14:05 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:14:05 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:14:05 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:14:06 [INFO] [SOCKET] Connection established
+2026-06-20 17:14:06 [INFO] [SOCKET] Socket process started
+2026-06-20 17:14:06 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:14:06 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:14:06 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:14:54 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:14:54 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:14:55 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:14:55 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:14:55 [INFO] [SOCKET] Connection established
+2026-06-20 17:14:55 [INFO] [SOCKET] Socket process started
+2026-06-20 17:14:55 [INFO] [SOCKET] Connection established
+2026-06-20 17:14:55 [INFO] [SOCKET] Socket process started
+2026-06-20 17:14:56 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:14:56 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:14:56 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:14:56 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:14:56 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:14:56 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:14:56 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:14:56 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:14:56 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:14:56 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:14:56 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:14:56 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:14:56 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:14:56 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:14:56 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:14:56 [INFO] [SOCKET] Disconnect
+2026-06-20 17:14:56 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:15:09 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:15:09 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:15:09 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:15:10 [INFO] [SOCKET] Connection established
+2026-06-20 17:15:10 [INFO] [SOCKET] Socket process started
+2026-06-20 17:15:10 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:15:10 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:15:10 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:15:34 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:15:34 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:15:34 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:15:35 [INFO] [SOCKET] Connection established
+2026-06-20 17:15:35 [INFO] [SOCKET] Socket process started
+2026-06-20 17:15:35 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:15:35 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:15:35 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:17:51 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:18:01 [INFO] [REPL] Command received: 'network' (args count: 0) under context 'main'
+2026-06-20 17:18:40 [INFO] [REPL] Command received: 'list' (args count: 0) under context 'network'
+2026-06-20 17:18:40 [INFO] [NETWORK] Listing interface names only
+2026-06-20 17:18:56 [INFO] [REPL] Command received: 'config' (args count: 0) under context 'network'
+2026-06-20 17:21:20 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:21:26 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 17:22:07 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 17:22:11 [INFO] [REPL] Command received: 'server' (args count: 0) under context 'socket'
+2026-06-20 17:23:25 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:23:25 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:23:25 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:23:26 [INFO] [SOCKET] Connection established
+2026-06-20 17:23:26 [INFO] [SOCKET] Socket process started
+2026-06-20 17:23:26 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:23:26 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:23:26 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:24:10 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:24:14 [INFO] [REPL] Command received: 'network' (args count: 0) under context 'main'
+2026-06-20 17:24:37 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 17:24:41 [INFO] [REPL] Command received: 'server' (args count: 0) under context 'socket'
+2026-06-20 17:25:01 [INFO] [REPL] Command received: 'server' (args count: 0) under context 'socket'
+2026-06-20 17:25:04 [ERROR] [LAUNCHER] No supported terminal found!
+2026-06-20 17:25:25 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:25:37 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 17:25:52 [INFO] [REPL] Command received: 'server' (args count: 0) under context 'socket'
+2026-06-20 17:25:54 [ERROR] [LAUNCHER] No supported terminal found!
+2026-06-20 17:28:02 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:28:02 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:28:02 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:28:02 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:28:03 [INFO] [SOCKET] Connection established
+2026-06-20 17:28:03 [INFO] [SOCKET] Socket process started
+2026-06-20 17:28:03 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:28:03 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:28:03 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:28:31 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:28:34 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 17:28:45 [INFO] [REPL] Command received: 'server' (args count: 0) under context 'socket'
+2026-06-20 17:28:48 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:28:48 [INFO] [SYSTEM] Direct command invocation: 'socket server 6767'
+2026-06-20 17:28:48 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:28:48 [INFO] [SOCKET] Server start requested on port 6767
+2026-06-20 17:28:48 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:29:16 [INFO] [REPL] Command received: 'client' (args count: 0) under context 'socket'
+2026-06-20 17:29:22 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:29:23 [INFO] [SYSTEM] Direct command invocation: 'socket client 127.0.0.1 6767'
+2026-06-20 17:29:23 [INFO] [REPL] Command received: 'socket' (args count: 3) under context 'main'
+2026-06-20 17:29:23 [INFO] [SOCKET] Client connect requested to 127.0.0.1:6767
+2026-06-20 17:29:23 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:29:23 [INFO] [SOCKET] Connection established
+2026-06-20 17:29:23 [INFO] [SOCKET] Socket process started
+2026-06-20 17:29:23 [INFO] [SOCKET] Connection established
+2026-06-20 17:29:23 [INFO] [SOCKET] Socket process started
+2026-06-20 17:29:32 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:29:32 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:29:32 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:29:32 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:29:49 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:29:49 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:29:49 [INFO] [SOCKET] Server message: hello
+2026-06-20 17:29:49 [INFO] [SOCKET] Server message: hello
+2026-06-20 17:29:54 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:29:54 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:29:54 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:29:54 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:29:57 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:29:57 [INFO] [SOCKET] Client message: hleoo
+2026-06-20 17:29:57 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:29:57 [INFO] [SOCKET] Client message: hleoo
+2026-06-20 17:30:00 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:30:00 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:30:00 [INFO] [SOCKET] Server message: hello
+2026-06-20 17:30:00 [INFO] [SOCKET] Server message: hello
+2026-06-20 17:30:26 [INFO] [REPL] Command received: 'status' (args count: 0) under context 'socket'
+2026-06-20 17:30:46 [INFO] [SOCKET] Bytes sent: 1 bytes
+2026-06-20 17:30:46 [INFO] [SOCKET] Bytes received: 1 bytes
+2026-06-20 17:30:46 [INFO] [SOCKET] Client message: a
+2026-06-20 17:30:46 [INFO] [SOCKET] Client message: a
+2026-06-20 17:31:03 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:31:03 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:31:03 [INFO] [SOCKET] Server message: asda
+2026-06-20 17:31:03 [INFO] [SOCKET] Server message: asda
+2026-06-20 17:31:06 [INFO] [SOCKET] Bytes sent: 3 bytes
+2026-06-20 17:31:06 [INFO] [SOCKET] Bytes received: 3 bytes
+2026-06-20 17:31:06 [INFO] [SOCKET] Client message: asd
+2026-06-20 17:31:06 [INFO] [SOCKET] Client message: asd
+2026-06-20 17:35:13 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:35:13 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:36:19 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:36:19 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:36:20 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:36:20 [INFO] [SOCKET] Connection established
+2026-06-20 17:36:20 [INFO] [SOCKET] Socket process started
+2026-06-20 17:36:20 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:36:20 [INFO] [SOCKET] Connection established
+2026-06-20 17:36:20 [INFO] [SOCKET] Socket process started
+2026-06-20 17:36:21 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:36:21 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:36:21 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:36:21 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:36:30 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:36:30 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:36:31 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:36:31 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:36:31 [INFO] [SOCKET] Connection established
+2026-06-20 17:36:31 [INFO] [SOCKET] Socket process started
+2026-06-20 17:36:31 [INFO] [SOCKET] Connection established
+2026-06-20 17:36:31 [INFO] [SOCKET] Socket process started
+2026-06-20 17:36:32 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:36:32 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:36:32 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:36:32 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:37:02 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:37:02 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:37:03 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:37:03 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:37:03 [INFO] [SOCKET] Connection established
+2026-06-20 17:37:03 [INFO] [SOCKET] Socket process started
+2026-06-20 17:37:03 [INFO] [SOCKET] Connection established
+2026-06-20 17:37:03 [INFO] [SOCKET] Socket process started
+2026-06-20 17:37:04 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:37:04 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:37:04 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:37:04 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:37:04 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:37:04 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:37:04 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:37:04 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:37:04 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:37:04 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:37:04 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:37:04 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:37:04 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:37:04 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:37:04 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:37:22 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:37:22 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:37:23 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:37:23 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:37:23 [INFO] [SOCKET] Connection established
+2026-06-20 17:37:23 [INFO] [SOCKET] Socket process started
+2026-06-20 17:37:23 [INFO] [SOCKET] Connection established
+2026-06-20 17:37:23 [INFO] [SOCKET] Socket process started
+2026-06-20 17:37:24 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:37:24 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:37:24 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:37:24 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:37:24 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:37:24 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:37:24 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:37:24 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:37:24 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:37:24 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:37:24 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:37:24 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:37:24 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:37:24 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:37:24 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:37:24 [INFO] [SOCKET] Disconnect
+2026-06-20 17:38:00 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:38:00 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:38:01 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:38:01 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:38:01 [INFO] [SOCKET] Connection established
+2026-06-20 17:38:01 [INFO] [SOCKET] Socket process started
+2026-06-20 17:38:01 [INFO] [SOCKET] Connection established
+2026-06-20 17:38:01 [INFO] [SOCKET] Socket process started
+2026-06-20 17:38:02 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:38:02 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:38:02 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:38:02 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:38:02 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:38:02 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:38:02 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:38:02 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:38:02 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:38:02 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:38:02 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:38:02 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:38:02 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:38:02 [INFO] [SOCKET] Disconnect
+2026-06-20 17:38:02 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:38:21 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:38:21 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:38:22 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:38:22 [INFO] [SOCKET] Connection established
+2026-06-20 17:38:22 [INFO] [SOCKET] Socket process started
+2026-06-20 17:38:22 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:38:22 [INFO] [SOCKET] Connection established
+2026-06-20 17:38:22 [INFO] [SOCKET] Socket process started
+2026-06-20 17:38:23 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:38:23 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:38:23 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:38:23 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:38:23 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:38:23 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:38:23 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:38:23 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:38:23 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:38:23 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:38:23 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:38:23 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:38:23 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:38:23 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:38:23 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:39:02 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:39:02 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:39:03 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:39:03 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:39:03 [INFO] [SOCKET] Connection established
+2026-06-20 17:39:03 [INFO] [SOCKET] Socket process started
+2026-06-20 17:39:03 [INFO] [SOCKET] Connection established
+2026-06-20 17:39:03 [INFO] [SOCKET] Socket process started
+2026-06-20 17:39:04 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:39:04 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:39:04 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:39:04 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:39:04 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:39:04 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:39:04 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:39:04 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:39:04 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:39:04 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:39:04 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:39:04 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:39:04 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:39:04 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:39:04 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:39:04 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 17:39:04 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 17:39:05 [INFO] [SOCKET] Client connected: 127.0.0.1:45256
+2026-06-20 17:39:05 [INFO] [SOCKET] Client connected: 127.0.0.1:45266
+2026-06-20 17:39:05 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:45256
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Client connected: 127.0.0.1:45280
+2026-06-20 17:39:05 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:45266
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:45280
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:05 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:39:05 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:39:05 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:39:07 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:39:07 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:39:07 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:39:07 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:39:08 [INFO] [SOCKET] Connection established
+2026-06-20 17:39:08 [INFO] [SOCKET] Socket process started
+2026-06-20 17:39:08 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:39:08 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:39:08 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:39:16 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:39:16 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:39:17 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:39:17 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:39:17 [INFO] [SOCKET] Connection established
+2026-06-20 17:39:17 [INFO] [SOCKET] Socket process started
+2026-06-20 17:39:17 [INFO] [SOCKET] Connection established
+2026-06-20 17:39:17 [INFO] [SOCKET] Socket process started
+2026-06-20 17:39:18 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:39:18 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:39:18 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:39:18 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:39:18 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:39:18 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:39:18 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:39:18 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:39:18 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:39:18 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:39:18 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:39:18 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:39:18 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:39:18 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:39:18 [INFO] [SOCKET] Disconnect
+2026-06-20 17:39:18 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:39:18 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 17:39:18 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 17:39:19 [INFO] [SOCKET] Client connected: 127.0.0.1:55980
+2026-06-20 17:39:19 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:55980
+2026-06-20 17:39:19 [INFO] [SOCKET] Client connected: 127.0.0.1:55994
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Client connected: 127.0.0.1:56006
+2026-06-20 17:39:19 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:55994
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:56006
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:39:19 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:39:19 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:39:19 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:55980
+2026-06-20 17:39:19 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:56006
+2026-06-20 17:39:19 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:55994
+2026-06-20 17:39:48 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:39:57 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 17:40:01 [INFO] [REPL] Command received: 'server' (args count: 0) under context 'socket'
+2026-06-20 17:40:04 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:40:04 [INFO] [SYSTEM] Direct command invocation: 'socket server 6767'
+2026-06-20 17:40:04 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:40:04 [INFO] [SOCKET] Server start requested on port 6767
+2026-06-20 17:40:04 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:40:23 [INFO] [REPL] Command received: 'client' (args count: 0) under context 'socket'
+2026-06-20 17:40:26 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:40:27 [INFO] [SYSTEM] Direct command invocation: 'socket client 127.0.0.1 6767'
+2026-06-20 17:40:27 [INFO] [REPL] Command received: 'socket' (args count: 3) under context 'main'
+2026-06-20 17:40:27 [INFO] [SOCKET] Client connect requested to 127.0.0.1:6767
+2026-06-20 17:40:27 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:40:27 [INFO] [SOCKET] Connection established
+2026-06-20 17:40:27 [INFO] [SOCKET] Socket process started
+2026-06-20 17:40:27 [INFO] [SOCKET] Connection established
+2026-06-20 17:40:27 [INFO] [SOCKET] Socket process started
+2026-06-20 17:40:30 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:40:30 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:40:30 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:40:30 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:40:44 [INFO] [SOCKET] Bytes sent: 3 bytes
+2026-06-20 17:40:44 [INFO] [SOCKET] Bytes received: 3 bytes
+2026-06-20 17:40:44 [INFO] [SOCKET] Server message: had
+2026-06-20 17:40:44 [INFO] [SOCKET] Server message: had
+2026-06-20 17:40:49 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:40:49 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:40:49 [INFO] [SOCKET] Server message: asda
+2026-06-20 17:40:49 [INFO] [SOCKET] Server message: asda
+2026-06-20 17:40:52 [INFO] [SOCKET] Bytes sent: 3 bytes
+2026-06-20 17:40:52 [INFO] [SOCKET] Bytes received: 3 bytes
+2026-06-20 17:40:52 [INFO] [SOCKET] Client message: ada
+2026-06-20 17:40:52 [INFO] [SOCKET] Client message: ada
+2026-06-20 17:40:55 [INFO] [SOCKET] Bytes sent: 8 bytes
+2026-06-20 17:40:55 [INFO] [SOCKET] Client message: asdasdha
+2026-06-20 17:40:55 [INFO] [SOCKET] Bytes received: 8 bytes
+2026-06-20 17:40:55 [INFO] [SOCKET] Client message: asdasdha
+2026-06-20 17:40:57 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:40:57 [INFO] [SOCKET] Client message: dasha
+2026-06-20 17:40:57 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:40:57 [INFO] [SOCKET] Client message: dasha
+2026-06-20 17:40:58 [INFO] [SOCKET] Bytes received: 3 bytes
+2026-06-20 17:40:58 [INFO] [SOCKET] Bytes sent: 3 bytes
+2026-06-20 17:40:58 [INFO] [SOCKET] Client message: asd
+2026-06-20 17:40:58 [INFO] [SOCKET] Client message: asd
+2026-06-20 17:41:00 [INFO] [SOCKET] Bytes received: 6 bytes
+2026-06-20 17:41:00 [INFO] [SOCKET] Bytes sent: 6 bytes
+2026-06-20 17:41:00 [INFO] [SOCKET] Client message: dasdad
+2026-06-20 17:41:00 [INFO] [SOCKET] Client message: dasdad
+2026-06-20 17:41:02 [INFO] [SOCKET] Bytes received: 11 bytes
+2026-06-20 17:41:02 [INFO] [SOCKET] Bytes sent: 11 bytes
+2026-06-20 17:41:02 [INFO] [SOCKET] Server message: dfadfjadadf
+2026-06-20 17:41:02 [INFO] [SOCKET] Server message: dfadfjadadf
+2026-06-20 17:41:03 [INFO] [SOCKET] Bytes sent: 9 bytes
+2026-06-20 17:41:03 [INFO] [SOCKET] Bytes received: 9 bytes
+2026-06-20 17:41:03 [INFO] [SOCKET] Server message: asdfadfad
+2026-06-20 17:41:03 [INFO] [SOCKET] Server message: asdfadfad
+2026-06-20 17:41:04 [INFO] [SOCKET] Bytes sent: 9 bytes
+2026-06-20 17:41:04 [INFO] [SOCKET] Bytes received: 9 bytes
+2026-06-20 17:41:04 [INFO] [SOCKET] Server message: afadfadfa
+2026-06-20 17:41:04 [INFO] [SOCKET] Server message: afadfadfa
+2026-06-20 17:41:04 [INFO] [SOCKET] Bytes sent: 6 bytes
+2026-06-20 17:41:04 [INFO] [SOCKET] Bytes received: 6 bytes
+2026-06-20 17:41:04 [INFO] [SOCKET] Server message: adfadf
+2026-06-20 17:41:04 [INFO] [SOCKET] Server message: adfadf
+2026-06-20 17:41:11 [INFO] [SOCKET] Bytes sent: 11 bytes
+2026-06-20 17:41:11 [INFO] [SOCKET] Server message: fadsfadfasd
+2026-06-20 17:41:11 [INFO] [SOCKET] Bytes received: 11 bytes
+2026-06-20 17:41:11 [INFO] [SOCKET] Server message: fadsfadfasd
+2026-06-20 17:41:14 [INFO] [SOCKET] Bytes sent: 39 bytes
+2026-06-20 17:41:14 [INFO] [SOCKET] Bytes received: 39 bytes
+2026-06-20 17:41:14 [INFO] [SOCKET] Client message: asdfadfad dfhadfadf asdadfadfadadfa asd
+2026-06-20 17:41:14 [INFO] [SOCKET] Client message: asdfadfad dfhadfadf asdadfadfadadfa asd
+2026-06-20 17:41:27 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:41:27 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:42:31 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:42:31 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:42:31 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:42:31 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:42:32 [INFO] [SOCKET] Connection established
+2026-06-20 17:42:32 [INFO] [SOCKET] Socket process started
+2026-06-20 17:42:32 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:42:32 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:42:32 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:42:32 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:42:32 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:42:33 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:42:33 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:42:33 [INFO] [SOCKET] Connection established
+2026-06-20 17:42:33 [INFO] [SOCKET] Socket process started
+2026-06-20 17:42:33 [INFO] [SOCKET] Connection established
+2026-06-20 17:42:33 [INFO] [SOCKET] Socket process started
+2026-06-20 17:42:34 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:42:34 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:42:34 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:42:34 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:42:34 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:42:34 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:42:34 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:42:34 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:42:34 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:42:34 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:42:34 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:42:34 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:42:34 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:42:34 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:42:34 [INFO] [SOCKET] Disconnect
+2026-06-20 17:42:34 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:42:34 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:42:34 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 17:42:34 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 17:42:35 [INFO] [SOCKET] Client connected: 127.0.0.1:50466
+2026-06-20 17:42:35 [INFO] [SOCKET] Client connected: 127.0.0.1:50472
+2026-06-20 17:42:35 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:50466
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Client connected: 127.0.0.1:50488
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:50472
+2026-06-20 17:42:35 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:50488
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:42:35 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:42:35 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:42:35 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:42:35 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:50488
+2026-06-20 17:42:35 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:50472
+2026-06-20 17:43:51 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:44:02 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 17:44:52 [INFO] [REPL] Command received: 'multi' (args count: 0) under context 'socket'
+2026-06-20 17:44:55 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:44:56 [INFO] [SYSTEM] Direct command invocation: 'socket multi 6767'
+2026-06-20 17:44:56 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:44:56 [INFO] [SOCKET] Socket process started
+2026-06-20 17:44:56 [INFO] [SOCKET] Multi Client Server launched
+2026-06-20 17:44:56 [INFO] [SOCKET] Multi-client Server start requested on port 6767
+2026-06-20 17:44:56 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 6767
+2026-06-20 17:45:05 [INFO] [REPL] Command received: 'client' (args count: 0) under context 'socket'
+2026-06-20 17:45:09 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:45:09 [INFO] [SYSTEM] Direct command invocation: 'socket client 127.0.0.1 6767'
+2026-06-20 17:45:09 [INFO] [REPL] Command received: 'socket' (args count: 3) under context 'main'
+2026-06-20 17:45:09 [INFO] [SOCKET] Client connect requested to 127.0.0.1:6767
+2026-06-20 17:45:09 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:45:09 [INFO] [SOCKET] Connection established
+2026-06-20 17:45:09 [INFO] [SOCKET] Socket process started
+2026-06-20 17:45:09 [INFO] [SOCKET] Client connected: 127.0.0.1:46080
+2026-06-20 17:45:09 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:46080
+2026-06-20 17:45:18 [INFO] [REPL] Command received: 'client' (args count: 0) under context 'socket'
+2026-06-20 17:45:21 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:45:21 [INFO] [SYSTEM] Direct command invocation: 'socket client 127.0.0.1 6767'
+2026-06-20 17:45:21 [INFO] [REPL] Command received: 'socket' (args count: 3) under context 'main'
+2026-06-20 17:45:21 [INFO] [SOCKET] Client connect requested to 127.0.0.1:6767
+2026-06-20 17:45:21 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:45:21 [INFO] [SOCKET] Connection established
+2026-06-20 17:45:21 [INFO] [SOCKET] Socket process started
+2026-06-20 17:45:21 [INFO] [SOCKET] Client connected: 127.0.0.1:41326
+2026-06-20 17:45:21 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:41326
+2026-06-20 17:45:59 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:45:59 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:45:59 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:45:59 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:45:59 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:45:59 [INFO] [SOCKET] Server message: hello
+2026-06-20 17:46:04 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:46:04 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:46:04 [INFO] [SOCKET] Client message: hloo
+2026-06-20 17:46:04 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:46:04 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:46:04 [INFO] [SOCKET] Server message: hloo
+2026-06-20 17:46:16 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:46:16 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:46:16 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:46:16 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:46:16 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:46:16 [INFO] [SOCKET] Server message: hello
+2026-06-20 17:46:27 [INFO] [SOCKET] Disconnect
+2026-06-20 17:46:27 [INFO] [SOCKET] Disconnect
+2026-06-20 17:46:27 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:46:27 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:48:55 [INFO] [REPL] Command received: 'chat' (args count: 0) under context 'socket'
+2026-06-20 17:49:11 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:49:12 [INFO] [SYSTEM] Direct command invocation: 'socket chat --host 6767'
+2026-06-20 17:49:12 [INFO] [REPL] Command received: 'socket' (args count: 3) under context 'main'
+2026-06-20 17:49:12 [INFO] [SOCKET] Chat Host launched
+2026-06-20 17:49:12 [INFO] [SOCKET] Server start requested on port 6767
+2026-06-20 17:49:12 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:49:36 [INFO] [REPL] Command received: 'chat' (args count: 0) under context 'socket'
+2026-06-20 17:49:41 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:49:41 [INFO] [SYSTEM] Direct command invocation: 'socket chat --client 127.0.0.1 6767'
+2026-06-20 17:49:41 [INFO] [REPL] Command received: 'socket' (args count: 4) under context 'main'
+2026-06-20 17:49:41 [INFO] [SOCKET] Chat Client launched
+2026-06-20 17:49:41 [INFO] [SOCKET] Client connect requested to 127.0.0.1:6767
+2026-06-20 17:49:41 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:49:41 [INFO] [SOCKET] Connection established
+2026-06-20 17:49:41 [INFO] [SOCKET] Socket process started
+2026-06-20 17:49:41 [INFO] [SOCKET] Connection established
+2026-06-20 17:49:41 [INFO] [SOCKET] Socket process started
+2026-06-20 17:49:46 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:49:46 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:49:46 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:49:46 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:50:03 [INFO] [REPL] Command received: 'chat' (args count: 0) under context 'socket'
+2026-06-20 17:50:17 [INFO] [REPL] Command received: 'chat' (args count: 0) under context 'socket'
+2026-06-20 17:50:43 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:50:43 [INFO] [SYSTEM] Direct command invocation: 'socket chat --client 127.0.0.1 6767'
+2026-06-20 17:50:43 [INFO] [REPL] Command received: 'socket' (args count: 4) under context 'main'
+2026-06-20 17:50:43 [INFO] [SOCKET] Chat Client launched
+2026-06-20 17:50:43 [INFO] [SOCKET] Client connect requested to 127.0.0.1:6767
+2026-06-20 17:50:43 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:50:43 [INFO] [SOCKET] Connection established
+2026-06-20 17:50:43 [INFO] [SOCKET] Socket process started
+2026-06-20 17:50:46 [INFO] [SOCKET] Bytes sent: 2 bytes
+2026-06-20 17:50:46 [INFO] [SOCKET] Client message: eh
+2026-06-20 17:51:11 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:51:11 [INFO] [SOCKET] Server message: hello
+2026-06-20 17:51:11 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 17:51:11 [INFO] [SOCKET] Server message: hello
+2026-06-20 17:51:15 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 17:51:15 [INFO] [SOCKET] Client message: hello
+2026-06-20 17:51:16 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:51:16 [INFO] [SOCKET] Client message: asda
+2026-06-20 17:51:17 [INFO] [SOCKET] Bytes sent: 3 bytes
+2026-06-20 17:51:17 [INFO] [SOCKET] Client message: asd
+2026-06-20 17:51:19 [INFO] [SOCKET] Bytes sent: 3 bytes
+2026-06-20 17:51:19 [INFO] [SOCKET] Bytes received: 3 bytes
+2026-06-20 17:51:19 [INFO] [SOCKET] Server message: das
+2026-06-20 17:51:19 [INFO] [SOCKET] Server message: das
+2026-06-20 17:51:22 [INFO] [SOCKET] Bytes sent: 2 bytes
+2026-06-20 17:51:22 [INFO] [SOCKET] Bytes received: 2 bytes
+2026-06-20 17:51:22 [INFO] [SOCKET] Server message: ad
+2026-06-20 17:51:22 [INFO] [SOCKET] Server message: ad
+2026-06-20 17:51:25 [INFO] [SOCKET] Bytes received: 3 bytes
+2026-06-20 17:51:25 [INFO] [SOCKET] Bytes sent: 3 bytes
+2026-06-20 17:51:25 [INFO] [SOCKET] Server message: das
+2026-06-20 17:51:25 [INFO] [SOCKET] Server message: das
+2026-06-20 17:51:28 [ERROR] [SOCKET] Socket error: recv failed (errno 104)
+2026-06-20 17:51:28 [INFO] [SOCKET] Disconnect
+2026-06-20 17:51:28 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:51:28 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:51:44 [INFO] [REPL] Command received: 'client' (args count: 0) under context 'socket'
+2026-06-20 17:53:39 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:53:39 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:53:39 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:53:39 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:53:40 [INFO] [SOCKET] Connection established
+2026-06-20 17:53:40 [INFO] [SOCKET] Socket process started
+2026-06-20 17:53:40 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:53:40 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:53:40 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:53:40 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:53:40 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:53:41 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:53:41 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:53:41 [INFO] [SOCKET] Connection established
+2026-06-20 17:53:41 [INFO] [SOCKET] Connection established
+2026-06-20 17:53:41 [INFO] [SOCKET] Socket process started
+2026-06-20 17:53:41 [INFO] [SOCKET] Socket process started
+2026-06-20 17:53:42 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:53:42 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:53:42 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:53:42 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:53:42 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:53:42 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:53:42 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:53:42 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:53:42 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:53:42 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:53:42 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:53:42 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:53:42 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:53:42 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:53:42 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:53:42 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 17:53:42 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 17:53:43 [INFO] [SOCKET] Client connected: 127.0.0.1:53958
+2026-06-20 17:53:43 [INFO] [SOCKET] Client connected: 127.0.0.1:53972
+2026-06-20 17:53:43 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:53958
+2026-06-20 17:53:43 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:53:43 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:53972
+2026-06-20 17:53:43 [INFO] [SOCKET] Client connected: 127.0.0.1:53980
+2026-06-20 17:53:43 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:53:43 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:53:43 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:53:43 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:53980
+2026-06-20 17:53:43 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:53:43 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:53:44 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:53:44 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:53:44 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:53:44 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:53:44 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:53:44 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:53:44 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:53:44 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:53:44 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:54:48 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:54:48 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:54:48 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:54:48 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:54:49 [INFO] [SOCKET] Connection established
+2026-06-20 17:54:49 [INFO] [SOCKET] Socket process started
+2026-06-20 17:54:49 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:54:49 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:54:49 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:54:49 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:54:49 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:54:50 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:54:50 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:54:50 [INFO] [SOCKET] Connection established
+2026-06-20 17:54:50 [INFO] [SOCKET] Connection established
+2026-06-20 17:54:50 [INFO] [SOCKET] Socket process started
+2026-06-20 17:54:50 [INFO] [SOCKET] Socket process started
+2026-06-20 17:54:51 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:54:51 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:54:51 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:54:51 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:54:51 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:54:51 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:54:51 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:54:51 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:54:51 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:54:51 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:54:51 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:54:51 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:54:51 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:54:51 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:54:51 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:54:51 [INFO] [SOCKET] Disconnect
+2026-06-20 17:54:51 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 17:54:51 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 17:54:52 [INFO] [SOCKET] Client connected: 127.0.0.1:51824
+2026-06-20 17:54:52 [INFO] [SOCKET] Client connected: 127.0.0.1:51828
+2026-06-20 17:54:52 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:51824
+2026-06-20 17:54:52 [INFO] [SOCKET] Client connected: 127.0.0.1:51840
+2026-06-20 17:54:52 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:51828
+2026-06-20 17:54:52 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:54:52 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:51840
+2026-06-20 17:54:52 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:54:52 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:54:52 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:54:52 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:54:52 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:54:53 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:54:53 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:54:53 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:54:53 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:54:53 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:54:53 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:54:53 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:54:53 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:54:53 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:51824
+2026-06-20 17:54:53 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:54:53 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:51840
+2026-06-20 17:54:53 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:51828
+2026-06-20 17:55:10 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:55:18 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 17:55:22 [INFO] [REPL] Command received: 'server' (args count: 0) under context 'socket'
+2026-06-20 17:55:24 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:55:25 [INFO] [SYSTEM] Direct command invocation: 'socket server 6767'
+2026-06-20 17:55:25 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:55:25 [INFO] [SOCKET] Server start requested on port 6767
+2026-06-20 17:55:25 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:55:35 [INFO] [REPL] Command received: 'chat' (args count: 0) under context 'socket'
+2026-06-20 17:56:25 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:56:25 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:56:25 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:56:25 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:56:26 [INFO] [SOCKET] Connection established
+2026-06-20 17:56:26 [INFO] [SOCKET] Socket process started
+2026-06-20 17:56:26 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:56:26 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:56:26 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:56:26 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:56:26 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:56:27 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:56:27 [INFO] [SOCKET] Connection established
+2026-06-20 17:56:27 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:56:27 [INFO] [SOCKET] Socket process started
+2026-06-20 17:56:27 [INFO] [SOCKET] Connection established
+2026-06-20 17:56:27 [INFO] [SOCKET] Socket process started
+2026-06-20 17:56:28 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:56:28 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:56:28 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:56:28 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:56:28 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:56:28 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:56:28 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:56:28 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:56:28 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:56:28 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:56:28 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:56:28 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:56:28 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:56:28 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:56:28 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:56:28 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 17:56:28 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 17:56:29 [INFO] [SOCKET] Client connected: 127.0.0.1:41564
+2026-06-20 17:56:29 [INFO] [SOCKET] Client connected: 127.0.0.1:41580
+2026-06-20 17:56:29 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:41564
+2026-06-20 17:56:29 [INFO] [SOCKET] Client connected: 127.0.0.1:41592
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:41592
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:41580
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:56:29 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:56:29 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:56:29 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:57:08 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 17:57:29 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 17:59:01 [INFO] [SOCKET] Terminal launched
+2026-06-20 17:59:01 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 17:59:01 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 17:59:01 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:59:02 [INFO] [SOCKET] Connection established
+2026-06-20 17:59:02 [INFO] [SOCKET] Socket process started
+2026-06-20 17:59:02 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:59:02 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:59:02 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:59:02 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 17:59:02 [INFO] [SOCKET] TCP Server launched
+2026-06-20 17:59:03 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 17:59:03 [INFO] [SOCKET] TCP Client launched
+2026-06-20 17:59:03 [INFO] [SOCKET] Connection established
+2026-06-20 17:59:03 [INFO] [SOCKET] Connection established
+2026-06-20 17:59:03 [INFO] [SOCKET] Socket process started
+2026-06-20 17:59:03 [INFO] [SOCKET] Socket process started
+2026-06-20 17:59:04 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 17:59:04 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 17:59:04 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:59:04 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 17:59:04 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 17:59:04 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 17:59:04 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:59:04 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 17:59:04 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 17:59:04 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 17:59:04 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:59:04 [INFO] [SOCKET] Client message: exit
+2026-06-20 17:59:04 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:59:04 [INFO] [SOCKET] Terminal closed
+2026-06-20 17:59:04 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 17:59:04 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 17:59:04 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 17:59:05 [INFO] [SOCKET] Client connected: 127.0.0.1:54804
+2026-06-20 17:59:05 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:54804
+2026-06-20 17:59:05 [INFO] [SOCKET] Client connected: 127.0.0.1:54818
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Client connected: 127.0.0.1:54826
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:54818
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:54826
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 17:59:05 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:59:05 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 17:59:05 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:54804
+2026-06-20 17:59:05 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:54818
+2026-06-20 17:59:05 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:54826
+2026-06-20 18:01:26 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 18:01:37 [INFO] [REPL] Command received: 'socket' (args count: 0) under context 'main'
+2026-06-20 18:01:40 [INFO] [REPL] Command received: 'chat' (args count: 1) under context 'socket'
+2026-06-20 18:01:43 [INFO] [SOCKET] Terminal launched
+2026-06-20 18:01:43 [INFO] [SYSTEM] Direct command invocation: 'socket chat --host 6767'
+2026-06-20 18:01:43 [INFO] [REPL] Command received: 'socket' (args count: 3) under context 'main'
+2026-06-20 18:01:43 [INFO] [SOCKET] Chat Host launched
+2026-06-20 18:01:43 [INFO] [SOCKET] Server start requested on port 6767
+2026-06-20 18:01:43 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:01:53 [INFO] [REPL] Command received: 'chat' (args count: 1) under context 'socket'
+2026-06-20 18:01:55 [INFO] [SOCKET] Terminal launched
+2026-06-20 18:01:56 [INFO] [SYSTEM] Direct command invocation: 'socket chat --client 127.0.0.1 6767'
+2026-06-20 18:01:56 [INFO] [REPL] Command received: 'socket' (args count: 4) under context 'main'
+2026-06-20 18:01:56 [INFO] [SOCKET] Chat Client launched
+2026-06-20 18:01:56 [INFO] [SOCKET] Client connect requested to 127.0.0.1:6767
+2026-06-20 18:01:56 [INFO] [SOCKET] TCP Client launched
+2026-06-20 18:01:56 [INFO] [SOCKET] Connection established
+2026-06-20 18:01:56 [INFO] [SOCKET] Socket process started
+2026-06-20 18:01:56 [INFO] [SOCKET] Connection established
+2026-06-20 18:01:56 [INFO] [SOCKET] Socket process started
+2026-06-20 18:02:01 [INFO] [SOCKET] Bytes sent: 5 bytes
+2026-06-20 18:02:01 [INFO] [SOCKET] Bytes received: 5 bytes
+2026-06-20 18:02:01 [INFO] [SOCKET] Client message: hello
+2026-06-20 18:02:01 [INFO] [SOCKET] Client message: hello
+2026-06-20 18:02:22 [INFO] [SOCKET] Bytes sent: 1 bytes
+2026-06-20 18:02:22 [INFO] [SOCKET] Bytes received: 1 bytes
+2026-06-20 18:02:22 [INFO] [SOCKET] Client message: d
+2026-06-20 18:02:22 [INFO] [SOCKET] Client message: d
+2026-06-20 18:02:36 [INFO] [SOCKET] Bytes sent: 13 bytes
+2026-06-20 18:02:36 [INFO] [SOCKET] Bytes received: 13 bytes
+2026-06-20 18:02:36 [INFO] [SOCKET] Client message: asdas dasd a 
+2026-06-20 18:02:36 [INFO] [SOCKET] Client message: asdas dasd a 
+2026-06-20 18:02:38 [INFO] [SOCKET] Bytes sent: 16 bytes
+2026-06-20 18:02:38 [INFO] [SOCKET] Server message: ashjasda asdasda
+2026-06-20 18:02:38 [INFO] [SOCKET] Bytes received: 16 bytes
+2026-06-20 18:02:38 [INFO] [SOCKET] Server message: ashjasda asdasda
+2026-06-20 18:02:43 [INFO] [SOCKET] Disconnect
+2026-06-20 18:02:43 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:02:54 [INFO] [REPL] Command received: 'chat' (args count: 1) under context 'socket'
+2026-06-20 18:02:54 [INFO] [SOCKET] Demo launched
+2026-06-20 18:02:54 [INFO] [SOCKET] Terminal launched
+2026-06-20 18:02:54 [INFO] [SYSTEM] Direct command invocation: 'socket chat --host 8080'
+2026-06-20 18:02:54 [INFO] [REPL] Command received: 'socket' (args count: 3) under context 'main'
+2026-06-20 18:02:54 [INFO] [SOCKET] Chat Host launched
+2026-06-20 18:02:54 [INFO] [SOCKET] Server start requested on port 8080
+2026-06-20 18:02:54 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:02:56 [INFO] [SOCKET] Terminal launched
+2026-06-20 18:02:56 [INFO] [SYSTEM] Direct command invocation: 'socket chat --client 127.0.0.1 8080'
+2026-06-20 18:02:56 [INFO] [REPL] Command received: 'socket' (args count: 4) under context 'main'
+2026-06-20 18:02:56 [INFO] [SOCKET] Chat Client launched
+2026-06-20 18:02:56 [INFO] [SOCKET] Client connect requested to 127.0.0.1:8080
+2026-06-20 18:02:56 [INFO] [SOCKET] TCP Client launched
+2026-06-20 18:02:56 [INFO] [SOCKET] Connection established
+2026-06-20 18:02:56 [INFO] [SOCKET] Socket process started
+2026-06-20 18:02:56 [INFO] [SOCKET] Connection established
+2026-06-20 18:02:56 [INFO] [SOCKET] Socket process started
+2026-06-20 18:03:03 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:03:03 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:03:19 [INFO] [REPL] Command received: 'process' (args count: 0) under context 'main'
+2026-06-20 18:03:22 [INFO] [REPL] Command received: 'list' (args count: 0) under context 'process'
+2026-06-20 18:03:22 [INFO] [PROCESS] Process list requested
+2026-06-20 18:03:22 [INFO] [PROCESS] Number of processes found: 402
+2026-06-20 18:03:25 [INFO] [REPL] Command received: 'info' (args count: 0) under context 'process'
+2026-06-20 18:03:32 [INFO] [PROCESS] Search request: '29191'
+2026-06-20 18:03:32 [INFO] [PROCESS] Matched processes: 1 (PID search)
+2026-06-20 18:03:40 [INFO] [REPL] Command received: 'kill' (args count: 0) under context 'process'
+2026-06-20 18:03:55 [INFO] [REPL] Command received: 'signal' (args count: 0) under context 'process'
+2026-06-20 18:04:18 [INFO] [REPL] Command received: 'shell' (args count: 0) under context 'main'
+2026-06-20 18:04:31 [INFO] [REPL] Command received: 'file' (args count: 0) under context 'shell'
+2026-06-20 18:04:31 [INFO] [SHELL] Script selected: 'shell/file.sh'
+2026-06-20 18:04:31 [INFO] [SHELL] Child process created (PID: 29264)
+2026-06-20 18:04:31 [INFO] [SHELL] Script executed
+2026-06-20 18:04:31 [INFO] [SHELL] Exit status: 1
+2026-06-20 18:04:31 [ERROR] [SHELL] Errors: execution failed with exit code 1
+2026-06-20 18:04:48 [INFO] [REPL] Command received: 'env' (args count: 0) under context 'shell'
+2026-06-20 18:05:42 [INFO] [REPL] Command received: 'file' (args count: 0) under context 'main'
+2026-06-20 18:07:05 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 18:07:05 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:07:06 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 18:07:06 [INFO] [SOCKET] Connection established
+2026-06-20 18:07:06 [INFO] [SOCKET] TCP Client launched
+2026-06-20 18:07:06 [INFO] [SOCKET] Socket process started
+2026-06-20 18:07:06 [INFO] [SOCKET] Connection established
+2026-06-20 18:07:06 [INFO] [SOCKET] Socket process started
+2026-06-20 18:07:07 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 18:07:07 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 18:07:07 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:07:07 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:07:07 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 18:07:07 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 18:07:07 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:07:07 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:07:07 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 18:07:07 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:07:07 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:07:07 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:07:07 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:07:07 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:07:07 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 18:07:07 [INFO] [SOCKET] Disconnect
+2026-06-20 18:07:07 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 18:07:07 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 18:07:08 [INFO] [SOCKET] Client connected: 127.0.0.1:48842
+2026-06-20 18:07:08 [INFO] [SOCKET] Client connected: 127.0.0.1:48846
+2026-06-20 18:07:08 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:48842
+2026-06-20 18:07:08 [INFO] [SOCKET] Client connected: 127.0.0.1:48854
+2026-06-20 18:07:08 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:48846
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:48854
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:07:08 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:07:08 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:07:08 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:07:08 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:48842
+2026-06-20 18:07:08 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:48854
+2026-06-20 18:07:08 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:48846
+2026-06-20 18:09:10 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-20 18:09:10 [INFO] [SHELL] Child process created (PID: 29813)
+2026-06-20 18:09:10 [INFO] [SHELL] Command executed
+2026-06-20 18:09:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:10 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-20 18:09:10 [INFO] [SHELL] Child process created (PID: 29814)
+2026-06-20 18:09:10 [INFO] [SHELL] Command executed
+2026-06-20 18:09:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:10 [INFO] [SHELL] Command entered: 'ls'
+2026-06-20 18:09:10 [INFO] [SHELL] Child process created (PID: 29815)
+2026-06-20 18:09:10 [INFO] [SHELL] Command executed
+2026-06-20 18:09:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:10 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-20 18:09:10 [INFO] [SHELL] Child process created (PID: 29816)
+2026-06-20 18:09:10 [INFO] [SHELL] Command executed
+2026-06-20 18:09:10 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:09:10 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:09:10 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-20 18:09:10 [INFO] [SHELL] Child process created (PID: 29817)
+2026-06-20 18:09:10 [INFO] [SHELL] Script executed
+2026-06-20 18:09:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:10 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-20 18:09:10 [INFO] [SHELL] Child process created (PID: 29821)
+2026-06-20 18:09:10 [INFO] [SHELL] Script executed
+2026-06-20 18:09:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:10 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-20 18:09:10 [INFO] [SHELL] Child process created (PID: 29827)
+2026-06-20 18:09:10 [INFO] [SHELL] Script executed
+2026-06-20 18:09:10 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:10 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-20 18:09:10 [INFO] [SHELL] Child process created (PID: 29831)
+2026-06-20 18:09:10 [INFO] [SHELL] Script executed
+2026-06-20 18:09:10 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:09:10 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:09:13 [INFO] [SOCKET] Terminal launched
+2026-06-20 18:09:13 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 18:09:13 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 18:09:13 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:09:14 [INFO] [SOCKET] Connection established
+2026-06-20 18:09:14 [INFO] [SOCKET] Socket process started
+2026-06-20 18:09:14 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:09:14 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:09:14 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:09:30 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 18:09:30 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:09:31 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 18:09:31 [INFO] [SOCKET] TCP Client launched
+2026-06-20 18:09:31 [INFO] [SOCKET] Connection established
+2026-06-20 18:09:31 [INFO] [SOCKET] Socket process started
+2026-06-20 18:09:31 [INFO] [SOCKET] Connection established
+2026-06-20 18:09:31 [INFO] [SOCKET] Socket process started
+2026-06-20 18:09:32 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 18:09:32 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 18:09:32 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:09:32 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:09:32 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 18:09:32 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:09:32 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 18:09:32 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:09:32 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 18:09:32 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:09:32 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:09:32 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 18:09:32 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:09:32 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:09:32 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:09:32 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 18:09:32 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 18:09:33 [INFO] [SOCKET] Client connected: 127.0.0.1:44638
+2026-06-20 18:09:33 [INFO] [SOCKET] Client connected: 127.0.0.1:44652
+2026-06-20 18:09:33 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:44638
+2026-06-20 18:09:33 [INFO] [SOCKET] Client connected: 127.0.0.1:44658
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:44652
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:44658
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:09:33 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:09:33 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:09:33 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:09:33 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:44652
+2026-06-20 18:09:33 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:44658
+2026-06-20 18:09:33 [INFO] [SOCKET] Terminal launched
+2026-06-20 18:09:33 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 18:09:33 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 18:09:33 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:09:34 [INFO] [SOCKET] Connection established
+2026-06-20 18:09:34 [INFO] [SOCKET] Socket process started
+2026-06-20 18:09:34 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:09:34 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:09:34 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:09:34 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-20 18:09:34 [INFO] [SHELL] Child process created (PID: 30206)
+2026-06-20 18:09:34 [INFO] [SHELL] Command executed
+2026-06-20 18:09:34 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:34 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-20 18:09:34 [INFO] [SHELL] Child process created (PID: 30207)
+2026-06-20 18:09:34 [INFO] [SHELL] Command executed
+2026-06-20 18:09:34 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:34 [INFO] [SHELL] Command entered: 'ls'
+2026-06-20 18:09:34 [INFO] [SHELL] Child process created (PID: 30208)
+2026-06-20 18:09:34 [INFO] [SHELL] Command executed
+2026-06-20 18:09:34 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:34 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-20 18:09:34 [INFO] [SHELL] Child process created (PID: 30209)
+2026-06-20 18:09:34 [INFO] [SHELL] Command executed
+2026-06-20 18:09:34 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:09:34 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:09:34 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-20 18:09:34 [INFO] [SHELL] Child process created (PID: 30210)
+2026-06-20 18:09:34 [INFO] [SHELL] Script executed
+2026-06-20 18:09:34 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:34 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-20 18:09:34 [INFO] [SHELL] Child process created (PID: 30214)
+2026-06-20 18:09:34 [INFO] [SHELL] Script executed
+2026-06-20 18:09:34 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:34 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-20 18:09:34 [INFO] [SHELL] Child process created (PID: 30220)
+2026-06-20 18:09:34 [INFO] [SHELL] Script executed
+2026-06-20 18:09:34 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:09:34 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-20 18:09:34 [INFO] [SHELL] Child process created (PID: 30224)
+2026-06-20 18:09:34 [INFO] [SHELL] Script executed
+2026-06-20 18:09:34 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:09:34 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:09:57 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 18:10:01 [INFO] [REPL] Command received: 'shell' (args count: 0) under context 'main'
+2026-06-20 18:10:24 [INFO] [REPL] Command received: 'file' (args count: 0) under context 'shell'
+2026-06-20 18:10:24 [INFO] [SHELL] Script selected: 'shell/file.sh'
+2026-06-20 18:10:24 [INFO] [SHELL] Child process created (PID: 30280)
+2026-06-20 18:10:24 [INFO] [SHELL] Script executed
+2026-06-20 18:10:24 [INFO] [SHELL] Exit status: 1
+2026-06-20 18:10:24 [ERROR] [SHELL] Errors: execution failed with exit code 1
+2026-06-20 18:11:42 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 18:11:42 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:11:43 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 18:11:43 [INFO] [SOCKET] TCP Client launched
+2026-06-20 18:11:43 [INFO] [SOCKET] Connection established
+2026-06-20 18:11:43 [INFO] [SOCKET] Socket process started
+2026-06-20 18:11:43 [INFO] [SOCKET] Connection established
+2026-06-20 18:11:43 [INFO] [SOCKET] Socket process started
+2026-06-20 18:11:44 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 18:11:44 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:11:44 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 18:11:44 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:11:44 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 18:11:44 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:11:44 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 18:11:44 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:11:44 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 18:11:44 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:11:44 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:11:44 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:11:44 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:11:44 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 18:11:44 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:11:44 [INFO] [SOCKET] Disconnect
+2026-06-20 18:11:44 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 18:11:44 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 18:11:45 [INFO] [SOCKET] Client connected: 127.0.0.1:34116
+2026-06-20 18:11:45 [INFO] [SOCKET] Client connected: 127.0.0.1:34124
+2026-06-20 18:11:45 [INFO] [SOCKET] Client connected: 127.0.0.1:34126
+2026-06-20 18:11:45 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:34124
+2026-06-20 18:11:45 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:34116
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:34126
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:11:45 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:11:45 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:11:45 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:34126
+2026-06-20 18:11:45 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:34116
+2026-06-20 18:11:45 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:34124
+2026-06-20 18:11:45 [INFO] [SOCKET] Terminal launched
+2026-06-20 18:11:45 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 18:11:45 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 18:11:45 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:11:46 [INFO] [SOCKET] Connection established
+2026-06-20 18:11:46 [INFO] [SOCKET] Socket process started
+2026-06-20 18:11:46 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:11:46 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:11:46 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:11:46 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-20 18:11:46 [INFO] [SHELL] Child process created (PID: 30513)
+2026-06-20 18:11:46 [INFO] [SHELL] Command executed
+2026-06-20 18:11:46 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:11:46 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-20 18:11:46 [INFO] [SHELL] Child process created (PID: 30514)
+2026-06-20 18:11:46 [INFO] [SHELL] Command executed
+2026-06-20 18:11:46 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:11:46 [INFO] [SHELL] Command entered: 'ls'
+2026-06-20 18:11:46 [INFO] [SHELL] Child process created (PID: 30515)
+2026-06-20 18:11:46 [INFO] [SHELL] Command executed
+2026-06-20 18:11:46 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:11:46 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-20 18:11:46 [INFO] [SHELL] Child process created (PID: 30516)
+2026-06-20 18:11:46 [INFO] [SHELL] Command executed
+2026-06-20 18:11:46 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:11:46 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:11:46 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-20 18:11:46 [INFO] [SHELL] Child process created (PID: 30517)
+2026-06-20 18:11:46 [INFO] [SHELL] Script executed
+2026-06-20 18:11:46 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:11:46 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-20 18:11:46 [INFO] [SHELL] Child process created (PID: 30521)
+2026-06-20 18:11:46 [INFO] [SHELL] Script executed
+2026-06-20 18:11:46 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:11:46 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-20 18:11:46 [INFO] [SHELL] Child process created (PID: 30527)
+2026-06-20 18:11:46 [INFO] [SHELL] Script executed
+2026-06-20 18:11:46 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:11:46 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-20 18:11:46 [INFO] [SHELL] Child process created (PID: 30531)
+2026-06-20 18:11:46 [INFO] [SHELL] Script executed
+2026-06-20 18:11:46 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:11:46 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:12:11 [INFO] [SYSTEM] Application started in modern interactive REPL mode
+2026-06-20 18:12:25 [INFO] [REPL] Command received: 'cron' (args count: 0) under context 'main'
+2026-06-20 18:12:34 [INFO] [SHELL] Command entered: 'chmod +x '
+2026-06-20 18:12:34 [INFO] [SHELL] Child process created (PID: 30629)
+2026-06-20 18:12:34 [INFO] [SHELL] Command executed
+2026-06-20 18:12:34 [INFO] [SHELL] Exit status: 1
+2026-06-20 18:12:34 [ERROR] [SHELL] Errors: execution failed with exit code 1
+2026-06-20 18:12:34 [INFO] [SHELL] Command entered: 'crontab -l 2>/dev/null | { cat; echo " "; } | crontab -'
+2026-06-20 18:12:34 [INFO] [SHELL] Child process created (PID: 30630)
+2026-06-20 18:12:34 [INFO] [SHELL] Command executed
+2026-06-20 18:12:34 [INFO] [SHELL] Exit status: 1
+2026-06-20 18:12:34 [ERROR] [SHELL] Errors: execution failed with exit code 1
+2026-06-20 18:12:44 [INFO] [REPL] Command received: 'cron' (args count: 0) under context 'main'
+2026-06-20 18:12:48 [INFO] [SHELL] Command entered: 'crontab -l'
+2026-06-20 18:12:48 [INFO] [SHELL] Child process created (PID: 30641)
+2026-06-20 18:12:48 [INFO] [SHELL] Command executed
+2026-06-20 18:12:48 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:12:59 [INFO] [REPL] Command received: 'cron' (args count: 0) under context 'main'
+2026-06-20 18:13:01 [INFO] [SHELL] Command entered: 'crontab -r'
+2026-06-20 18:13:01 [INFO] [SHELL] Child process created (PID: 30660)
+2026-06-20 18:13:01 [INFO] [SHELL] Command executed
+2026-06-20 18:13:01 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:13:35 [INFO] [REPL] Command received: 'shell' (args count: 0) under context 'main'
+2026-06-20 18:14:04 [INFO] [REPL] Command received: 'time' (args count: 0) under context 'main'
+2026-06-20 18:14:10 [INFO] [SHELL] Command entered: 'sudo chronyc makestep'
+2026-06-20 18:14:10 [INFO] [SHELL] Child process created (PID: 30783)
+2026-06-20 18:14:13 [INFO] [SHELL] Command executed
+2026-06-20 18:14:13 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:14:20 [INFO] [REPL] Command received: 'time' (args count: 0) under context 'main'
+2026-06-20 18:14:33 [INFO] [SHELL] Command entered: 'sudo timedatectl set-ntp true'
+2026-06-20 18:14:33 [INFO] [SHELL] Child process created (PID: 30845)
+2026-06-20 18:14:33 [INFO] [SHELL] Command executed
+2026-06-20 18:14:33 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:14:40 [INFO] [REPL] Command received: 'kernel' (args count: 0) under context 'main'
+2026-06-20 18:14:43 [INFO] [REPL] Command received: 'info' (args count: 0) under context 'kernel'
+2026-06-20 18:14:43 [INFO] [KERNEL] Kernel module information requested
+2026-06-20 18:14:43 [ERROR] [KERNEL] Read failure: failed to open /proc/sysmgr (errno 2)
+2026-06-20 18:16:32 [INFO] [SOCKET] Server start requested on port 9099
+2026-06-20 18:16:32 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:16:33 [INFO] [SOCKET] Client connect requested to 127.0.0.1:9099
+2026-06-20 18:16:33 [INFO] [SOCKET] TCP Client launched
+2026-06-20 18:16:33 [INFO] [SOCKET] Connection established
+2026-06-20 18:16:33 [INFO] [SOCKET] Socket process started
+2026-06-20 18:16:33 [INFO] [SOCKET] Connection established
+2026-06-20 18:16:33 [INFO] [SOCKET] Socket process started
+2026-06-20 18:16:34 [INFO] [SOCKET] Bytes sent: 17 bytes
+2026-06-20 18:16:34 [INFO] [SOCKET] Bytes received: 17 bytes
+2026-06-20 18:16:34 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:16:34 [INFO] [SOCKET] Server message: Hello from server
+2026-06-20 18:16:34 [INFO] [SOCKET] Bytes received: 14 bytes
+2026-06-20 18:16:34 [INFO] [SOCKET] Bytes sent: 14 bytes
+2026-06-20 18:16:34 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:16:34 [INFO] [SOCKET] Client message: Hi from client
+2026-06-20 18:16:34 [INFO] [SOCKET] Bytes sent: 4 bytes
+2026-06-20 18:16:34 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:16:34 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:16:34 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:16:34 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:16:34 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:16:34 [INFO] [SOCKET] Client connection closed cleanly
+2026-06-20 18:16:34 [INFO] [SOCKET] Disconnect
+2026-06-20 18:16:34 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:16:34 [INFO] [SOCKET] Multi-client Server start requested on port 9099
+2026-06-20 18:16:34 [INFO] [SOCKET] Server started: Multi-threaded server listening on port 9099
+2026-06-20 18:16:35 [INFO] [SOCKET] Client connected: 127.0.0.1:38650
+2026-06-20 18:16:35 [INFO] [SOCKET] Client connected: 127.0.0.1:38646
+2026-06-20 18:16:35 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:38650
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Client connected: 127.0.0.1:38652
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:38652
+2026-06-20 18:16:35 [INFO] [SOCKET] Thread created: Handling client 127.0.0.1:38646
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes received: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Bytes sent: 18 bytes
+2026-06-20 18:16:35 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:16:35 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:16:35 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:38652
+2026-06-20 18:16:35 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:38650
+2026-06-20 18:16:35 [INFO] [SOCKET] Disconnect: Client closed connection
+2026-06-20 18:16:35 [INFO] [SOCKET] Thread exited: Finished client 127.0.0.1:38646
+2026-06-20 18:16:35 [INFO] [SOCKET] Terminal launched
+2026-06-20 18:16:35 [INFO] [REPL] Command received: 'socket' (args count: 2) under context 'main'
+2026-06-20 18:16:35 [INFO] [SOCKET] Server start requested on port 9091
+2026-06-20 18:16:35 [INFO] [SOCKET] TCP Server launched
+2026-06-20 18:16:36 [INFO] [SOCKET] Connection established
+2026-06-20 18:16:36 [INFO] [SOCKET] Socket process started
+2026-06-20 18:16:36 [INFO] [SOCKET] Bytes received: 4 bytes
+2026-06-20 18:16:36 [INFO] [SOCKET] Client message: exit
+2026-06-20 18:16:36 [INFO] [SOCKET] Terminal closed
+2026-06-20 18:16:36 [INFO] [SHELL] Command entered: 'pwd'
+2026-06-20 18:16:36 [INFO] [SHELL] Child process created (PID: 32213)
+2026-06-20 18:16:36 [INFO] [SHELL] Command executed
+2026-06-20 18:16:36 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:16:36 [INFO] [SHELL] Command entered: 'whoami'
+2026-06-20 18:16:36 [INFO] [SHELL] Child process created (PID: 32214)
+2026-06-20 18:16:36 [INFO] [SHELL] Command executed
+2026-06-20 18:16:36 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:16:36 [INFO] [SHELL] Command entered: 'ls'
+2026-06-20 18:16:36 [INFO] [SHELL] Child process created (PID: 32215)
+2026-06-20 18:16:36 [INFO] [SHELL] Command executed
+2026-06-20 18:16:36 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:16:36 [INFO] [SHELL] Command entered: 'invalid_command_xyz123'
+2026-06-20 18:16:36 [INFO] [SHELL] Child process created (PID: 32216)
+2026-06-20 18:16:36 [INFO] [SHELL] Command executed
+2026-06-20 18:16:36 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:16:36 [ERROR] [SHELL] Errors: execution failed with exit code 127
+2026-06-20 18:16:36 [INFO] [SHELL] Script selected: 'scripts/backup.sh'
+2026-06-20 18:16:36 [INFO] [SHELL] Child process created (PID: 32217)
+2026-06-20 18:16:36 [INFO] [SHELL] Script executed
+2026-06-20 18:16:36 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:16:36 [INFO] [SHELL] Script selected: 'scripts/disk_usage.sh'
+2026-06-20 18:16:36 [INFO] [SHELL] Child process created (PID: 32221)
+2026-06-20 18:16:36 [INFO] [SHELL] Script executed
+2026-06-20 18:16:36 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:16:36 [INFO] [SHELL] Script selected: 'scripts/show_date.sh'
+2026-06-20 18:16:36 [INFO] [SHELL] Child process created (PID: 32227)
+2026-06-20 18:16:36 [INFO] [SHELL] Script executed
+2026-06-20 18:16:36 [INFO] [SHELL] Exit status: 0
+2026-06-20 18:16:36 [INFO] [SHELL] Script selected: 'scripts/invalid_script.sh'
+2026-06-20 18:16:36 [INFO] [SHELL] Child process created (PID: 32231)
+2026-06-20 18:16:36 [INFO] [SHELL] Script executed
+2026-06-20 18:16:36 [INFO] [SHELL] Exit status: 127
+2026-06-20 18:16:36 [ERROR] [SHELL] Errors: execution failed with exit code 127

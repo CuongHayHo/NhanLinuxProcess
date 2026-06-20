@@ -1234,8 +1234,8 @@ static int linenoiseEditSuggestionNext(struct linenoiseState *l, int dir) {
     
     const char *ctx = repl_get_current_context();
     const char *query = (selected_suggestion_idx >= 0 && original_query[0] == '/') ? original_query : l->buf;
-    const palette_item_t *matches[6];
-    int count = get_suggestion_matches(ctx, query, matches, 6);
+    const palette_item_t *matches[16];
+    int count = get_suggestion_matches(ctx, query, matches, 16);
     
     if (count == 0) return 0;
     
@@ -1329,9 +1329,9 @@ static void appendSuggestions(struct abuf *ab, const char *input_buf, int *print
         return;
     }
     
-    const palette_item_t *matches[6];
-    int count = get_suggestion_matches(ctx, active_query, matches, 6);
-    int max_suggestions = 6;
+    const palette_item_t *matches[16];
+    int count = get_suggestion_matches(ctx, active_query, matches, 16);
+    int max_suggestions = 16;
     
     abAppend(ab, "\r\n", 2);
     (*printed_lines)++;

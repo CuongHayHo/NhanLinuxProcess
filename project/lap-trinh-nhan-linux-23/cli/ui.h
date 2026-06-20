@@ -29,4 +29,10 @@ void ui_clear_screen(void);
 void ui_show_banner(const char *version);
 void ui_show_help(void);
 
+/**
+ * Renders an interactive CLI selection menu using arrow keys.
+ * Returns the 0-indexed selection or -1 if canceled/ESC.
+ */
+int ui_select_menu(const char* title, const char* options[], int options_count);
+
 #endif /* UI_H */

@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -g -I../include -I../common -pthread
+CFLAGS = -Wall -Wextra -g -I../include -I../common -I../cli -pthread
 AR = ar
 ARFLAGS = rcs
 

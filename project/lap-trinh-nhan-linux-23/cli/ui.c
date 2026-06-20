@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <string.h>
+#include <termios.h>
+#include <unistd.h>
 #include "ui.h"
 
 void ui_print_success(const char *format, ...) {
@@ -111,3 +114,100 @@ void ui_show_help(void) {
     printf("========================================================\n\n");
     fflush(stdout);
 }
+
+int ui_select_menu(const char* title, const char* options[], int options_count) {
+    if (options_count <= 0) return -1;
+
+    extern int is_interactive;
+    if (!is_interactive) {
+        // Non-interactive fallback
+        printf("\n--- %s ---\n", title);
+        for (int i = 0; i < options_count; i++) {
+            printf("%d. %s\n", i + 1, options[i]);
+        }
+        printf("Select option [1-%d]: ", options_count);
+        fflush(stdout);
+        char input[64];
+        if (fgets(input, sizeof(input), stdin) == NULL) return -1;
+        int val = atoi(input) - 1;
+        if (val >= 0 && val < options_count) return val;
+        return -1;
+    }
+
+    // Save original terminal settings
+    struct termios orig_t;
+    if (tcgetattr(STDIN_FILENO, &orig_t) == -1) {
+        return -1; 
+    }
+
+    struct termios raw = orig_t;
+    raw.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &raw);
+
+    int selected = 0;
+    int key_pressed = 0;
+
+    // Hide cursor
+    printf("\033[?25l");
+    fflush(stdout);
+
+    int first_draw = 1;
+
+    while (!key_pressed) {
+        // Clear previous output if not first draw
+        if (!first_draw) {
+            // Move up by (options_count + 4) lines
+            printf("\033[%dA", options_count + 4);
+        }
+        first_draw = 0;
+
+        printf("%s========================================%s\n", ANSI_CYAN, ANSI_RESET);
+        printf("  %s%s%s\n", ANSI_BOLD, title, ANSI_RESET);
+        printf("%s========================================%s\n", ANSI_CYAN, ANSI_RESET);
+
+        for (int i = 0; i < options_count; i++) {
+            if (i == selected) {
+                printf("  %s-> %s%s\n", ANSI_GREEN, options[i], ANSI_RESET);
+            } else {
+                printf("     %s\n", options[i]);
+            }
+        }
+        printf("%s========================================%s\n", ANSI_CYAN, ANSI_RESET);
+        fflush(stdout);
+
+        char c;
+        int nread = read(STDIN_FILENO, &c, 1);
+        if (nread <= 0) continue;
+
+        if (c == '\033') {
+            char seq[3];
+            // Read arrow keys
+            if (read(STDIN_FILENO, &seq[0], 1) > 0 && read(STDIN_FILENO, &seq[1], 1) > 0) {
+                if (seq[0] == '[') {
+                    if (seq[1] == 'A') { // Up Arrow
+                        selected = (selected - 1 + options_count) % options_count;
+                    } else if (seq[1] == 'B') { // Down Arrow
+                        selected = (selected + 1) % options_count;
+                    }
+                }
+            } else {
+                // ESC key
+                selected = -1;
+                key_pressed = 1;
+            }
+        } else if (c == '\r' || c == '\n') {
+            key_pressed = 1;
+        } else if (c == 'q' || c == 'Q') {
+            selected = -1;
+            key_pressed = 1;
+        }
+    }
+
+    // Restore cursor and terminal mode
+    printf("\033[?25h");
+    fflush(stdout);
+    tcsetattr(STDIN_FILENO, TCSANOW, &orig_t);
+
+    return selected;
+}
+

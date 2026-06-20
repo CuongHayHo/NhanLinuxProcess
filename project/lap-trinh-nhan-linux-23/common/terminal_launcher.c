@@ -13,10 +13,12 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <fcntl.h>
 #include "terminal_launcher.h"
 #include "logger.h"
 
 static const char* terminals[] = {
+    "ptyxis",
     "gnome-terminal",
     "konsole",
     "kitty",
@@ -72,6 +74,14 @@ int terminal_open(const char* title, const char* command) {
     }
     
     if (pid == 0) {
+        // Mute GUI debug logs / GTK warnings by redirecting output to /dev/null
+        int dev_null = open("/dev/null", O_WRONLY);
+        if (dev_null >= 0) {
+            dup2(dev_null, 1);
+            dup2(dev_null, 2);
+            close(dev_null);
+        }
+
         char full_cmd[1024];
         snprintf(full_cmd, sizeof(full_cmd), "%s; echo; read -p 'Press Enter to close...'", command);
         
@@ -80,7 +90,14 @@ int terminal_open(const char* title, const char* command) {
         
         exec_argv[idx++] = (char*)term;
         
-        if (strcmp(term, "gnome-terminal") == 0) {
+        if (strcmp(term, "ptyxis") == 0) {
+            exec_argv[idx++] = "--title";
+            exec_argv[idx++] = (char*)title;
+            exec_argv[idx++] = "--";
+            exec_argv[idx++] = "sh";
+            exec_argv[idx++] = "-c";
+            exec_argv[idx++] = full_cmd;
+        } else if (strcmp(term, "gnome-terminal") == 0) {
             exec_argv[idx++] = "--title";
             exec_argv[idx++] = (char*)title;
             exec_argv[idx++] = "--";

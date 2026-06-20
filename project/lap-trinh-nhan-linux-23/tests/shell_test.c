@@ -14,6 +14,20 @@
 #include <errno.h>
 #include "shell_mgr.h"
 
+/* Dummy definitions for CLI and TUI subsystems to satisfy links in shell_mgr.o */
+int is_interactive = 0;
+int ui_select_menu(const char* title, const char* options[], int options_count) {
+    (void)title; (void)options; (void)options_count;
+    return -1;
+}
+char* linenoise(const char* prompt) {
+    (void)prompt;
+    return NULL;
+}
+void linenoiseFree(void* ptr) {
+    (void)ptr;
+}
+
 /* 1. Raw command execution tests */
 static void run_raw_commands_tests(void) {
     printf("=== Section 1: Raw Command Execution ===\n");

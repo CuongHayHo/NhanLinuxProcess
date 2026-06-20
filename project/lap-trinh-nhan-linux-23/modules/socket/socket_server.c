@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  * File: modules/socket/socket_server.c
- * Purpose: Single-connection TCP server with threaded receiver.
+ * Purpose: Single-connection TCP server with non-blocking terminal redraw.
  */
 
 #define _GNU_SOURCE
@@ -17,11 +17,34 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 #include <errno.h>
+#include <termios.h>
 #include "socket_mgr.h"
 #include "logger.h"
 
 static int server_socket_fd = -1;
 static int client_socket_fd = -1;
+
+static struct termios orig_termios;
+static char input_buffer[512] = {0};
+static int input_len = 0;
+static pthread_mutex_t input_mutex = PTHREAD_MUTEX_INITIALIZER;
+static int is_interactive = 0;
+
+static void set_conio_terminal_mode(void) {
+    if (is_interactive) {
+        struct termios new_termios;
+        tcgetattr(0, &orig_termios);
+        memcpy(&new_termios, &orig_termios, sizeof(new_termios));
+        new_termios.c_lflag &= ~(ICANON | ECHO);
+        tcsetattr(0, TCSANOW, &new_termios);
+    }
+}
+
+static void reset_terminal_mode(void) {
+    if (is_interactive) {
+        tcsetattr(0, TCSANOW, &orig_termios);
+    }
+}
 
 static void* receiver_thread(void* arg) {
     int client_fd = *(int*)arg;
@@ -33,13 +56,27 @@ static void* receiver_thread(void* arg) {
         ssize_t valread = recv(client_fd, buffer, sizeof(buffer) - 1, 0);
         if (valread == 0) {
             log_info("SOCKET", "Disconnect: Client closed connection");
-            printf("\n---\nClient disconnected.\n");
-            fflush(stdout);
+            if (is_interactive) {
+                pthread_mutex_lock(&input_mutex);
+                printf("\r\x1b[KClient disconnected.\n");
+                fflush(stdout);
+                pthread_mutex_unlock(&input_mutex);
+            } else {
+                printf("Client disconnected.\n");
+                fflush(stdout);
+            }
             break;
         } else if (valread < 0) {
             log_error("SOCKET", "Socket error: %s (errno %d)", strerror(errno), errno);
-            printf("\nSocket receive error.\n%s\n", strerror(errno));
-            fflush(stdout);
+            if (is_interactive) {
+                pthread_mutex_lock(&input_mutex);
+                printf("\r\x1b[KSocket receive error: %s\n", strerror(errno));
+                fflush(stdout);
+                pthread_mutex_unlock(&input_mutex);
+            } else {
+                printf("Socket receive error: %s\n", strerror(errno));
+                fflush(stdout);
+            }
             break;
         }
 
@@ -50,13 +87,29 @@ static void* receiver_thread(void* arg) {
         log_info("SOCKET", "Client message: %s", buffer);
 
         if (strcmp(buffer, "exit") == 0) {
-            printf("\nClient sent exit command.\n");
-            fflush(stdout);
+            if (is_interactive) {
+                pthread_mutex_lock(&input_mutex);
+                printf("\r\x1b[KClient sent exit command.\n");
+                fflush(stdout);
+                pthread_mutex_unlock(&input_mutex);
+            } else {
+                printf("Client sent exit command.\n");
+                printf("Client disconnected.\n");
+                fflush(stdout);
+            }
             break;
         }
 
-        printf("Client\n%s\n", buffer);
-        fflush(stdout);
+        if (is_interactive) {
+            pthread_mutex_lock(&input_mutex);
+            printf("\r\x1b[KClient > %s\n", buffer);
+            printf("You > %s", input_buffer);
+            fflush(stdout);
+            pthread_mutex_unlock(&input_mutex);
+        } else {
+            printf("Client\n%s\n", buffer);
+            fflush(stdout);
+        }
     }
 
     log_info("SOCKET", "Terminal closed");
@@ -66,7 +119,8 @@ static void* receiver_thread(void* arg) {
         shutdown(server_socket_fd, SHUT_RDWR);
         close(server_socket_fd);
     }
-    exit(0);
+    reset_terminal_mode();
+    _exit(0);
     return NULL;
 }
 
@@ -75,9 +129,10 @@ void socket_mgr_server_start(int port) {
     struct sockaddr_in address;
     int opt = 1;
     socklen_t addrlen = sizeof(address);
-    char input[512];
 
     log_info("SOCKET", "Server start requested on port %d", port);
+
+    is_interactive = isatty(0);
 
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         log_error("SOCKET", "Errors: socket creation failed (errno %d)", errno);
@@ -146,32 +201,93 @@ void socket_mgr_server_start(int port) {
     }
     pthread_detach(recv_tid);
 
-    while (1) {
-        memset(input, 0, sizeof(input));
-        if (fgets(input, sizeof(input), stdin) == NULL) {
-            break;
-        }
+    if (is_interactive) {
+        set_conio_terminal_mode();
 
-        input[strcspn(input, "\n")] = '\0';
-        if (strlen(input) == 0) {
-            continue;
-        }
-
-        ssize_t valsent = send(client_fd, input, strlen(input), 0);
-        if (valsent < 0) {
-            log_error("SOCKET", "Socket error: send failed (errno %d)", errno);
-            perror("send");
-            break;
-        }
-
-        log_info("SOCKET", "Bytes sent: %zd bytes", valsent);
-        log_info("SOCKET", "Server message: %s", input);
-
-        printf("You\n%s\n", input);
+        pthread_mutex_lock(&input_mutex);
+        printf("You > ");
         fflush(stdout);
+        pthread_mutex_unlock(&input_mutex);
 
-        if (strcmp(input, "exit") == 0) {
-            break;
+        while (1) {
+            char c;
+            if (read(0, &c, 1) <= 0) {
+                break;
+            }
+
+            pthread_mutex_lock(&input_mutex);
+            if (c == '\n' || c == '\r') {
+                input_buffer[input_len] = '\0';
+                pthread_mutex_unlock(&input_mutex);
+
+                if (input_len > 0) {
+                    ssize_t valsent = send(client_fd, input_buffer, input_len, 0);
+                    if (valsent < 0) {
+                        log_error("SOCKET", "Socket error: send failed (errno %d)", errno);
+                        break;
+                    }
+                    log_info("SOCKET", "Bytes sent: %zd bytes", valsent);
+                    log_info("SOCKET", "Server message: %s", input_buffer);
+
+                    // Print server message securely
+                    pthread_mutex_lock(&input_mutex);
+                    printf("\r\x1b[KYou > %s\n", input_buffer);
+                    fflush(stdout);
+                    pthread_mutex_unlock(&input_mutex);
+                }
+
+                int check_exit = (strcmp(input_buffer, "exit") == 0);
+
+                pthread_mutex_lock(&input_mutex);
+                input_len = 0;
+                input_buffer[0] = '\0';
+                if (!check_exit) {
+                    printf("You > ");
+                    fflush(stdout);
+                }
+                pthread_mutex_unlock(&input_mutex);
+
+                if (check_exit) {
+                    break;
+                }
+            } else if (c == 127 || c == 8) {
+                if (input_len > 0) {
+                    input_len--;
+                    input_buffer[input_len] = '\0';
+                    printf("\b \b");
+                    fflush(stdout);
+                }
+                pthread_mutex_unlock(&input_mutex);
+            } else if (c >= 32 && c < 127 && input_len < (int)sizeof(input_buffer) - 1) {
+                input_buffer[input_len++] = c;
+                input_buffer[input_len] = '\0';
+                putchar(c);
+                fflush(stdout);
+                pthread_mutex_unlock(&input_mutex);
+            } else {
+                pthread_mutex_unlock(&input_mutex);
+            }
+        }
+    } else {
+        char input[512];
+        while (fgets(input, sizeof(input), stdin) != NULL) {
+            input[strcspn(input, "\r\n")] = '\0';
+            if (strlen(input) == 0) continue;
+
+            ssize_t valsent = send(client_fd, input, strlen(input), 0);
+            if (valsent < 0) {
+                log_error("SOCKET", "Socket error: send failed (errno %d)", errno);
+                break;
+            }
+            log_info("SOCKET", "Bytes sent: %zd bytes", valsent);
+            log_info("SOCKET", "Server message: %s", input);
+
+            printf("You\n%s\n", input);
+            fflush(stdout);
+
+            if (strcmp(input, "exit") == 0) {
+                break;
+            }
         }
     }
 
@@ -180,5 +296,6 @@ void socket_mgr_server_start(int port) {
     close(client_fd);
     shutdown(server_fd, SHUT_RDWR);
     close(server_fd);
+    reset_terminal_mode();
     log_info("SOCKET", "Server stopped cleanly");
 }

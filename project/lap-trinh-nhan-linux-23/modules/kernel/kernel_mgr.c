@@ -18,6 +18,7 @@
 #include "kernel_mgr.h"
 #include "logger.h"
 #include "menu.h"
+#include "ui.h"
 
 #define MAX_LOG_LINES 20
 #define MAX_LINE_LEN 512
@@ -515,59 +516,95 @@ void kernel_mgr_show_napi_overview(void) {
 }
 
 void kernel_mgr_run(void) {
-    int choice;
     log_info("KERNEL", "Entering Kernel Module Manager");
+    extern int is_interactive;
 
     while (1) {
-        printf("\n========================================\n");
-        printf("Kernel Module\n");
-        printf("========================================\n");
-        printf("1. Show Module Information\n");
-        printf("2. Load Module\n");
-        printf("3. Unload Module\n");
-        printf("4. Show Network Stack Overview\n");
-        printf("5. Show sk_buff Overview\n");
-        printf("6. Show NAPI Overview\n");
-        printf("0. Return\n");
-        printf("========================================\n");
-        printf("Select option: ");
-        fflush(stdout);
+        if (is_interactive) {
+            const char* kernel_options[] = {
+                "Show Module Information (Xem thông tin module)",
+                "Load Module (Tải module)",
+                "Unload Module (Gỡ module)",
+                "Show Network Stack Overview (Tổng quan network stack)",
+                "Show sk_buff Overview (Tổng quan sk_buff)",
+                "Show NAPI Overview (Tổng quan NAPI)",
+                "Return (Trở về)"
+            };
+            int sel = ui_select_menu("Kernel Module", kernel_options, 7);
+            if (sel == 6 || sel == -1) {
+                log_info("KERNEL", "Leaving Kernel Module Manager");
+                break;
+            }
+            if (sel == 0) {
+                kernel_mgr_show_info();
+                kernel_menu_pause();
+            } else if (sel == 1) {
+                kernel_mgr_load_module();
+                kernel_menu_pause();
+            } else if (sel == 2) {
+                kernel_mgr_unload_module();
+                kernel_menu_pause();
+            } else if (sel == 3) {
+                kernel_mgr_show_network_stack();
+                kernel_menu_pause();
+            } else if (sel == 4) {
+                kernel_mgr_show_sk_buff_overview();
+                kernel_menu_pause();
+            } else if (sel == 5) {
+                kernel_mgr_show_napi_overview();
+                kernel_menu_pause();
+            }
+        } else {
+            printf("\n========================================\n");
+            printf("Kernel Module\n");
+            printf("========================================\n");
+            printf("1. Show Module Information\n");
+            printf("2. Load Module\n");
+            printf("3. Unload Module\n");
+            printf("4. Show Network Stack Overview\n");
+            printf("5. Show sk_buff Overview\n");
+            printf("6. Show NAPI Overview\n");
+            printf("0. Return\n");
+            printf("========================================\n");
+            printf("Select option: ");
+            fflush(stdout);
 
-        choice = read_kernel_choice();
+            int choice = read_kernel_choice();
 
-        if (choice < 0) {
-            continue;
-        }
+            if (choice < 0) {
+                continue;
+            }
 
-        if (choice > 6) {
-            printf("\nInvalid input. Please choose a number between 0 and 6.\n");
-            kernel_menu_pause();
-            continue;
-        }
+            if (choice > 6) {
+                printf("\nInvalid input. Please choose a number between 0 and 6.\n");
+                kernel_menu_pause();
+                continue;
+            }
 
-        if (choice == 0) {
-            log_info("KERNEL", "Leaving Kernel Module Manager");
-            break;
-        }
+            if (choice == 0) {
+                log_info("KERNEL", "Leaving Kernel Module Manager");
+                break;
+            }
 
-        if (choice == 1) {
-            kernel_mgr_show_info();
-            kernel_menu_pause();
-        } else if (choice == 2) {
-            kernel_mgr_load_module();
-            kernel_menu_pause();
-        } else if (choice == 3) {
-            kernel_mgr_unload_module();
-            kernel_menu_pause();
-        } else if (choice == 4) {
-            kernel_mgr_show_network_stack();
-            kernel_menu_pause();
-        } else if (choice == 5) {
-            kernel_mgr_show_sk_buff_overview();
-            kernel_menu_pause();
-        } else if (choice == 6) {
-            kernel_mgr_show_napi_overview();
-            kernel_menu_pause();
+            if (choice == 1) {
+                kernel_mgr_show_info();
+                kernel_menu_pause();
+            } else if (choice == 2) {
+                kernel_mgr_load_module();
+                kernel_menu_pause();
+            } else if (choice == 3) {
+                kernel_mgr_unload_module();
+                kernel_menu_pause();
+            } else if (choice == 4) {
+                kernel_mgr_show_network_stack();
+                kernel_menu_pause();
+            } else if (choice == 5) {
+                kernel_mgr_show_sk_buff_overview();
+                kernel_menu_pause();
+            } else if (choice == 6) {
+                kernel_mgr_show_napi_overview();
+                kernel_menu_pause();
+            }
         }
     }
 }
@@ -583,15 +620,26 @@ int kernel_mgr_show_info(void) {
     if (!fp) {
         log_error("KERNEL", "Read failure: failed to open /proc/sysmgr (errno %d)", errno);
         printf("\nKernel module is not loaded.\n");
-        printf("Would you like to load it now?\n");
-        printf("1. Yes\n");
-        printf("2. No\n");
-        printf("Select option: ");
-        fflush(stdout);
-        
-        int sub_choice = read_kernel_choice();
-        if (sub_choice == 1) {
-            kernel_mgr_load_module();
+        extern int is_interactive;
+        if (is_interactive) {
+            const char* load_options[] = {
+                "Yes (Tải module ngay)",
+                "No (Không)"
+            };
+            int sel = ui_select_menu("Would you like to load it now?", load_options, 2);
+            if (sel == 0) {
+                kernel_mgr_load_module();
+            }
+        } else {
+            printf("Would you like to load it now?\n");
+            printf("1. Yes\n");
+            printf("2. No\n");
+            printf("Select option: ");
+            fflush(stdout);
+            int sub_choice = read_kernel_choice();
+            if (sub_choice == 1) {
+                kernel_mgr_load_module();
+            }
         }
         return -1;
     }

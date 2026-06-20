@@ -87,16 +87,37 @@ static int get_arg_or_prompt(char* dest, size_t dest_len, int arg_idx, int argc,
         dest[dest_len - 1] = '\0';
         return 0;
     }
-    printf("%s", prompt_msg);
-    fflush(stdout);
-    if (fgets(dest, dest_len, stdin) == NULL) {
-        return -1;
+    if (is_interactive) {
+        char* input = linenoise(prompt_msg);
+        if (input == NULL) {
+            dest[0] = '\0';
+            return -1;
+        }
+        if (strcmp(input, "\x1b") == 0) {
+            dest[0] = '\0';
+            linenoiseFree(input);
+            return -2; /* ESC canceled */
+        }
+        strncpy(dest, input, dest_len - 1);
+        dest[dest_len - 1] = '\0';
+        linenoiseFree(input);
+        if (dest[0] == '\0') {
+            return -1;
+        }
+        return 0;
+    } else {
+        printf("%s", prompt_msg);
+        fflush(stdout);
+        if (fgets(dest, dest_len, stdin) == NULL) {
+            dest[0] = '\0';
+            return -1;
+        }
+        dest[strcspn(dest, "\n")] = '\0';
+        if (dest[0] == '\0') {
+            return -1;
+        }
+        return 0;
     }
-    dest[strcspn(dest, "\n")] = '\0';
-    if (strlen(dest) == 0) {
-        return -1;
-    }
-    return 0;
 }
 
 /* Dispatches commands under 'file' context */
@@ -286,7 +307,9 @@ static void dispatch_socket(int argc, char** argv) {
 
     if (strcmp(cmd, "server") == 0) {
         if (is_interactive) {
-            get_arg_or_prompt(port_str, sizeof(port_str), 1, argc, argv, "Enter port to bind [8080]: ");
+            if (get_arg_or_prompt(port_str, sizeof(port_str), 1, argc, argv, "Enter port to bind [8080]: ") == -2) {
+                return;
+            }
             char cmd_buf[256];
             snprintf(cmd_buf, sizeof(cmd_buf), "%s socket server %s", sysmgr_cmd, port_str[0] ? port_str : "8080");
             if (terminal_open("TCP Server", cmd_buf) != 0) {
@@ -301,8 +324,12 @@ static void dispatch_socket(int argc, char** argv) {
         }
     } else if (strcmp(cmd, "client") == 0) {
         if (is_interactive) {
-            get_arg_or_prompt(ip, sizeof(ip), 1, argc, argv, "Enter server IP [127.0.0.1]: ");
-            get_arg_or_prompt(port_str, sizeof(port_str), 2, argc, argv, "Enter server port [8080]: ");
+            if (get_arg_or_prompt(ip, sizeof(ip), 1, argc, argv, "Enter server IP [127.0.0.1]: ") == -2) {
+                return;
+            }
+            if (get_arg_or_prompt(port_str, sizeof(port_str), 2, argc, argv, "Enter server port [8080]: ") == -2) {
+                return;
+            }
             char cmd_buf[256];
             snprintf(cmd_buf, sizeof(cmd_buf), "%s socket client %s %s", sysmgr_cmd, ip[0] ? ip : "127.0.0.1", port_str[0] ? port_str : "8080");
             if (terminal_open("TCP Client", cmd_buf) != 0) {
@@ -315,7 +342,9 @@ static void dispatch_socket(int argc, char** argv) {
         }
     } else if (strcmp(cmd, "multi") == 0) {
         if (is_interactive) {
-            get_arg_or_prompt(port_str, sizeof(port_str), 1, argc, argv, "Enter port to bind [8080]: ");
+            if (get_arg_or_prompt(port_str, sizeof(port_str), 1, argc, argv, "Enter port to bind [8080]: ") == -2) {
+                return;
+            }
             char cmd_buf[256];
             snprintf(cmd_buf, sizeof(cmd_buf), "%s socket multi %s", sysmgr_cmd, port_str[0] ? port_str : "8080");
             if (terminal_open("Multi Client Server", cmd_buf) != 0) {
@@ -337,35 +366,40 @@ static void dispatch_socket(int argc, char** argv) {
             if (argc > 1) {
                 strncpy(sub_cmd, argv[1], sizeof(sub_cmd) - 1);
             } else {
-                printf("\n--- Socket Chat Options ---\n");
-                printf("1. Host Chat\n");
-                printf("2. Join Chat\n");
-                printf("3. Open Host + Client Demo\n");
-                printf("Select option [1-3]: ");
-                fflush(stdout);
-                char input[64];
-                if (fgets(input, sizeof(input), stdin) != NULL) {
-                    input[strcspn(input, "\n")] = '\0';
-                    if (strcmp(input, "1") == 0) {
-                        strcpy(sub_cmd, "host");
-                    } else if (strcmp(input, "2") == 0) {
-                        strcpy(sub_cmd, "client");
-                    } else if (strcmp(input, "3") == 0) {
-                        strcpy(sub_cmd, "demo");
-                    }
+                const char* chat_options[] = {
+                    "Host Chat (Launch a TCP Chat Host Server)",
+                    "Join Chat (Connect to an active Chat Host)",
+                    "Open Host + Client Demo (Launch local demo)",
+                    "Cancel"
+                };
+                int sel = ui_select_menu("Socket Chat Options", chat_options, 4);
+                if (sel == 0) {
+                    strcpy(sub_cmd, "host");
+                } else if (sel == 1) {
+                    strcpy(sub_cmd, "client");
+                } else if (sel == 2) {
+                    strcpy(sub_cmd, "demo");
+                } else {
+                    return;
                 }
             }
             
             if (strcmp(sub_cmd, "host") == 0) {
-                get_arg_or_prompt(port_str, sizeof(port_str), 2, argc, argv, "Enter port to bind [8080]: ");
+                if (get_arg_or_prompt(port_str, sizeof(port_str), 2, argc, argv, "Enter port to bind [8080]: ") == -2) {
+                    return;
+                }
                 char cmd_buf[256];
                 snprintf(cmd_buf, sizeof(cmd_buf), "%s socket chat --host %s", sysmgr_cmd, port_str[0] ? port_str : "8080");
                 if (terminal_open("Chat Host", cmd_buf) != 0) {
                     ui_print_error("Failed to launch socket chat host in a new terminal.\n");
                 }
             } else if (strcmp(sub_cmd, "client") == 0) {
-                get_arg_or_prompt(ip, sizeof(ip), 2, argc, argv, "Enter host IP [127.0.0.1]: ");
-                get_arg_or_prompt(port_str, sizeof(port_str), 3, argc, argv, "Enter port [8080]: ");
+                if (get_arg_or_prompt(ip, sizeof(ip), 2, argc, argv, "Enter host IP [127.0.0.1]: ") == -2) {
+                    return;
+                }
+                if (get_arg_or_prompt(port_str, sizeof(port_str), 3, argc, argv, "Enter port [8080]: ") == -2) {
+                    return;
+                }
                 char cmd_buf[256];
                 snprintf(cmd_buf, sizeof(cmd_buf), "%s socket chat --client %s %s", sysmgr_cmd, ip[0] ? ip : "127.0.0.1", port_str[0] ? port_str : "8080");
                 if (terminal_open("Chat Client", cmd_buf) != 0) {
@@ -467,23 +501,19 @@ static void dispatch_shell(int argc, char** argv) {
             snprintf(run_cmd, sizeof(run_cmd), "/bin/bash scripts/%s", argv[1]);
             shell_mgr_execute(run_cmd);
         } else {
-            printf("\nSelect script to run:\n");
-            printf("1. backup.sh\n");
-            printf("2. disk_usage.sh\n");
-            printf("3. show_date.sh\n");
-            printf("0. Cancel\n");
-            printf("Select option: ");
-            fflush(stdout);
-            char choice_str[64];
-            if (fgets(choice_str, sizeof(choice_str), stdin) != NULL) {
-                int sc = atoi(choice_str);
-                if (sc == 1) {
-                    shell_mgr_execute("/bin/bash scripts/backup.sh");
-                } else if (sc == 2) {
-                    shell_mgr_execute("/bin/bash scripts/disk_usage.sh");
-                } else if (sc == 3) {
-                    shell_mgr_execute("/bin/bash scripts/show_date.sh");
-                }
+            const char* script_options[] = {
+                "backup.sh (Execute pre-loaded backup script)",
+                "disk_usage.sh (Show disk usage statistics)",
+                "show_date.sh (Display current system date)",
+                "Cancel"
+            };
+            int sel = ui_select_menu("Select Script to Run", script_options, 4);
+            if (sel == 0) {
+                shell_mgr_execute("/bin/bash scripts/backup.sh");
+            } else if (sel == 1) {
+                shell_mgr_execute("/bin/bash scripts/disk_usage.sh");
+            } else if (sel == 2) {
+                shell_mgr_execute("/bin/bash scripts/show_date.sh");
             }
         }
     } else if (strcmp(cmd, "env") == 0) {
@@ -491,9 +521,9 @@ static void dispatch_shell(int argc, char** argv) {
     } else if (strcmp(cmd, "file") == 0) {
         shell_mgr_execute("/bin/bash shell/file.sh");
     } else if (strcmp(cmd, "cron") == 0) {
-        shell_mgr_execute("/bin/bash shell/crontab.sh");
+        shell_mgr_cron_execute(argc, argv);
     } else if (strcmp(cmd, "time") == 0) {
-        shell_mgr_execute("/bin/bash shell/time.sh");
+        shell_mgr_time_execute(argc, argv);
     } else if (strcmp(cmd, "install") == 0) {
         shell_mgr_execute("/bin/bash shell/program.sh");
     } else if (strcmp(cmd, "monitor") == 0) {
@@ -577,6 +607,10 @@ static void route_and_dispatch(int argc, char** argv) {
             } else {
                 dispatch_shell(argc - 1, argv + 1);
             }
+        } else if (strcmp(root_token, "cron") == 0) {
+            shell_mgr_cron_execute(argc, argv);
+        } else if (strcmp(root_token, "time") == 0) {
+            shell_mgr_time_execute(argc, argv);
         } else if (strcmp(root_token, "kernel") == 0) {
             if (argc == 1) {
                 context_push("kernel");
@@ -630,6 +664,8 @@ static int is_valid_command(const char* ctx, const char* cmd) {
             strcmp(cmd, "packet") == 0 ||
             strcmp(cmd, "shell") == 0 ||
             strcmp(cmd, "kernel") == 0 ||
+            strcmp(cmd, "cron") == 0 ||
+            strcmp(cmd, "time") == 0 ||
             strcmp(cmd, "help") == 0 ||
             strcmp(cmd, "exit") == 0) {
             return 1;
@@ -641,6 +677,10 @@ static int is_valid_command(const char* ctx, const char* cmd) {
     for (int i = 0; i < palette_items_count; i++) {
         if (strcmp(palette_items[i].context, ctx) == 0) {
             if (strcmp(palette_items[i].command, cmd) == 0) {
+                return 1;
+            }
+            size_t cmd_len = strlen(cmd);
+            if (strncmp(palette_items[i].command, cmd, cmd_len) == 0 && palette_items[i].command[cmd_len] == ' ') {
                 return 1;
             }
         }
