@@ -176,43 +176,80 @@ To enable user-space programs to query kernel-level LKM details without invoking
 
 ---
 
-## 7. User Space Integration and Application Flow
+## 7. User Space Integration and Automatic Module Management
 
-To allow administrators to query module information directly from the main application, this module has been integrated into the user-space terminal interface under Option 10.
+To allow administrators to manage the entire kernel module lifecycle directly from the application without manual `make`, `insmod`, or `rmmod` terminal executions, the Kernel Module Manager has been enhanced with a comprehensive interactive menu.
 
-### Application Flow & Architecture Diagram
+### Interactive Kernel Module Manager Submenu
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor User as Linux Administrator
-    participant App as sysmgr Application (User Space)
-    participant Mgr as Kernel Module Manager (kernel_mgr)
-    participant VFS as Virtual File System (VFS)
-    participant LKM as system_monitor (Kernel Module)
-
-    User->>App: Select Option 10 (Kernel Module)
-    App->>Mgr: Run kernel_mgr_run()
-    User->>Mgr: Select Option 1 (Show Module Information)
-    Note over Mgr: Log: Kernel module information requested
-    Mgr->>VFS: fopen("/proc/sysmgr", "r")
-    alt Module Loaded
-        VFS->>LKM: Read seq_file callbacks (sysmgr_proc_show)
-        LKM-->>VFS: Formatted module details
-        VFS-->>Mgr: Stream content lines via fgets()
-        Mgr->>User: Display module info to stdout
-        Note over Mgr: Log: Read success
-    else Module Not Loaded
-        VFS-->>Mgr: Return NULL / ENOENT (No such file)
-        Mgr->>User: Display "Error: Kernel module is not loaded..."
-        Note over Mgr: Log: Read failure
-    end
-    Mgr->>User: Return to submenu (Option 0)
+```text
+========================================
+Kernel Module Manager
+=====================
+1. Show Module Information
+2. Load Kernel Module
+3. Unload Kernel Module
+4. Show Module Status
+5. Show Kernel Log (Last 20 Lines)
+6. Return
+========================================
 ```
 
-### Flow Execution Breakdown
-1. **Interactive Submenu**: The application displays the Kernel Module Menu.
-2. **Accessing Virtual Entry**: The user requests module details, prompting the application to open the virtual `/proc/sysmgr` file using standard library inputs (`fopen`, `fgets`).
-3. **Graceful Failure**: If the kernel module is not loaded, the operating system throws an `ENOENT` (No such file or directory) error. The application handles this gracefully, logs the `Read failure` alert, and informs the user rather than crashing.
-4. **VFS Direct Read**: If loaded, VFS calls LKM `seq_file` callbacks, formatting statistics that are output to the terminal, and logging `Read success`.
+### Submenu Functionality Details
+
+#### 1. Show Module Information
+*   **Verification**: Checks if `/proc/sysmgr` is readable.
+*   **Output**: Displays the file contents (Module Name, Version, Kernel Version, load time, jiffies).
+*   **Fallback**: If the module is not loaded (file unavailable), displays:
+    ```text
+    Kernel module is not loaded.
+    Would you like to load it now?
+    1. Yes
+    2. No
+    ```
+    If **Yes** is selected, it automatically transitions to **Option 2 (Load Kernel Module)**.
+
+#### 2. Load Kernel Module
+*   **Detection**: Checks if `system_monitor.ko` exists in `kernel/system_monitor/`.
+*   **Compilation**: If missing, automatically runs `make` inside `kernel/system_monitor/` using direct `fork()`, `execvp()`, and `waitpid()` processes.
+*   **Insertion**: Loads the module using `sudo insmod system_monitor.ko`.
+*   **Verification**: Confirms `/proc/sysmgr` becomes available.
+*   **State Logs**: Logs `Module load requested`, `Module build started` (if compiling), and `Module loaded` (if successful). Detects already-loaded states and permission/build failures.
+
+#### 3. Unload Kernel Module
+*   **State Detection**: Checks if the module is loaded via `lsmod` parser.
+*   **Removal**: Runs `sudo rmmod system_monitor` using `fork()`, `execvp()`, and `waitpid()`.
+*   **Verification**: Checks that `/proc/sysmgr` no longer exists.
+*   **State Logs**: Logs `Module unloaded`.
+
+#### 4. Show Module Status
+*   **Format**: Displays structured metadata:
+    *   **Module Name**: `system_monitor`
+    *   **Loaded**: `YES` / `NO`
+    *   **Kernel Version**: (obtained via `uname()` syscall)
+    *   **Module Version**: (read from `/proc/sysmgr` if loaded, defaults to `1.0` if not)
+    *   **`/proc/sysmgr`**: `Available` / `Missing`
+*   **State Logs**: Logs `Module status checked`.
+
+#### 5. Show Kernel Log (Last 20 Lines)
+*   **Execution**: Captures `dmesg` logs. If standard `dmesg` fails with a permission issue, it automatically falls back to `sudo dmesg`.
+*   **Filtering**: Dynamically filters logs line-by-line for entries containing `system_monitor` or `sysmgr`.
+*   **Output**: Displays the last 20 matching entries using an efficient circular buffer.
+*   **State Logs**: Logs `Kernel log viewed`.
+
+---
+
+## 8. Log and Error Specifications
+
+All events write to the application logger (`logs/system.log`):
+
+*   **`Module load requested`**: Triggers at the start of Option 2.
+*   **`Module build started`**: Logged if `make` needs to compile the module.
+*   **`Module loaded`**: Logged upon successful insertion of system_monitor.
+*   **`Module unloaded`**: Logged upon successful removal of system_monitor.
+*   **`Module status checked`**: Logged when Option 4 is viewed.
+*   **`Kernel log viewed`**: Logged when Option 5 displays kernel trace logs.
+*   **`Permission denied`**: Logged if `sudo`, `insmod`, `rmmod`, or `dmesg` fails due to unauthorized execution.
+*   **`Build failed`**: Logged if compilation of the kernel module fails.
+
 

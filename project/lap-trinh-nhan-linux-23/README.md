@@ -98,3 +98,18 @@ Chạy bộ kiểm thử đồng bộ thời gian Internet:
 ----------------------------------------
 Select option: 
 ```
+
+### Giao diện Menu Quản lý Kernel Module (Kernel Module Manager Submenu)
+```text
+========================================
+Kernel Module Manager
+=====================
+1. Show Module Information
+2. Load Kernel Module
+3. Unload Kernel Module
+4. Show Module Status
+5. Show Kernel Log (Last 20 Lines)
+6. Return
+========================================
+Select option: 
+```

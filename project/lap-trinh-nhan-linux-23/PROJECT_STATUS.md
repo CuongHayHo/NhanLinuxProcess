@@ -18,7 +18,7 @@
 | **Socket Manager** | Complete | Frozen | TCP client/server network echo implementations. |
 | **Package Manager** | Complete | Frozen | System package database auto-detection, searches, and package metadata query inspector. |
 | **Shell Manager** | Complete | Frozen | Safe POSIX program/script execution, environment management, cron task explanations, task scheduler database, and time configuration displays. |
-| **Kernel Module** | Complete | Frozen | Integrated user space /proc/sysmgr reader with submenu display options. |
+| **Kernel Module** | Complete | Frozen | Automatic kernel module build, load, unload, status check, and dmesg log viewer. |
 
 ---
 

@@ -3442,3 +3442,41 @@
 2026-06-20 04:57:46 [INFO] [SHELL] Child process created (PID: 38505)
 2026-06-20 04:59:21 [INFO] [SHELL] Script executed
 2026-06-20 04:59:21 [INFO] [SHELL] Exit status: 0
+2026-06-20 05:08:08 [INFO] [SYSTEM] Application started
+2026-06-20 05:08:12 [INFO] [SYSTEM] Entering Kernel Module Manager
+2026-06-20 05:08:12 [INFO] [KERNEL] Entering Kernel Module Manager
+2026-06-20 05:08:14 [INFO] [KERNEL] Kernel module information requested
+2026-06-20 05:08:14 [ERROR] [KERNEL] Read failure: failed to open /proc/sysmgr (errno 2)
+2026-06-20 11:55:28 [INFO] [KERNEL] Module load requested
+2026-06-20 11:55:28 [INFO] [KERNEL] Module build started
+2026-06-20 11:55:28 [ERROR] [KERNEL] Permission denied
+2026-06-20 11:55:28 [INFO] [KERNEL] Module load requested
+2026-06-20 11:55:28 [ERROR] [KERNEL] Permission denied
+2026-06-20 11:55:28 [INFO] [KERNEL] Module status checked
+2026-06-20 11:55:28 [INFO] [KERNEL] Module unload requested
+2026-06-20 11:55:28 [INFO] [KERNEL] Module unload requested
+2026-06-20 11:55:28 [INFO] [KERNEL] Module load requested
+2026-06-20 11:55:28 [ERROR] [KERNEL] Permission denied
+2026-06-20 11:56:02 [INFO] [KERNEL] Module load requested
+2026-06-20 11:56:40 [INFO] [SYSTEM] Application started
+2026-06-20 11:56:43 [INFO] [SYSTEM] Entering Kernel Module Manager
+2026-06-20 11:56:43 [INFO] [KERNEL] Entering Kernel Module Manager
+2026-06-20 11:56:47 [INFO] [KERNEL] Kernel module information requested
+2026-06-20 11:56:47 [ERROR] [KERNEL] Read failure: failed to open /proc/sysmgr (errno 2)
+2026-06-20 11:56:51 [INFO] [KERNEL] Module load requested
+2026-06-20 11:56:51 [INFO] [KERNEL] Module build started
+2026-06-20 11:56:54 [INFO] [KERNEL] Module loaded
+2026-06-20 11:56:58 [INFO] [KERNEL] Kernel module information requested
+2026-06-20 11:56:58 [INFO] [KERNEL] Read success
+2026-06-20 11:57:11 [INFO] [KERNEL] Module status checked
+2026-06-20 11:57:18 [INFO] [KERNEL] Kernel log viewed
+2026-06-20 11:57:29 [INFO] [KERNEL] Module unload requested
+2026-06-20 11:57:29 [INFO] [KERNEL] Module unloaded
+2026-06-20 11:57:34 [INFO] [KERNEL] Leaving Kernel Module Manager
+2026-06-20 11:57:34 [INFO] [SYSTEM] Leaving Kernel Module Manager
+2026-06-20 11:57:42 [INFO] [SYSTEM] Entering Package Manager
+2026-06-20 11:57:42 [INFO] [PACKAGE] Entering Package Manager (Shell script execution)
+2026-06-20 11:57:56 [INFO] [PACKAGE] Leaving Package Manager
+2026-06-20 11:57:56 [INFO] [SYSTEM] Leaving Package Manager
+2026-06-20 12:00:11 [INFO] [SYSTEM] Entering Process Manager
+2026-06-20 12:00:11 [INFO] [PROCESS] Process manager interactive loop started.
