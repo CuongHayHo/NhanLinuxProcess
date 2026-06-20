@@ -1,7 +1,21 @@
-# Build outputs
+# Build outputs - executables
 sysmgr
+socket_server
+socket_client
+socket_multi_server
+socket_chat
+
+# Test executables
 tests/logger_test
 tests/file_test
+tests/process_test
+tests/network_test
+tests/package_test
+tests/socket_test
+tests/socket_launcher_test
+tests/kernel_test
+tests/shell_test
+tests/cli_test
 
 # Object and archive files
 *.o
@@ -16,15 +30,11 @@ tests/file_test
 Module.symvers
 modules.order
 
-# Generated demo binaries
-c/file
-c/network
-c/process
-c/socket/client
-c/socket/server
 # Logs
 logs/*.log
 
 # IDE / OS noise
 .DS_Store
 *.swp
+*.swo
+*~
