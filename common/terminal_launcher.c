@@ -94,7 +94,13 @@ int terminal_open(const char* title, const char* command) {
 
     const char* term = detect_terminal();
     if (!term) {
-        log_error("LAUNCHER", "No supported terminal found! (Pro tip: run inside a tmux session to support headless terminal splits)");
+        fprintf(stderr, "\n\033[1;31m[Error]\033[0m No supported desktop GUI terminal emulator found on this system.\n");
+        fprintf(stderr, "\033[1;36m[Pro Tip]\033[0m Since you are running in a headless SSH environment, please install and run 'tmux' first:\n");
+        fprintf(stderr, "          1. Run: \033[1;32msudo apt install tmux -y && tmux\033[0m\n");
+        fprintf(stderr, "          2. Run: \033[1;32m./sysmgr\033[0m\n");
+        fprintf(stderr, "          This will enable automatic horizontal terminal splits for socket tools.\n\n");
+        fflush(stderr);
+        log_error("LAUNCHER", "No supported terminal found!");
         return -1;
     }
     
