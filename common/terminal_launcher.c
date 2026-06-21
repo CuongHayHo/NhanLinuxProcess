@@ -58,9 +58,43 @@ const char* detect_terminal(void) {
 }
 
 int terminal_open(const char* title, const char* command) {
+    char* tmux_env = getenv("TMUX");
+    if (tmux_env && command_exists("tmux")) {
+        log_info("SOCKET", "TMUX session detected. Spawning split-window...");
+        pid_t pid = fork();
+        if (pid < 0) {
+            log_error("LAUNCHER", "Fork failed");
+            return -1;
+        }
+        if (pid == 0) {
+            int dev_null = open("/dev/null", O_WRONLY);
+            if (dev_null >= 0) {
+                dup2(dev_null, 1);
+                dup2(dev_null, 2);
+                close(dev_null);
+            }
+            char full_cmd[1024];
+            snprintf(full_cmd, sizeof(full_cmd), "%s; echo; read -p 'Press Enter to close...'", command);
+            
+            char* exec_argv[] = {
+                "tmux",
+                "split-window",
+                "-h",
+                "sh",
+                "-c",
+                full_cmd,
+                NULL
+            };
+            execvp("tmux", exec_argv);
+            perror("execvp tmux failed");
+            exit(1);
+        }
+        return 0;
+    }
+
     const char* term = detect_terminal();
     if (!term) {
-        log_error("LAUNCHER", "No supported terminal found!");
+        log_error("LAUNCHER", "No supported terminal found! (Pro tip: run inside a tmux session to support headless terminal splits)");
         return -1;
     }
     
