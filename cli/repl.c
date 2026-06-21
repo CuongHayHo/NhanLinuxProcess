@@ -146,7 +146,19 @@ void print_prompt_explanation(const char* prompt_msg) {
     } else if (strstr(prompt_msg, "Enter file path to script")) {
         printf("\n\033[0;36m[Action Info] Target shell script to be executed.\033[0m\n");
     } else if (strstr(prompt_msg, "Enter cron expression")) {
-        printf("\n\033[0;36m[Action Info] Standard crontab formatting (e.g. '* * * * *' to run every minute).\033[0m\n");
+        printf("\n\033[0;36m[Action Info] Huong dan nhap bieu thuc Cron (gom 5 truong thoi gian + chuyen huong log tuy chon):\033[0m\n");
+        printf("\033[0;36m              Cu phap: <phut> <gio> <ngay_thang> <thang> <ngay_tuan> [chuyen_huong_log]\033[0m\n");
+        printf("\033[0;36m              1. Phut (minute): 0 - 59\033[0m\n");
+        printf("\033[0;36m              2. Gio (hour): 0 - 23\033[0m\n");
+        printf("\033[0;36m              3. Ngay trong thang (day of month): 1 - 31\033[0m\n");
+        printf("\033[0;36m              4. Thang (month): 1 - 12\033[0m\n");
+        printf("\033[0;36m              5. Ngay trong tuan (day of week): 0 - 6 (0 la Chu Nhat)\033[0m\n");
+        printf("\033[0;36m              * Ky tu dac biet: '*' (chay moi don vi), '*/N' (lap lai moi N don vi).\033[0m\n");
+        printf("\033[0;36m              * De luu log ra file (redirection), hay ghi kem chuyen huong vao cuoi bieu thuc:\033[0m\n");
+        printf("\033[0;36m                Dung '>> /duong_dan/file.log' de ghi noi tiep hoac '> /duong_dan/file.log' de ghi de.\033[0m\n");
+        printf("\033[0;36m              * Vi du cu the:\033[0m\n");
+        printf("\033[0;36m                - '*/5 * * * *' : chay script moi 5 phut (khong luu log)\033[0m\n");
+        printf("\033[0;36m                - '* * * * * >> /tmp/test.log' : chay moi phut va ghi noi tiep vao file test.log\033[0m\n");
     } else if (strstr(prompt_msg, "Enter YYYY-MM-DD HH:MM:SS")) {
         printf("\n\033[0;36m[Action Info] Set custom system clock time (requires root/sudo).\033[0m\n");
     } else if (strstr(prompt_msg, "Enter interface name")) {

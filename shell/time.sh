@@ -81,89 +81,6 @@ setTimeManually() {
     done
 }
 
-internetTimeSync() {
-    clear
-    echo "--- Internet Time Synchronization ---"
-    
-    # 1. Check network connectivity
-    ping -c 1 -W 2 pool.ntp.org > /dev/null 2>&1
-    local has_net=$?
-    
-    local backend=""
-    if command -v chronyc &> /dev/null; then
-        backend="chronyc"
-        echo "Detecting synchronization backend: chronyc"
-        echo "Executing synchronization request..."
-        sudo chronyc makestep > /dev/null 2>&1
-    elif command -v ntpdate &> /dev/null; then
-        backend="ntpdate"
-        echo "Detecting synchronization backend: ntpdate"
-        echo "Executing synchronization request..."
-        sudo ntpdate pool.ntp.org > /dev/null 2>&1
-    else
-        echo "Immediate Internet synchronization is not supported on this system."
-        read -p "Press ENTER to continue..."
-        return
-    fi
-    
-    # 2. Wait briefly
-    sleep 2
-    
-    # 3. Verify status
-    local is_synchronized=0
-    if [ $has_net -eq 0 ]; then
-        if [ "$backend" = "chronyc" ]; then
-            chronyc tracking | grep -q -E "Reference ID.*(0\.0\.0\.0|Not synchronised)"
-            if [ $? -ne 0 ]; then
-                is_synchronized=1
-            fi
-        else
-            is_synchronized=1
-        fi
-    fi
-    
-    # 4. Display result
-    if [ $is_synchronized -eq 1 ]; then
-        echo "Synchronization completed."
-        echo "Current Time"
-        date "+%Y-%m-%d %H:%M:%S"
-        echo "Time Zone"
-        cat /etc/timezone 2>/dev/null || date +%Z
-        echo "Synchronization Source"
-        echo "$backend"
-    else
-        echo "Synchronization request sent."
-        echo "Verification failed."
-        echo "Current Time"
-        date "+%Y-%m-%d %H:%M:%S"
-        echo "Status"
-        echo "NOT synchronized"
-        echo "Possible Reasons"
-        echo "• No Internet connection"
-        echo "• NTP server unreachable"
-        echo "• chronyd has not synchronized yet"
-        echo "• Permission denied"
-    fi
-    read -p "Press ENTER to continue..."
-}
-
-enableAutoSync() {
-    clear
-    echo "--- Enable Automatic Time Synchronization (NTP) ---"
-    if command -v timedatectl &> /dev/null; then
-        sudo timedatectl set-ntp true
-        if [ $? -eq 0 ]; then
-            echo "Automatic synchronization enabled."
-            timedatectl status
-        else
-            echo "Failed to enable NTP synchronization."
-        fi
-    else
-        echo "timedatectl not supported on this system."
-    fi
-    read -p "Press ENTER to continue..."
-}
-
 showMenu() {
     while true; do
         clear
@@ -173,8 +90,7 @@ showMenu() {
         echo "1. Show Current Time"
         echo "2. Show Time Zone"
         echo "3. Set Time Manually"
-        echo "4. Internet Time Synchronization"
-        echo "5. Enable Automatic Time Synchronization (NTP)"
+        echo "4. Internet Time Synchronization (Auto-recovery)"
         echo "0. Return"
         echo "========================================"
         read -p "Select option: " option
@@ -182,11 +98,10 @@ showMenu() {
             1) showCurrentTime ;;
             2) showTimeZone ;;
             3) setTimeManually ;;
-            4) internetTimeSync ;;
-            5) enableAutoSync ;;
+            4) "$(dirname "$0")/autosync.sh" ;;
             0) exit 0 ;;
             *)
-                echo "Invalid input. Please choose a number between 0 and 5."
+                echo "Invalid input. Please choose a number between 0 and 4."
                 read -p "Press ENTER to continue..."
                 ;;
         esac

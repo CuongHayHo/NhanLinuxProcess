@@ -23,6 +23,7 @@
 #include "ui.h"
 #include "linenoise.h"
 #include "autocomplete.h"
+#include "repl.h"
 #include <time.h>
 
 /* Weak fallback definition to avoid linker errors in non-interactive binaries or tests */
@@ -395,6 +396,7 @@ void shell_mgr_cron_execute(int argc, char** argv) {
 
             if (!has_path) {
                 if (is_interactive) {
+                    print_prompt_explanation("Enter file path to script: ");
                     autocomplete_set_command_mode(0);
                     char* input = linenoise("Enter file path to script: ");
                     autocomplete_set_command_mode(1);
@@ -413,15 +415,16 @@ void shell_mgr_cron_execute(int argc, char** argv) {
 
             if (strlen(path) > 0 && !has_expr) {
                 if (is_interactive) {
+                    print_prompt_explanation("Enter cron expression");
                     autocomplete_set_command_mode(0);
-                    char* input = linenoise("Enter cron expression (e.g. '* * * * *'): ");
+                    char* input = linenoise("Enter cron expression (min hour dom month dow): ");
                     autocomplete_set_command_mode(1);
                     if (input) {
                         strncpy(expr, input, sizeof(expr)-1);
                         linenoiseFree(input);
                     }
                 } else {
-                    printf("Enter cron expression (e.g. '* * * * *'): ");
+                    printf("Enter cron expression (min hour dom month dow): ");
                     fflush(stdout);
                     if (fgets(expr, sizeof(expr), stdin)) {
                         expr[strcspn(expr, "\n")] = '\0';
@@ -460,12 +463,14 @@ void shell_mgr_cron_execute(int argc, char** argv) {
                 printf("\n--- Task Scheduling List ---\n");
                 shell_mgr_execute("crontab -l");
             } else if (sel == 1) {
+                print_prompt_explanation("Enter file path to script: ");
                 autocomplete_set_command_mode(0);
                 char* path_input = linenoise("Enter file path to script: ");
                 autocomplete_set_command_mode(1);
                 if (!path_input) return;
+                print_prompt_explanation("Enter cron expression");
                 autocomplete_set_command_mode(0);
-                char* expr_input = linenoise("Enter cron expression (e.g. '* * * * *'): ");
+                char* expr_input = linenoise("Enter cron expression (min hour dom month dow): ");
                 autocomplete_set_command_mode(1);
                 if (!expr_input) {
                     linenoiseFree(path_input);
@@ -542,22 +547,9 @@ void shell_mgr_time_execute(int argc, char** argv) {
                 }
             }
         } else if (strcmp(sub, "sync") == 0) {
-            printf("Performing Internet time sync...\n");
-            if (access("/usr/sbin/chronyc", F_OK) == 0 || access("/usr/bin/chronyc", F_OK) == 0) {
-                shell_mgr_execute("sudo chronyc makestep");
-            } else if (access("/usr/sbin/ntpdate", F_OK) == 0 || access("/usr/bin/ntpdate", F_OK) == 0) {
-                shell_mgr_execute("sudo ntpdate pool.ntp.org");
-            } else {
-                printf("Sync backend not found (install chrony or ntpdate).\n");
-            }
-        } else if (strcmp(sub, "autosync") == 0) {
-            if (access("/usr/bin/timedatectl", F_OK) == 0) {
-                shell_mgr_execute("sudo timedatectl set-ntp true");
-            } else {
-                printf("timedatectl not available on this system.\n");
-            }
+            shell_mgr_execute("shell/autosync.sh");
         } else {
-            printf("Unknown time subcommand '%s'. Use: show, zone, set, sync, autosync.\n", sub);
+            printf("Unknown time subcommand '%s'. Use: show, zone, set, sync.\n", sub);
         }
     } else {
         if (is_interactive) {
@@ -565,11 +557,10 @@ void shell_mgr_time_execute(int argc, char** argv) {
                 "Xem thời gian hiện tại (Show current time)",
                 "Xem múi giờ (Show timezone)",
                 "Thiết lập thời gian thủ công (Set time manually)",
-                "Đồng bộ thời gian qua Internet (Internet time sync)",
-                "Bật tự động đồng bộ (NTP) (Enable auto sync)",
+                "Đồng bộ thời gian qua Internet (Internet time sync - Auto-recovery)",
                 "Cancel"
             };
-            int sel = ui_select_menu("Time Configuration Manager", time_options, 6);
+            int sel = ui_select_menu("Time Configuration Manager", time_options, 5);
             if (sel == 0) {
                 shell_mgr_execute("date");
             } else if (sel == 1) {
@@ -594,31 +585,15 @@ void shell_mgr_time_execute(int argc, char** argv) {
                 }
                 linenoiseFree(input);
             } else if (sel == 3) {
-                printf("Performing Internet time sync...\n");
-                if (access("/usr/sbin/chronyc", F_OK) == 0 || access("/usr/bin/chronyc", F_OK) == 0) {
-                    shell_mgr_execute("sudo chronyc makestep");
-                } else if (access("/usr/sbin/ntpdate", F_OK) == 0 || access("/usr/bin/ntpdate", F_OK) == 0) {
-                    shell_mgr_execute("sudo ntpdate pool.ntp.org");
-                } else {
-                    printf("Sync backend not found (install chrony or ntpdate).\n");
-                }
-            } else if (sel == 4) {
-                if (access("/usr/bin/timedatectl", F_OK) == 0) {
-                    shell_mgr_execute("sudo timedatectl set-ntp true");
-                } else {
-                    printf("timedatectl not available on this system.\n");
-                }
+                shell_mgr_execute("shell/autosync.sh");
             }
         } else {
-            printf("Usage: time {show|zone|set|sync|autosync} [args...]\n");
+            printf("Usage: time {show|zone|set|sync} [args...]\n");
         }
     }
 }
 
 int shell_mgr_execute(const char* command) {
-    char* cmd_copy;
-    char* args[64];
-    int arg_count = 0;
     pid_t pid;
     int is_script = 0;
     const char* script_path = NULL;
@@ -635,44 +610,22 @@ int shell_mgr_execute(const char* command) {
         log_info("SHELL", "Command entered: '%s'", command);
     }
 
-    /* Tokenize command safely */
-    cmd_copy = strdup(command);
-    if (!cmd_copy) {
-        log_error("SHELL", "Errors: memory allocation failed (strdup)");
-        return -1;
-    }
-
-    char* token = strtok(cmd_copy, " \t");
-    while (token != NULL && arg_count < 63) {
-        args[arg_count++] = token;
-        token = strtok(NULL, " \t");
-    }
-    args[arg_count] = NULL;
-
-    if (arg_count == 0) {
-        free(cmd_copy);
-        return -1;
-    }
-
     /* Fork child process */
     pid = fork();
     if (pid < 0) {
         log_error("SHELL", "Errors: fork failed (errno %d)", errno);
-        free(cmd_copy);
         return -1;
     }
 
     if (pid == 0) {
         /* Child process execution */
-        execvp(args[0], args);
-
-        /* If execvp returns, it means execution failed */
         if (is_script) {
+            execl("/bin/bash", "bash", script_path, (char*)NULL);
             fprintf(stderr, "Error: Script '%s' not found or execution failed (errno %d)\n", script_path, errno);
         } else {
-            fprintf(stderr, "Error: Command '%s' not found or execution failed (errno %d)\n", args[0], errno);
+            execl("/bin/sh", "sh", "-c", command, (char*)NULL);
+            fprintf(stderr, "Error: Command execution failed (errno %d)\n", errno);
         }
-        free(cmd_copy);
         exit(127);
     } else {
         /* Parent process waiting */
@@ -681,11 +634,8 @@ int shell_mgr_execute(const char* command) {
 
         if (waitpid(pid, &status, 0) == -1) {
             log_error("SHELL", "Errors: waitpid failed (errno %d)", errno);
-            free(cmd_copy);
             return -1;
         }
-
-        free(cmd_copy);
 
         if (WIFEXITED(status)) {
             int exit_code = WEXITSTATUS(status);
