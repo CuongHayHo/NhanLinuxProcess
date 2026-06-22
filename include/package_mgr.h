@@ -62,5 +62,11 @@ int package_mgr_remove(const char* pkg_name);
  */
 int package_mgr_demo(void);
 
+/**
+ * Setup essential system packages on this system.
+ * Returns 0 on success, -1 on failure.
+ */
+int package_mgr_setup(void);
+
 #endif /* PACKAGE_MGR_H */
 

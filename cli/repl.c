@@ -570,23 +570,25 @@ static void dispatch_package(int argc, char** argv) {
     char pkg_name[256] = "";
 
     if (strcmp(cmd, "search") == 0) {
-        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package query to search: ") == 0) {
+        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package query to search (e.g. nginx, python, gcc, docker, git): ") == 0) {
             package_mgr_search(pkg_name);
         }
     } else if (strcmp(cmd, "info") == 0) {
-        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package name: ") == 0) {
+        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package name (e.g. tmux, curl, htop, wget, git): ") == 0) {
             package_mgr_info(pkg_name);
         }
     } else if (strcmp(cmd, "install") == 0) {
-        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package to install: ") == 0) {
+        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package to install (e.g. tmux, curl, htop, wget, git): ") == 0) {
             package_mgr_install(pkg_name);
         }
     } else if (strcmp(cmd, "remove") == 0) {
-        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package to remove: ") == 0) {
+        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package to remove (e.g. tmux, curl, htop, wget, git): ") == 0) {
             package_mgr_remove(pkg_name);
         }
     } else if (strcmp(cmd, "demo") == 0) {
         package_mgr_demo();
+    } else if (strcmp(cmd, "setup") == 0) {
+        package_mgr_setup();
     } else {
         ui_print_error("Error: Unknown package command '%s'. Type / for options.\n", cmd);
     }

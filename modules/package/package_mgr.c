@@ -176,10 +176,11 @@ void package_mgr_run(void) {
                 "Install Package (Cài đặt gói)",
                 "Remove Package (Gỡ bỏ gói)",
                 "Safe Demonstration (Chạy Demo an toàn)",
+                "Setup Environment (Cài đặt môi trường SSH Docker)",
                 "Return (Trở về)"
             };
-            int sel = ui_select_menu("Package Manager", package_options, 6);
-            if (sel == 5 || sel == -1) {
+            int sel = ui_select_menu("Package Manager", package_options, 7);
+            if (sel == 6 || sel == -1) {
                 break;
             }
             choice = sel + 1;
@@ -192,26 +193,27 @@ void package_mgr_run(void) {
             printf("3. Install Package\n");
             printf("4. Remove Package\n");
             printf("5. Safe Demonstration\n");
-            printf("6. Return\n");
+            printf("6. Setup Environment\n");
+            printf("7. Return\n");
             printf("========================================\n");
             printf("Select option: ");
             fflush(stdout);
 
             choice = read_package_choice();
-            if (choice < 1 || choice > 6) {
-                printf("\nInvalid choice. Please enter a number between 1 and 6.\n");
+            if (choice < 1 || choice > 7) {
+                printf("\nInvalid choice. Please enter a number between 1 and 7.\n");
                 package_menu_pause();
                 continue;
             }
 
-            if (choice == 6) {
+            if (choice == 7) {
                 break;
             }
         }
 
         if (choice == 1) {
             if (is_interactive) print_prompt_explanation("Enter package query to search");
-            printf("Enter package name to search: ");
+            printf("Enter package name to search (e.g. nginx, python, gcc, docker, git): ");
             fflush(stdout);
             if (fgets(pkg_name, sizeof(pkg_name), stdin) != NULL) {
                 pkg_name[strcspn(pkg_name, "\n")] = '\0';
@@ -222,7 +224,7 @@ void package_mgr_run(void) {
             package_menu_pause();
         } else if (choice == 2) {
             if (is_interactive) print_prompt_explanation("Enter package name");
-            printf("Enter package name for information: ");
+            printf("Enter package name for information (e.g. tmux, curl, htop, wget, git): ");
             fflush(stdout);
             if (fgets(pkg_name, sizeof(pkg_name), stdin) != NULL) {
                 pkg_name[strcspn(pkg_name, "\n")] = '\0';
@@ -233,7 +235,7 @@ void package_mgr_run(void) {
             package_menu_pause();
         } else if (choice == 3) {
             if (is_interactive) print_prompt_explanation("Enter package to install");
-            printf("Enter package name to install: ");
+            printf("Enter package name to install (e.g. tmux, curl, htop, wget, git): ");
             fflush(stdout);
             if (fgets(pkg_name, sizeof(pkg_name), stdin) != NULL) {
                 pkg_name[strcspn(pkg_name, "\n")] = '\0';
@@ -244,7 +246,7 @@ void package_mgr_run(void) {
             package_menu_pause();
         } else if (choice == 4) {
             if (is_interactive) print_prompt_explanation("Enter package to remove");
-            printf("Enter package name to remove: ");
+            printf("Enter package name to remove (e.g. tmux, curl, htop, wget, git): ");
             fflush(stdout);
             if (fgets(pkg_name, sizeof(pkg_name), stdin) != NULL) {
                 pkg_name[strcspn(pkg_name, "\n")] = '\0';
@@ -255,6 +257,9 @@ void package_mgr_run(void) {
             package_menu_pause();
         } else if (choice == 5) {
             package_mgr_demo();
+            package_menu_pause();
+        } else if (choice == 6) {
+            package_mgr_setup();
             package_menu_pause();
         }
     }
@@ -272,5 +277,20 @@ int package_mgr_demo(void) {
         printf("\nSafe Demonstration failed.\n");
         return -1;
     }
+    return 0;
+}
+
+int package_mgr_setup(void) {
+    log_info("PACKAGE", "System setup started");
+    int exit_code = 0;
+    char *argv[] = {"shell/program.sh", "setup", NULL};
+    int res = run_script(argv, &exit_code);
+    if (res != 0 || exit_code != 0) {
+        log_error("PACKAGE", "System setup failed with status %d", exit_code);
+        printf("\nSystem setup failed.\n");
+        return -1;
+    }
+    log_info("PACKAGE", "System setup completed successfully");
+    printf("\nSystem setup completed successfully.\n");
     return 0;
 }
