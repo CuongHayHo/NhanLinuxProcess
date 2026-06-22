@@ -86,6 +86,7 @@ const palette_item_t palette_items[] = {
     {"install", "Install a package from system repositories to this system", "package"},
     {"remove", "Uninstall/remove a package from this system", "package"},
     {"demo", "Simulate package manager actions safely in dry-run sandbox", "package"},
+    {"setup", "Install all essential packages (e.g. ping, curl, tmux, headers) for sysmgr modules", "package"},
     {"back", "Go back to the parent 'main' system context prompt", "package"},
 
     /* Shell Context */

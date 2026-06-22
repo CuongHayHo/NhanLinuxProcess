@@ -22,7 +22,14 @@
 #include "menu.h"
 #include "ui.h"
 #include "linenoise.h"
+#include "autocomplete.h"
+#include "repl.h"
 #include <time.h>
+
+/* Weak fallback definition to avoid linker errors in non-interactive binaries or tests */
+__attribute__((weak)) void autocomplete_set_command_mode(int mode) {
+    (void)mode;
+}
 
 
 static int read_shell_choice(void) {
@@ -58,36 +65,52 @@ static void shell_menu_pause(void) {
 
 
 void shell_mgr_env_run(void) {
+    extern int is_interactive;
     int choice;
     char name_buf[128];
     char val_buf[256];
 
     while (1) {
-        printf("\n========================================\n");
-        printf("          Environment Manager\n");
-        printf("========================================\n");
-        printf("1. List Important Environment Variables\n");
-        printf("2. Query Variable\n");
-        printf("3. Set Temporary Variable\n");
-        printf("4. Remove Temporary Variable\n");
-        printf("5. Return\n");
-        printf("========================================\n");
-        printf("Select option: ");
-        fflush(stdout);
+        if (is_interactive) {
+            const char* env_options[] = {
+                "List Important Environment Variables (Xem các biến quan trọng)",
+                "Query Variable (Truy vấn biến)",
+                "Set Temporary Variable (Thiết lập biến tạm thời)",
+                "Remove Temporary Variable (Xoá biến tạm thời)",
+                "Return (Trở về)"
+            };
+            int sel = ui_select_menu("Environment Manager", env_options, 5);
+            if (sel == 4 || sel == -1) {
+                break;
+            }
+            choice = sel + 1;
+        } else {
+            printf("\n========================================\n");
+            printf("          Environment Manager\n");
+            printf("========================================\n");
+            printf("1. List Important Environment Variables\n");
+            printf("2. Query Variable\n");
+            printf("3. Set Temporary Variable\n");
+            printf("4. Remove Temporary Variable\n");
+            printf("5. Return\n");
+            printf("========================================\n");
+            printf("Select option: ");
+            fflush(stdout);
 
-        choice = read_shell_choice();
-        if (choice < 0) {
-            continue;
-        }
+            choice = read_shell_choice();
+            if (choice < 0) {
+                continue;
+            }
 
-        if (choice > 5) {
-            printf("\nInvalid input. Please choose a number between 0 and 5.\n");
-            shell_menu_pause();
-            continue;
-        }
+            if (choice > 5) {
+                printf("\nInvalid input. Please choose a number between 0 and 5.\n");
+                shell_menu_pause();
+                continue;
+            }
 
-        if (choice == 0 || choice == 5) {
-            break;
+            if (choice == 0 || choice == 5) {
+                break;
+            }
         }
 
         if (choice == 1) {
@@ -100,66 +123,123 @@ void shell_mgr_env_run(void) {
             }
             shell_menu_pause();
         } else if (choice == 2) {
-            printf("\nEnter variable name to query: ");
-            fflush(stdout);
-            if (fgets(name_buf, sizeof(name_buf), stdin) != NULL) {
-                name_buf[strcspn(name_buf, "\n")] = '\0';
-                if (strlen(name_buf) > 0) {
-                    char* val = getenv(name_buf);
-                    if (val) {
-                        printf("\n%s = %s\n", name_buf, val);
-                        log_info("SHELL", "Variable queried: '%s' = '%s'", name_buf, val);
-                    } else {
-                        printf("\nVariable '%s' is not set.\n", name_buf);
-                        log_info("SHELL", "Variable queried: '%s' = N/A", name_buf);
-                    }
+            if (is_interactive) {
+                autocomplete_set_command_mode(0);
+                char* input = linenoise("Enter variable name to query: ");
+                autocomplete_set_command_mode(1);
+                if (input) {
+                    strncpy(name_buf, input, sizeof(name_buf)-1);
+                    name_buf[sizeof(name_buf)-1] = '\0';
+                    linenoiseFree(input);
                 } else {
-                    printf("Error: Empty variable name.\n");
+                    name_buf[0] = '\0';
                 }
+            } else {
+                printf("\nEnter variable name to query: ");
+                fflush(stdout);
+                if (fgets(name_buf, sizeof(name_buf), stdin) != NULL) {
+                    name_buf[strcspn(name_buf, "\n")] = '\0';
+                }
+            }
+
+            if (strlen(name_buf) > 0) {
+                char* val = getenv(name_buf);
+                if (val) {
+                    printf("\n%s = %s\n", name_buf, val);
+                    log_info("SHELL", "Variable queried: '%s' = '%s'", name_buf, val);
+                } else {
+                    printf("\nVariable '%s' is not set.\n", name_buf);
+                    log_info("SHELL", "Variable queried: '%s' = N/A", name_buf);
+                }
+            } else {
+                printf("Error: Empty variable name.\n");
             }
             shell_menu_pause();
         } else if (choice == 3) {
-            printf("\nEnter variable name: ");
-            fflush(stdout);
-            if (fgets(name_buf, sizeof(name_buf), stdin) != NULL) {
-                name_buf[strcspn(name_buf, "\n")] = '\0';
-                if (strlen(name_buf) > 0) {
-                    printf("Enter variable value: ");
-                    fflush(stdout);
-                    if (fgets(val_buf, sizeof(val_buf), stdin) != NULL) {
-                        val_buf[strcspn(val_buf, "\n")] = '\0';
-                        if (setenv(name_buf, val_buf, 1) == 0) {
-                            printf("\nSuccessfully set %s = %s\n", name_buf, val_buf);
-                            log_info("SHELL", "Variable set: '%s' = '%s'", name_buf, val_buf);
+            if (is_interactive) {
+                autocomplete_set_command_mode(0);
+                char* input1 = linenoise("Enter variable name: ");
+                autocomplete_set_command_mode(1);
+                if (input1) {
+                    strncpy(name_buf, input1, sizeof(name_buf)-1);
+                    name_buf[sizeof(name_buf)-1] = '\0';
+                    linenoiseFree(input1);
+
+                    if (strlen(name_buf) > 0) {
+                        autocomplete_set_command_mode(0);
+                        char* input2 = linenoise("Enter variable value: ");
+                        autocomplete_set_command_mode(1);
+                        if (input2) {
+                            strncpy(val_buf, input2, sizeof(val_buf)-1);
+                            val_buf[sizeof(val_buf)-1] = '\0';
+                            linenoiseFree(input2);
                         } else {
-                            printf("\nError setting variable '%s'.\n", name_buf);
-                            log_error("SHELL", "Errors: failed to set variable '%s'", name_buf);
+                            val_buf[0] = '\0';
                         }
                     }
                 } else {
-                    printf("Error: Empty variable name.\n");
+                    name_buf[0] = '\0';
                 }
+            } else {
+                printf("\nEnter variable name: ");
+                fflush(stdout);
+                if (fgets(name_buf, sizeof(name_buf), stdin) != NULL) {
+                    name_buf[strcspn(name_buf, "\n")] = '\0';
+                    if (strlen(name_buf) > 0) {
+                        printf("Enter variable value: ");
+                        fflush(stdout);
+                        if (fgets(val_buf, sizeof(val_buf), stdin) != NULL) {
+                            val_buf[strcspn(val_buf, "\n")] = '\0';
+                        }
+                    }
+                }
+            }
+
+            if (strlen(name_buf) > 0) {
+                if (setenv(name_buf, val_buf, 1) == 0) {
+                    printf("\nSuccessfully set %s = %s\n", name_buf, val_buf);
+                    log_info("SHELL", "Variable set: '%s' = '%s'", name_buf, val_buf);
+                } else {
+                    printf("\nError setting variable '%s'.\n", name_buf);
+                    log_error("SHELL", "Errors: failed to set variable '%s'", name_buf);
+                }
+            } else {
+                printf("Error: Empty variable name.\n");
             }
             shell_menu_pause();
         } else if (choice == 4) {
-            printf("\nEnter variable name to remove: ");
-            fflush(stdout);
-            if (fgets(name_buf, sizeof(name_buf), stdin) != NULL) {
-                name_buf[strcspn(name_buf, "\n")] = '\0';
-                if (strlen(name_buf) > 0) {
-                    if (getenv(name_buf) == NULL) {
-                        printf("\nWarning: Variable '%s' is not set.\n", name_buf);
-                    }
-                    if (unsetenv(name_buf) == 0) {
-                        printf("\nSuccessfully removed variable '%s'\n", name_buf);
-                        log_info("SHELL", "Variable removed: '%s'", name_buf);
-                    } else {
-                        printf("\nError removing variable '%s'.\n", name_buf);
-                        log_error("SHELL", "Errors: failed to remove variable '%s'", name_buf);
-                    }
+            if (is_interactive) {
+                autocomplete_set_command_mode(0);
+                char* input = linenoise("Enter variable name to remove: ");
+                autocomplete_set_command_mode(1);
+                if (input) {
+                    strncpy(name_buf, input, sizeof(name_buf)-1);
+                    name_buf[sizeof(name_buf)-1] = '\0';
+                    linenoiseFree(input);
                 } else {
-                    printf("Error: Empty variable name.\n");
+                    name_buf[0] = '\0';
                 }
+            } else {
+                printf("\nEnter variable name to remove: ");
+                fflush(stdout);
+                if (fgets(name_buf, sizeof(name_buf), stdin) != NULL) {
+                    name_buf[strcspn(name_buf, "\n")] = '\0';
+                }
+            }
+
+            if (strlen(name_buf) > 0) {
+                if (getenv(name_buf) == NULL) {
+                    printf("\nWarning: Variable '%s' is not set.\n", name_buf);
+                }
+                if (unsetenv(name_buf) == 0) {
+                    printf("\nSuccessfully removed variable '%s'\n", name_buf);
+                    log_info("SHELL", "Variable removed: '%s'", name_buf);
+                } else {
+                    printf("\nError removing variable '%s'.\n", name_buf);
+                    log_error("SHELL", "Errors: failed to remove variable '%s'", name_buf);
+                }
+            } else {
+                printf("Error: Empty variable name.\n");
             }
             shell_menu_pause();
         }
@@ -316,7 +396,10 @@ void shell_mgr_cron_execute(int argc, char** argv) {
 
             if (!has_path) {
                 if (is_interactive) {
+                    print_prompt_explanation("Enter file path to script: ");
+                    autocomplete_set_command_mode(0);
                     char* input = linenoise("Enter file path to script: ");
+                    autocomplete_set_command_mode(1);
                     if (input) {
                         strncpy(path, input, sizeof(path)-1);
                         linenoiseFree(input);
@@ -332,13 +415,16 @@ void shell_mgr_cron_execute(int argc, char** argv) {
 
             if (strlen(path) > 0 && !has_expr) {
                 if (is_interactive) {
-                    char* input = linenoise("Enter cron expression (e.g. '* * * * *'): ");
+                    print_prompt_explanation("Enter cron expression");
+                    autocomplete_set_command_mode(0);
+                    char* input = linenoise("Enter cron expression (min hour dom month dow): ");
+                    autocomplete_set_command_mode(1);
                     if (input) {
                         strncpy(expr, input, sizeof(expr)-1);
                         linenoiseFree(input);
                     }
                 } else {
-                    printf("Enter cron expression (e.g. '* * * * *'): ");
+                    printf("Enter cron expression (min hour dom month dow): ");
                     fflush(stdout);
                     if (fgets(expr, sizeof(expr), stdin)) {
                         expr[strcspn(expr, "\n")] = '\0';
@@ -377,9 +463,15 @@ void shell_mgr_cron_execute(int argc, char** argv) {
                 printf("\n--- Task Scheduling List ---\n");
                 shell_mgr_execute("crontab -l");
             } else if (sel == 1) {
+                print_prompt_explanation("Enter file path to script: ");
+                autocomplete_set_command_mode(0);
                 char* path_input = linenoise("Enter file path to script: ");
+                autocomplete_set_command_mode(1);
                 if (!path_input) return;
-                char* expr_input = linenoise("Enter cron expression (e.g. '* * * * *'): ");
+                print_prompt_explanation("Enter cron expression");
+                autocomplete_set_command_mode(0);
+                char* expr_input = linenoise("Enter cron expression (min hour dom month dow): ");
+                autocomplete_set_command_mode(1);
                 if (!expr_input) {
                     linenoiseFree(path_input);
                     return;
@@ -429,7 +521,9 @@ void shell_mgr_time_execute(int argc, char** argv) {
                 strncpy(datetime, argv[2], sizeof(datetime)-1);
             } else {
                 if (is_interactive) {
+                    autocomplete_set_command_mode(0);
                     char* input = linenoise("Enter YYYY-MM-DD HH:MM:SS: ");
+                    autocomplete_set_command_mode(1);
                     if (input) {
                         strncpy(datetime, input, sizeof(datetime)-1);
                         linenoiseFree(input);
@@ -453,22 +547,9 @@ void shell_mgr_time_execute(int argc, char** argv) {
                 }
             }
         } else if (strcmp(sub, "sync") == 0) {
-            printf("Performing Internet time sync...\n");
-            if (access("/usr/sbin/chronyc", F_OK) == 0 || access("/usr/bin/chronyc", F_OK) == 0) {
-                shell_mgr_execute("sudo chronyc makestep");
-            } else if (access("/usr/sbin/ntpdate", F_OK) == 0 || access("/usr/bin/ntpdate", F_OK) == 0) {
-                shell_mgr_execute("sudo ntpdate pool.ntp.org");
-            } else {
-                printf("Sync backend not found (install chrony or ntpdate).\n");
-            }
-        } else if (strcmp(sub, "autosync") == 0) {
-            if (access("/usr/bin/timedatectl", F_OK) == 0) {
-                shell_mgr_execute("sudo timedatectl set-ntp true");
-            } else {
-                printf("timedatectl not available on this system.\n");
-            }
+            shell_mgr_execute("shell/autosync.sh");
         } else {
-            printf("Unknown time subcommand '%s'. Use: show, zone, set, sync, autosync.\n", sub);
+            printf("Unknown time subcommand '%s'. Use: show, zone, set, sync.\n", sub);
         }
     } else {
         if (is_interactive) {
@@ -476,11 +557,10 @@ void shell_mgr_time_execute(int argc, char** argv) {
                 "Xem thời gian hiện tại (Show current time)",
                 "Xem múi giờ (Show timezone)",
                 "Thiết lập thời gian thủ công (Set time manually)",
-                "Đồng bộ thời gian qua Internet (Internet time sync)",
-                "Bật tự động đồng bộ (NTP) (Enable auto sync)",
+                "Đồng bộ thời gian qua Internet (Internet time sync - Auto-recovery)",
                 "Cancel"
             };
-            int sel = ui_select_menu("Time Configuration Manager", time_options, 6);
+            int sel = ui_select_menu("Time Configuration Manager", time_options, 5);
             if (sel == 0) {
                 shell_mgr_execute("date");
             } else if (sel == 1) {
@@ -492,7 +572,9 @@ void shell_mgr_time_execute(int argc, char** argv) {
                     shell_mgr_execute("cat /etc/timezone 2>/dev/null || date +%Z");
                 }
             } else if (sel == 2) {
+                autocomplete_set_command_mode(0);
                 char* input = linenoise("Enter YYYY-MM-DD HH:MM:SS: ");
+                autocomplete_set_command_mode(1);
                 if (!input) return;
                 char date_cmd[256];
                 snprintf(date_cmd, sizeof(date_cmd), "sudo date -s \"%s\"", input);
@@ -503,31 +585,15 @@ void shell_mgr_time_execute(int argc, char** argv) {
                 }
                 linenoiseFree(input);
             } else if (sel == 3) {
-                printf("Performing Internet time sync...\n");
-                if (access("/usr/sbin/chronyc", F_OK) == 0 || access("/usr/bin/chronyc", F_OK) == 0) {
-                    shell_mgr_execute("sudo chronyc makestep");
-                } else if (access("/usr/sbin/ntpdate", F_OK) == 0 || access("/usr/bin/ntpdate", F_OK) == 0) {
-                    shell_mgr_execute("sudo ntpdate pool.ntp.org");
-                } else {
-                    printf("Sync backend not found (install chrony or ntpdate).\n");
-                }
-            } else if (sel == 4) {
-                if (access("/usr/bin/timedatectl", F_OK) == 0) {
-                    shell_mgr_execute("sudo timedatectl set-ntp true");
-                } else {
-                    printf("timedatectl not available on this system.\n");
-                }
+                shell_mgr_execute("shell/autosync.sh");
             }
         } else {
-            printf("Usage: time {show|zone|set|sync|autosync} [args...]\n");
+            printf("Usage: time {show|zone|set|sync} [args...]\n");
         }
     }
 }
 
 int shell_mgr_execute(const char* command) {
-    char* cmd_copy;
-    char* args[64];
-    int arg_count = 0;
     pid_t pid;
     int is_script = 0;
     const char* script_path = NULL;
@@ -544,44 +610,22 @@ int shell_mgr_execute(const char* command) {
         log_info("SHELL", "Command entered: '%s'", command);
     }
 
-    /* Tokenize command safely */
-    cmd_copy = strdup(command);
-    if (!cmd_copy) {
-        log_error("SHELL", "Errors: memory allocation failed (strdup)");
-        return -1;
-    }
-
-    char* token = strtok(cmd_copy, " \t");
-    while (token != NULL && arg_count < 63) {
-        args[arg_count++] = token;
-        token = strtok(NULL, " \t");
-    }
-    args[arg_count] = NULL;
-
-    if (arg_count == 0) {
-        free(cmd_copy);
-        return -1;
-    }
-
     /* Fork child process */
     pid = fork();
     if (pid < 0) {
         log_error("SHELL", "Errors: fork failed (errno %d)", errno);
-        free(cmd_copy);
         return -1;
     }
 
     if (pid == 0) {
         /* Child process execution */
-        execvp(args[0], args);
-
-        /* If execvp returns, it means execution failed */
         if (is_script) {
+            execl("/bin/bash", "bash", script_path, (char*)NULL);
             fprintf(stderr, "Error: Script '%s' not found or execution failed (errno %d)\n", script_path, errno);
         } else {
-            fprintf(stderr, "Error: Command '%s' not found or execution failed (errno %d)\n", args[0], errno);
+            execl("/bin/sh", "sh", "-c", command, (char*)NULL);
+            fprintf(stderr, "Error: Command execution failed (errno %d)\n", errno);
         }
-        free(cmd_copy);
         exit(127);
     } else {
         /* Parent process waiting */
@@ -590,11 +634,8 @@ int shell_mgr_execute(const char* command) {
 
         if (waitpid(pid, &status, 0) == -1) {
             log_error("SHELL", "Errors: waitpid failed (errno %d)", errno);
-            free(cmd_copy);
             return -1;
         }
-
-        free(cmd_copy);
 
         if (WIFEXITED(status)) {
             int exit_code = WEXITSTATUS(status);

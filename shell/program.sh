@@ -264,8 +264,28 @@ case "$ACTION" in
     exit 0
     ;;
 
+  setup)
+    echo "========================================"
+    echo "Installing Essential System Packages"
+    echo "========================================"
+    log_info "System setup requested"
+    if [ "$PM" = "apt" ]; then
+      echo "Running apt-get update..."
+      sudo apt-get update
+      packages=("iputils-ping" "iproute2" "curl" "tmux" "zip" "unzip" "chrony" "build-essential" "linux-headers-$(uname -r)")
+      echo "Installing packages: ${packages[*]}..."
+      sudo apt-get install -y "${packages[@]}"
+    else
+      echo "Running dnf install..."
+      packages=("iputils" "iproute" "curl" "tmux" "zip" "unzip" "chrony" "make" "gcc" "kernel-devel")
+      echo "Installing packages: ${packages[*]}..."
+      sudo dnf install -y "${packages[@]}"
+    fi
+    exit $?
+    ;;
+
   *)
-    echo "Usage: $0 {search|info|install|remove|demo} [package_name]"
+    echo "Usage: $0 {search|info|install|remove|demo|setup} [package_name]"
     exit 1
     ;;
 esac

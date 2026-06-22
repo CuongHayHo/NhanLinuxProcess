@@ -108,7 +108,7 @@ void print_prompt_explanation(const char* prompt_msg) {
     } else if (strstr(prompt_msg, "Enter start directory")) {
         printf("\n\033[0;36m[Action Info] Specifies the directory where the filename search should begin.\033[0m\n");
     } else if (strstr(prompt_msg, "Enter search pattern")) {
-        printf("\n\033[0;36m[Action Info] Pattern matching query (wildcards allowed, e.g. *.txt).\033[0m\n");
+        printf("\n\033[0;36m[Action Info] Pattern matching query. You MUST use wildcard '*' to match suffixes, e.g. '*.txt' (NOT '.txt').\033[0m\n");
     } else if (strstr(prompt_msg, "Enter archive output path")) {
         printf("\n\033[0;36m[Action Info] Specifies the filename for the compressed tarball to create.\033[0m\n");
     } else if (strstr(prompt_msg, "Enter source directory to archive")) {
@@ -146,7 +146,19 @@ void print_prompt_explanation(const char* prompt_msg) {
     } else if (strstr(prompt_msg, "Enter file path to script")) {
         printf("\n\033[0;36m[Action Info] Target shell script to be executed.\033[0m\n");
     } else if (strstr(prompt_msg, "Enter cron expression")) {
-        printf("\n\033[0;36m[Action Info] Standard crontab formatting (e.g. '* * * * *' to run every minute).\033[0m\n");
+        printf("\n\033[0;36m[Action Info] Huong dan nhap bieu thuc Cron (gom 5 truong thoi gian + chuyen huong log tuy chon):\033[0m\n");
+        printf("\033[0;36m              Cu phap: <phut> <gio> <ngay_thang> <thang> <ngay_tuan> [chuyen_huong_log]\033[0m\n");
+        printf("\033[0;36m              1. Phut (minute): 0 - 59\033[0m\n");
+        printf("\033[0;36m              2. Gio (hour): 0 - 23\033[0m\n");
+        printf("\033[0;36m              3. Ngay trong thang (day of month): 1 - 31\033[0m\n");
+        printf("\033[0;36m              4. Thang (month): 1 - 12\033[0m\n");
+        printf("\033[0;36m              5. Ngay trong tuan (day of week): 0 - 6 (0 la Chu Nhat)\033[0m\n");
+        printf("\033[0;36m              * Ky tu dac biet: '*' (chay moi don vi), '*/N' (lap lai moi N don vi).\033[0m\n");
+        printf("\033[0;36m              * De luu log ra file (redirection), hay ghi kem chuyen huong vao cuoi bieu thuc:\033[0m\n");
+        printf("\033[0;36m                Dung '>> /duong_dan/file.log' de ghi noi tiep hoac '> /duong_dan/file.log' de ghi de.\033[0m\n");
+        printf("\033[0;36m              * Vi du cu the:\033[0m\n");
+        printf("\033[0;36m                - '*/5 * * * *' : chay script moi 5 phut (khong luu log)\033[0m\n");
+        printf("\033[0;36m                - '* * * * * >> /tmp/test.log' : chay moi phut va ghi noi tiep vao file test.log\033[0m\n");
     } else if (strstr(prompt_msg, "Enter YYYY-MM-DD HH:MM:SS")) {
         printf("\n\033[0;36m[Action Info] Set custom system clock time (requires root/sudo).\033[0m\n");
     } else if (strstr(prompt_msg, "Enter interface name")) {
@@ -174,9 +186,12 @@ static int get_arg_or_prompt(char* dest, size_t dest_len, int arg_idx, int argc,
         dest[dest_len - 1] = '\0';
         return 0;
     }
+
     print_prompt_explanation(prompt_msg);
     if (is_interactive) {
+        autocomplete_set_command_mode(0);
         char* input = linenoise(prompt_msg);
+        autocomplete_set_command_mode(1);
         if (input == NULL) {
             dest[0] = '\0';
             return -1;
@@ -395,6 +410,7 @@ static void dispatch_socket(int argc, char** argv) {
 
     if (strcmp(cmd, "server") == 0) {
         if (is_interactive) {
+            print_ssh_tunnel_guide(8080);
             if (get_arg_or_prompt(port_str, sizeof(port_str), 1, argc, argv, "Enter port to bind [8080]: ") == -2) {
                 return;
             }
@@ -412,6 +428,7 @@ static void dispatch_socket(int argc, char** argv) {
         }
     } else if (strcmp(cmd, "client") == 0) {
         if (is_interactive) {
+            print_ssh_tunnel_guide(8080);
             if (get_arg_or_prompt(ip, sizeof(ip), 1, argc, argv, "Enter server IP [127.0.0.1]: ") == -2) {
                 return;
             }
@@ -430,6 +447,7 @@ static void dispatch_socket(int argc, char** argv) {
         }
     } else if (strcmp(cmd, "multi") == 0) {
         if (is_interactive) {
+            print_ssh_tunnel_guide(8080);
             if (get_arg_or_prompt(port_str, sizeof(port_str), 1, argc, argv, "Enter port to bind [8080]: ") == -2) {
                 return;
             }
@@ -473,6 +491,7 @@ static void dispatch_socket(int argc, char** argv) {
             }
             
             if (strcmp(sub_cmd, "host") == 0) {
+                print_ssh_tunnel_guide(8080);
                 if (get_arg_or_prompt(port_str, sizeof(port_str), 2, argc, argv, "Enter port to bind [8080]: ") == -2) {
                     return;
                 }
@@ -482,6 +501,7 @@ static void dispatch_socket(int argc, char** argv) {
                     ui_print_error("Failed to launch socket chat host in a new terminal.\n");
                 }
             } else if (strcmp(sub_cmd, "client") == 0) {
+                print_ssh_tunnel_guide(8080);
                 if (get_arg_or_prompt(ip, sizeof(ip), 2, argc, argv, "Enter host IP [127.0.0.1]: ") == -2) {
                     return;
                 }
@@ -550,23 +570,25 @@ static void dispatch_package(int argc, char** argv) {
     char pkg_name[256] = "";
 
     if (strcmp(cmd, "search") == 0) {
-        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package query to search: ") == 0) {
+        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package query to search (e.g. nginx, python, gcc, docker, git): ") == 0) {
             package_mgr_search(pkg_name);
         }
     } else if (strcmp(cmd, "info") == 0) {
-        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package name: ") == 0) {
+        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package name (e.g. tmux, curl, htop, wget, git): ") == 0) {
             package_mgr_info(pkg_name);
         }
     } else if (strcmp(cmd, "install") == 0) {
-        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package to install: ") == 0) {
+        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package to install (e.g. tmux, curl, htop, wget, git): ") == 0) {
             package_mgr_install(pkg_name);
         }
     } else if (strcmp(cmd, "remove") == 0) {
-        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package to remove: ") == 0) {
+        if (get_arg_or_prompt(pkg_name, sizeof(pkg_name), 1, argc, argv, "Enter package to remove (e.g. tmux, curl, htop, wget, git): ") == 0) {
             package_mgr_remove(pkg_name);
         }
     } else if (strcmp(cmd, "demo") == 0) {
         package_mgr_demo();
+    } else if (strcmp(cmd, "setup") == 0) {
+        package_mgr_setup();
     } else {
         ui_print_error("Error: Unknown package command '%s'. Type / for options.\n", cmd);
     }

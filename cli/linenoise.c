@@ -118,6 +118,7 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <stdint.h>
+#include <signal.h>
 #include "linenoise.h"
 #include "palette.h"
 
@@ -131,6 +132,7 @@ extern const char* repl_get_current_context(void);
 #define PASTE_MAX_BYTES LINENOISE_MAX_LINE
 static char *unsupported_term[] = {"dumb","cons25","emacs",NULL};
 static linenoiseCompletionCallback *completionCallback = NULL;
+static int suggestions_active = 1;
 static linenoiseHintsCallback *hintsCallback = NULL;
 static linenoiseFreeHintsCallback *freeHintsCallback = NULL;
 static char *linenoiseReadLine(FILE *fp, int *err);
@@ -145,6 +147,12 @@ static int rawmode = 0; /* For atexit() function to check if restore is needed*/
 static int rawmode_output = STDOUT_FILENO; /* fd used for terminal escapes. */
 static int mlmode = 0;  /* Multi line mode. Default is single line. */
 static int atexit_registered = 0; /* Register atexit just 1 time. */
+static struct sigaction old_sigwinch_action;
+static int sigwinch_handler_installed = 0;
+
+static void sigwinchHandler(int sig) {
+    (void)sig;
+}
 static int history_max_len = LINENOISE_DEFAULT_HISTORY_MAX_LEN;
 static int history_len = 0;
 static char **history = NULL;
@@ -551,6 +559,10 @@ void linenoiseMaskModeDisable(void) {
     maskmode = 0;
 }
 
+void linenoiseSetSuggestionsActive(int active) {
+    suggestions_active = active;
+}
+
 /* Set if to use or not the multi line mode. */
 void linenoiseSetMultiLine(int ml) {
     mlmode = ml;
@@ -606,6 +618,16 @@ static int enableRawMode(int fd) {
     rawmode = 1;
     /* Ask the terminal to wrap paste input between ESC[200~ and ESC[201~. */
     if (write(rawmode_output, "\x1b[?2004h", 8) == -1) {}
+
+    /* Install SIGWINCH handler to intercept window resize and interrupt read() */
+    struct sigaction sa;
+    sa.sa_handler = sigwinchHandler;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0; /* Clear SA_RESTART to ensure read() returns -1 with EINTR */
+    if (sigaction(SIGWINCH, &sa, &old_sigwinch_action) == 0) {
+        sigwinch_handler_installed = 1;
+    }
+
     return 0;
 
 fatal:
@@ -618,6 +640,11 @@ static void disableRawMode(int fd) {
     if (getenv("LINENOISE_ASSUME_TTY")) {
         rawmode = 0;
         return;
+    }
+    /* Restore SIGWINCH handler if installed */
+    if (sigwinch_handler_installed) {
+        sigaction(SIGWINCH, &old_sigwinch_action, NULL);
+        sigwinch_handler_installed = 0;
     }
     /* Don't even check the return value as it's too late. */
     if (rawmode && tcsetattr(fd,TCSAFLUSH,&orig_termios) != -1) {
@@ -1315,7 +1342,7 @@ static void appendSuggestions(struct abuf *ab, const char *input_buf, int *print
         active_query = original_query;
     }
     
-    if (active_query == NULL || active_query[0] != '/') {
+    if (!suggestions_active || active_query == NULL || active_query[0] != '/') {
         /* If we previously printed suggestions, we must clear them! */
         if (last_printed_suggestions > 0) {
             for (int i = 0; i < last_printed_suggestions; i++) {
@@ -1366,7 +1393,7 @@ static void appendSuggestions(struct abuf *ab, const char *input_buf, int *print
         (*printed_lines)++;
     }
     
-    const char* footer = "\033[1;36m  ---------------------------- \033[0m\033[K";
+    const char* footer = "\033[1;36m  ↑/↓ Navigate · enter Select · tab Complete · esc to cancel\033[0m\033[K";
     abAppend(ab, footer, strlen(footer));
     
     last_printed_suggestions = *printed_lines;
@@ -2062,7 +2089,20 @@ char *linenoiseEditFeed(struct linenoiseState *l) {
 
     nread = read(l->ifd,&c,1);
     if (nread < 0) {
-        return (errno == EAGAIN || errno == EWOULDBLOCK) ? linenoiseEditMore : NULL;
+        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+            return linenoiseEditMore;
+        } else if (errno == EINTR) {
+            /* Terminal was resized or signal delivered. Clean old prompt and suggestions, update columns and redraw! */
+            if (write(l->ofd, "\r\x1b[J", 4) == -1) {}
+            l->cols = getColumns(l->ifd, l->ofd);
+            if (l->in_completion) {
+                refreshLineWithCompletion(l, NULL, REFRESH_ALL);
+            } else {
+                refreshLine(l);
+            }
+            return linenoiseEditMore;
+        }
+        return NULL;
     } else if (nread == 0) {
         return NULL;
     }

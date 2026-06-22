@@ -116,6 +116,16 @@ void verify_palette(void) {
     }
     assert(found_kernel_info == 1);
 
+    /* Look for setup in package context */
+    int found_package_setup = 0;
+    for (int i = 0; i < palette_items_count; i++) {
+        if (strcmp(palette_items[i].context, "package") == 0 && strcmp(palette_items[i].command, "setup") == 0) {
+            found_package_setup = 1;
+            break;
+        }
+    }
+    assert(found_package_setup == 1);
+
     printf("  -> Palette metadata validation: PASSED\n\n");
 }
 
