@@ -101,6 +101,7 @@ void socket_mgr_run(void) {
         const char* sysmgr_cmd = (access("./sysmgr", F_OK) == 0) ? "./sysmgr" : "sysmgr";
 
         if (choice == 1) {
+            print_ssh_tunnel_guide(DEFAULT_PORT);
             char port_buf[128];
             int port = DEFAULT_PORT;
             if (is_interactive) print_prompt_explanation("Enter port to bind");
@@ -118,6 +119,7 @@ void socket_mgr_run(void) {
                 printf("\nFailed to launch TCP Server terminal.\n");
             }
         } else if (choice == 2) {
+            print_ssh_tunnel_guide(DEFAULT_PORT);
             char ip_buf[128];
             char port_buf[128];
             char server_ip[128];
@@ -152,6 +154,7 @@ void socket_mgr_run(void) {
                 printf("\nFailed to launch TCP Client terminal.\n");
             }
         } else if (choice == 3) {
+            print_ssh_tunnel_guide(DEFAULT_PORT);
             char port_buf[128];
             int port = DEFAULT_PORT;
             if (is_interactive) print_prompt_explanation("Enter port to bind");
@@ -209,6 +212,7 @@ void socket_mgr_run(void) {
                 }
 
                 if (chat_choice == 1) {
+                    print_ssh_tunnel_guide(DEFAULT_PORT);
                     char port_buf[128];
                     int port = DEFAULT_PORT;
                     if (is_interactive) print_prompt_explanation("Enter port to bind");
@@ -227,6 +231,7 @@ void socket_mgr_run(void) {
                     }
                     break;
                 } else if (chat_choice == 2) {
+                    print_ssh_tunnel_guide(DEFAULT_PORT);
                     char ip_buf[128];
                     char port_buf[128];
                     char server_ip[128];

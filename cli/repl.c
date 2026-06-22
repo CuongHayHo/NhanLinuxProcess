@@ -410,6 +410,7 @@ static void dispatch_socket(int argc, char** argv) {
 
     if (strcmp(cmd, "server") == 0) {
         if (is_interactive) {
+            print_ssh_tunnel_guide(8080);
             if (get_arg_or_prompt(port_str, sizeof(port_str), 1, argc, argv, "Enter port to bind [8080]: ") == -2) {
                 return;
             }
@@ -427,6 +428,7 @@ static void dispatch_socket(int argc, char** argv) {
         }
     } else if (strcmp(cmd, "client") == 0) {
         if (is_interactive) {
+            print_ssh_tunnel_guide(8080);
             if (get_arg_or_prompt(ip, sizeof(ip), 1, argc, argv, "Enter server IP [127.0.0.1]: ") == -2) {
                 return;
             }
@@ -445,6 +447,7 @@ static void dispatch_socket(int argc, char** argv) {
         }
     } else if (strcmp(cmd, "multi") == 0) {
         if (is_interactive) {
+            print_ssh_tunnel_guide(8080);
             if (get_arg_or_prompt(port_str, sizeof(port_str), 1, argc, argv, "Enter port to bind [8080]: ") == -2) {
                 return;
             }
@@ -488,6 +491,7 @@ static void dispatch_socket(int argc, char** argv) {
             }
             
             if (strcmp(sub_cmd, "host") == 0) {
+                print_ssh_tunnel_guide(8080);
                 if (get_arg_or_prompt(port_str, sizeof(port_str), 2, argc, argv, "Enter port to bind [8080]: ") == -2) {
                     return;
                 }
@@ -497,6 +501,7 @@ static void dispatch_socket(int argc, char** argv) {
                     ui_print_error("Failed to launch socket chat host in a new terminal.\n");
                 }
             } else if (strcmp(sub_cmd, "client") == 0) {
+                print_ssh_tunnel_guide(8080);
                 if (get_arg_or_prompt(ip, sizeof(ip), 2, argc, argv, "Enter host IP [127.0.0.1]: ") == -2) {
                     return;
                 }

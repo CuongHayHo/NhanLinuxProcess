@@ -14,5 +14,6 @@
  * Returns 0 on success, or -1 on failure.
  */
 int terminal_open(const char* title, const char* command);
+void print_ssh_tunnel_guide(int port);
 
 #endif /* TERMINAL_LAUNCHER_H */
