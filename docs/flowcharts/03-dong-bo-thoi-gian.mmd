@@ -1,0 +1,13 @@
+---
+title: "Ch2.3 — Cấu hình & đồng bộ thời gian hệ thống"
+---
+flowchart TD
+    U["User (time sync)"]
+    W["C Wrapper → shell/autosync.sh"]
+    HTTP["HTTP HEAD Date qua IP public (curl)"]
+    SET["sudo date -s<br/>set tạm để qua bộ lọc DNSSEC"]
+    DNS["DNS resolution pool.ntp.org"]
+    NTP["NTP sync<br/>chronyc makestep | ntpdate"]
+    RES["Result<br/>thời gian chính xác mức mili-giây"]
+
+    U --> W --> HTTP --> SET --> DNS --> NTP --> RES

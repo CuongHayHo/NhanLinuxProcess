@@ -1,0 +1,12 @@
+---
+title: "Ch4.3 — Truy vấn thời gian nhân (jiffies & ktime)"
+---
+flowchart TD
+    U["User đọc /proc/sysmgr"]
+    VFS["VFS → sysmgr_proc_show()"]
+    JIF["đọc jiffies<br/>(bộ đếm ngắt định thời)"]
+    LT["đọc load_time_sec<br/>(ghi khi nạp module)"]
+    TM["time64_to_tm()<br/>→ cấu trúc ngày giờ"]
+    PR["seq_printf() → user-space"]
+
+    U --> VFS --> JIF --> LT --> TM --> PR

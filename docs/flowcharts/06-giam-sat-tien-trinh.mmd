@@ -1,0 +1,18 @@
+---
+title: "Ch3.2 — Giám sát tiến trình hệ thống"
+---
+flowchart TD
+    U["User: process list"]
+    DIR["opendir(/proc) + readdir()"]
+    FILT{"isdigit(name)?<br/>lọc thư mục → PID"}
+    OPEN["open(/proc/PID/stat, O_RDONLY)"]
+    READ["POSIX read() vào stack buffer<br/>(tránh fopen/fscanf → tránh deadlock)"]
+    COMM["parse comm: strrchr(')') / strchr('(')"]
+    SCAN["sscanf() → PPID, State, Priority"]
+    STATUS["/proc/PID/status → VmRSS (RAM thực)"]
+    CMDLINE["/proc/PID/cmdline → thay NULL bằng space"]
+    CLOSE["closedir()"]
+
+    U --> DIR --> FILT
+    FILT -- "PID hợp lệ" --> OPEN --> READ --> COMM --> SCAN --> STATUS --> CMDLINE --> CLOSE
+    FILT -- "Bỏ qua" --> DIR

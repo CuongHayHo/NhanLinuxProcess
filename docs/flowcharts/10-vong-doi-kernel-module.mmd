@@ -1,0 +1,22 @@
+---
+title: "Ch4.1 — Quản lý vòng đời kernel module"
+---
+flowchart TD
+    L["User: kernel load"]
+    CTRL["C Controller (kernel_mgr.c)<br/>access() kiểm tra .ko (chưa có → make)"]
+    INS["fork() + execvp(sudo, insmod, system_monitor.ko)"]
+    ELF["Kernel nạp ELF .ko vào Ring 0"]
+    INIT["monitor_init() (__init)"]
+    KT["load_time_sec = ktime_get_real_seconds()"]
+    PC["proc_create() → /proc/sysmgr"]
+
+    UL["User: kernel unload"]
+    RM["fork() + execvp(sudo, rmmod, system_monitor)"]
+    EXIT["monitor_exit() (__exit)"]
+    RPE["remove_proc_entry() gỡ /proc/sysmgr"]
+    FREE["Kernel thu hồi vùng nhớ LKM khỏi Ring 0"]
+
+    L --> CTRL --> INS --> ELF --> INIT
+    INIT --> KT
+    INIT --> PC
+    PC --> UL --> RM --> EXIT --> RPE --> FREE

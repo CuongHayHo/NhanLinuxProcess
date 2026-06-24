@@ -1,0 +1,30 @@
+---
+title: "Ch3.1 — File Launcher (C Wrapper): đọc file qua pipe + fork"
+---
+flowchart TD
+    P0["Parent (C App)<br/>file_mgr_read(file1.txt, buf, size)"]
+    PIPE["pipe(pipefd)<br/>[0]=read, [1]=write"]
+    FORK(["fork()"])
+
+    subgraph PARENT["Tiến trình cha"]
+        PA1["close(pipefd[1])"]
+        PA2["read(pipefd[0]) → buffer (tới EOF)"]
+        PA3["close(pipefd[0])"]
+        PA4["waitpid(pid, &status)"]
+        PA1 --> PA2 --> PA3 --> PA4
+    end
+
+    subgraph CHILD["Tiến trình con"]
+        CH1["close(pipefd[0])"]
+        CH2["dup2(pipefd[1], STDOUT_FILENO)"]
+        CH3["close(pipefd[1])"]
+        CH4["execvp(shell/file.sh, argv)"]
+        BASH["Bash: cat file"]
+        WR["ghi data → pipefd[1]"]
+        CH1 --> CH2 --> CH3 --> CH4 --> BASH --> WR
+    end
+
+    P0 --> PIPE --> FORK
+    FORK --> PARENT
+    FORK --> CHILD
+    WR -. "luồng dữ liệu qua pipe" .-> PA2

@@ -1,0 +1,13 @@
+---
+title: "Ch3.5 — Truy vấn & chẩn đoán mạng cấp thấp"
+---
+flowchart TD
+    U["User: network info eth0"]
+    CTRL["C Controller (network_mgr.c)"]
+    SOCK["socket(AF_INET, SOCK_DGRAM, 0)"]
+    IFR["cấu hình ifreq<br/>memset + copy 'eth0'"]
+    IOCTL["ioctl(sock, SIOCGIFHWADDR, &ifr)<br/>kernel đọc driver / HW register"]
+    MAC["đọc MAC từ ifr.ifr_hwaddr.sa_data"]
+    CLOSE["close(sock)"]
+
+    U --> CTRL --> SOCK --> IFR --> IOCTL --> MAC --> CLOSE

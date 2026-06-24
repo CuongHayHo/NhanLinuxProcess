@@ -1,0 +1,16 @@
+---
+title: "Ch2.4 — Trình quản lý gói phần mềm"
+---
+flowchart TD
+    U["User (package install sl)"]
+    CLI["CLI/TUI (package_mgr_run)"]
+    CTRL["C Controller (package_mgr.c)"]
+    FE["fork-exec → shell/program.sh install sl"]
+    BL{"Blacklist check<br/>gói có bị cấm?"}
+    PM["OS pkg mgr<br/>dnf install -y | apt-get install -y"]
+    RES["Result<br/>gói nạp, exit 0 → C ghi log"]
+    STOP["Từ chối + ghi log"]
+
+    U --> CLI --> CTRL --> FE --> BL
+    BL -- "Không" --> PM --> RES
+    BL -- "Có" --> STOP

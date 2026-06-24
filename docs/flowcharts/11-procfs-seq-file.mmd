@@ -1,0 +1,15 @@
+---
+title: "Ch4.2 — Giao tiếp /proc qua seq_file & proc_ops"
+---
+flowchart TD
+    U["User: cat /proc/sysmgr → VFS open()"]
+    POPEN[".proc_open = sysmgr_proc_open()"]
+    SOPEN["single_open() → đăng ký sysmgr_proc_show()"]
+    READ["VFS read() → seq_read()"]
+    SHOW["sysmgr_proc_show() callback"]
+    PRINTF["seq_printf() ghi vào đệm seq_file"]
+    PAGE["Kernel cắt dữ liệu thành Page 4KB"]
+    STREAM["stream bytes → buffer user-space của 'cat'"]
+    REL["single_release()"]
+
+    U --> POPEN --> SOPEN --> READ --> SHOW --> PRINTF --> PAGE --> STREAM --> REL

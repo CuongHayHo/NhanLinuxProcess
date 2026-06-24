@@ -1,0 +1,21 @@
+---
+title: "Ch3.3 — Process Demo Lab: tạo Daemon (double-fork)"
+---
+flowchart TD
+    M["Main → daemon_demo_run()"]
+    F1(["fork() #1"])
+    PEXIT["Cha: exit(0)<br/>(trả prompt về terminal)"]
+    SID["Con1: setsid()<br/>(Session Leader mới)"]
+    F2(["fork() #2"])
+    C1EXIT["Con1: exit(0)"]
+    DAE["Con2 (Daemon)<br/>không còn TTY"]
+    UMASK["umask(0)"]
+    CHDIR["chdir(/)"]
+    IO["đóng STDIN/OUT/ERR<br/>dup2() → /dev/null"]
+    HB["Heartbeat loop<br/>→ /tmp/daemon_test.log"]
+
+    M --> F1
+    F1 --> PEXIT
+    F1 --> SID --> F2
+    F2 --> C1EXIT
+    F2 --> DAE --> UMASK --> CHDIR --> IO --> HB

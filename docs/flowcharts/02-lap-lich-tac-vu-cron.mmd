@@ -1,0 +1,13 @@
+---
+title: "Ch2.2 — Lập lịch tác vụ định kỳ (cron)"
+---
+flowchart TD
+    U["User (cron create)"]
+    CLI["CLI/TUI<br/>shell_mgr_cron_execute"]
+    CTRL["C Controller<br/>access() kiểm tra quyền chạy script"]
+    MGR["Manager<br/>fork() /bin/sh chạy pipeline cập nhật crontab"]
+    UTIL["crontab utility<br/>đọc cũ → nối dòng → nạp lại"]
+    FILE["/var/spool/cron/crontabs/&lt;user&gt;"]
+    DAEMON["crond daemon<br/>chạy script tự động theo chu kỳ"]
+
+    U --> CLI --> CTRL --> MGR --> UTIL --> FILE --> DAEMON

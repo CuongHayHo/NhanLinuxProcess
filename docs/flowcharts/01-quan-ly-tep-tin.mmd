@@ -1,0 +1,14 @@
+---
+title: "Ch2.1 — Quản lý tệp tin & thư mục"
+---
+flowchart TD
+    U["User (nhập lệnh)"]
+    CLI["CLI/TUI<br/>cli/repl.c | file_mgr_run"]
+    DISP["Dispatcher<br/>file_mgr_read @ file_mgr.c"]
+    MGR["Manager<br/>pipe() + fork() tiến trình con"]
+    CHILD["Child<br/>dup2() + execvp() → shell/file.sh"]
+    CMD["Linux command<br/>touch / cat / rm / mv / cp / stat"]
+    OS["Kernel syscall<br/>open() / unlink() / stat()"]
+    RES["Result<br/>trả qua pipe → cha C in ra màn hình"]
+
+    U --> CLI --> DISP --> MGR --> CHILD --> CMD --> OS --> RES

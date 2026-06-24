@@ -1,0 +1,23 @@
+---
+title: "Ch3.4 — Giao tiếp TCP song công (Socket, multi-thread)"
+---
+flowchart TD
+    INIT["socket() → bind() → listen()"]
+    ACC["vòng lặp accept() (chặn chờ)"]
+    CONN["client kết nối → accept() → client_fd"]
+    MAL["malloc(session_t)"]
+    SPAWN["pthread_create() → session_worker()"]
+    DET["pthread_detach()<br/>(kernel tự giải phóng)"]
+
+    subgraph WORKER["Luồng độc lập: session_worker"]
+        LOOP["recv/send loop song công"]
+        ZERO{"recv() == 0?<br/>(client đóng)"}
+        CLEAN["cleanup<br/>shutdown(), close(client_fd), free(session)"]
+        LOOP --> ZERO
+        ZERO -- "Chưa" --> LOOP
+        ZERO -- "Rồi" --> CLEAN
+    end
+
+    INIT --> ACC --> CONN --> MAL --> SPAWN --> DET
+    SPAWN --> LOOP
+    DET -. "tiếp tục" .-> ACC
